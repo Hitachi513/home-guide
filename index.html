@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>家裡網路使用教學</title>
+<meta name="description" content="一步一步教你用 Shadowrocket 或 Tailscale 連回家裡的網路、使用家裡的雲端硬碟。">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb; --card: #ffffff; --text: #16181d; --text-2: #454a55; --muted: #6b7280; --line: #e3e6ee;
+  --blue: #0a6cff; --blue-soft: #e8f0ff; --green: #1a8f3c; --green-soft: #e6f6ea; --orange: #b45309; --orange-soft: #fff4e0;
+  --red: #d42a20; --red-soft: #ffebe9; --shadow: 0 6px 24px rgba(20, 30, 60, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --bg: #0e1116; --card: #181c23; --text: #f2f4f8; --text-2: #c9ced8; --muted: #9aa1ad; --line: #2a303b;
+    --blue: #4b93ff; --blue-soft: #16243d; --green: #4ccf73; --green-soft: #13291b; --orange: #f5b44a; --orange-soft: #2f2412;
+    --red: #ff6b61; --red-soft: #3a1716; --shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.75 -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 80px; }
+header.top { padding: calc(28px + env(safe-area-inset-top)) 0 10px; text-align: center; }
+header.top h1 { font-size: 32px; line-height: 1.3; margin: 8px 0 6px; }
+header.top p { color: var(--text-2); margin: 0; }
+.logo { font-size: 50px; }
+h2 { font-size: 27px; line-height: 1.35; margin: 46px 0 12px; scroll-margin-top: 20px; }
+h2 .tag { font-size: 15px; vertical-align: middle; padding: 3px 10px; border-radius: 99px; margin-left: 6px; font-weight: 700; }
+h3 { font-size: 22px; margin: 0 0 6px; }
+p { margin: 8px 0; }
+b, strong { font-weight: 800; }
+a { color: var(--blue); }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); margin: 14px 0; }
+.toc a { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-weight: 700; }
+.toc a:first-of-type { border-top: 0; }
+.toc .n { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; flex: none; font-size: 17px; }
+.choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.choose .card { margin: 0; border: 3px solid transparent; }
+.choose .card.a { border-color: #6c63ff33; } .choose .card.b { border-color: #0a6cff33; }
+.choose ul { padding-left: 22px; margin: 8px 0 12px; }
+.pill { display: inline-block; font-size: 15px; font-weight: 800; padding: 3px 12px; border-radius: 99px; }
+.pill.free { background: var(--green-soft); color: var(--green); } .pill.paid { background: var(--orange-soft); color: var(--orange); }
+.go { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; padding: 10px 20px; border-radius: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; background: var(--card); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); margin: 16px 0; }
+.step .num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 24px; font-weight: 800; display: grid; place-items: center; }
+.step .body { min-width: 0; }
+figure { margin: 14px 0 4px; text-align: center; }
+figure img { width: 100%; max-width: 340px; height: auto; border-radius: 22px; box-shadow: var(--shadow); background: #fff; }
+figure.wide img { max-width: 420px; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.qrwrap { position: relative; display: inline-block; max-width: 380px; width: 100%; }
+.qrwrap img { max-width: 100%; }
+.qrwrap .stamp { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); background: var(--red); color: #fff; font-weight: 900; font-size: 26px; padding: 10px 22px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212,42,32,.4); white-space: nowrap; }
+.note { border-radius: 16px; padding: 14px 16px; margin: 12px 0; font-size: 17px; }
+.note.tip { background: var(--blue-soft); } .note.warn { background: var(--orange-soft); } .note.danger { background: var(--red-soft); }
+.note.ok { background: var(--green-soft); }
+.note b:first-child { display: block; margin-bottom: 2px; }
+ol.simple, ul.simple { padding-left: 24px; } ol.simple li, ul.simple li { margin: 6px 0; }
+.check li { list-style: none; margin-left: -24px; padding-left: 34px; position: relative; }
+.check li::before { content: "☐"; position: absolute; left: 0; font-size: 22px; line-height: 1.45; }
+details.faq { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin: 10px 0; padding: 4px 18px; }
+details.faq summary { cursor: pointer; font-weight: 800; padding: 12px 0; list-style: none; }
+details.faq summary::before { content: "＋ "; color: var(--blue); }
+details.faq[open] summary::before { content: "－ "; }
+details.faq > div { padding: 0 0 14px; color: var(--text-2); }
+kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
+.back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
+@media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top" id="top">
+  <div class="logo">🏠</div>
+  <h1>家裡網路使用教學</h1>
+  <p>用手機連回家裡的網路、使用家裡的雲端硬碟<br>一步一步照著做就好，不用懂電腦</p>
+</header>
+
+<div class="card toc">
+  <a href="#before"><span class="n">1</span>開始之前要準備的東西</a>
+  <a href="#choose"><span class="n">2</span>選一種方式：Shadowrocket 或 Tailscale</a>
+  <a href="#portal"><span class="n">3</span>打開「我的專屬網頁」</a>
+  <a href="#sr"><span class="n">4</span>方式 A：Shadowrocket</a>
+  <a href="#ts"><span class="n">5</span>方式 B：Tailscale</a>
+  <a href="#cloud"><span class="n">6</span>使用「我的雲端」存照片和檔案</a>
+  <a href="#faq"><span class="n">7</span>遇到問題怎麼辦</a>
+  <a href="#safe"><span class="n">8</span>安全小提醒（很重要）</a>
+</div>
+
+<!-- 1 -->
+<h2 id="before">1. 開始之前要準備的東西</h2>
+<div class="card">
+  <ul class="simple check">
+    <li>一支 <b>iPhone</b>（這份教學用 iPhone 示範）</li>
+    <li>你的 <b>Apple ID 密碼</b>（下載 App 時可能會用到）</li>
+    <li>手機可以正常上網（Wi-Fi 或行動網路都可以）</li>
+    <li><b>管理員傳給你的「專屬網址」</b>，看起來像這樣：<br><code style="font-size:15px;word-break:break-all">https://………/p/一長串英文和數字/</code></li>
+  </ul>
+  <div class="note tip"><b>什麼是「管理員」？</b>就是幫大家架好家裡網路的那個人。遇到不會的地方，直接問他就好。</div>
+</div>
+
+<!-- 2 -->
+<h2 id="choose">2. 選一種方式</h2>
+<p>有兩種 App 可以連回家裡，<b>選一種就好</b>，不用兩個都裝。如果不知道選哪個，<b>問管理員</b>，他會告訴你。</p>
+<div class="choose">
+  <div class="card a">
+    <h3>🚀 方式 A：Shadowrocket</h3>
+    <span class="pill paid">需要付費購買</span>
+    <ul>
+      <li>最簡單，按一個按鈕就設定好</li>
+      <li>不用註冊帳號</li>
+      <li>適合：想用家裡網路上網的人</li>
+    </ul>
+    <a class="go" href="#sr">看方式 A 的教學 →</a>
+  </div>
+  <div class="card b">
+    <h3>🔵 方式 B：Tailscale</h3>
+    <span class="pill free">免費</span>
+    <ul>
+      <li>要用 Google 或 Apple 帳號登入</li>
+      <li>管理員要先寄邀請給你</li>
+      <li>適合：需要用到家裡電腦的人</li>
+    </ul>
+    <a class="go" href="#ts">看方式 B 的教學 →</a>
+  </div>
+</div>
+<div class="note warn"><b>⚠️ 兩個不能同時開</b>iPhone 一次只能開一個 VPN。開了 Shadowrocket，Tailscale 就會自動關掉，反過來也一樣。</div>
+
+<!-- 3 -->
+<h2 id="portal">3. 打開「我的專屬網頁」</h2>
+<p>不管選哪一種方式，都會用到這個網頁。它會告訴你：<b>你可以用什麼、能用到什麼時候</b>，也可以在這裡使用雲端硬碟。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>點開管理員給你的網址</h3>
+  <p>在 LINE 或訊息裡，直接點那個網址，iPhone 會用 <b>Safari</b> 打開。</p>
+  <figure><img src="img/portal-top.png" alt="我的專屬網頁的最上面，顯示名字、可以使用、使用期限" loading="lazy"><figcaption>打開後會看到你的名字（圖中「王小明」是範例）</figcaption></figure>
+  <div class="note ok"><b>看到綠色的「可以使用」就代表一切正常。</b>如果是紅色，請看最下面的<a href="#faq">常見問題</a>。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>把它放到主畫面（以後一點就開）</h3>
+  <ol class="simple">
+    <li>按 Safari 最下面中間的 <kbd>分享</kbd> 按鈕（一個方框加向上的箭頭 ⬆︎）</li>
+    <li>往下滑，按 <kbd>加入主畫面</kbd></li>
+    <li>右上角按 <kbd>加入</kbd></li>
+  </ol>
+  <figure><img src="img/home-screen.png" alt="Safari 分享選單，加入主畫面被紅框標出" loading="lazy"><figcaption>主畫面會多一個「我的連線」圖示</figcaption></figure>
+</div></div>
+
+<!-- 4 -->
+<h2 id="sr">4. 方式 A：Shadowrocket <span class="tag pill paid">付費</span></h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>下載 Shadowrocket</h3>
+  <ol class="simple">
+    <li>打開 iPhone 上的 <b>App Store</b>（藍色的 A 字圖示）</li>
+    <li>按右下角 <kbd>搜尋</kbd>，輸入 <b>Shadowrocket</b></li>
+    <li>找到一個<b>藍色火箭</b>圖示的 App，按價錢按鈕購買</li>
+    <li>用 Face ID 或 Apple ID 密碼確認付款</li>
+  </ol>
+  <figure><img src="img/appstore-sr.png" alt="App Store 搜尋 Shadowrocket，購買按鈕被紅框標出" loading="lazy"><figcaption>示意圖：實際價格和圖示以 App Store 為準</figcaption></figure>
+  <div class="note warn"><b>搜尋不到？</b>中國大陸的 App Store 沒有這個 App。如果找不到，請找管理員幫忙。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>從「我的專屬網頁」一鍵匯入</h3>
+  <ol class="simple">
+    <li>打開<a href="#portal">我的專屬網頁</a>，往下滑到 <b>Shadowrocket</b> 那一塊</li>
+    <li>按藍色的 <kbd>用 Shadowrocket 開啟</kbd></li>
+    <li>跳出「要在 Shadowrocket 中打開嗎？」，按 <kbd>打開</kbd></li>
+  </ol>
+  <figure><span class="qrwrap"><img src="img/portal-sr.png" alt="我的專屬網頁的 Shadowrocket 區塊，有 QR code 和「用 Shadowrocket 開啟」按鈕" loading="lazy"><span class="stamp">範例・不能掃</span></span>
+    <figcaption>你的網頁上會有你自己的 QR code 和按鈕</figcaption></figure>
+  <figure><img src="img/safari-open.png" alt="Safari 詢問是否在 Shadowrocket 中打開，打開按鈕被紅框標出" loading="lazy"></figure>
+  <div class="note tip"><b>用別台手機掃也可以</b>如果網頁是在電腦上打開的，可以在 Shadowrocket 首頁按左上角的「掃描」圖示，掃網頁上的 QR code。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>第一次使用：允許 VPN</h3>
+  <p>第一次打開開關時，iPhone 會問你要不要加入 VPN 設定，按 <kbd>允許</kbd>，再輸入 <b>iPhone 的開機密碼</b>或用 Face ID。</p>
+  <figure><img src="img/vpn-allow.png" alt="iPhone 詢問是否允許加入 VPN 設定，允許被紅框標出" loading="lazy"><figcaption>這一步只會出現一次</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>打開開關</h3>
+  <ol class="simple">
+    <li>確認下面的清單裡，<b>「家裡的 Mac」</b>前面有打勾 ✓</li>
+    <li>「全域路由」選 <b>代理</b></li>
+    <li>打開最上面的開關（變成綠色）</li>
+  </ol>
+  <figure><img src="img/sr-home.png" alt="Shadowrocket 首頁，開關、全域路由、家裡的 Mac 分別被標出" loading="lazy"></figure>
+  <div class="note ok"><b>成功的樣子：</b>iPhone 最上面會出現一個小小的 <b>VPN</b> 字樣。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>檢查有沒有成功</h3>
+  <p>用 Safari 打開 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a>，畫面上會出現一串數字。<b>這串數字和管理員告訴你的一樣，就代表成功了！</b></p>
+  <figure><img src="img/ipify.png" alt="Safari 顯示一串 IP 數字" loading="lazy"><figcaption>圖中的數字是範例</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>平常怎麼用？</h3>
+  <ul class="simple">
+    <li><b>要用的時候</b>：打開 Shadowrocket，把開關打開</li>
+    <li><b>不用的時候</b>：把開關關掉就好（比較省電）</li>
+    <li>也可以到 iPhone 的 <b>設定 → VPN</b> 開關</li>
+  </ul>
+</div></div>
+
+<!-- 5 -->
+<h2 id="ts">5. 方式 B：Tailscale <span class="tag pill free">免費</span></h2>
+<div class="note warn"><b>先確認：管理員已經邀請你了嗎？</b>管理員會用 Email 或 LINE 傳一個「邀請連結」給你。沒有邀請的話，登入後什麼都連不到。</div>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>下載 Tailscale</h3>
+  <ol class="simple">
+    <li>打開 <b>App Store</b>，搜尋 <b>Tailscale</b></li>
+    <li>按 <kbd>取得</kbd>（免費），再用 Face ID 或密碼確認</li>
+  </ol>
+  <figure><img src="img/appstore-ts.png" alt="App Store 搜尋 Tailscale，取得按鈕被紅框標出" loading="lazy"><figcaption>示意圖：實際圖示以 App Store 為準</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>接受邀請並登入</h3>
+  <ol class="simple">
+    <li>點管理員傳給你的<b>邀請連結</b>，按「接受」</li>
+    <li>打開 Tailscale App，按 <kbd>登入</kbd></li>
+    <li>選你平常用的帳號（Google 或 Apple）登入</li>
+  </ol>
+  <figure><img src="img/ts-login.png" alt="Tailscale 登入畫面，有 Google、Apple、Microsoft 登入選項" loading="lazy"><figcaption>示意圖：實際畫面可能是英文</figcaption></figure>
+  <div class="note danger"><b>一定要用同一個帳號</b>要用管理員<b>邀請的那個 Email</b> 登入，不然會連不到。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>允許 VPN</h3>
+  <p>和 Shadowrocket 一樣，第一次會問你要不要加入 VPN 設定（名稱會是 <b>Tailscale</b>），按 <kbd>允許</kbd>，再輸入 iPhone 密碼或 Face ID。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>打開連線，選「家裡的電腦」</h3>
+  <ol class="simple">
+    <li>把最上面的開關打開（變成綠色）</li>
+    <li>點 <kbd>Exit Node</kbd></li>
+    <li>選 <b>家裡的電腦</b>（實際名字請問管理員）</li>
+  </ol>
+  <figure><img src="img/ts-main.png" alt="Tailscale 主畫面，開關和 Exit Node 被標出" loading="lazy"></figure>
+  <figure><img src="img/ts-exit.png" alt="Exit Node 清單，家裡的電腦被紅框標出" loading="lazy"><figcaption>選了之後，你上網就像在家裡一樣，還會自動擋廣告</figcaption></figure>
+  <div class="note tip"><b>沒有看到 Exit Node？</b>代表管理員沒有開放這個功能給你，這是正常的。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>檢查有沒有成功</h3>
+  <p>和方式 A 一樣：用 Safari 打開 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a>，數字和管理員說的一樣就成功了。</p>
+</div></div>
+
+<!-- 6 -->
+<h2 id="cloud">6. 使用「我的雲端」存照片和檔案</h2>
+<p>如果管理員幫你開了雲端硬碟，<a href="#portal">我的專屬網頁</a>上會有 <b>「我的雲端」</b>。你可以把照片、影片、文件存在家裡的硬碟，換手機也不怕不見。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>認識兩個資料夾</h3>
+  <figure class="wide"><img src="img/portal-drive-roots.png" alt="我的雲端有兩個資料夾：我的檔案、共用" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>我的檔案</b>：你自己的空間，只有你和管理員看得到。下面會寫你已經用了多少、最多能放多少。</li>
+    <li><b>共用</b>：全家一起用的資料夾。你能不能放東西進去，由管理員決定。</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>上傳照片或影片</h3>
+  <ol class="simple">
+    <li>點 <b>我的檔案</b> 進去</li>
+    <li>按右上角 <kbd>上傳</kbd></li>
+    <li>選 <b>照片圖庫</b>，勾選要上傳的照片或影片，按 <kbd>加入</kbd></li>
+    <li>等進度條跑完，就會出現「已上傳」</li>
+  </ol>
+  <figure class="wide"><img src="img/portal-drive-files.png" alt="我的檔案裡的資料夾和檔案清單，右上角有上傳和新資料夾按鈕" loading="lazy"></figure>
+  <div class="note warn"><b>上傳時不要關掉網頁</b>影片比較大，要等久一點。上傳到一半離開網頁，就要重新上傳。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>看照片、下載、改名、刪除</h3>
+  <ul class="simple">
+    <li><b>點一下照片或影片</b>：直接在手機上看</li>
+    <li><b>點右邊的 ⋯</b>：可以下載、改名、刪除</li>
+    <li><b>新資料夾</b>：幫照片分類，例如「旅行」「孫子」</li>
+  </ul>
+  <figure><img src="img/portal-drive-menu.png" alt="檔案選單有下載、改名、刪除、關閉" loading="lazy"></figure>
+  <div class="note danger"><b>刪除了就救不回來</b>雲端沒有垃圾桶。按「刪除」後還要再按一次確認，請看清楚再按。</div>
+</div></div>
+
+<!-- 7 -->
+<h2 id="faq">7. 遇到問題怎麼辦</h2>
+<details class="faq"><summary>開了之後上不了網</summary><div>
+  <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>告訴管理員：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
+<details class="faq"><summary>專屬網頁上寫「權限目前無效」或紅色字</summary><div>
+  <ul class="simple"><li><b>不在允許時段</b>：管理員設定了可以使用的時間，時間到了就能用。</li><li><b>已過期</b>：使用期限到了，請問管理員要不要延長。</li><li><b>已停用</b>：管理員暫時關掉了，請問管理員。</li></ul></div></details>
+<details class="faq"><summary>專屬網頁打開寫「找不到頁面」或「網址已失效」</summary><div>
+  管理員可能幫你換了新的網址（例如為了安全）。請管理員<b>傳新的網址</b>給你，舊的就不要再用了。</div></details>
+<details class="faq"><summary>Shadowrocket 裡「家裡的 Mac」旁邊有紅點</summary><div>
+  那是 Shadowrocket 的「測速」失敗，<b>不影響使用</b>，可以忽略。只要 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> 顯示的數字正確就沒問題。</div></details>
+<details class="faq"><summary>有些 App 或網站打不開</summary><div>
+  管理員可能幫你設了「上網限制」（例如擋廣告、擋某些 App）。在專屬網頁的 <b>上網限制</b> 那一塊可以看到被擋的項目。有需要請問管理員。</div></details>
+<details class="faq"><summary>上傳失敗，寫「超過你的容量上限」</summary><div>
+  你的「我的檔案」已經滿了。可以刪掉一些不要的檔案，或請管理員幫你加大容量。</div></details>
+<details class="faq"><summary>換了新手機怎麼辦？</summary><div>
+  在新手機上重新做一次：下載 App → 打開專屬網址 → 按「用 Shadowrocket 開啟」（或用 Tailscale 登入）。雲端裡的檔案都還在，不會不見。</div></details>
+<details class="faq"><summary>可以同時開 Shadowrocket 和 Tailscale 嗎？</summary><div>
+  不行，iPhone 一次只能開一個。要用哪個就開哪個。</div></details>
+
+<!-- 8 -->
+<h2 id="safe">8. 安全小提醒</h2>
+<div class="card">
+  <div class="note danger"><b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。</div>
+  <ul class="simple">
+    <li><b>不要</b>把專屬網址傳給別人，也不要貼到群組</li>
+    <li><b>不要</b>把 Shadowrocket 的 QR code 截圖分享</li>
+    <li>如果不小心傳出去了，<b>馬上告訴管理員</b>，他可以幫你換新的，舊的會立刻失效</li>
+    <li>有人自稱是管理員跟你要密碼或驗證碼，<b>先打電話跟本人確認</b></li>
+  </ul>
+</div>
+
+<footer>有任何問題，直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。</footer>
+</div>
+<a class="back" href="#top">↑ 目錄</a>
+</body>
+</html>
