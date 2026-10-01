@@ -86,8 +86,10 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <a href="#sr"><span class="n">4</span>方式 A：Shadowrocket</a>
   <a href="#ts"><span class="n">5</span>方式 B：Tailscale</a>
   <a href="#cloud"><span class="n">6</span>使用「我的雲端」存照片和檔案</a>
-  <a href="#faq"><span class="n">7</span>遇到問題怎麼辦</a>
-  <a href="#safe"><span class="n">8</span>安全小提醒（很重要）</a>
+  <a href="#backup"><span class="n">7</span>iPhone 照片每天自動備份</a>
+  <a href="#more"><span class="n">8</span>其他好用的功能（大字、留言、時數、網速）</a>
+  <a href="#faq"><span class="n">9</span>遇到問題怎麼辦</a>
+  <a href="#safe"><span class="n">10</span>安全小提醒（很重要）</a>
 </div>
 
 <!-- 1 -->
@@ -138,6 +140,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <p>在 LINE 或訊息裡，直接點那個網址，iPhone 會用 <b>Safari</b> 打開。</p>
   <figure><img src="img/portal-top.png" alt="我的專屬網頁的最上面，顯示名字、可以使用、使用期限" loading="lazy"><figcaption>打開後會看到你的名字（圖中「王小明」是範例）</figcaption></figure>
   <div class="note ok"><b>看到綠色的「可以使用」就代表一切正常。</b>如果是紅色，請看最下面的<a href="#faq">常見問題</a>。</div>
+  <div class="note tip"><b>字太小看不清楚？</b>按右上角的 <kbd>T</kbd> 就會變成大字，再按一次變回來。詳細請看<a href="#big">大字模式</a>。</div>
 </div></div>
 
 <div class="step"><div class="num">2</div><div class="body">
@@ -273,31 +276,176 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <h3>上傳照片或影片</h3>
   <ol class="simple">
     <li>點 <b>我的檔案</b> 進去</li>
-    <li>按右上角 <kbd>上傳</kbd></li>
+    <li>按藍色的 <kbd>上傳</kbd></li>
     <li>選 <b>照片圖庫</b>，勾選要上傳的照片或影片，按 <kbd>加入</kbd></li>
-    <li>等進度條跑完，就會出現「已上傳」</li>
+    <li>等進度條跑完，就會出現「已上傳」。進度條下面會寫<b>速度</b>和<b>還要多久</b></li>
   </ol>
-  <figure class="wide"><img src="img/portal-drive-files.png" alt="我的檔案裡的資料夾和檔案清單，右上角有上傳和新資料夾按鈕" loading="lazy"></figure>
-  <div class="note warn"><b>上傳時不要關掉網頁</b>影片比較大，要等久一點。上傳到一半離開網頁，就要重新上傳。</div>
+  <figure class="wide"><img src="img/portal-drive-files.png" alt="我的檔案清單，每個檔案下面寫著大小和上傳時間" loading="lazy"><figcaption>每個檔案下面會寫<b>大小</b>和<b>什麼時候上傳的</b>，最下面有總共幾個檔案、佔多少空間</figcaption></figure>
+  <div class="note warn"><b>上傳時不要關掉網頁</b>影片比較大，要等久一點。上傳到一半離開網頁，就要重新上傳。想要每天自動備份，請看<a href="#backup">第 7 步</a>。</div>
 </div></div>
 
 <div class="step"><div class="num">3</div><div class="body">
-  <h3>看照片、下載、改名、刪除</h3>
+  <h3>上面那排小按鈕是做什麼的</h3>
   <ul class="simple">
-    <li><b>點一下照片或影片</b>：直接在手機上看</li>
-    <li><b>點右邊的 ⋯</b>：可以下載、改名、刪除</li>
-    <li><b>新資料夾</b>：幫照片分類，例如「旅行」「孫子」</li>
+    <li>🔍 <b>搜尋</b>：輸入檔名的一部分，例如「生日」，就會找出所有資料夾裡有「生日」的檔案</li>
+    <li>↕️ <b>排序</b>：可以照 <b>名稱、上傳時間、修改時間、大小、類型</b> 排。想看最新上傳的，就選「上傳時間」</li>
+    <li>▦ <b>切換顯示方式</b>：在「清單」和「相簿」之間切換。相簿模式會把照片排成格子，像手機的照片 App</li>
+    <li>🗑 <b>垃圾桶</b>：刪掉的東西會先放在這裡（看第 6 個步驟）</li>
   </ul>
-  <figure><img src="img/portal-drive-menu.png" alt="檔案選單有下載、改名、刪除、關閉" loading="lazy"></figure>
-  <div class="note danger"><b>刪除了就救不回來</b>雲端沒有垃圾桶。按「刪除」後還要再按一次確認，請看清楚再按。</div>
+  <figure class="wide"><img src="img/portal-drive-grid.png" alt="相簿模式，照片排成三欄的格子，影片中間有播放鍵" loading="lazy"><figcaption>相簿模式：照片、影片、PDF 都看得到縮圖</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>點一下就能直接看</h3>
+  <p>不用下載，點一下就能在手機上打開：</p>
+  <ul class="simple">
+    <li><b>照片、影片、音樂</b>：直接看、直接播。<b>往左、往右滑</b>可以看上一張、下一張</li>
+    <li><b>PDF、Word、Excel、PowerPoint、Pages、Keynote</b>：會顯示<b>第一頁</b>的樣子。PDF 按 <kbd>打開 PDF</kbd> 可以看全部；Word 檔可以按 <kbd>看文字</kbd> 看全文</li>
+    <li><b>文字檔（.txt）、表格（.csv）</b>：直接顯示內容，CSV 會排成表格</li>
+  </ul>
+  <figure><img src="img/portal-drive-text.png" alt="打開買菜清單.txt，直接顯示文字內容" loading="lazy"><figcaption>文字檔直接顯示內容</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>按 ⋯ 可以做更多事</h3>
+  <p>每個檔案右邊都有 <kbd>⋯</kbd>，按下去會看到：</p>
+  <figure><img src="img/portal-drive-menu.png" alt="檔案選單：預覽、下載、詳細資訊、分享、改名、移動、刪除、關閉" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>下載</b>：存到手機裡。如果是<b>資料夾</b>，會變成 <b>下載 ZIP</b>，整個資料夾一次下載</li>
+    <li><b>詳細資訊</b>：看檔案多大、什麼時候上傳、照片幾萬畫素、影片多長</li>
+    <li><b>分享</b>：產生一個連結傳給朋友（看下面「分享給別人」）</li>
+    <li><b>改名</b>、<b>移動</b>（搬到別的資料夾）、<b>刪除</b></li>
+  </ul>
+  <figure><img src="img/portal-drive-info.png" alt="詳細資訊：類型、大小、照片尺寸、上傳時間、修改時間、位置" loading="lazy"><figcaption>詳細資訊</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>一次整理很多個檔案</h3>
+  <ol class="simple">
+    <li>按 <kbd>選取</kbd></li>
+    <li>點要整理的檔案，前面會出現藍色的勾勾 ✓（按 <kbd>全選</kbd> 可以一次全部勾）</li>
+    <li>按 <kbd>移動</kbd> 搬到別的資料夾，或按 <kbd>刪除</kbd></li>
+    <li>做完按 <kbd>完成</kbd></li>
+  </ol>
+  <figure class="wide"><img src="img/portal-drive-select.png" alt="選取模式，兩張照片被勾選，上面有全選、移動、刪除、完成" loading="lazy"></figure>
+  <p><b>移動</b>時會跳出資料夾清單：點資料夾進去，到了想放的地方，按 <kbd>移到這裡</kbd>。</p>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <h3>不小心刪掉了？到垃圾桶救回來</h3>
+  <p>刪掉的檔案<b>不會馬上消失</b>，會在垃圾桶放 <b>30 天</b>，之後才自動清掉。</p>
+  <ol class="simple">
+    <li>按上面那排的 🗑 <b>垃圾桶</b></li>
+    <li>找到要救的檔案，按 <kbd>還原</kbd>，它就會回到原本的資料夾</li>
+  </ol>
+  <figure class="wide"><img src="img/portal-drive-trash.png" alt="垃圾桶裡有一張照片，旁邊有還原和永久刪除按鈕" loading="lazy"></figure>
+  <div class="note danger"><b>垃圾桶裡按 ✕ 或「清空垃圾桶」就真的救不回來了</b>按下去還要再按一次確認，請看清楚再按。</div>
+</div></div>
+
+<div class="step"><div class="num">8</div><div class="body">
+  <h3>分享給別人（對方不用裝 App）</h3>
+  <ol class="simple">
+    <li>在檔案或資料夾按 <kbd>⋯</kbd> → <kbd>分享</kbd></li>
+    <li>選 <b>有效期限</b>（1 天、7 天、30 天、永久）</li>
+    <li>可以限制 <b>最多下載幾次</b>，也可以設 <b>密碼</b></li>
+    <li>按 <kbd>建立連結</kbd>，連結會自動複製好，貼到 LINE 傳給對方就可以了</li>
+  </ol>
+  <figure><img src="img/portal-drive-share.png" alt="分享表單：有效期限、下載次數上限、密碼" loading="lazy"></figure>
+  <div class="note tip"><b>對方打開會看到什麼？</b>一個只能看和下載的網頁，看不到你其他的檔案。分享資料夾的話，對方可以按「全部下載（ZIP）」。時間到、次數用完，或管理員取消，連結就會失效。</div>
+  <div class="note warn"><b>有設密碼的話，密碼要另外告訴對方</b>不要把密碼和連結貼在同一則訊息裡。</div>
 </div></div>
 
 <!-- 7 -->
-<h2 id="faq">7. 遇到問題怎麼辦</h2>
+<h2 id="backup">7. iPhone 照片每天自動備份</h2>
+<p>用 iPhone <b>內建</b>的「捷徑」App，每天晚上自動把當天拍的照片存到你雲端的「相機備份」資料夾。<b>不用另外下載 App，也不用開 VPN</b>，只要有網路就會備份。</p>
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>先複製你的上傳網址</h3>
+  <p>在<a href="#portal">我的專屬網頁</a>找到 <b>「iPhone 照片自動備份」</b>，按 <kbd>複製上傳網址</kbd>。</p>
+  <figure class="wide"><img src="img/portal-backup.png" alt="iPhone 照片自動備份卡片，有上傳網址和一步一步的說明" loading="lazy"><figcaption>網頁上也有同樣的步驟可以照著做</figcaption></figure>
+</div></div>
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>在「捷徑」App 新增自動化</h3>
+  <ol class="simple">
+    <li>打開 <b>捷徑</b> App（找不到的話，在主畫面往下滑搜尋「捷徑」）</li>
+    <li>按下面的 <kbd>自動化</kbd>，再按右上角 <kbd>＋</kbd></li>
+    <li>選 <b>特定時間</b>，設成每天晚上 <b>11:00</b>，選 <kbd>立即執行</kbd>，按 <kbd>下一步</kbd></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>加入三個動作</h3>
+  <ol class="simple">
+    <li>按 <kbd>新增動作</kbd>，搜尋 <b>尋找照片</b>，加入。按「加入過濾條件」，設成 <b>加入日期</b>・<b>是今天</b></li>
+    <li>再搜尋 <b>重複每一項目</b>，加入</li>
+    <li>在「重複」<b>裡面</b>，加入 <b>取得 URL 內容</b>：
+      <ul class="simple">
+        <li>網址：<b>貼上</b>剛剛複製的網址</li>
+        <li>按「顯示更多」，<b>方法</b>選 <kbd>POST</kbd></li>
+        <li><b>要求本文</b>選 <kbd>檔案</kbd>，檔案選 <b>重複項目</b></li>
+        <li><b>標頭</b>按「新增標頭」兩次：<br>
+          第一個：名稱 <code>X-Requested-With</code>，值 <code>portal</code><br>
+          第二個：名稱 <code>X-Filename</code>，值選 <b>重複項目</b> 的 <b>名稱</b>，後面打上 <code>.heic</code><br><span style="font-size:14px;color:#666">（如果「設定 → 相機 → 格式」選的是「最相容」，就改打 <code>.jpg</code>）</span></li>
+      </ul></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>試跑一次</h3>
+  <p>按右下角的 ▶︎ 試跑。第一次 iPhone 會問「允許取用照片嗎？」，按 <kbd>允許</kbd>。跑完到「我的雲端 → 我的檔案 → 相機備份」看看，今天的照片應該都在了。</p>
+  <div class="note ok"><b>重複跑也沒關係</b>已經備份過的同一張照片會自動跳過，不會佔兩份空間。</div>
+  <div class="note warn"><b>容量滿了就會停</b>「我的檔案」滿了以後就存不進去。可以在雲端刪掉舊照片，或用<a href="#msg">留言</a>請管理員加大容量。</div>
+</div></div>
+
+<!-- 8 -->
+<h2 id="more">8. 其他好用的功能</h2>
+
+<div class="step" id="big"><div class="num">1</div><div class="body">
+  <h3>大字模式（給長輩用）</h3>
+  <p>按專屬網頁右上角的 <kbd>T</kbd>，整個網頁的字和按鈕都會變大。這支手機會記住，下次打開還是大字。再按一次 <kbd>T</kbd> 就變回原本的大小。</p>
+  <figure><img src="img/portal-big.png" alt="大字模式的專屬網頁，T 按鈕變成藍色" loading="lazy"><figcaption>開啟後 T 會變成藍色</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>今天還能用多久</h3>
+  <p>如果管理員幫你設了<b>每天可以用多久</b>，網頁上會多一個藍色圓圈「今天還能用」，寫著還剩幾分鐘。</p>
+  <figure class="wide"><img src="img/portal-time.png" alt="三個圓圈：我的雲端、使用期限、今天還能用" loading="lazy"></figure>
+  <ul class="simple">
+    <li>只有<b>真的在用網路</b>的時候才算時間，開著不用不會扣</li>
+    <li>時間用完，當天就連不上，<b>半夜 12 點</b>自動恢復</li>
+    <li>不夠用的話，可以<a href="#msg">留言</a>請管理員加</li>
+  </ul>
+</div></div>
+
+<div class="step" id="msg"><div class="num">3</div><div class="body">
+  <h3>留言給管理員</h3>
+  <p>想延長使用期限、加大雲端容量、增加每天的時數，或是遇到問題，都可以直接在網頁上留言：</p>
+  <ol class="simple">
+    <li>在「留言給管理員」選一個項目，例如 <kbd>加大雲端容量</kbd></li>
+    <li>想補充的話寫在下面的框框（可以不寫）</li>
+    <li>按 <kbd>送出</kbd></li>
+  </ol>
+  <figure class="wide"><img src="img/portal-msg.png" alt="留言給管理員：選項、輸入框、送出按鈕，下面有之前的留言和管理員的回覆" loading="lazy"></figure>
+  <p>管理員的手機會馬上收到通知。他回覆以後，會顯示在「之前的留言」下面，<b>綠色勾勾</b>代表已經處理好了。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>網速測試</h3>
+  <p>覺得很慢的時候，到網頁最下面的「連線檢查」，按 <b>網速測試</b> 旁邊的 <kbd>開始</kbd>，大約 10 秒就會顯示下載和上傳的速度。</p>
+  <figure class="wide"><img src="img/portal-check.png" alt="連線檢查：IP、連線方式、網速測試結果下載 48 Mbps 上傳 21 Mbps" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>20 Mbps 以上</b>：很快，看影片沒問題</li>
+    <li><b>5～20 Mbps</b>：一般使用沒問題</li>
+    <li><b>5 Mbps 以下</b>：比較慢，可以換個地方或換 Wi-Fi 試試</li>
+  </ul>
+  <div class="note tip">每測一次大約用掉 15 MB 的網路流量，用行動網路的話不要一直測。</div>
+</div></div>
+
+<!-- 9 -->
+<h2 id="faq">9. 遇到問題怎麼辦</h2>
 <details class="faq"><summary>開了之後上不了網</summary><div>
   <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>告訴管理員：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
 <details class="faq"><summary>專屬網頁上寫「權限目前無效」或紅色字</summary><div>
   <ul class="simple"><li><b>不在允許時段</b>：管理員設定了可以使用的時間，時間到了就能用。</li><li><b>已過期</b>：使用期限到了，請問管理員要不要延長。</li><li><b>已停用</b>：管理員暫時關掉了，請問管理員。</li></ul></div></details>
+<details class="faq"><summary>寫「今日時數已用完」</summary><div>
+  你今天可以用的時間用完了，<b>半夜 12 點</b>會自動恢復。急著要用的話，可以<a href="#msg">留言</a>請管理員幫你加時數。</div></details>
 <details class="faq"><summary>專屬網頁打開寫「找不到頁面」或「網址已失效」</summary><div>
   管理員可能幫你換了新的網址（例如為了安全）。請管理員<b>傳新的網址</b>給你，舊的就不要再用了。</div></details>
 <details class="faq"><summary>Shadowrocket 裡「家裡的 Mac」旁邊有紅點</summary><div>
@@ -306,19 +454,30 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   管理員可能幫你設了「上網限制」（例如擋廣告、擋某些 App）。在專屬網頁的 <b>上網限制</b> 那一塊可以看到被擋的項目。有需要請問管理員。</div></details>
 <details class="faq"><summary>上傳失敗，寫「超過你的容量上限」</summary><div>
   你的「我的檔案」已經滿了。可以刪掉一些不要的檔案，或請管理員幫你加大容量。</div></details>
+<details class="faq"><summary>照片自動備份沒有跑</summary><div>
+  <ol class="simple"><li>打開「捷徑」App →「自動化」，確認那個自動化有打開，而且選的是「立即執行」。</li>
+  <li>手動按一次 ▶︎ 試跑，看有沒有出現錯誤訊息。</li>
+  <li>寫「forbidden」：檢查兩個「標頭」的名稱有沒有打錯（大小寫也要一樣）。</li>
+  <li>寫「超過你的容量上限」：雲端滿了，請刪掉舊檔案或請管理員加大容量。</li></ol></div></details>
+<details class="faq"><summary>朋友說分享連結打不開</summary><div>
+  連結可能已經<b>過期</b>、<b>下載次數用完</b>，或是被取消了。重新分享一次，產生新的連結傳給他就好。</div></details>
+<details class="faq"><summary>照片在雲端裡看起來是灰色的、沒有縮圖</summary><div>
+  第一次打開時，家裡的電腦要花幾秒做縮圖，等一下再重新整理就會出現。點開照片一樣可以看。</div></details>
 <details class="faq"><summary>換了新手機怎麼辦？</summary><div>
   在新手機上重新做一次：下載 App → 打開專屬網址 → 按「用 Shadowrocket 開啟」（或用 Tailscale 登入）。雲端裡的檔案都還在，不會不見。</div></details>
 <details class="faq"><summary>可以同時開 Shadowrocket 和 Tailscale 嗎？</summary><div>
   不行，iPhone 一次只能開一個。要用哪個就開哪個。</div></details>
 
-<!-- 8 -->
-<h2 id="safe">8. 安全小提醒</h2>
+<!-- 10 -->
+<h2 id="safe">10. 安全小提醒</h2>
 <div class="card">
   <div class="note danger"><b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。</div>
   <ul class="simple">
     <li><b>不要</b>把專屬網址傳給別人，也不要貼到群組</li>
     <li><b>不要</b>把 Shadowrocket 的 QR code 截圖分享</li>
     <li>如果不小心傳出去了，<b>馬上告訴管理員</b>，他可以幫你換新的，舊的會立刻失效</li>
+    <li><b>不要</b>把「照片自動備份」的上傳網址給別人，拿到的人可以把檔案傳到你的雲端</li>
+    <li>分享連結傳出去以後，拿到連結的人都能下載。重要的檔案記得<b>設密碼</b>、<b>設期限</b></li>
     <li>有人自稱是管理員跟你要密碼或驗證碼，<b>先打電話跟本人確認</b></li>
   </ul>
 </div>
