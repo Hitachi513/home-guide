@@ -89,8 +89,9 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <a href="#backup"><span class="n">7</span>iPhone 照片每天自動備份</a>
   <a href="#more"><span class="n">8</span>其他好用的功能（大字、留言、時數、網速）</a>
   <a href="#mac"><span class="n">9</span>看家裡 Mac 的狀況（有控制台權限的人）</a>
-  <a href="#faq"><span class="n">10</span>遇到問題怎麼辦</a>
-  <a href="#safe"><span class="n">11</span>安全小提醒（很重要）</a>
+  <a href="#report"><span class="n">10</span>回報問題給管理員</a>
+  <a href="#faq"><span class="n">11</span>遇到問題怎麼辦</a>
+  <a href="#safe"><span class="n">12</span>安全小提醒（很重要）</a>
 </div>
 
 <!-- 1 -->
@@ -501,9 +502,47 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 </div></div>
 
 <!-- 10 -->
-<h2 id="faq">10. 遇到問題怎麼辦</h2>
+<h2 id="report">10. 回報問題給管理員</h2>
+<p>網頁打不開、雲端上傳失敗、連不上網…遇到<b>怪怪的地方</b>，直接在你的專屬網頁告訴管理員。不用打字解釋很多，選一選、拍張截圖就可以。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>找到「回報問題」</h3>
+  <p>打開<a href="#portal">你的專屬網頁</a>，往下滑，找到橘色的 <b>「回報問題」</b>，按 <kbd>我要回報問題</kbd>。</p>
+  <figure class="wide"><img src="img/portal-bug-card.png" alt="專屬網頁上的「回報問題」卡片，有「我要回報問題」按鈕，下面是我的回報和管理員的回覆" loading="lazy"><figcaption>下面的「我的回報」會顯示處理進度和管理員的回覆</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>填一下就好</h3>
+  <ol class="simple">
+    <li><b>哪裡有問題？</b>：選雲端硬碟、上網／連線、專屬網頁…</li>
+    <li><b>有多嚴重？</b>：小問題、有點影響，還是完全不能用</li>
+    <li><b>用一句話說發生什麼事</b>：例如「上傳影片到一半就失敗」</li>
+    <li><b>詳細說明</b>：可以不寫；有寫會更快找到原因</li>
+    <li><b>截圖</b>：按 <kbd>選擇截圖</kbd>，從相簿選，最多 3 張</li>
+    <li>按 <kbd>送出回報</kbd>，管理員的手機會馬上收到通知</li>
+  </ol>
+  <figure><img src="img/portal-bug-form.png" alt="回報問題的表單：哪裡有問題、有多嚴重、一句話描述、詳細說明、截圖、附上手機資訊" loading="lazy"></figure>
+  <div class="note tip"><b>怎麼截圖？</b>iPhone 同時按「側邊按鈕」和「調高音量」，畫面閃一下就截好了，會存在「照片」裡。</div>
+  <div class="note ok"><b>「附上手機型號和瀏覽器資訊」</b>建議保持勾選，管理員比較容易找到原因。不會傳你的照片、通訊錄或位置。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>看管理員的回覆</h3>
+  <ul class="simple">
+    <li>管理員回覆時，標題旁邊會出現<b>紅點</b> 🔴</li>
+    <li>右邊的標籤會顯示進度：<b>新回報</b> → <b>處理中</b> → <b>已修好</b></li>
+    <li>想補充說明，在下面的框框打字再按 <kbd>送出</kbd></li>
+    <li>標成「已修好」但<b>還是有問題</b>？點「還是有問題？」告訴管理員，回報會重新回到他的待處理清單</li>
+  </ul>
+  <div class="note warn"><b>很急嗎？</b>例如完全連不上網、雲端打不開，選「完全不能用」，管理員會收到緊急通知。真的很急也可以直接打電話給他。</div>
+</div></div>
+
+<div class="note tip" style="margin-top:14px"><b>你是自己架設這套系統的人？</b>程式的 bug 或建議請到 GitHub 回報：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">回報問題／建議新功能</a>（有中文表單）。安全漏洞請改用<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">私下回報</a>。</div>
+
+<!-- 11 -->
+<h2 id="faq">11. 遇到問題怎麼辦</h2>
 <details class="faq"><summary>開了之後上不了網</summary><div>
-  <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>告訴管理員：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
+  <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>用<a href="#report">回報問題</a>告訴管理員（選「完全不能用」）：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
 <details class="faq"><summary>專屬網頁上寫「權限目前無效」或紅色字</summary><div>
   <ul class="simple"><li><b>不在允許時段</b>：管理員設定了可以使用的時間，時間到了就能用。</li><li><b>已過期</b>：使用期限到了，請問管理員要不要延長。</li><li><b>已停用</b>：管理員暫時關掉了，請問管理員。</li></ul></div></details>
 <details class="faq"><summary>寫「今日時數已用完」</summary><div>
@@ -532,8 +571,8 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 <details class="faq"><summary>可以同時開 Shadowrocket 和 Tailscale 嗎？</summary><div>
   不行，iPhone 一次只能開一個。要用哪個就開哪個。</div></details>
 
-<!-- 11 -->
-<h2 id="safe">11. 安全小提醒</h2>
+<!-- 12 -->
+<h2 id="safe">12. 安全小提醒</h2>
 <div class="card">
   <div class="note danger"><b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。</div>
   <ul class="simple">
@@ -546,7 +585,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   </ul>
 </div>
 
-<footer>有任何問題，直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。</footer>
+<footer>有任何問題，在專屬網頁<a href="#report">回報問題</a>，或直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。</footer>
 </div>
 <a class="back" href="#top">↑ 目錄</a>
 </body>
