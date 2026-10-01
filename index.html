@@ -88,8 +88,9 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <a href="#cloud"><span class="n">6</span>使用「我的雲端」存照片和檔案</a>
   <a href="#backup"><span class="n">7</span>iPhone 照片每天自動備份</a>
   <a href="#more"><span class="n">8</span>其他好用的功能（大字、留言、時數、網速）</a>
-  <a href="#faq"><span class="n">9</span>遇到問題怎麼辦</a>
-  <a href="#safe"><span class="n">10</span>安全小提醒（很重要）</a>
+  <a href="#mac"><span class="n">9</span>看家裡 Mac 的狀況（有控制台權限的人）</a>
+  <a href="#faq"><span class="n">10</span>遇到問題怎麼辦</a>
+  <a href="#safe"><span class="n">11</span>安全小提醒（很重要）</a>
 </div>
 
 <!-- 1 -->
@@ -439,7 +440,67 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 </div></div>
 
 <!-- 9 -->
-<h2 id="faq">9. 遇到問題怎麼辦</h2>
+<h2 id="mac">9. 看家裡 Mac 的狀況 <span class="tag pill free">有控制台權限的人</span></h2>
+<p>家裡的網路、雲端都是靠一台 Mac 在跑。如果管理員有開「控制台」給你，就可以看到這台 Mac 現在忙不忙、熱不熱、電池好不好。<b>這一頁只能看，不會改到任何設定</b>，放心點。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>打開「Mac」頁面</h3>
+  <ol class="simple">
+    <li>打開控制台（要先開 Tailscale）</li>
+    <li>按下面的 <kbd>設定</kbd>，再按上面的 <kbd>Mac</kbd></li>
+  </ol>
+  <p>或是在控制台首頁，直接點 <b>CPU</b> 或 <b>記憶體</b> 那兩個圓圈，也會跳到這一頁。</p>
+  <figure class="wide"><img src="img/mac-home-tiles.png" alt="控制台首頁的 CPU 和記憶體圓圈" loading="lazy"><figcaption>首頁點這兩個圓圈就能看詳細</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>最上面：一眼看懂現在的狀況</h3>
+  <figure class="wide"><img src="img/mac-top.png" alt="Mac 頁面最上面：型號、CPU、記憶體壓力、電池、下載上傳速度、散熱" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>CPU</b>：電腦現在有多忙。平常 20% 以下，偶爾衝高沒關係</li>
+    <li><b>記憶體壓力</b>：綠色「正常」就好；橘色「偏高」代表程式開太多，電腦會變慢</li>
+    <li><b>下載／上傳速度</b>：家裡這台 Mac 現在正在傳多少資料</li>
+    <li><b>散熱</b>：綠色「正常」；如果出現紅色「過熱降速」，代表太熱了，電腦會自己放慢</li>
+  </ul>
+  <div class="note tip">這一頁每 5 秒會自己更新，不用一直按重新整理。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>趨勢圖：看過去 24 小時</h3>
+  <p>可以選看最近 <b>1 小時</b>、<b>6 小時</b> 或 <b>24 小時</b>。<b>用手指點一下圖</b>，就會顯示那個時間的數字；點圖以外的地方就收起來。</p>
+  <figure class="wide"><img src="img/mac-trend.png" alt="趨勢圖：CPU、記憶體、網路、電量，手指點在 CPU 圖上顯示 13:57 CPU 13%" loading="lazy"><figcaption>點圖上任何一點，就會看到那個時間的數值</figcaption></figure>
+  <p>不習慣看圖的話，按最下面的 <kbd>表格檢視</kbd>，會用表格列出每個時間的數字。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>電池</h3>
+  <figure class="wide"><img src="img/mac-battery.png" alt="電池：電量、健康度、充電循環、溫度、電力" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>電池健康度</b>：電池現在能充到新電池的幾 %。<b>80% 以上都很正常</b>，低於 80% 才需要考慮換電池</li>
+    <li><b>充電循環</b>：電池用了幾輪。MacBook 設計可以用 1000 次</li>
+    <li><b>電池溫度</b>：30 幾度很正常；超過 40 度會變橘色提醒</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>記憶體：為什麼電腦變慢</h3>
+  <figure class="wide"><img src="img/mac-memory.png" alt="記憶體分配長條：App 正在用、系統保留、壓縮、快取、空閒，還有記憶體壓力和交換空間" loading="lazy"></figure>
+  <ul class="simple">
+    <li>長條分成幾種顏色，每一種旁邊都有說明和用量</li>
+    <li><b>快取</b>不用擔心，需要時會自動讓出來</li>
+    <li><b>壓縮</b>和<b>交換空間（swap）</b>很多，代表記憶體不夠，電腦會變慢、變熱</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>最耗資源的程式</h3>
+  <p>可以切換 <kbd>依 CPU</kbd> 或 <kbd>依記憶體</kbd> 排序。同一個程式開了很多個（例如瀏覽器的每個分頁），會合併成一行，後面標 <b>×數量</b>。</p>
+  <figure class="wide"><img src="img/mac-procs.png" alt="最耗資源的程式清單，依記憶體排序，Safari ×3 排第一" loading="lazy"></figure>
+  <div class="note warn"><b>覺得家裡網路或雲端變慢？</b>先看這一頁：如果「記憶體壓力」是橘色，或某個程式佔很多，告訴管理員，請他關掉一些程式或重開機一次。</div>
+</div></div>
+
+<!-- 10 -->
+<h2 id="faq">10. 遇到問題怎麼辦</h2>
 <details class="faq"><summary>開了之後上不了網</summary><div>
   <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>告訴管理員：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
 <details class="faq"><summary>專屬網頁上寫「權限目前無效」或紅色字</summary><div>
@@ -463,13 +524,15 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   連結可能已經<b>過期</b>、<b>下載次數用完</b>，或是被取消了。重新分享一次，產生新的連結傳給他就好。</div></details>
 <details class="faq"><summary>照片在雲端裡看起來是灰色的、沒有縮圖</summary><div>
   第一次打開時，家裡的電腦要花幾秒做縮圖，等一下再重新整理就會出現。點開照片一樣可以看。</div></details>
+<details class="faq"><summary>控制台裡找不到「Mac」那一頁</summary><div>
+  「Mac」頁面只有管理員有開「控制台」權限的人才看得到。需要的話請問管理員。</div></details>
 <details class="faq"><summary>換了新手機怎麼辦？</summary><div>
   在新手機上重新做一次：下載 App → 打開專屬網址 → 按「用 Shadowrocket 開啟」（或用 Tailscale 登入）。雲端裡的檔案都還在，不會不見。</div></details>
 <details class="faq"><summary>可以同時開 Shadowrocket 和 Tailscale 嗎？</summary><div>
   不行，iPhone 一次只能開一個。要用哪個就開哪個。</div></details>
 
-<!-- 10 -->
-<h2 id="safe">10. 安全小提醒</h2>
+<!-- 11 -->
+<h2 id="safe">11. 安全小提醒</h2>
 <div class="card">
   <div class="note danger"><b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。</div>
   <ul class="simple">
