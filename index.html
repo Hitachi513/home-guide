@@ -89,9 +89,10 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <a href="#backup"><span class="n">7</span>iPhone 照片每天自動備份</a>
   <a href="#more"><span class="n">8</span>其他好用的功能（大字、留言、時數、網速）</a>
   <a href="#mac"><span class="n">9</span>看家裡 Mac 的狀況（有控制台權限的人）</a>
-  <a href="#report"><span class="n">10</span>回報問題給管理員</a>
-  <a href="#faq"><span class="n">11</span>遇到問題怎麼辦</a>
-  <a href="#safe"><span class="n">12</span>安全小提醒（很重要）</a>
+  <a href="#win"><span class="n">10</span>用手機遙控 Windows 電腦（管理員）</a>
+  <a href="#report"><span class="n">11</span>回報問題給管理員</a>
+  <a href="#faq"><span class="n">12</span>遇到問題怎麼辦</a>
+  <a href="#safe"><span class="n">13</span>安全小提醒（很重要）</a>
 </div>
 
 <!-- 1 -->
@@ -502,7 +503,68 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 </div></div>
 
 <!-- 10 -->
-<h2 id="report">10. 回報問題給管理員</h2>
+<h2 id="win">10. 用手機遙控 Windows 電腦 <span class="tag pill paid">管理員</span></h2>
+<p>家裡有 Windows 電腦的話，可以像遙控 Mac 一樣，用手機控制它：看它在不在用、切歌、調音量、跳通知給正在用電腦的人、鎖定、關機。<b>只有管理員（控制台擁有者）看得到這個功能。</b></p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Windows 先裝好 Tailscale</h3>
+  <ol class="simple">
+    <li>在 Windows 上到 <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a> 下載安裝</li>
+    <li>登入<b>跟你手機一樣的帳號</b>（很重要，不同帳號會連不上）</li>
+    <li>右下角的 Tailscale 圖示要是<b>已連線</b></li>
+  </ol>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>在手機產生安裝指令</h3>
+  <ol class="simple">
+    <li>打開控制台，按下面的 <kbd>遙控</kbd></li>
+    <li>按最上面的 <kbd>＋ Windows</kbd>，再按 <kbd>產生安裝指令</kbd></li>
+    <li>按 <kbd>複製指令</kbd>，用 LINE 或 email 傳到 Windows 電腦上</li>
+  </ol>
+  <figure class="wide"><img src="img/win-add.png" alt="控制台的遙控頁，上方有 Mac、電腦名稱和＋，下面是安裝步驟和一行安裝指令" loading="lazy"><figcaption>指令只能用一次，15 分鐘內有效；過期就按「重新產生」</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>在 Windows 貼上指令</h3>
+  <ol class="simple">
+    <li>按鍵盤的 <kbd>⊞ Windows</kbd> 鍵（或左下角的開始），輸入 <b>PowerShell</b>，按 Enter 打開</li>
+    <li>在藍色或黑色的視窗裡<b>按右鍵</b>（或 <kbd>Ctrl</kbd>+<kbd>V</kbd>）貼上指令，按 <kbd>Enter</kbd></li>
+    <li>看到綠色的 <b>「完成！」</b> 就好了，可以把視窗關掉</li>
+  </ol>
+  <div class="note ok"><b>不用系統管理員權限</b>，也不用改防火牆。之後每次開機登入都會自動在背景執行，不會跳出任何視窗。</div>
+  <div class="note tip">裝好之後，手機上的頁面會<b>自動切到這台電腦</b>。電腦名稱太長的話，可以在最下面的「管理」改成好認的名字，例如「客廳電腦」。</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>看狀態、控制音樂</h3>
+  <p>上面的按鈕可以在 <b>Mac</b> 和每一台 Windows 之間切換。名字旁邊是<b>綠點</b>代表電腦開著、連得到。</p>
+  <figure class="wide"><img src="img/win-status.png" alt="Windows 電腦的狀態：CPU、記憶體、系統碟、電源、開機時間、使用者，下面是正在播放的歌和音樂控制" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>在線・使用中／閒置／已鎖定</b>：可以知道現在有沒有人在用這台電腦</li>
+    <li><b>音樂</b>：Spotify、瀏覽器裡的 YouTube 等都看得到正在播什麼，可以暫停、切歌、拉音量</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>螢幕和電源</h3>
+  <figure class="wide"><img src="img/win-controls.png" alt="螢幕：擷取畫面、鎖定、關螢幕、睡眠；電源：關機、重新開機、取消關機" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>擷取畫面</b>：看電腦現在的畫面（電腦鎖定時看不到）</li>
+    <li><b>睡眠、關機、重新開機</b>要<b>連按兩下</b>才會執行，避免不小心按到</li>
+    <li>關機和重開會<b>先等 1 分鐘</b>，電腦上會跳出提示；後悔了就按 <kbd>取消關機</kbd></li>
+  </ul>
+  <p>再往下還有：<b>跳出通知</b>和<b>念出來</b>（例如「吃飯了！」）、<b>剪貼簿同步</b>（手機和電腦互傳文字）、<b>在電腦上開網址</b>。</p>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>不想用了：移除</h3>
+  <p>在那台電腦的頁面最下面按 <kbd>移除這台電腦</kbd>（要按兩下）。電腦開著的話，上面的程式會<b>自己刪掉</b>；電腦關著的話，下次開機連線時會自動刪掉。</p>
+  <div class="note warn"><b>安全說明</b>只有你的控制台能遙控，而且只透過 Tailscale；電腦上的程式只會做這一頁列出的事，不能執行其他程式。<b>每次有新電腦加入，你的手機都會收到通知</b>，不是你加的就馬上移除。</div>
+</div></div>
+
+<!-- 11 -->
+<h2 id="report">11. 回報問題給管理員</h2>
 <p>網頁打不開、雲端上傳失敗、連不上網…遇到<b>怪怪的地方</b>，直接在你的專屬網頁告訴管理員。不用打字解釋很多，選一選、拍張截圖就可以。</p>
 
 <div class="step"><div class="num">1</div><div class="body">
@@ -539,8 +601,12 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 
 <div class="note tip" style="margin-top:14px"><b>你是自己架設這套系統的人？</b>程式的 bug 或建議請到 GitHub 回報：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">回報問題／建議新功能</a>（有中文表單）。安全漏洞請改用<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">私下回報</a>。</div>
 
-<!-- 11 -->
-<h2 id="faq">11. 遇到問題怎麼辦</h2>
+<!-- 12 -->
+<h2 id="faq">12. 遇到問題怎麼辦</h2>
+<details class="faq"><summary>遙控 Windows：貼上指令後出現紅字「安裝失敗」</summary><div>
+  <ol class="simple"><li>確認 Windows 右下角的 <b>Tailscale 是已連線</b>，而且登入的是<b>跟手機一樣的帳號</b>。</li><li>指令只能用一次、15 分鐘內有效：回手機按 <kbd>重新產生</kbd>，用新的指令再貼一次。</li><li>要在 <b>PowerShell</b> 裡貼，不是「命令提示字元（cmd）」。</li></ol></div></details>
+<details class="faq"><summary>遙控 Windows：電腦一直顯示「離線」，按鈕都是灰的</summary><div>
+  電腦可能關機、睡眠，或沒開 Tailscale。把電腦叫醒、確認 Tailscale 已連線，大約 30 秒內就會變回綠點。還是不行，可以在電腦上<b>登出再登入一次</b>（遙控程式會在登入時自動啟動）。</div></details>
 <details class="faq"><summary>開了之後上不了網</summary><div>
   <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。</li><li>還是不行，就先把開關關掉，手機就會恢復正常上網。</li><li>用<a href="#report">回報問題</a>告訴管理員（選「完全不能用」）：可能家裡的電腦關機了或網路斷了。</li></ol></div></details>
 <details class="faq"><summary>專屬網頁上寫「權限目前無效」或紅色字</summary><div>
@@ -571,8 +637,8 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 <details class="faq"><summary>可以同時開 Shadowrocket 和 Tailscale 嗎？</summary><div>
   不行，iPhone 一次只能開一個。要用哪個就開哪個。</div></details>
 
-<!-- 12 -->
-<h2 id="safe">12. 安全小提醒</h2>
+<!-- 13 -->
+<h2 id="safe">13. 安全小提醒</h2>
 <div class="card">
   <div class="note danger"><b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。</div>
   <ul class="simple">
