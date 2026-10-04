@@ -336,11 +336,11 @@
   "es": "Cuando pregunte «¿Abrir en Shadowrocket?», toca <kbd>Abrir</kbd>"
  },
  "範例・不能掃": {
-  "en": "Example · can't be scanned",
+  "en": "Example only",
   "zh-CN": "示例・不能扫",
-  "ja": "例・読み取れません",
+  "ja": "見本・読取不可",
   "ko": "예시・스캔 불가",
-  "es": "Ejemplo · no se puede escanear"
+  "es": "Solo ejemplo"
  },
  "你的網頁上會有你自己的 QR code 和按鈕": {
   "en": "Your page shows your own QR code and button",
@@ -2148,13 +2148,6 @@
   "ko": "궁금한 게 있으면 내 페이지의 <a href=\"#report\">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.",
   "es": "¿Dudas? Usa <a href=\"#report\">Informar de un problema</a> en tu página o pregunta al administrador 🙂<br>Los nombres, números y códigos QR de esta guía son ejemplos."
  },
- "↑ 目錄": {
-  "en": "↑ Contents",
-  "zh-CN": "↑ 目录",
-  "ja": "↑ 目次",
-  "ko": "↑ 목차",
-  "es": "↑ Índice"
- },
  "我的專屬網頁的最上面，顯示名字、可以使用、使用期限": {
   "en": "The top of My page, showing the name, “Available” and the valid-until date",
   "zh-CN": "我的专属网页的最上面，显示名字、可以使用、使用期限",
@@ -2413,6 +2406,13 @@
   "ja": "報告フォーム：どこに問題があるか・深刻さ・一言の説明・詳細・スクリーンショット・スマホ情報の添付",
   "ko": "보고 양식: 문제 위치, 심각도, 한 줄 설명, 자세한 설명, 스크린샷, 휴대폰 정보 첨부",
   "es": "El formulario de informe: dónde está el problema, gravedad, resumen, detalles, capturas y datos del móvil"
+ },
+ "回到目錄": {
+  "en": "Back to contents",
+  "zh-CN": "回到目录",
+  "ja": "目次に戻る",
+  "ko": "목차로 돌아가기",
+  "es": "Volver al índice"
  },
  "一步一步教你用 Shadowrocket 或 Tailscale 連回家裡的網路、使用家裡的雲端硬碟。": {
   "en": "Step-by-step: connect to the home network with Shadowrocket or Tailscale and use the home cloud drive.",
