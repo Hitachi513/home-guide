@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guía de la red de casa</title>
+<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+
+<meta name="description" content="Paso a paso: conéctate a la red de casa con Shadowrocket o Tailscale y usa la nube de casa.">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb; --card: #ffffff; --text: #16181d; --text-2: #454a55; --muted: #6b7280; --line: #e3e6ee;
+  --blue: #0a6cff; --blue-soft: #e8f0ff; --green: #1a8f3c; --green-soft: #e6f6ea; --orange: #b45309; --orange-soft: #fff4e0;
+  --red: #d42a20; --red-soft: #ffebe9; --shadow: 0 6px 24px rgba(20, 30, 60, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --bg: #0e1116; --card: #181c23; --text: #f2f4f8; --text-2: #c9ced8; --muted: #9aa1ad; --line: #2a303b;
+    --blue: #4b93ff; --blue-soft: #16243d; --green: #4ccf73; --green-soft: #13291b; --orange: #f5b44a; --orange-soft: #2f2412;
+    --red: #ff6b61; --red-soft: #3a1716; --shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.75 -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 80px; }
+header.top { padding: calc(28px + env(safe-area-inset-top)) 0 10px; text-align: center; }
+header.top h1 { font-size: 32px; line-height: 1.3; margin: 8px 0 6px; }
+header.top p { color: var(--text-2); margin: 0; }
+.logo { font-size: 50px; }
+h2 { font-size: 27px; line-height: 1.35; margin: 46px 0 12px; scroll-margin-top: 20px; }
+h2 .tag { font-size: 15px; vertical-align: middle; padding: 3px 10px; border-radius: 99px; margin-left: 6px; font-weight: 700; }
+h3 { font-size: 22px; margin: 0 0 6px; }
+p { margin: 8px 0; }
+b, strong { font-weight: 800; }
+a { color: var(--blue); }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); margin: 14px 0; }
+.toc a { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-weight: 700; }
+.toc a:first-of-type { border-top: 0; }
+.toc .n { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; flex: none; font-size: 17px; }
+.choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.choose .card { margin: 0; border: 3px solid transparent; }
+.choose .card.a { border-color: #6c63ff33; } .choose .card.b { border-color: #0a6cff33; }
+.choose ul { padding-left: 22px; margin: 8px 0 12px; }
+.pill { display: inline-block; font-size: 15px; font-weight: 800; padding: 3px 12px; border-radius: 99px; }
+.pill.free { background: var(--green-soft); color: var(--green); } .pill.paid { background: var(--orange-soft); color: var(--orange); }
+.go { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; padding: 10px 20px; border-radius: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; background: var(--card); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); margin: 16px 0; }
+.step .num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 24px; font-weight: 800; display: grid; place-items: center; }
+.step .body { min-width: 0; }
+figure { margin: 14px 0 4px; text-align: center; }
+figure img { width: 100%; max-width: 340px; height: auto; border-radius: 22px; box-shadow: var(--shadow); background: #fff; }
+figure.wide img { max-width: 420px; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.qrwrap { position: relative; display: inline-block; max-width: 380px; width: 100%; }
+.qrwrap img { max-width: 100%; }
+.qrwrap .stamp { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); background: var(--red); color: #fff; font-weight: 900; font-size: 26px; padding: 10px 22px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212,42,32,.4); white-space: nowrap; }
+.note { border-radius: 16px; padding: 14px 16px; margin: 12px 0; font-size: 17px; }
+.note.tip { background: var(--blue-soft); } .note.warn { background: var(--orange-soft); } .note.danger { background: var(--red-soft); }
+.note.ok { background: var(--green-soft); }
+.note b:first-child { display: block; margin-bottom: 2px; }
+ol.simple, ul.simple { padding-left: 24px; } ol.simple li, ul.simple li { margin: 6px 0; }
+.check li { list-style: none; margin-left: -24px; padding-left: 34px; position: relative; }
+.check li::before { content: "☐"; position: absolute; left: 0; font-size: 22px; line-height: 1.45; }
+details.faq { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin: 10px 0; padding: 4px 18px; }
+details.faq summary { cursor: pointer; font-weight: 800; padding: 12px 0; list-style: none; }
+details.faq summary::before { content: "＋ "; color: var(--blue); }
+details.faq[open] summary::before { content: "－ "; }
+details.faq > div { padding: 0 0 14px; color: var(--text-2); }
+kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
+.back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+.langs { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 15px; margin: 4px 0 14px; color: var(--muted); }
+.langs a { color: var(--blue); text-decoration: none; font-weight: 700; padding: 4px 8px; border-radius: 99px; }
+.langs a[aria-current] { background: var(--blue-soft); color: var(--text); }
+footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
+@media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="langs" translate="no">🌐 <a href="../?lang=zh" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a> <a href="../en/" hreflang="en" lang="en">English</a> <a href="../zh-CN/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a> <a href="../ja/" hreflang="ja" lang="ja">日本語</a> <a href="../ko/" hreflang="ko" lang="ko">한국어</a> <a href="../es/" hreflang="es" lang="es" aria-current="page">Español</a></nav>
+<header class="top" id="top">
+  <div class="logo">🏠</div>
+  <h1>Guía de la red de casa</h1>
+  <p>Conéctate a la red de casa y usa la nube de casa desde el móvil<br>Solo sigue los pasos; no hace falta saber de informática</p>
+</header>
+
+<div class="card toc"><a href="#before"><span class="n">1</span>Qué necesitas antes de empezar</a> <a href="#choose"><span class="n">2</span>Elige una: Shadowrocket o Tailscale</a> <a href="#portal"><span class="n">3</span>Abre «Mi página»</a> <a href="#sr"><span class="n">4</span>Opción A: Shadowrocket</a> <a href="#ts"><span class="n">5</span>Opción B: Tailscale</a> <a href="#cloud"><span class="n">6</span>Guarda fotos y archivos en «Mi nube»</a> <a href="#backup"><span class="n">7</span>Copia diaria de las fotos del iPhone</a> <a href="#more"><span class="n">8</span>Otras funciones útiles (texto grande, mensajes, tiempo, velocidad)</a> <a href="#mac"><span class="n">9</span>Mira cómo está el Mac de casa (con acceso al panel)</a> <a href="#win"><span class="n">10</span>Controla un PC con Windows desde el móvil (administrador)</a> <a href="#report"><span class="n">11</span>Informa de un problema al administrador</a> <a href="#faq"><span class="n">12</span>Si algo no funciona</a> <a href="#safe"><span class="n">13</span>Consejos de seguridad (importante)</a></div>
+
+<!-- 1 -->
+<h2 id="before">1. Qué necesitas antes de empezar</h2>
+<div class="card">
+  <ul class="simple check">
+    <li>Un <b>iPhone</b> (esta guía usa un iPhone)</li>
+    <li>Tu <b>contraseña del Apple ID</b> (puede hacer falta para descargar apps)</li>
+    <li>Que el móvil tenga Internet (Wi-Fi o datos móviles)</li>
+    <li><b>La «dirección personal» que te envió el administrador</b>, con este aspecto:<br><code style="font-size:15px;word-break:break-all">https://………/p/una-cadena-larga-de-letras-y-números/</code></li>
+  </ul>
+  <div class="note tip"><b>¿Quién es el «administrador»?</b>La persona que montó la red de casa. Si te atascas, pregúntale.</div>
+</div>
+
+<!-- 2 -->
+<h2 id="choose">2. Elige una</h2>
+<p>Hay dos apps para conectarte a casa. <b>Elige solo una</b>; no hacen falta las dos. ¿Dudas? <b>Pregunta al administrador</b>.</p>
+<div class="choose">
+  <div class="card a">
+    <h3>🚀 Opción A: Shadowrocket</h3>
+    <span class="pill paid">App de pago</span>
+    <ul>
+      <li>La más fácil: un toque y listo</li>
+      <li>Sin crear cuenta</li>
+      <li>Ideal para: navegar a través de la red de casa</li>
+    </ul>
+    <a class="go" href="#sr">Ver la opción A →</a>
+  </div>
+  <div class="card b">
+    <h3>🔵 Opción B: Tailscale</h3>
+    <span class="pill free">Gratis</span>
+    <ul>
+      <li>Inicias sesión con Google o Apple</li>
+      <li>El administrador tiene que invitarte antes</li>
+      <li>Ideal para: quien necesita usar los ordenadores de casa</li>
+    </ul>
+    <a class="go" href="#ts">Ver la opción B →</a>
+  </div>
+</div>
+<div class="note warn"><b>⚠️ No pueden estar las dos activas</b>El iPhone solo usa una VPN a la vez. Al activar Shadowrocket se apaga Tailscale, y al revés.</div>
+
+<!-- 3 -->
+<h2 id="portal">3. Abre «Mi página»</h2>
+<p>Elijas la opción que elijas, usarás esta página. Te dice <b>qué puedes usar y hasta cuándo</b>, y desde aquí también usas la nube.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Abre la dirección que te dio el administrador</h3>
+  <p>Toca la dirección en LINE o Mensajes; el iPhone la abre en <b>Safari</b>.</p>
+  <figure><img src="../img/es/portal-top.png" alt="La parte de arriba de Mi página: nombre, «Disponible» y fecha de validez" loading="lazy"><figcaption>Verás tu nombre (el del dibujo es un ejemplo)</figcaption></figure>
+  <div class="note ok"><b>Si ves «Disponible» en verde, todo va bien.</b> Si está en rojo, mira <a href="#faq">Si algo no funciona</a> al final.</div>
+  <div class="note tip"><b>¿Letra demasiado pequeña?</b> Toca <kbd>T</kbd> arriba a la derecha para agrandarla; tócala otra vez para volver. Más en <a href="#big">Texto grande</a>.</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Ponla en la pantalla de inicio (luego se abre con un toque)</h3>
+  <ol class="simple">
+    <li>Toca el botón <kbd>Compartir</kbd> abajo en el centro de Safari (un cuadrado con una flecha hacia arriba ⬆︎)</li>
+    <li>Desliza hacia abajo y toca <kbd>Añadir a pantalla de inicio</kbd></li>
+    <li>Toca <kbd>Añadir</kbd> arriba a la derecha</li>
+  </ol>
+  <figure><img src="../img/es/home-screen.png" alt="Menú Compartir de Safari con «Añadir a pantalla de inicio» marcado en rojo" loading="lazy"><figcaption>Aparece el icono «Mi conexión» en la pantalla de inicio</figcaption></figure>
+</div></div>
+
+<!-- 4 -->
+<h2 id="sr">4. Opción A: Shadowrocket <span class="tag pill paid">De pago</span></h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Descarga Shadowrocket</h3>
+  <ol class="simple">
+    <li>Abre la <b>App Store</b> en el iPhone (el icono azul con una «A»)</li>
+    <li>Toca <kbd>Buscar</kbd> abajo a la derecha y escribe <b>Shadowrocket</b></li>
+    <li>Busca la app con el icono de un <b>cohete azul</b> y toca el botón del precio para comprarla</li>
+    <li>Confirma el pago con Face ID o la contraseña del Apple ID</li>
+  </ol>
+  <figure><img src="../img/es/appstore-sr.png" alt="Búsqueda de Shadowrocket en la App Store con el botón de compra marcado" loading="lazy"><figcaption>Ilustración: el precio y el icono reales son los de la App Store</figcaption></figure>
+  <div class="note warn"><b>¿No la encuentras?</b> No está en la App Store de China continental. Si no la encuentras, pide ayuda al administrador.</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Impórtala desde «Mi página» con un toque</h3>
+  <ol class="simple">
+    <li>Abre <a href="#portal">Mi página</a> y baja hasta el apartado <b>Shadowrocket</b></li>
+    <li>Toca el botón azul <kbd>Abrir en Shadowrocket</kbd></li>
+    <li>Cuando pregunte «¿Abrir en Shadowrocket?», toca <kbd>Abrir</kbd></li>
+  </ol>
+  <figure><span class="qrwrap"><img src="../img/es/portal-sr.png" alt="El apartado Shadowrocket de Mi página, con un QR y el botón «Abrir en Shadowrocket»" loading="lazy"><span class="stamp">Ejemplo · no se puede escanear</span></span>
+    <figcaption>Tu página muestra tu propio QR y tu botón</figcaption></figure>
+  <figure><img src="../img/es/safari-open.png" alt="Safari pregunta si abrir en Shadowrocket, con «Abrir» marcado" loading="lazy"></figure>
+  <div class="note tip"><b>También puedes escanearlo</b>Si abriste la página en un ordenador, toca el icono de escanear arriba a la izquierda en Shadowrocket y escanea el QR de la página.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>La primera vez: permite la VPN</h3>
+  <p>La primera vez que actives el interruptor, el iPhone preguntará si añadir una configuración VPN. Toca <kbd>Permitir</kbd> y escribe el <b>código del iPhone</b> o usa Face ID.</p>
+  <figure><img src="../img/es/vpn-allow.png" alt="El iPhone pregunta si permitir añadir una configuración VPN, con «Permitir» marcado" loading="lazy"><figcaption>Esto solo aparece una vez</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Activa el interruptor</h3>
+  <ol class="simple">
+    <li>Comprueba que <b>«El Mac de casa»</b> tiene una marca ✓ en la lista de abajo</li>
+    <li>En «Enrutamiento global» elige <b>Proxy</b></li>
+    <li>Activa el interruptor de arriba (se pone verde)</li>
+  </ol>
+  <figure><img src="../img/es/sr-home.png" alt="Pantalla principal de Shadowrocket con el interruptor, Enrutamiento global y El Mac de casa marcados" loading="lazy"></figure>
+  <div class="note ok"><b>Cuando funciona:</b> aparece un pequeño <b>VPN</b> arriba en la pantalla del iPhone.</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Comprueba que funciona</h3>
+  <p>Abre <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> en Safari; verás una serie de números. <b>Si coincide con la que te dio el administrador, ¡funciona!</b></p>
+  <figure><img src="../img/es/ipify.png" alt="Safari mostrando una serie de números IP" loading="lazy"><figcaption>El número del dibujo es un ejemplo</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>¿Cómo se usa a diario?</h3>
+  <ul class="simple">
+    <li><b>Cuando la necesites</b>: abre Shadowrocket y activa el interruptor</li>
+    <li><b>Cuando no</b>: apaga el interruptor (ahorra batería)</li>
+    <li>También puedes usar el interruptor en <b>Ajustes → VPN</b> del iPhone</li>
+  </ul>
+</div></div>
+
+<!-- 5 -->
+<h2 id="ts">5. Opción B: Tailscale <span class="tag pill free">Gratis</span></h2>
+<div class="note warn"><b>Primero: ¿te ha invitado el administrador?</b>Te enviará un «enlace de invitación» por email o LINE. Sin invitación, al iniciar sesión no conectarás a nada.</div>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Descarga Tailscale</h3>
+  <ol class="simple">
+    <li>Abre la <b>App Store</b> y busca <b>Tailscale</b></li>
+    <li>Toca <kbd>Obtener</kbd> (gratis) y confirma con Face ID o la contraseña</li>
+  </ol>
+  <figure><img src="../img/es/appstore-ts.png" alt="Búsqueda de Tailscale en la App Store con el botón Obtener marcado" loading="lazy"><figcaption>Ilustración: el icono real es el de la App Store</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Acepta la invitación e inicia sesión</h3>
+  <ol class="simple">
+    <li>Abre el <b>enlace de invitación</b> del administrador y toca «Accept»</li>
+    <li>Abre la app de Tailscale y toca <kbd>Log in</kbd></li>
+    <li>Inicia sesión con la cuenta que usas siempre (Google o Apple)</li>
+  </ol>
+  <figure><img src="../img/es/ts-login.png" alt="Pantalla de inicio de sesión de Tailscale con Google, Apple y Microsoft" loading="lazy"><figcaption>Ilustración: la pantalla real puede estar en inglés</figcaption></figure>
+  <div class="note danger"><b>Usa la misma cuenta</b>Inicia sesión con <b>el email al que te invitó el administrador</b>, o no podrás conectarte.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Permite la VPN</h3>
+  <p>Igual que con Shadowrocket, la primera vez pregunta si añadir una configuración VPN (llamada <b>Tailscale</b>). Toca <kbd>Permitir</kbd> y escribe el código del iPhone o usa Face ID.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Conéctate y elige «Ordenador de casa»</h3>
+  <ol class="simple">
+    <li>Activa el interruptor de arriba (se pone verde)</li>
+    <li>Toca <kbd>Exit Node</kbd></li>
+    <li>Elige <b>Ordenador de casa</b> (pregunta al administrador el nombre real)</li>
+  </ol>
+  <figure><img src="../img/es/ts-main.png" alt="Pantalla principal de Tailscale con el interruptor y Exit Node marcados" loading="lazy"></figure>
+  <figure><img src="../img/es/ts-exit.png" alt="Lista de Exit Node con «Ordenador de casa» marcado" loading="lazy"><figcaption>Después navegas como si estuvieras en casa, con los anuncios bloqueados automáticamente</figcaption></figure>
+  <div class="note tip"><b>¿No ves Exit Node?</b> Significa que el administrador no te lo ha activado; es normal.</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Comprueba que funciona</h3>
+  <p>Igual que en la opción A: abre <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> en Safari; si los números coinciden con los del administrador, funciona.</p>
+</div></div>
+
+<!-- 6 -->
+<h2 id="cloud">6. Guarda fotos y archivos en «Mi nube»</h2>
+<p>Si el administrador te activó la nube, en <a href="#portal">Mi página</a> verás <b>«Mi nube»</b>. Puedes guardar fotos, vídeos y documentos en el disco de casa y no perderlos al cambiar de móvil.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Dos carpetas</h3>
+  <figure class="wide"><img src="../img/es/portal-drive-roots.png" alt="Mi nube tiene dos carpetas: Mis archivos y Compartida" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Mis archivos</b>: tu espacio, que solo veis tú y el administrador. Muestra cuánto has usado y tu límite.</li>
+    <li><b>Compartida</b>: una carpeta para toda la familia. Si puedes guardar cosas en ella lo decide el administrador.</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Sube fotos o vídeos</h3>
+  <ol class="simple">
+    <li>Toca <b>Mis archivos</b> para entrar</li>
+    <li>Toca el botón azul <kbd>Subir</kbd></li>
+    <li>Elige <b>Fototeca</b>, marca las fotos o vídeos y toca <kbd>Añadir</kbd></li>
+    <li>Cuando termina la barra aparece «Subido». Debajo verás la <b>velocidad</b> y <b>cuánto falta</b></li>
+  </ol>
+  <figure class="wide"><img src="../img/es/portal-drive-files.png" alt="Lista de Mis archivos; cada archivo muestra su tamaño y fecha de subida" loading="lazy"><figcaption>Cada archivo muestra su <b>tamaño</b> y <b>cuándo se subió</b>; abajo verás cuántos archivos hay y cuánto ocupan</figcaption></figure>
+  <div class="note warn"><b>No cierres la página mientras sube</b>Los vídeos ocupan más y tardan. Si sales a medias, tendrás que volver a subirlos. Para una copia automática diaria, mira el <a href="#backup">paso 7</a>.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Para qué sirven los botoncitos de arriba</h3>
+  <ul class="simple">
+    <li>🔍 <b>Buscar</b>: escribe parte de un nombre, p. ej. «cumpleaños», para encontrar esos archivos en todas las carpetas</li>
+    <li>↕️ <b>Ordenar</b>: por <b>nombre, subida, modificación, tamaño o tipo</b>. Para ver lo último subido, elige «Subido»</li>
+    <li>▦ <b>Cambiar vista</b>: entre «lista» y «álbum». El álbum muestra las fotos en cuadrícula, como la app Fotos</li>
+    <li>🗑 <b>Papelera</b>: lo que borras va aquí primero (mira el paso 6)</li>
+  </ul>
+  <figure class="wide"><img src="../img/es/portal-drive-grid.png" alt="Vista de álbum: fotos en cuadrícula de tres columnas, vídeos con botón de reproducir" loading="lazy"><figcaption>Vista de álbum: miniaturas de fotos, vídeos y PDF</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Toca para verlo enseguida</h3>
+  <p>Sin descargar; toca para abrirlo en el móvil:</p>
+  <ul class="simple">
+    <li><b>Fotos, vídeos, música</b>: se ven y se reproducen directamente. <b>Desliza a izquierda o derecha</b> para el anterior o el siguiente</li>
+    <li><b>PDF, Word, Excel, PowerPoint, Pages, Keynote</b>: muestra la <b>primera página</b>. En los PDF toca <kbd>Abrir PDF</kbd> para verlo entero; en Word toca <kbd>Ver texto</kbd> para el texto completo</li>
+    <li><b>Archivos de texto (.txt) y tablas (.csv)</b>: se muestra el contenido; los CSV aparecen como tabla</li>
+  </ul>
+  <figure><img src="../img/es/portal-drive-text.png" alt="Una lista de la compra .txt abierta, mostrando el texto" loading="lazy"><figcaption>Los archivos de texto muestran su contenido</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Toca ⋯ para más opciones</h3>
+  <p>Cada archivo tiene <kbd>⋯</kbd> a la derecha. Tócalo para ver:</p>
+  <figure><img src="../img/es/portal-drive-menu.png" alt="Menú del archivo: Vista previa, Descargar, Detalles, Compartir, Renombrar, Mover, Eliminar, Cerrar" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Descargar</b>: lo guarda en el móvil. En una <b>carpeta</b> pasa a ser <b>Descargar ZIP</b>, toda la carpeta de una vez</li>
+    <li><b>Detalles</b>: tamaño, fecha de subida, megapíxeles de la foto o duración del vídeo</li>
+    <li><b>Compartir</b>: crea un enlace para enviar a amigos (mira «Compartir con otros» abajo)</li>
+    <li><b>Renombrar</b>, <b>Mover</b> (a otra carpeta), <b>Eliminar</b></li>
+  </ul>
+  <figure><img src="../img/es/portal-drive-info.png" alt="Detalles: tipo, tamaño, dimensiones de la foto, fecha de subida, de modificación y ubicación" loading="lazy"><figcaption>Detalles</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Organiza muchos archivos a la vez</h3>
+  <ol class="simple">
+    <li>Toca <kbd>Seleccionar</kbd></li>
+    <li>Toca los archivos; aparece una marca azul ✓ delante (toca <kbd>Todos</kbd> para marcarlos todos)</li>
+    <li>Toca <kbd>Mover</kbd> para llevarlos a otra carpeta, o <kbd>Eliminar</kbd></li>
+    <li>Al terminar, toca <kbd>Listo</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/es/portal-drive-select.png" alt="Modo selección con dos fotos marcadas; arriba Todos, Mover, Eliminar y Listo" loading="lazy"></figure>
+  <p>Al <b>Mover</b> aparece una lista de carpetas: toca una para entrar y, cuando estés donde quieres, toca <kbd>Mover aquí</kbd>.</p>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <h3>¿Borraste algo sin querer? Recupéralo de la papelera</h3>
+  <p>Los archivos borrados <b>no desaparecen enseguida</b>: quedan <b>30 días</b> en la papelera y luego se eliminan solos.</p>
+  <ol class="simple">
+    <li>Toca 🗑 <b>Papelera</b> en la fila de arriba</li>
+    <li>Busca el archivo y toca <kbd>Restaurar</kbd>; vuelve a su carpeta original</li>
+  </ol>
+  <figure class="wide"><img src="../img/es/portal-drive-trash.png" alt="Una foto en la papelera con los botones Restaurar y Eliminar definitivamente" loading="lazy"></figure>
+  <div class="note danger"><b>✕ o «Vaciar papelera» no se pueden deshacer</b>Hay que tocar otra vez para confirmar, así que léelo bien antes.</div>
+</div></div>
+
+<div class="step"><div class="num">8</div><div class="body">
+  <h3>Compartir con otros (no necesitan ninguna app)</h3>
+  <ol class="simple">
+    <li>En un archivo o carpeta toca <kbd>⋯</kbd> → <kbd>Compartir</kbd></li>
+    <li>Elige la <b>validez</b> (1 día, 7 días, 30 días, para siempre)</li>
+    <li>Puedes limitar <b>cuántas descargas</b> y poner una <b>contraseña</b></li>
+    <li>Toca <kbd>Crear enlace</kbd>; se copia solo, así que pégalo en LINE y envíalo</li>
+  </ol>
+  <figure><img src="../img/es/portal-drive-share.png" alt="El formulario para compartir: validez, límite de descargas, contraseña" loading="lazy"></figure>
+  <div class="note tip"><b>¿Qué ve la otra persona?</b>Una página donde solo puede ver y descargar, sin ver tus otros archivos. Si compartes una carpeta, puede tocar «Descargar todo (ZIP)». El enlace deja de funcionar al caducar, al agotar las descargas o si el administrador lo cancela.</div>
+  <div class="note warn"><b>Si pusiste contraseña, díselas por separado</b>No pongas la contraseña y el enlace en el mismo mensaje.</div>
+</div></div>
+
+<!-- 7 -->
+<h2 id="backup">7. Copia diaria de las fotos del iPhone</h2>
+<p>La app <b>integrada</b> Atajos del iPhone guarda cada noche las fotos del día en la carpeta «Copia de la cámara» de tu nube. <b>Sin otra app y sin VPN</b>; basta con tener Internet.</p>
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Primero copia tu dirección de subida</h3>
+  <p>En <a href="#portal">Mi página</a> busca <b>«Copia automática de fotos del iPhone»</b> y toca <kbd>Copiar dirección de subida</kbd>.</p>
+  <div class="note tip"><b>¿No lo ves en la página?</b>El administrador no te ha permitido la copia automática (subir fotos a mano en la página sigue funcionando). Si la necesitas, <a href="#msg">escríbele</a> para pedírsela.</div>
+  <figure class="wide"><img src="../img/es/portal-backup.png" alt="La tarjeta de copia automática de fotos del iPhone, con la dirección de subida y los pasos" loading="lazy"><figcaption>La página también tiene los mismos pasos</figcaption></figure>
+</div></div>
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Añade una automatización en Atajos</h3>
+  <ol class="simple">
+    <li>Abre la app <b>Atajos</b> (si no la encuentras, desliza hacia abajo en la pantalla de inicio y busca «Atajos»)</li>
+    <li>Toca <kbd>Automatización</kbd> abajo y luego <kbd>＋</kbd> arriba a la derecha</li>
+    <li>Elige <b>Hora del día</b>, ponla cada día a las <b>23:00</b>, elige <kbd>Ejecutar inmediatamente</kbd> y toca <kbd>Siguiente</kbd></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Añade tres acciones</h3>
+  <ol class="simple">
+    <li>Toca <kbd>Añadir acción</kbd>, busca <b>Buscar fotos</b> y añádela. Toca «Añadir filtro» y pon <b>Fecha de adición</b> · <b>es hoy</b></li>
+    <li>Luego busca <b>Repetir con cada uno</b> y añádela</li>
+    <li><span><b>Dentro</b> de «Repetir», añade <b>Obtener contenido de URL</b>:</span>
+      <ul class="simple">
+        <li>URL: <b>pega</b> la dirección que copiaste</li>
+        <li>Toca «Mostrar más» y en <b>Método</b> elige <kbd>POST</kbd></li>
+        <li>En <b>Cuerpo de la solicitud</b> elige <kbd>Archivo</kbd> y como archivo <b>Elemento repetido</b></li>
+        <li>En <b>Encabezados</b> toca «Añadir encabezado» dos veces:<br> Primero: nombre <code>X-Requested-With</code>, valor <code>portal</code><br> Segundo: nombre <code>X-Filename</code>, valor: el <b>Nombre</b> del <b>Elemento repetido</b> seguido de <code>.heic</code><br><span style="font-size:14px;color:#666">(si en Ajustes → Cámara → Formatos está «Más compatible», escribe <code>.jpg</code>)</span></li>
+      </ul></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Pruébalo una vez</h3>
+  <p>Toca ▶︎ abajo a la derecha para probar. La primera vez el iPhone pide acceso a Fotos; toca <kbd>Permitir</kbd>. Después mira en «Mi nube → Mis archivos → Copia de la cámara»: deberían estar las fotos de hoy.</p>
+  <div class="note ok"><b>Repetirlo no pasa nada</b>Las fotos ya copiadas se omiten, así que no ocupan doble.</div>
+  <div class="note warn"><b>Se detiene cuando se llena</b>Cuando «Mis archivos» está lleno no se guarda nada más. Borra fotos antiguas de la nube o <a href="#msg">escribe</a> al administrador para pedir más espacio.</div>
+</div></div>
+
+<!-- 8 -->
+<h2 id="more">8. Otras funciones útiles</h2>
+
+<div class="step" id="big"><div class="num">1</div><div class="body">
+  <h3>Texto grande (para los mayores)</h3>
+  <p>Toca <kbd>T</kbd> arriba a la derecha de tu página y todo el texto y los botones se agrandan. El móvil lo recuerda para la próxima vez. Toca <kbd>T</kbd> otra vez para volver al tamaño normal.</p>
+  <figure><img src="../img/es/portal-big.png" alt="Mi página con texto grande; el botón T está en azul" loading="lazy"><figcaption>Al activarlo, la T se pone azul</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Cuánto tiempo queda hoy</h3>
+  <p>Si el administrador fijó <b>cuánto puedes usarlo al día</b>, tu página muestra un círculo azul «Queda hoy» con los minutos restantes.</p>
+  <figure class="wide"><img src="../img/es/portal-time.png" alt="Tres círculos: Mi nube, válido hasta, queda hoy" loading="lazy"></figure>
+  <ul class="simple">
+    <li>Solo cuenta mientras <b>usas Internet de verdad</b>; tenerlo activado sin usarlo no descuenta</li>
+    <li>Cuando se acaba no puedes conectarte ese día; se restablece solo a <b>medianoche</b></li>
+    <li>¿No te llega? <a href="#msg">Escribe</a> al administrador para pedir más</li>
+  </ul>
+</div></div>
+
+<div class="step" id="msg"><div class="num">3</div><div class="body">
+  <h3>Escribir al administrador</h3>
+  <p>Para ampliar tu acceso, pedir más espacio o más tiempo diario, o si algo falla, escribe directamente desde la página:</p>
+  <ol class="simple">
+    <li>En «Escribir al administrador» elige un tema, p. ej. <kbd>Más espacio en la nube</kbd></li>
+    <li>Si quieres, añade detalles en el cuadro de abajo (opcional)</li>
+    <li>Toca <kbd>Enviar</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/es/portal-msg.png" alt="Escribir al administrador: opciones, un cuadro de texto y el botón Enviar; debajo, mensajes anteriores y respuestas" loading="lazy"></figure>
+  <p>El móvil del administrador recibe un aviso al momento. Su respuesta aparece en «Mensajes anteriores»; una <b>marca verde</b> significa que está resuelto.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Prueba de velocidad</h3>
+  <p>Si va lento, ve a «Comprobar conexión» al final de la página y toca <kbd>Inicio</kbd> junto a <b>Prueba de velocidad</b>; en unos 10 segundos verás la velocidad de bajada y subida.</p>
+  <figure class="wide"><img src="../img/es/portal-check.png" alt="Comprobar conexión: IP, tipo de conexión y resultado de la prueba: 48 Mbps de bajada y 21 Mbps de subida" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>20 Mbps o más</b>: rápido, vale para vídeo</li>
+    <li><b>5–20 Mbps</b>: bien para el uso diario</li>
+    <li><b>Menos de 5 Mbps</b>: lento; prueba en otro sitio u otra Wi-Fi</li>
+  </ul>
+  <div class="note tip">Cada prueba usa unos 15 MB, así que no la repitas mucho con datos móviles.</div>
+</div></div>
+
+<!-- 9 -->
+<h2 id="mac">9. Mira cómo está el Mac de casa <span class="tag pill free">Con acceso al panel</span></h2>
+<p>La red y la nube de casa funcionan con un Mac. Si el administrador te dio el «panel de control», puedes ver lo ocupado y caliente que está y cómo va su batería. <b>Esta página es solo para mirar y no cambia ningún ajuste</b>, tranquilo.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Abre la página «Mac»</h3>
+  <ol class="simple">
+    <li>Abre el panel de control (activa Tailscale antes)</li>
+    <li>Toca <kbd>Ajustes</kbd> abajo y luego <kbd>Mac</kbd> arriba</li>
+  </ol>
+  <p>O en el inicio del panel, toca el círculo de <b>CPU</b> o <b>Memoria</b> para venir aquí directamente.</p>
+  <figure class="wide"><img src="../img/es/mac-home-tiles.png" alt="Los círculos de CPU y memoria en el inicio del panel" loading="lazy"><figcaption>Toca estos dos círculos del inicio para ver detalles</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Arriba: el estado actual de un vistazo</h3>
+  <figure class="wide"><img src="../img/es/mac-top.png" alt="Parte de arriba de la página Mac: modelo, CPU, presión de memoria, batería, velocidad y temperatura" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>CPU</b>: lo ocupado que está. Normalmente menos del 20%; los picos breves no importan</li>
+    <li><b>Presión de memoria</b>: «Normal» en verde está bien; «Alta» en naranja significa demasiadas apps abiertas y el ordenador va más lento</li>
+    <li><b>Velocidad de bajada / subida</b>: cuántos datos mueve ahora el Mac de casa</li>
+    <li><b>Temperatura</b>: «Normal» en verde; «Limitado por calor» en rojo significa que está demasiado caliente y se frena solo</li>
+  </ul>
+  <div class="note tip">Esta página se actualiza sola cada 5 segundos; no hace falta recargarla.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Tendencias: las últimas 24 horas</h3>
+  <p>Elige la última <b>1 hora</b>, <b>6 horas</b> o <b>24 horas</b>. <b>Toca la gráfica con el dedo</b> para ver los valores de ese momento; toca fuera para ocultarlos.</p>
+  <figure class="wide"><img src="../img/es/mac-trend.png" alt="Gráficas: CPU, memoria, red y batería; un dedo sobre la de CPU muestra 13:57 CPU 13%" loading="lazy"><figcaption>Toca cualquier punto de la gráfica para ver los valores de ese momento</figcaption></figure>
+  <p>¿No te gustan las gráficas? Toca <kbd>Vista de tabla</kbd> abajo para ver los números de cada momento.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Batería</h3>
+  <figure class="wide"><img src="../img/es/mac-battery.png" alt="Batería: carga, salud, ciclos, temperatura y energía" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Salud de la batería</b>: cuánto carga comparada con una nueva. <b>80% o más es normal</b>; solo por debajo del 80% conviene pensar en cambiarla</li>
+    <li><b>Ciclos de carga</b>: cuántas vueltas ha dado la batería. Los MacBook están diseñados para 1000</li>
+    <li><b>Temperatura de la batería</b>: entre 30 y 40 °C es normal; por encima de 40 °C se pone naranja como aviso</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Memoria: por qué va lento el ordenador</h3>
+  <figure class="wide"><img src="../img/es/mac-memory.png" alt="La barra de memoria: en uso por apps, reservada, comprimida, caché y libre, más presión y swap" loading="lazy"></figure>
+  <ul class="simple">
+    <li>La barra tiene varios colores, cada uno con su explicación y su uso al lado</li>
+    <li>La <b>caché</b> no es problema; se libera sola cuando hace falta</li>
+    <li>Mucha memoria <b>comprimida</b> y <b>swap</b> significa que falta memoria; el ordenador va lento y se calienta</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Apps que más consumen</h3>
+  <p>Cambia entre ordenar <kbd>Por CPU</kbd> o <kbd>Por memoria</kbd>. Varias copias de la misma app (p. ej. cada pestaña del navegador) se juntan en una fila con <b>×cantidad</b>.</p>
+  <figure class="wide"><img src="../img/es/mac-procs.png" alt="Apps que más consumen, por memoria, con Safari ×3 en primer lugar" loading="lazy"></figure>
+  <div class="note warn"><b>¿La red o la nube van lentas?</b>Mira primero esta página: si «Presión de memoria» está en naranja o una app usa mucho, díselo al administrador para que cierre apps o reinicie el Mac.</div>
+</div></div>
+
+<!-- 10 -->
+<h2 id="win">10. Controla un PC con Windows desde el móvil <span class="tag pill paid">Administrador</span></h2>
+<p>Si hay un PC con Windows en casa, puedes controlarlo desde el móvil igual que el Mac: ver si se usa, cambiar de canción, subir el volumen, mostrar un aviso a quien lo usa, bloquearlo, apagarlo. <b>Solo el administrador (propietario del panel) ve esta función.</b></p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Instala primero Tailscale en Windows</h3>
+  <ol class="simple">
+    <li>En Windows, descárgalo e instálalo desde <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a></li>
+    <li>Inicia sesión con <b>la misma cuenta que en el móvil</b> (importante: con otra cuenta no conectará)</li>
+    <li>El icono de Tailscale abajo a la derecha debe mostrar <b>Conectado</b></li>
+  </ol>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Genera el comando de instalación en el móvil</h3>
+  <ol class="simple">
+    <li>Abre el panel y toca <kbd>Remoto</kbd> abajo</li>
+    <li>Toca <kbd>＋ Windows</kbd> arriba y luego <kbd>Generar comando de instalación</kbd></li>
+    <li>Toca <kbd>Copiar comando</kbd> y envíalo al PC por LINE o email</li>
+  </ol>
+  <figure class="wide"><img src="../img/es/win-add.png" alt="La página Remoto del panel: arriba Mac, el nombre del PC y ＋; debajo los pasos y un comando de una línea" loading="lazy"><figcaption>El comando sirve una vez y vale 15 minutos; si caduca, toca «Generar otro»</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Pega el comando en Windows</h3>
+  <ol class="simple">
+    <li>Pulsa la tecla <kbd>⊞ Windows</kbd> (o Inicio abajo a la izquierda), escribe <b>PowerShell</b> y pulsa Intro para abrirlo</li>
+    <li>En la ventana azul o negra, <b>haz clic derecho</b> (o <kbd>Ctrl</kbd>+<kbd>V</kbd>) para pegar el comando y pulsa <kbd>Enter</kbd></li>
+    <li>Cuando veas un <b>«¡Listo!»</b> en verde, ya está y puedes cerrar la ventana</li>
+  </ol>
+  <div class="note ok"><b>Sin permisos de administrador</b> y sin tocar el cortafuegos. A partir de ahí arranca en segundo plano cada vez que inicias sesión, sin ventanas.</div>
+  <div class="note tip">Una vez instalado, la página del móvil <b>cambia sola a ese PC</b>. Si el nombre es largo, cámbialo en «Gestionar» abajo por algo fácil, p. ej. «PC del salón».</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Mira su estado y controla la música</h3>
+  <p>Los botones de arriba cambian entre el <b>Mac</b> y cada PC con Windows. Un <b>punto verde</b> junto al nombre significa que está encendido y accesible.</p>
+  <figure class="wide"><img src="../img/es/win-status.png" alt="Estado de un PC con Windows: CPU, memoria, disco, energía, tiempo encendido y usuario; debajo la canción y los controles de música" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>En línea · en uso / inactivo / bloqueado</b>: te dice si alguien lo está usando ahora</li>
+    <li><b>Música</b>: ve qué suena en Spotify, YouTube en el navegador y más; pausa, cambia de canción y ajusta el volumen</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Pantalla y energía</h3>
+  <figure class="wide"><img src="../img/es/win-controls.png" alt="Pantalla: captura, bloquear, apagar pantalla, reposo; Energía: apagar, reiniciar, cancelar apagado" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Captura</b>: mira lo que hay ahora en la pantalla (no si está bloqueado)</li>
+    <li><b>Reposo, apagar y reiniciar</b> necesitan <b>dos toques</b>, para no activarlos sin querer</li>
+    <li>Apagar y reiniciar <b>esperan 1 minuto</b> y muestran un aviso en el PC; ¿cambiaste de idea? Toca <kbd>Cancelar apagado</kbd></li>
+  </ul>
+  <p>Más abajo: <b>mostrar aviso</b> y <b>leer en voz alta</b> (p. ej. «¡A cenar!»), <b>sincronizar portapapeles</b> (pasar texto entre móvil y PC) y <b>abrir una dirección en el PC</b>.</p>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Si ya no lo quieres: quítalo</h3>
+  <p>Al final de la página de ese PC toca <kbd>Quitar este PC</kbd> (dos toques). Si el PC está encendido, la app <b>se borra sola</b>; si está apagado, se quita la próxima vez que arranque y se conecte.</p>
+  <div class="note warn"><b>Sobre la seguridad</b>Solo tu panel puede controlarlo, y solo por Tailscale; la app del PC solo hace lo que se lista en esta página y no puede ejecutar otros programas. <b>Tu móvil recibe un aviso cada vez que se añade un PC</b>; si no lo añadiste tú, quítalo enseguida.</div>
+</div></div>
+
+<!-- 11 -->
+<h2 id="report">11. Informa de un problema al administrador</h2>
+<p>¿La página no abre, falla la subida a la nube, no hay Internet…? Cuando <b>algo vaya raro</b>, díselo al administrador desde tu página. No hace falta escribir mucho: elige unas opciones y añade una captura.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Busca «Informar de un problema»</h3>
+  <p>Abre <a href="#portal">tu página</a>, baja hasta el apartado naranja <b>«Informar de un problema»</b> y toca <kbd>Informar de un problema</kbd>.</p>
+  <figure class="wide"><img src="../img/es/portal-bug-card.png" alt="La tarjeta «Informar de un problema» de Mi página, con su botón y debajo Mis informes con las respuestas" loading="lazy"><figcaption>Debajo, «Mis informes» muestra el progreso y las respuestas del administrador</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Solo rellénalo</h3>
+  <ol class="simple">
+    <li><b>¿Dónde está el problema?</b>: elige nube, Internet / conexión, Mi página…</li>
+    <li><b>¿Qué tan grave es?</b>: leve, algo de impacto o no funciona nada</li>
+    <li><b>Describe lo que pasó en una frase</b>: p. ej. «Subir un vídeo falla a la mitad»</li>
+    <li><b>Detalles</b>: opcional, pero ayuda a encontrar la causa antes</li>
+    <li><b>Capturas</b>: toca <kbd>Elegir capturas</kbd> y elige hasta 3 de tus fotos</li>
+    <li>Toca <kbd>Enviar informe</kbd>; el móvil del administrador recibe un aviso al momento</li>
+  </ol>
+  <figure><img src="../img/es/portal-bug-form.png" alt="El formulario de informe: dónde está el problema, gravedad, resumen, detalles, capturas y datos del móvil" loading="lazy"></figure>
+  <div class="note tip"><b>¿Cómo se hace una captura?</b>En el iPhone pulsa a la vez el «botón lateral» y «subir volumen»; la pantalla parpadea y se guarda en «Fotos».</div>
+  <div class="note ok"><b>«Adjuntar modelo del móvil y navegador»</b> mejor déjalo marcado; ayuda al administrador a encontrar la causa. Nunca se envían tus fotos, contactos ni ubicación.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Mira la respuesta del administrador</h3>
+  <ul class="simple">
+    <li>Cuando el administrador responde, aparece un <b>punto rojo</b> 🔴 junto al título</li>
+    <li>La etiqueta de la derecha muestra el progreso: <b>Nuevo</b> → <b>En curso</b> → <b>Arreglado</b></li>
+    <li>Para añadir algo, escribe en el cuadro de abajo y toca <kbd>Enviar</kbd></li>
+    <li>¿Marcado como «Arreglado» pero <b>sigue fallando</b>? Toca «¿Sigue fallando?» para avisar; el informe vuelve a su lista de pendientes</li>
+  </ul>
+  <div class="note warn"><b>¿Es urgente?</b>Por ejemplo, nada de Internet o la nube no abre: elige «No funciona nada» y el administrador recibe un aviso urgente. Si corre mucha prisa, también puedes llamarle.</div>
+</div></div>
+
+<div class="note tip" style="margin-top:14px"><b>¿Montaste tú este sistema?</b>Informa de errores o ideas en GitHub: <a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">Informar de un problema / sugerir una función</a> (formularios en chino e inglés). Para vulnerabilidades de seguridad, usa un <a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">informe privado</a>.</div>
+
+<!-- 12 -->
+<h2 id="faq">12. Si algo no funciona</h2>
+<details class="faq"><summary>Windows remoto: aparece en rojo «Falló la instalación» tras pegar el comando</summary><div>
+  <ol class="simple"><li>Comprueba que <b>Tailscale está conectado</b> abajo a la derecha en Windows, con <b>la misma cuenta que en el móvil</b>.</li><li>El comando sirve una vez y durante 15 minutos: en el móvil toca <kbd>Generar otro</kbd> y pega el nuevo.</li><li>Pégalo en <b>PowerShell</b>, no en el «Símbolo del sistema (cmd)».</li></ol></div></details>
+<details class="faq"><summary>Windows remoto: el PC siempre sale «Sin conexión» y los botones están grises</summary><div>El PC puede estar apagado, en reposo o sin Tailscale. Despiértalo y comprueba que Tailscale está conectado; el punto verde vuelve en unos 30 segundos. ¿Sigue igual? <b>Cierra sesión y vuelve a entrar</b> en el PC (la app remota arranca al iniciar sesión).</div></details>
+<details class="faq"><summary>Sin Internet al activarlo</summary><div>
+  <ol class="simple"><li>Primero <b>apaga y vuelve a encender</b> el interruptor de Shadowrocket (o Tailscale).</li><li>¿Sigue sin ir? Apaga el interruptor por ahora y el móvil vuelve a su Internet normal.</li><li>Avísale al administrador con <a href="#report">Informar de un problema</a> (elige «No funciona nada»): puede que el ordenador de casa esté apagado o que no haya Internet.</li></ol></div></details>
+<details class="faq"><summary>Mi página dice «acceso no activo» o sale texto en rojo</summary><div>
+  <ul class="simple"><li><b>Fuera del horario permitido</b>: el administrador fijó en qué horas se puede usar; cuando llegue la hora funcionará.</li><li><b>Caducado</b>: terminó tu periodo de acceso; pregunta al administrador si lo amplía.</li><li><b>Desactivado</b>: el administrador lo apagó por ahora; pregúntale.</li></ul></div></details>
+<details class="faq"><summary>Dice «Se acabó el tiempo de hoy»</summary><div>Has gastado el tiempo de hoy; se restablece solo a <b>medianoche</b>. Si lo necesitas ya, <a href="#msg">escribe</a> al administrador para pedir más tiempo.</div></details>
+<details class="faq"><summary>Mi página dice «Página no encontrada» o «la dirección ya no funciona»</summary><div>Puede que el administrador te haya dado una dirección nueva (p. ej. por seguridad). Pídele que te <b>envíe la nueva</b> y deja de usar la antigua.</div></details>
+<details class="faq"><summary>Un punto rojo junto a «El Mac de casa» en Shadowrocket</summary><div>Es el «test de velocidad» de Shadowrocket que falla; <b>no afecta al uso</b> y puedes ignorarlo. Mientras <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> muestre el número correcto, todo va bien.</div></details>
+<details class="faq"><summary>Algunas apps o webs no abren</summary><div>Puede que el administrador haya puesto «Límites de Internet» (bloquear anuncios o ciertas apps). En el apartado <b>Límites de Internet</b> de tu página ves qué está bloqueado. Pregúntale si necesitas algo.</div></details>
+<details class="faq"><summary>La subida falla con «Superas tu límite de espacio»</summary><div>Tu «Mis archivos» está lleno. Borra archivos que no necesites o pide más espacio al administrador.</div></details>
+<details class="faq"><summary>La copia automática de fotos no se hizo</summary><div>
+  <ol class="simple"><li>El atajo dice «El administrador no te ha permitido la copia automática de fotos»: pide al administrador que la active en el panel.</li><li>Abre Atajos → «Automatización» y comprueba que la automatización está activa y en «Ejecutar inmediatamente».</li>
+  <li>Toca ▶︎ a mano una vez y mira si sale algún mensaje de error.</li>
+  <li>Dice «forbidden»: revisa que los nombres de los dos «encabezados» estén bien escritos (mayúsculas y minúsculas incluidas).</li>
+  <li>Dice «Superas tu límite de espacio»: la nube está llena; borra archivos antiguos o pide más espacio al administrador.</li></ol></div></details>
+<details class="faq"><summary>Un amigo dice que el enlace no abre</summary><div>Puede que el enlace haya <b>caducado</b>, <b>agotado las descargas</b> o se haya cancelado. Vuelve a compartir y envíale el enlace nuevo.</div></details>
+<details class="faq"><summary>Las fotos de la nube se ven grises, sin miniatura</summary><div>La primera vez, el ordenador de casa tarda unos segundos en hacer las miniaturas; espera un poco, actualiza y aparecerán. Tocando la foto la puedes ver igual.</div></details>
+<details class="faq"><summary>No encuentro la página «Mac» en el panel</summary><div>La página «Mac» solo la ven quienes tienen acceso al «panel de control». Pregunta al administrador si la necesitas.</div></details>
+<details class="faq"><summary>¿Y si cambio de móvil?</summary><div>Hazlo otra vez en el móvil nuevo: descarga la app → abre tu dirección personal → toca «Abrir en Shadowrocket» (o inicia sesión en Tailscale). Tus archivos de la nube siguen ahí.</div></details>
+<details class="faq"><summary>¿Puedo tener Shadowrocket y Tailscale activos a la vez?</summary><div>No, el iPhone solo usa una a la vez. Activa la que quieras usar.</div></details>
+
+<!-- 13 -->
+<h2 id="safe">13. Consejos de seguridad</h2>
+<div class="card">
+  <div class="note danger"><b>🔒 Tu dirección personal y tu QR son como una llave</b>Quien los tenga puede entrar en la red de casa como tú y ver tu nube.</div>
+  <ul class="simple">
+    <li><b>No</b> envíes tu dirección personal a nadie ni la pongas en grupos</li>
+    <li><b>No</b> compartas capturas de tu QR de Shadowrocket</li>
+    <li>Si se te escapa, <b>avisa al administrador enseguida</b>; puede darte uno nuevo y el anterior deja de funcionar al momento</li>
+    <li><b>No</b> des a nadie la dirección de subida de la copia de fotos; quien la tenga puede meter archivos en tu nube</li>
+    <li>Una vez enviado un enlace, cualquiera que lo tenga puede descargar. Para archivos importantes, <b>pon contraseña</b> y <b>caducidad</b></li>
+    <li>Si alguien que dice ser el administrador te pide la contraseña o un código, <b>llama primero a la persona real para comprobarlo</b></li>
+  </ul>
+</div>
+
+<footer>¿Dudas? Usa <a href="#report">Informar de un problema</a> en tu página o pregunta al administrador 🙂<br>Los nombres, números y códigos QR de esta guía son ejemplos.</footer>
+</div>
+<a class="back" href="#top">↑ Índice</a>
+<script>try{localStorage.setItem("guide-lang","es")}catch(e){}</script>
+</body>
+</html>

@@ -1,0 +1,2424 @@
+{
+ "家裡網路使用教學": {
+  "en": "Home network guide",
+  "zh-CN": "家里网络使用教程",
+  "ja": "おうちネットワークの使い方",
+  "ko": "집 네트워크 사용 안내",
+  "es": "Guía de la red de casa"
+ },
+ "用手機連回家裡的網路、使用家裡的雲端硬碟<br>一步一步照著做就好，不用懂電腦": {
+  "en": "Connect to the home network and use the home cloud drive from your phone<br>Just follow the steps; no computer skills needed",
+  "zh-CN": "用手机连回家里的网络、使用家里的云盘<br>一步一步照着做就好，不用懂电脑",
+  "ja": "スマホから家のネットワークにつないで、家のクラウドドライブを使う<br>手順どおりに進めるだけ。パソコンの知識はいりません",
+  "ko": "휴대폰으로 집 네트워크에 연결하고 집 클라우드 드라이브 사용하기<br>순서대로 따라 하면 됩니다. 컴퓨터를 몰라도 괜찮아요",
+  "es": "Conéctate a la red de casa y usa la nube de casa desde el móvil<br>Solo sigue los pasos; no hace falta saber de informática"
+ },
+ "<a href=\"#before\"><span class=\"n\">1</span>開始之前要準備的東西</a> <a href=\"#choose\"><span class=\"n\">2</span>選一種方式：Shadowrocket 或 Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>打開「我的專屬網頁」</a> <a href=\"#sr\"><span class=\"n\">4</span>方式 A：Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>方式 B：Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>使用「我的雲端」存照片和檔案</a> <a href=\"#backup\"><span class=\"n\">7</span>iPhone 照片每天自動備份</a> <a href=\"#more\"><span class=\"n\">8</span>其他好用的功能（大字、留言、時數、網速）</a> <a href=\"#mac\"><span class=\"n\">9</span>看家裡 Mac 的狀況（有控制台權限的人）</a> <a href=\"#win\"><span class=\"n\">10</span>用手機遙控 Windows 電腦（管理員）</a> <a href=\"#report\"><span class=\"n\">11</span>回報問題給管理員</a> <a href=\"#faq\"><span class=\"n\">12</span>遇到問題怎麼辦</a> <a href=\"#safe\"><span class=\"n\">13</span>安全小提醒（很重要）</a>": {
+  "en": "<a href=\"#before\"><span class=\"n\">1</span>What you need first</a> <a href=\"#choose\"><span class=\"n\">2</span>Pick one: Shadowrocket or Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>Open “My page”</a> <a href=\"#sr\"><span class=\"n\">4</span>Option A: Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>Option B: Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>Keep photos and files in “My cloud”</a> <a href=\"#backup\"><span class=\"n\">7</span>Back up iPhone photos every day</a> <a href=\"#more\"><span class=\"n\">8</span>Other handy features (large text, messages, time, speed)</a> <a href=\"#mac\"><span class=\"n\">9</span>Check on the Mac at home (control panel users)</a> <a href=\"#win\"><span class=\"n\">10</span>Control a Windows PC from your phone (admin)</a> <a href=\"#report\"><span class=\"n\">11</span>Report a problem to the admin</a> <a href=\"#faq\"><span class=\"n\">12</span>Troubleshooting</a> <a href=\"#safe\"><span class=\"n\">13</span>Safety tips (important)</a>",
+  "zh-CN": "<a href=\"#before\"><span class=\"n\">1</span>开始之前要准备的东西</a> <a href=\"#choose\"><span class=\"n\">2</span>选一种方式：Shadowrocket 或 Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>打开“我的专属网页”</a> <a href=\"#sr\"><span class=\"n\">4</span>方式 A：Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>方式 B：Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>使用“我的云盘”存照片和文件</a> <a href=\"#backup\"><span class=\"n\">7</span>iPhone 照片每天自动备份</a> <a href=\"#more\"><span class=\"n\">8</span>其他好用的功能（大字、留言、时数、网速）</a> <a href=\"#mac\"><span class=\"n\">9</span>看家里 Mac 的状况（有控制台权限的人）</a> <a href=\"#win\"><span class=\"n\">10</span>用手机遥控 Windows 电脑（管理员）</a> <a href=\"#report\"><span class=\"n\">11</span>反馈问题给管理员</a> <a href=\"#faq\"><span class=\"n\">12</span>遇到问题怎么办</a> <a href=\"#safe\"><span class=\"n\">13</span>安全小提醒（很重要）</a>",
+  "ja": "<a href=\"#before\"><span class=\"n\">1</span>はじめに用意するもの</a> <a href=\"#choose\"><span class=\"n\">2</span>方法を選ぶ：Shadowrocket か Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>「マイページ」を開く</a> <a href=\"#sr\"><span class=\"n\">4</span>方法 A：Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>方法 B：Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>「マイクラウド」に写真やファイルを保存</a> <a href=\"#backup\"><span class=\"n\">7</span>iPhone の写真を毎日自動バックアップ</a> <a href=\"#more\"><span class=\"n\">8</span>そのほかの便利な機能（大きな文字・メッセージ・利用時間・速度）</a> <a href=\"#mac\"><span class=\"n\">9</span>家の Mac の様子を見る（パネル権限がある人）</a> <a href=\"#win\"><span class=\"n\">10</span>スマホで Windows PC を操作（管理者）</a> <a href=\"#report\"><span class=\"n\">11</span>管理者に問題を報告</a> <a href=\"#faq\"><span class=\"n\">12</span>困ったときは</a> <a href=\"#safe\"><span class=\"n\">13</span>安全のための注意（大切）</a>",
+  "ko": "<a href=\"#before\"><span class=\"n\">1</span>시작하기 전에 준비할 것</a> <a href=\"#choose\"><span class=\"n\">2</span>방법 고르기: Shadowrocket 또는 Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>'내 페이지' 열기</a> <a href=\"#sr\"><span class=\"n\">4</span>방법 A: Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>방법 B: Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>'내 클라우드'에 사진과 파일 저장</a> <a href=\"#backup\"><span class=\"n\">7</span>iPhone 사진 매일 자동 백업</a> <a href=\"#more\"><span class=\"n\">8</span>그 밖의 유용한 기능(큰 글씨, 메시지, 시간, 속도)</a> <a href=\"#mac\"><span class=\"n\">9</span>집 Mac 상태 보기(제어판 권한이 있는 사람)</a> <a href=\"#win\"><span class=\"n\">10</span>휴대폰으로 Windows PC 조작(관리자)</a> <a href=\"#report\"><span class=\"n\">11</span>관리자에게 문제 보고</a> <a href=\"#faq\"><span class=\"n\">12</span>문제가 생기면</a> <a href=\"#safe\"><span class=\"n\">13</span>안전 수칙(중요)</a>",
+  "es": "<a href=\"#before\"><span class=\"n\">1</span>Qué necesitas antes de empezar</a> <a href=\"#choose\"><span class=\"n\">2</span>Elige una: Shadowrocket o Tailscale</a> <a href=\"#portal\"><span class=\"n\">3</span>Abre «Mi página»</a> <a href=\"#sr\"><span class=\"n\">4</span>Opción A: Shadowrocket</a> <a href=\"#ts\"><span class=\"n\">5</span>Opción B: Tailscale</a> <a href=\"#cloud\"><span class=\"n\">6</span>Guarda fotos y archivos en «Mi nube»</a> <a href=\"#backup\"><span class=\"n\">7</span>Copia diaria de las fotos del iPhone</a> <a href=\"#more\"><span class=\"n\">8</span>Otras funciones útiles (texto grande, mensajes, tiempo, velocidad)</a> <a href=\"#mac\"><span class=\"n\">9</span>Mira cómo está el Mac de casa (con acceso al panel)</a> <a href=\"#win\"><span class=\"n\">10</span>Controla un PC con Windows desde el móvil (administrador)</a> <a href=\"#report\"><span class=\"n\">11</span>Informa de un problema al administrador</a> <a href=\"#faq\"><span class=\"n\">12</span>Si algo no funciona</a> <a href=\"#safe\"><span class=\"n\">13</span>Consejos de seguridad (importante)</a>"
+ },
+ "1. 開始之前要準備的東西": {
+  "en": "1. What you need first",
+  "zh-CN": "1. 开始之前要准备的东西",
+  "ja": "1. はじめに用意するもの",
+  "ko": "1. 시작하기 전에 준비할 것",
+  "es": "1. Qué necesitas antes de empezar"
+ },
+ "一支 <b>iPhone</b>（這份教學用 iPhone 示範）": {
+  "en": "An <b>iPhone</b> (this guide uses an iPhone)",
+  "zh-CN": "一部 <b>iPhone</b>（这份教程用 iPhone 示范）",
+  "ja": "<b>iPhone</b>（このガイドは iPhone で説明します）",
+  "ko": "<b>iPhone</b>(이 안내는 iPhone으로 설명합니다)",
+  "es": "Un <b>iPhone</b> (esta guía usa un iPhone)"
+ },
+ "你的 <b>Apple ID 密碼</b>（下載 App 時可能會用到）": {
+  "en": "Your <b>Apple ID password</b> (you may need it to download apps)",
+  "zh-CN": "你的 <b>Apple ID 密码</b>（下载 App 时可能会用到）",
+  "ja": "<b>Apple ID のパスワード</b>（アプリのダウンロードで使うことがあります）",
+  "ko": "<b>Apple ID 비밀번호</b>(앱을 받을 때 필요할 수 있음)",
+  "es": "Tu <b>contraseña del Apple ID</b> (puede hacer falta para descargar apps)"
+ },
+ "手機可以正常上網（Wi-Fi 或行動網路都可以）": {
+  "en": "A phone that can get online (Wi-Fi or mobile data is fine)",
+  "zh-CN": "手机可以正常上网（Wi-Fi 或移动网络都可以）",
+  "ja": "スマホがインターネットにつながること（Wi-Fi でもモバイル通信でも OK）",
+  "ko": "휴대폰이 인터넷에 연결되어 있을 것(Wi-Fi나 모바일 데이터 모두 가능)",
+  "es": "Que el móvil tenga Internet (Wi-Fi o datos móviles)"
+ },
+ "<b>管理員傳給你的「專屬網址」</b>，看起來像這樣：<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/一長串英文和數字/</code>": {
+  "en": "<b>The “personal address” the admin sent you</b>, which looks like this:<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/a-long-string-of-letters-and-numbers/</code>",
+  "zh-CN": "<b>管理员发给你的“专属网址”</b>，看起来像这样：<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/一长串英文和数字/</code>",
+  "ja": "<b>管理者から届いた「専用アドレス」</b>。こんな形です：<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/英数字の長い文字列/</code>",
+  "ko": "<b>관리자가 보내 준 '전용 주소'</b>. 이렇게 생겼습니다:<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/긴-영문과-숫자/</code>",
+  "es": "<b>La «dirección personal» que te envió el administrador</b>, con este aspecto:<br><code style=\"font-size:15px;word-break:break-all\">https://………/p/una-cadena-larga-de-letras-y-números/</code>"
+ },
+ "<b>什麼是「管理員」？</b>就是幫大家架好家裡網路的那個人。遇到不會的地方，直接問他就好。": {
+  "en": "<b>Who is the “admin”?</b>The person who set up the home network for everyone. If you get stuck, just ask them.",
+  "zh-CN": "<b>什么是“管理员”？</b>就是帮大家架好家里网络的那个人。遇到不会的地方，直接问他就好。",
+  "ja": "<b>「管理者」とは？</b>家のネットワークを用意してくれた人のことです。わからないことがあれば、その人に聞けば大丈夫。",
+  "ko": "<b>'관리자'가 누구인가요?</b>집 네트워크를 설치해 준 사람입니다. 모르는 게 있으면 그 사람에게 물어보면 돼요.",
+  "es": "<b>¿Quién es el «administrador»?</b>La persona que montó la red de casa. Si te atascas, pregúntale."
+ },
+ "2. 選一種方式": {
+  "en": "2. Pick one",
+  "zh-CN": "2. 选一种方式",
+  "ja": "2. 方法を選ぶ",
+  "ko": "2. 방법 고르기",
+  "es": "2. Elige una"
+ },
+ "有兩種 App 可以連回家裡，<b>選一種就好</b>，不用兩個都裝。如果不知道選哪個，<b>問管理員</b>，他會告訴你。": {
+  "en": "Two apps can connect you home. <b>Pick just one</b>; you don't need both. Not sure which? <b>Ask the admin</b>.",
+  "zh-CN": "有两种 App 可以连回家里，<b>选一种就好</b>，不用两个都装。如果不知道选哪个，<b>问管理员</b>，他会告诉你。",
+  "ja": "家につなぐアプリは 2 種類あります。<b>どちらか一つで OK</b>、両方入れる必要はありません。迷ったら<b>管理者に聞いて</b>ください。",
+  "ko": "집에 연결하는 앱은 두 가지가 있어요. <b>하나만 고르면 되고</b> 둘 다 설치할 필요는 없어요. 모르겠으면 <b>관리자에게 물어보세요</b>.",
+  "es": "Hay dos apps para conectarte a casa. <b>Elige solo una</b>; no hacen falta las dos. ¿Dudas? <b>Pregunta al administrador</b>."
+ },
+ "🚀 方式 A：Shadowrocket": {
+  "en": "🚀 Option A: Shadowrocket",
+  "zh-CN": "🚀 方式 A：Shadowrocket",
+  "ja": "🚀 方法 A：Shadowrocket",
+  "ko": "🚀 방법 A: Shadowrocket",
+  "es": "🚀 Opción A: Shadowrocket"
+ },
+ "需要付費購買": {
+  "en": "Paid app",
+  "zh-CN": "需要付费购买",
+  "ja": "有料アプリ",
+  "ko": "유료 앱",
+  "es": "App de pago"
+ },
+ "最簡單，按一個按鈕就設定好": {
+  "en": "The easiest: one tap sets it up",
+  "zh-CN": "最简单，按一个按钮就设置好",
+  "ja": "いちばん簡単。ボタン一つで設定完了",
+  "ko": "가장 쉬움, 버튼 하나로 설정 끝",
+  "es": "La más fácil: un toque y listo"
+ },
+ "不用註冊帳號": {
+  "en": "No account needed",
+  "zh-CN": "不用注册账号",
+  "ja": "アカウント登録は不要",
+  "ko": "계정 가입 필요 없음",
+  "es": "Sin crear cuenta"
+ },
+ "適合：想用家裡網路上網的人": {
+  "en": "Best for: browsing through the home network",
+  "zh-CN": "适合：想用家里网络上网的人",
+  "ja": "向いている人：家のネットワーク経由でネットを使いたい人",
+  "ko": "추천: 집 네트워크로 인터넷을 쓰고 싶은 사람",
+  "es": "Ideal para: navegar a través de la red de casa"
+ },
+ "看方式 A 的教學 →": {
+  "en": "See Option A →",
+  "zh-CN": "看方式 A 的教程 →",
+  "ja": "方法 A の説明へ →",
+  "ko": "방법 A 안내 보기 →",
+  "es": "Ver la opción A →"
+ },
+ "🔵 方式 B：Tailscale": {
+  "en": "🔵 Option B: Tailscale",
+  "zh-CN": "🔵 方式 B：Tailscale",
+  "ja": "🔵 方法 B：Tailscale",
+  "ko": "🔵 방법 B: Tailscale",
+  "es": "🔵 Opción B: Tailscale"
+ },
+ "免費": {
+  "en": "Free",
+  "zh-CN": "免费",
+  "ja": "無料",
+  "ko": "무료",
+  "es": "Gratis"
+ },
+ "要用 Google 或 Apple 帳號登入": {
+  "en": "Sign in with Google or Apple",
+  "zh-CN": "要用 Google 或 Apple 账号登录",
+  "ja": "Google か Apple のアカウントでログイン",
+  "ko": "Google 또는 Apple 계정으로 로그인",
+  "es": "Inicias sesión con Google o Apple"
+ },
+ "管理員要先寄邀請給你": {
+  "en": "The admin has to invite you first",
+  "zh-CN": "管理员要先发邀请给你",
+  "ja": "先に管理者から招待が必要",
+  "ko": "관리자가 먼저 초대해야 함",
+  "es": "El administrador tiene que invitarte antes"
+ },
+ "適合：需要用到家裡電腦的人": {
+  "en": "Best for: people who need the computers at home",
+  "zh-CN": "适合：需要用到家里电脑的人",
+  "ja": "向いている人：家のパソコンを使う必要がある人",
+  "ko": "추천: 집 컴퓨터를 써야 하는 사람",
+  "es": "Ideal para: quien necesita usar los ordenadores de casa"
+ },
+ "看方式 B 的教學 →": {
+  "en": "See Option B →",
+  "zh-CN": "看方式 B 的教程 →",
+  "ja": "方法 B の説明へ →",
+  "ko": "방법 B 안내 보기 →",
+  "es": "Ver la opción B →"
+ },
+ "<b>⚠️ 兩個不能同時開</b>iPhone 一次只能開一個 VPN。開了 Shadowrocket，Tailscale 就會自動關掉，反過來也一樣。": {
+  "en": "<b>⚠️ You can't have both on at once</b>An iPhone runs one VPN at a time. Turning on Shadowrocket turns Tailscale off, and the other way round.",
+  "zh-CN": "<b>⚠️ 两个不能同时开</b>iPhone 一次只能开一个 VPN。开了 Shadowrocket，Tailscale 就会自动关掉，反过来也一样。",
+  "ja": "<b>⚠️ 2 つ同時には使えません</b>iPhone で同時に使える VPN は 1 つだけ。Shadowrocket をオンにすると Tailscale は自動でオフになり、その逆も同じです。",
+  "ko": "<b>⚠️ 둘을 동시에 켤 수 없어요</b>iPhone은 VPN을 한 번에 하나만 켤 수 있어요. Shadowrocket을 켜면 Tailscale이 자동으로 꺼지고, 반대도 마찬가지예요.",
+  "es": "<b>⚠️ No pueden estar las dos activas</b>El iPhone solo usa una VPN a la vez. Al activar Shadowrocket se apaga Tailscale, y al revés."
+ },
+ "3. 打開「我的專屬網頁」": {
+  "en": "3. Open “My page”",
+  "zh-CN": "3. 打开“我的专属网页”",
+  "ja": "3. 「マイページ」を開く",
+  "ko": "3. '내 페이지' 열기",
+  "es": "3. Abre «Mi página»"
+ },
+ "不管選哪一種方式，都會用到這個網頁。它會告訴你：<b>你可以用什麼、能用到什麼時候</b>，也可以在這裡使用雲端硬碟。": {
+  "en": "Whichever option you pick, you'll use this page. It tells you <b>what you can use and until when</b>, and it's also where you use the cloud drive.",
+  "zh-CN": "不管选哪一种方式，都会用到这个网页。它会告诉你：<b>你可以用什么、能用到什么时候</b>，也可以在这里使用云盘。",
+  "ja": "どちらの方法でもこのページを使います。<b>何が使えて、いつまで使えるか</b>がわかり、クラウドドライブもここから使えます。",
+  "ko": "어떤 방법을 고르든 이 페이지를 쓰게 돼요. <b>무엇을 언제까지 쓸 수 있는지</b> 알려 주고, 클라우드 드라이브도 여기서 써요.",
+  "es": "Elijas la opción que elijas, usarás esta página. Te dice <b>qué puedes usar y hasta cuándo</b>, y desde aquí también usas la nube."
+ },
+ "點開管理員給你的網址": {
+  "en": "Open the address the admin gave you",
+  "zh-CN": "点开管理员给你的网址",
+  "ja": "管理者からのアドレスを開く",
+  "ko": "관리자가 준 주소 열기",
+  "es": "Abre la dirección que te dio el administrador"
+ },
+ "在 LINE 或訊息裡，直接點那個網址，iPhone 會用 <b>Safari</b> 打開。": {
+  "en": "Tap the address in LINE or Messages; the iPhone opens it in <b>Safari</b>.",
+  "zh-CN": "在 LINE 或信息里直接点那个网址，iPhone 会用 <b>Safari</b> 打开。",
+  "ja": "LINE やメッセージでそのアドレスをタップすると、iPhone の <b>Safari</b> で開きます。",
+  "ko": "LINE이나 메시지에서 그 주소를 누르면 iPhone이 <b>Safari</b>로 엽니다.",
+  "es": "Toca la dirección en LINE o Mensajes; el iPhone la abre en <b>Safari</b>."
+ },
+ "打開後會看到你的名字（圖中「王小明」是範例）": {
+  "en": "You'll see your name (“Ming” in the picture is an example)",
+  "zh-CN": "打开后会看到你的名字（图中“王小明”是示例）",
+  "ja": "開くとあなたの名前が表示されます（図の名前は例です）",
+  "ko": "열면 내 이름이 보여요(그림 속 이름은 예시)",
+  "es": "Verás tu nombre (el del dibujo es un ejemplo)"
+ },
+ "<b>看到綠色的「可以使用」就代表一切正常。</b>如果是紅色，請看最下面的<a href=\"#faq\">常見問題</a>。": {
+  "en": "<b>A green “Available” means everything is fine.</b> If it's red, see <a href=\"#faq\">Troubleshooting</a> at the bottom.",
+  "zh-CN": "<b>看到绿色的“可以使用”就代表一切正常。</b>如果是红色，请看最下面的<a href=\"#faq\">常见问题</a>。",
+  "ja": "<b>緑の「利用可」なら問題ありません。</b>赤い場合は、いちばん下の<a href=\"#faq\">困ったときは</a>を見てください。",
+  "ko": "<b>초록색 '사용 가능'이 보이면 정상이에요.</b> 빨간색이면 맨 아래 <a href=\"#faq\">문제가 생기면</a>을 보세요.",
+  "es": "<b>Si ves «Disponible» en verde, todo va bien.</b> Si está en rojo, mira <a href=\"#faq\">Si algo no funciona</a> al final."
+ },
+ "<b>字太小看不清楚？</b>按右上角的 <kbd>T</kbd> 就會變成大字，再按一次變回來。詳細請看<a href=\"#big\">大字模式</a>。": {
+  "en": "<b>Text too small?</b> Tap <kbd>T</kbd> at the top right for large text; tap it again to go back. See <a href=\"#big\">Large text</a>.",
+  "zh-CN": "<b>字太小看不清楚？</b>按右上角的 <kbd>T</kbd> 就会变成大字，再按一次变回来。详细请看<a href=\"#big\">大字模式</a>。",
+  "ja": "<b>文字が小さくて読みにくい？</b>右上の <kbd>T</kbd> を押すと大きな文字に、もう一度押すと元に戻ります。詳しくは<a href=\"#big\">大きな文字</a>へ。",
+  "ko": "<b>글씨가 작아서 안 보이나요?</b> 오른쪽 위 <kbd>T</kbd>를 누르면 큰 글씨가 되고, 다시 누르면 돌아와요. 자세한 건 <a href=\"#big\">큰 글씨</a>를 보세요.",
+  "es": "<b>¿Letra demasiado pequeña?</b> Toca <kbd>T</kbd> arriba a la derecha para agrandarla; tócala otra vez para volver. Más en <a href=\"#big\">Texto grande</a>."
+ },
+ "把它放到主畫面（以後一點就開）": {
+  "en": "Put it on the Home Screen (one tap from then on)",
+  "zh-CN": "把它放到主屏幕（以后一点就开）",
+  "ja": "ホーム画面に追加（次からワンタップで開ける）",
+  "ko": "홈 화면에 추가(다음부터 한 번에 열기)",
+  "es": "Ponla en la pantalla de inicio (luego se abre con un toque)"
+ },
+ "按 Safari 最下面中間的 <kbd>分享</kbd> 按鈕（一個方框加向上的箭頭 ⬆︎）": {
+  "en": "Tap the <kbd>Share</kbd> button at the bottom middle of Safari (a square with an up arrow ⬆︎)",
+  "zh-CN": "按 Safari 最下面中间的 <kbd>共享</kbd> 按钮（一个方框加向上的箭头 ⬆︎）",
+  "ja": "Safari の下中央にある <kbd>共有</kbd> ボタン（四角に上向き矢印 ⬆︎）を押す",
+  "ko": "Safari 아래 가운데의 <kbd>공유</kbd> 버튼(네모에 위쪽 화살표 ⬆︎)을 누르기",
+  "es": "Toca el botón <kbd>Compartir</kbd> abajo en el centro de Safari (un cuadrado con una flecha hacia arriba ⬆︎)"
+ },
+ "往下滑，按 <kbd>加入主畫面</kbd>": {
+  "en": "Scroll down and tap <kbd>Add to Home Screen</kbd>",
+  "zh-CN": "往下滑，按 <kbd>添加到主屏幕</kbd>",
+  "ja": "下にスクロールして <kbd>ホーム画面に追加</kbd> を押す",
+  "ko": "아래로 내려 <kbd>홈 화면에 추가</kbd>를 누르기",
+  "es": "Desliza hacia abajo y toca <kbd>Añadir a pantalla de inicio</kbd>"
+ },
+ "右上角按 <kbd>加入</kbd>": {
+  "en": "Tap <kbd>Add</kbd> at the top right",
+  "zh-CN": "右上角按 <kbd>添加</kbd>",
+  "ja": "右上の <kbd>追加</kbd> を押す",
+  "ko": "오른쪽 위 <kbd>추가</kbd>를 누르기",
+  "es": "Toca <kbd>Añadir</kbd> arriba a la derecha"
+ },
+ "主畫面會多一個「我的連線」圖示": {
+  "en": "A “My connection” icon appears on the Home Screen",
+  "zh-CN": "主屏幕会多一个“我的连接”图标",
+  "ja": "ホーム画面に「マイ接続」のアイコンが増えます",
+  "ko": "홈 화면에 '내 연결' 아이콘이 생겨요",
+  "es": "Aparece el icono «Mi conexión» en la pantalla de inicio"
+ },
+ "4. 方式 A：Shadowrocket <span class=\"tag pill paid\">付費</span>": {
+  "en": "4. Option A: Shadowrocket <span class=\"tag pill paid\">Paid</span>",
+  "zh-CN": "4. 方式 A：Shadowrocket <span class=\"tag pill paid\">付费</span>",
+  "ja": "4. 方法 A：Shadowrocket <span class=\"tag pill paid\">有料</span>",
+  "ko": "4. 방법 A: Shadowrocket <span class=\"tag pill paid\">유료</span>",
+  "es": "4. Opción A: Shadowrocket <span class=\"tag pill paid\">De pago</span>"
+ },
+ "下載 Shadowrocket": {
+  "en": "Download Shadowrocket",
+  "zh-CN": "下载 Shadowrocket",
+  "ja": "Shadowrocket をダウンロード",
+  "ko": "Shadowrocket 다운로드",
+  "es": "Descarga Shadowrocket"
+ },
+ "打開 iPhone 上的 <b>App Store</b>（藍色的 A 字圖示）": {
+  "en": "Open the <b>App Store</b> on the iPhone (the blue “A” icon)",
+  "zh-CN": "打开 iPhone 上的 <b>App Store</b>（蓝色的 A 字图标）",
+  "ja": "iPhone の <b>App Store</b>（青い A のアイコン）を開く",
+  "ko": "iPhone의 <b>App Store</b>(파란 A 아이콘)를 열기",
+  "es": "Abre la <b>App Store</b> en el iPhone (el icono azul con una «A»)"
+ },
+ "按右下角 <kbd>搜尋</kbd>，輸入 <b>Shadowrocket</b>": {
+  "en": "Tap <kbd>Search</kbd> at the bottom right and type <b>Shadowrocket</b>",
+  "zh-CN": "按右下角 <kbd>搜索</kbd>，输入 <b>Shadowrocket</b>",
+  "ja": "右下の <kbd>検索</kbd> を押して <b>Shadowrocket</b> と入力",
+  "ko": "오른쪽 아래 <kbd>검색</kbd>을 누르고 <b>Shadowrocket</b> 입력",
+  "es": "Toca <kbd>Buscar</kbd> abajo a la derecha y escribe <b>Shadowrocket</b>"
+ },
+ "找到一個<b>藍色火箭</b>圖示的 App，按價錢按鈕購買": {
+  "en": "Find the app with the <b>blue rocket</b> icon and tap the price button to buy it",
+  "zh-CN": "找到一个<b>蓝色火箭</b>图标的 App，按价格按钮购买",
+  "ja": "<b>青いロケット</b>のアイコンのアプリを探し、価格のボタンを押して購入",
+  "ko": "<b>파란 로켓</b> 아이콘 앱을 찾아 가격 버튼을 눌러 구입",
+  "es": "Busca la app con el icono de un <b>cohete azul</b> y toca el botón del precio para comprarla"
+ },
+ "用 Face ID 或 Apple ID 密碼確認付款": {
+  "en": "Confirm the payment with Face ID or your Apple ID password",
+  "zh-CN": "用 Face ID 或 Apple ID 密码确认付款",
+  "ja": "Face ID か Apple ID のパスワードで支払いを確認",
+  "ko": "Face ID나 Apple ID 비밀번호로 결제 확인",
+  "es": "Confirma el pago con Face ID o la contraseña del Apple ID"
+ },
+ "示意圖：實際價格和圖示以 App Store 為準": {
+  "en": "Illustration: the real price and icon are on the App Store",
+  "zh-CN": "示意图：实际价格和图标以 App Store 为准",
+  "ja": "イメージ図：実際の価格とアイコンは App Store で確認してください",
+  "ko": "예시 그림: 실제 가격과 아이콘은 App Store 기준",
+  "es": "Ilustración: el precio y el icono reales son los de la App Store"
+ },
+ "<b>搜尋不到？</b>中國大陸的 App Store 沒有這個 App。如果找不到，請找管理員幫忙。": {
+  "en": "<b>Can't find it?</b> It isn't on the App Store in mainland China. If you can't find it, ask the admin for help.",
+  "zh-CN": "<b>搜索不到？</b>中国大陆的 App Store 没有这个 App。如果找不到，请找管理员帮忙。",
+  "ja": "<b>見つからない？</b>中国本土の App Store にはこのアプリがありません。見つからなければ管理者に相談してください。",
+  "ko": "<b>검색이 안 되나요?</b> 중국 본토 App Store에는 이 앱이 없어요. 못 찾으면 관리자에게 도움을 요청하세요.",
+  "es": "<b>¿No la encuentras?</b> No está en la App Store de China continental. Si no la encuentras, pide ayuda al administrador."
+ },
+ "從「我的專屬網頁」一鍵匯入": {
+  "en": "Import it from “My page” in one tap",
+  "zh-CN": "从“我的专属网页”一键导入",
+  "ja": "「マイページ」からワンタップで取り込む",
+  "ko": "'내 페이지'에서 한 번에 가져오기",
+  "es": "Impórtala desde «Mi página» con un toque"
+ },
+ "打開<a href=\"#portal\">我的專屬網頁</a>，往下滑到 <b>Shadowrocket</b> 那一塊": {
+  "en": "Open <a href=\"#portal\">My page</a> and scroll down to the <b>Shadowrocket</b> section",
+  "zh-CN": "打开<a href=\"#portal\">我的专属网页</a>，往下滑到 <b>Shadowrocket</b> 那一块",
+  "ja": "<a href=\"#portal\">マイページ</a>を開き、<b>Shadowrocket</b> の欄までスクロール",
+  "ko": "<a href=\"#portal\">내 페이지</a>를 열고 <b>Shadowrocket</b> 부분까지 내리기",
+  "es": "Abre <a href=\"#portal\">Mi página</a> y baja hasta el apartado <b>Shadowrocket</b>"
+ },
+ "按藍色的 <kbd>用 Shadowrocket 開啟</kbd>": {
+  "en": "Tap the blue <kbd>Open in Shadowrocket</kbd>",
+  "zh-CN": "按蓝色的 <kbd>用 Shadowrocket 打开</kbd>",
+  "ja": "青い <kbd>Shadowrocket で開く</kbd> を押す",
+  "ko": "파란 <kbd>Shadowrocket으로 열기</kbd>를 누르기",
+  "es": "Toca el botón azul <kbd>Abrir en Shadowrocket</kbd>"
+ },
+ "跳出「要在 Shadowrocket 中打開嗎？」，按 <kbd>打開</kbd>": {
+  "en": "When asked “Open in Shadowrocket?”, tap <kbd>Open</kbd>",
+  "zh-CN": "弹出“要在 Shadowrocket 中打开吗？”，按 <kbd>打开</kbd>",
+  "ja": "「Shadowrocket で開きますか？」と出たら <kbd>開く</kbd> を押す",
+  "ko": "'Shadowrocket에서 열까요?'가 뜨면 <kbd>열기</kbd>를 누르기",
+  "es": "Cuando pregunte «¿Abrir en Shadowrocket?», toca <kbd>Abrir</kbd>"
+ },
+ "範例・不能掃": {
+  "en": "Example · can't be scanned",
+  "zh-CN": "示例・不能扫",
+  "ja": "例・読み取れません",
+  "ko": "예시・스캔 불가",
+  "es": "Ejemplo · no se puede escanear"
+ },
+ "你的網頁上會有你自己的 QR code 和按鈕": {
+  "en": "Your page shows your own QR code and button",
+  "zh-CN": "你的网页上会有你自己的 QR 码和按钮",
+  "ja": "あなたのページには、あなた専用の QR コードとボタンがあります",
+  "ko": "내 페이지에는 나만의 QR 코드와 버튼이 있어요",
+  "es": "Tu página muestra tu propio QR y tu botón"
+ },
+ "<b>用別台手機掃也可以</b>如果網頁是在電腦上打開的，可以在 Shadowrocket 首頁按左上角的「掃描」圖示，掃網頁上的 QR code。": {
+  "en": "<b>Scanning with another phone works too</b>If the page is open on a computer, tap the “scan” icon at the top left of Shadowrocket's home screen and scan the QR code on the page.",
+  "zh-CN": "<b>用别的手机扫也可以</b>如果网页是在电脑上打开的，可以在 Shadowrocket 首页按左上角的“扫描”图标，扫网页上的 QR 码。",
+  "ja": "<b>別の画面から読み取ってもOK</b>パソコンでページを開いているなら、Shadowrocket のホームで左上の「スキャン」アイコンを押し、ページの QR コードを読み取ります。",
+  "ko": "<b>다른 화면에서 스캔해도 돼요</b>컴퓨터에서 페이지를 열었다면 Shadowrocket 홈 왼쪽 위의 '스캔' 아이콘을 눌러 페이지의 QR 코드를 스캔하세요.",
+  "es": "<b>También puedes escanearlo</b>Si abriste la página en un ordenador, toca el icono de escanear arriba a la izquierda en Shadowrocket y escanea el QR de la página."
+ },
+ "第一次使用：允許 VPN": {
+  "en": "First time: allow the VPN",
+  "zh-CN": "第一次使用：允许 VPN",
+  "ja": "初回：VPN を許可",
+  "ko": "처음 사용: VPN 허용",
+  "es": "La primera vez: permite la VPN"
+ },
+ "第一次打開開關時，iPhone 會問你要不要加入 VPN 設定，按 <kbd>允許</kbd>，再輸入 <b>iPhone 的開機密碼</b>或用 Face ID。": {
+  "en": "The first time you flip the switch, the iPhone asks whether to add a VPN configuration. Tap <kbd>Allow</kbd>, then enter your <b>iPhone passcode</b> or use Face ID.",
+  "zh-CN": "第一次打开开关时，iPhone 会问你要不要添加 VPN 配置，按 <kbd>允许</kbd>，再输入 <b>iPhone 的锁屏密码</b>或用 Face ID。",
+  "ja": "初めてスイッチを入れると、VPN 構成を追加するか聞かれます。<kbd>許可</kbd> を押し、<b>iPhone のパスコード</b>を入力するか Face ID を使います。",
+  "ko": "처음 스위치를 켜면 VPN 구성을 추가할지 물어요. <kbd>허용</kbd>을 누르고 <b>iPhone 암호</b>를 입력하거나 Face ID를 쓰세요.",
+  "es": "La primera vez que actives el interruptor, el iPhone preguntará si añadir una configuración VPN. Toca <kbd>Permitir</kbd> y escribe el <b>código del iPhone</b> o usa Face ID."
+ },
+ "這一步只會出現一次": {
+  "en": "This only appears once",
+  "zh-CN": "这一步只会出现一次",
+  "ja": "この画面は一度だけ出ます",
+  "ko": "이 단계는 한 번만 나와요",
+  "es": "Esto solo aparece una vez"
+ },
+ "打開開關": {
+  "en": "Turn on the switch",
+  "zh-CN": "打开开关",
+  "ja": "スイッチを入れる",
+  "ko": "스위치 켜기",
+  "es": "Activa el interruptor"
+ },
+ "確認下面的清單裡，<b>「家裡的 Mac」</b>前面有打勾 ✓": {
+  "en": "Check that <b>“Home Mac”</b> in the list below has a tick ✓",
+  "zh-CN": "确认下面的列表里，<b>“家里的 Mac”</b>前面有打勾 ✓",
+  "ja": "下の一覧で<b>「家の Mac」</b>にチェック ✓ が付いているか確認",
+  "ko": "아래 목록에서 <b>'집의 Mac'</b> 앞에 체크 ✓가 있는지 확인",
+  "es": "Comprueba que <b>«El Mac de casa»</b> tiene una marca ✓ en la lista de abajo"
+ },
+ "「全域路由」選 <b>代理</b>": {
+  "en": "Set “Global Routing” to <b>Proxy</b>",
+  "zh-CN": "“全局路由”选 <b>代理</b>",
+  "ja": "「グローバルルーティング」は <b>プロキシ</b> を選ぶ",
+  "ko": "'전역 라우팅'은 <b>프록시</b> 선택",
+  "es": "En «Enrutamiento global» elige <b>Proxy</b>"
+ },
+ "打開最上面的開關（變成綠色）": {
+  "en": "Turn on the switch at the top (it turns green)",
+  "zh-CN": "打开最上面的开关（变成绿色）",
+  "ja": "いちばん上のスイッチを入れる（緑になる）",
+  "ko": "맨 위 스위치를 켜기(초록색으로 바뀜)",
+  "es": "Activa el interruptor de arriba (se pone verde)"
+ },
+ "<b>成功的樣子：</b>iPhone 最上面會出現一個小小的 <b>VPN</b> 字樣。": {
+  "en": "<b>When it works:</b> a small <b>VPN</b> label appears at the top of the iPhone screen.",
+  "zh-CN": "<b>成功的样子：</b>iPhone 最上面会出现一个小小的 <b>VPN</b> 字样。",
+  "ja": "<b>成功すると：</b>iPhone のいちばん上に小さく <b>VPN</b> と表示されます。",
+  "ko": "<b>성공하면:</b> iPhone 맨 위에 작은 <b>VPN</b> 표시가 나와요.",
+  "es": "<b>Cuando funciona:</b> aparece un pequeño <b>VPN</b> arriba en la pantalla del iPhone."
+ },
+ "檢查有沒有成功": {
+  "en": "Check that it worked",
+  "zh-CN": "检查有没有成功",
+  "ja": "うまくいったか確認",
+  "ko": "제대로 됐는지 확인",
+  "es": "Comprueba que funciona"
+ },
+ "用 Safari 打開 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>，畫面上會出現一串數字。<b>這串數字和管理員告訴你的一樣，就代表成功了！</b>": {
+  "en": "Open <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> in Safari; a string of numbers appears. <b>If it matches what the admin told you, it worked!</b>",
+  "zh-CN": "用 Safari 打开 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>，画面上会出现一串数字。<b>这串数字和管理员告诉你的一样，就代表成功了！</b>",
+  "ja": "Safari で <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> を開くと、数字が表示されます。<b>管理者に聞いた数字と同じなら成功です！</b>",
+  "ko": "Safari로 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>를 열면 숫자가 나와요. <b>관리자가 알려 준 숫자와 같으면 성공!</b>",
+  "es": "Abre <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> en Safari; verás una serie de números. <b>Si coincide con la que te dio el administrador, ¡funciona!</b>"
+ },
+ "圖中的數字是範例": {
+  "en": "The number in the picture is an example",
+  "zh-CN": "图中的数字是示例",
+  "ja": "図の数字は例です",
+  "ko": "그림 속 숫자는 예시예요",
+  "es": "El número del dibujo es un ejemplo"
+ },
+ "平常怎麼用？": {
+  "en": "Everyday use",
+  "zh-CN": "平常怎么用？",
+  "ja": "ふだんの使い方",
+  "ko": "평소에는 어떻게 쓰나요?",
+  "es": "¿Cómo se usa a diario?"
+ },
+ "<b>要用的時候</b>：打開 Shadowrocket，把開關打開": {
+  "en": "<b>When you need it</b>: open Shadowrocket and turn on the switch",
+  "zh-CN": "<b>要用的时候</b>：打开 Shadowrocket，把开关打开",
+  "ja": "<b>使うとき</b>：Shadowrocket を開いてスイッチを入れる",
+  "ko": "<b>쓸 때</b>: Shadowrocket을 열고 스위치를 켜기",
+  "es": "<b>Cuando la necesites</b>: abre Shadowrocket y activa el interruptor"
+ },
+ "<b>不用的時候</b>：把開關關掉就好（比較省電）": {
+  "en": "<b>When you don't</b>: just turn the switch off (saves battery)",
+  "zh-CN": "<b>不用的时候</b>：把开关关掉就好（比较省电）",
+  "ja": "<b>使わないとき</b>：スイッチを切るだけ（電池の節約に）",
+  "ko": "<b>안 쓸 때</b>: 스위치만 끄면 돼요(배터리 절약)",
+  "es": "<b>Cuando no</b>: apaga el interruptor (ahorra batería)"
+ },
+ "也可以到 iPhone 的 <b>設定 → VPN</b> 開關": {
+  "en": "You can also use the switch in iPhone <b>Settings → VPN</b>",
+  "zh-CN": "也可以到 iPhone 的 <b>设置 → VPN</b> 开关",
+  "ja": "iPhone の <b>設定 → VPN</b> でも切り替えられます",
+  "ko": "iPhone <b>설정 → VPN</b>에서도 켜고 끌 수 있어요",
+  "es": "También puedes usar el interruptor en <b>Ajustes → VPN</b> del iPhone"
+ },
+ "5. 方式 B：Tailscale <span class=\"tag pill free\">免費</span>": {
+  "en": "5. Option B: Tailscale <span class=\"tag pill free\">Free</span>",
+  "zh-CN": "5. 方式 B：Tailscale <span class=\"tag pill free\">免费</span>",
+  "ja": "5. 方法 B：Tailscale <span class=\"tag pill free\">無料</span>",
+  "ko": "5. 방법 B: Tailscale <span class=\"tag pill free\">무료</span>",
+  "es": "5. Opción B: Tailscale <span class=\"tag pill free\">Gratis</span>"
+ },
+ "<b>先確認：管理員已經邀請你了嗎？</b>管理員會用 Email 或 LINE 傳一個「邀請連結」給你。沒有邀請的話，登入後什麼都連不到。": {
+  "en": "<b>First check: has the admin invited you?</b>The admin sends you an “invite link” by email or LINE. Without an invite, nothing connects after you sign in.",
+  "zh-CN": "<b>先确认：管理员已经邀请你了吗？</b>管理员会用 Email 或 LINE 发一个“邀请链接”给你。没有邀请的话，登录后什么都连不到。",
+  "ja": "<b>まず確認：管理者から招待されていますか？</b>管理者がメールや LINE で「招待リンク」を送ってくれます。招待がないと、ログインしてもどこにもつながりません。",
+  "ko": "<b>먼저 확인: 관리자가 초대했나요?</b>관리자가 이메일이나 LINE으로 '초대 링크'를 보내 줘요. 초대가 없으면 로그인해도 아무 데도 연결되지 않아요.",
+  "es": "<b>Primero: ¿te ha invitado el administrador?</b>Te enviará un «enlace de invitación» por email o LINE. Sin invitación, al iniciar sesión no conectarás a nada."
+ },
+ "下載 Tailscale": {
+  "en": "Download Tailscale",
+  "zh-CN": "下载 Tailscale",
+  "ja": "Tailscale をダウンロード",
+  "ko": "Tailscale 다운로드",
+  "es": "Descarga Tailscale"
+ },
+ "打開 <b>App Store</b>，搜尋 <b>Tailscale</b>": {
+  "en": "Open the <b>App Store</b> and search for <b>Tailscale</b>",
+  "zh-CN": "打开 <b>App Store</b>，搜索 <b>Tailscale</b>",
+  "ja": "<b>App Store</b> を開いて <b>Tailscale</b> を検索",
+  "ko": "<b>App Store</b>를 열고 <b>Tailscale</b> 검색",
+  "es": "Abre la <b>App Store</b> y busca <b>Tailscale</b>"
+ },
+ "按 <kbd>取得</kbd>（免費），再用 Face ID 或密碼確認": {
+  "en": "Tap <kbd>Get</kbd> (free), then confirm with Face ID or your password",
+  "zh-CN": "按 <kbd>获取</kbd>（免费），再用 Face ID 或密码确认",
+  "ja": "<kbd>入手</kbd>（無料）を押し、Face ID かパスワードで確認",
+  "ko": "<kbd>받기</kbd>(무료)를 누르고 Face ID나 암호로 확인",
+  "es": "Toca <kbd>Obtener</kbd> (gratis) y confirma con Face ID o la contraseña"
+ },
+ "示意圖：實際圖示以 App Store 為準": {
+  "en": "Illustration: the real icon is on the App Store",
+  "zh-CN": "示意图：实际图标以 App Store 为准",
+  "ja": "イメージ図：実際のアイコンは App Store で確認してください",
+  "ko": "예시 그림: 실제 아이콘은 App Store 기준",
+  "es": "Ilustración: el icono real es el de la App Store"
+ },
+ "接受邀請並登入": {
+  "en": "Accept the invite and sign in",
+  "zh-CN": "接受邀请并登录",
+  "ja": "招待を受けてログイン",
+  "ko": "초대 수락 후 로그인",
+  "es": "Acepta la invitación e inicia sesión"
+ },
+ "點管理員傳給你的<b>邀請連結</b>，按「接受」": {
+  "en": "Tap the <b>invite link</b> the admin sent you and tap “Accept”",
+  "zh-CN": "点管理员发给你的<b>邀请链接</b>，按“接受”",
+  "ja": "管理者からの<b>招待リンク</b>を開き、「Accept」を押す",
+  "ko": "관리자가 보낸 <b>초대 링크</b>를 열고 'Accept'를 누르기",
+  "es": "Abre el <b>enlace de invitación</b> del administrador y toca «Accept»"
+ },
+ "打開 Tailscale App，按 <kbd>登入</kbd>": {
+  "en": "Open the Tailscale app and tap <kbd>Log in</kbd>",
+  "zh-CN": "打开 Tailscale App，按 <kbd>登录</kbd>",
+  "ja": "Tailscale アプリを開いて <kbd>ログイン</kbd> を押す",
+  "ko": "Tailscale 앱을 열고 <kbd>로그인</kbd>을 누르기",
+  "es": "Abre la app de Tailscale y toca <kbd>Log in</kbd>"
+ },
+ "選你平常用的帳號（Google 或 Apple）登入": {
+  "en": "Sign in with the account you usually use (Google or Apple)",
+  "zh-CN": "选你平常用的账号（Google 或 Apple）登录",
+  "ja": "ふだん使っているアカウント（Google か Apple）でログイン",
+  "ko": "평소 쓰는 계정(Google 또는 Apple)으로 로그인",
+  "es": "Inicia sesión con la cuenta que usas siempre (Google o Apple)"
+ },
+ "示意圖：實際畫面可能是英文": {
+  "en": "Illustration: the real screen may be in English",
+  "zh-CN": "示意图：实际画面可能是英文",
+  "ja": "イメージ図：実際の画面は英語の場合があります",
+  "ko": "예시 그림: 실제 화면은 영어일 수 있어요",
+  "es": "Ilustración: la pantalla real puede estar en inglés"
+ },
+ "<b>一定要用同一個帳號</b>要用管理員<b>邀請的那個 Email</b> 登入，不然會連不到。": {
+  "en": "<b>Use the same account</b>Sign in with <b>the email the admin invited</b>, or you won't be able to connect.",
+  "zh-CN": "<b>一定要用同一个账号</b>要用管理员<b>邀请的那个 Email</b> 登录，不然会连不到。",
+  "ja": "<b>必ず同じアカウントで</b>管理者が<b>招待したメールアドレス</b>でログインしないとつながりません。",
+  "ko": "<b>반드시 같은 계정으로</b>관리자가 <b>초대한 이메일</b>로 로그인해야 연결돼요.",
+  "es": "<b>Usa la misma cuenta</b>Inicia sesión con <b>el email al que te invitó el administrador</b>, o no podrás conectarte."
+ },
+ "允許 VPN": {
+  "en": "Allow the VPN",
+  "zh-CN": "允许 VPN",
+  "ja": "VPN を許可",
+  "ko": "VPN 허용",
+  "es": "Permite la VPN"
+ },
+ "和 Shadowrocket 一樣，第一次會問你要不要加入 VPN 設定（名稱會是 <b>Tailscale</b>），按 <kbd>允許</kbd>，再輸入 iPhone 密碼或 Face ID。": {
+  "en": "As with Shadowrocket, the first time it asks whether to add a VPN configuration (named <b>Tailscale</b>). Tap <kbd>Allow</kbd>, then enter your iPhone passcode or use Face ID.",
+  "zh-CN": "和 Shadowrocket 一样，第一次会问你要不要添加 VPN 配置（名称会是 <b>Tailscale</b>），按 <kbd>允许</kbd>，再输入 iPhone 密码或 Face ID。",
+  "ja": "Shadowrocket と同じく、初回は VPN 構成（名前は <b>Tailscale</b>）を追加するか聞かれます。<kbd>許可</kbd> を押し、iPhone のパスコードか Face ID で確認します。",
+  "ko": "Shadowrocket과 마찬가지로 처음에는 VPN 구성(이름은 <b>Tailscale</b>)을 추가할지 물어요. <kbd>허용</kbd>을 누르고 iPhone 암호나 Face ID로 확인하세요.",
+  "es": "Igual que con Shadowrocket, la primera vez pregunta si añadir una configuración VPN (llamada <b>Tailscale</b>). Toca <kbd>Permitir</kbd> y escribe el código del iPhone o usa Face ID."
+ },
+ "打開連線，選「家裡的電腦」": {
+  "en": "Connect and pick “Home computer”",
+  "zh-CN": "打开连接，选“家里的电脑”",
+  "ja": "接続して「家のパソコン」を選ぶ",
+  "ko": "연결을 켜고 '집 컴퓨터' 선택",
+  "es": "Conéctate y elige «Ordenador de casa»"
+ },
+ "把最上面的開關打開（變成綠色）": {
+  "en": "Turn on the switch at the top (it turns green)",
+  "zh-CN": "把最上面的开关打开（变成绿色）",
+  "ja": "いちばん上のスイッチを入れる（緑になる）",
+  "ko": "맨 위 스위치를 켜기(초록색으로 바뀜)",
+  "es": "Activa el interruptor de arriba (se pone verde)"
+ },
+ "點 <kbd>Exit Node</kbd>": {
+  "en": "Tap <kbd>Exit Node</kbd>",
+  "zh-CN": "点 <kbd>Exit Node</kbd>",
+  "ja": "<kbd>Exit Node</kbd> を押す",
+  "ko": "<kbd>Exit Node</kbd>를 누르기",
+  "es": "Toca <kbd>Exit Node</kbd>"
+ },
+ "選 <b>家裡的電腦</b>（實際名字請問管理員）": {
+  "en": "Pick <b>Home computer</b> (ask the admin for the real name)",
+  "zh-CN": "选 <b>家里的电脑</b>（实际名字请问管理员）",
+  "ja": "<b>家のパソコン</b>を選ぶ（実際の名前は管理者に聞いてください）",
+  "ko": "<b>집 컴퓨터</b> 선택(실제 이름은 관리자에게 물어보세요)",
+  "es": "Elige <b>Ordenador de casa</b> (pregunta al administrador el nombre real)"
+ },
+ "選了之後，你上網就像在家裡一樣，還會自動擋廣告": {
+  "en": "Once picked, you browse as if you were at home, with ads blocked automatically",
+  "zh-CN": "选了之后，你上网就像在家里一样，还会自动屏蔽广告",
+  "ja": "選ぶと、家にいるのと同じようにネットが使え、広告も自動でブロックされます",
+  "ko": "고르면 집에 있는 것처럼 인터넷을 쓰고 광고도 자동으로 차단돼요",
+  "es": "Después navegas como si estuvieras en casa, con los anuncios bloqueados automáticamente"
+ },
+ "<b>沒有看到 Exit Node？</b>代表管理員沒有開放這個功能給你，這是正常的。": {
+  "en": "<b>No Exit Node?</b> That means the admin hasn't turned this on for you; that's normal.",
+  "zh-CN": "<b>没有看到 Exit Node？</b>代表管理员没有开放这个功能给你，这是正常的。",
+  "ja": "<b>Exit Node がない？</b>管理者がこの機能を許可していないということで、問題ありません。",
+  "ko": "<b>Exit Node가 안 보이나요?</b> 관리자가 이 기능을 열어 주지 않은 거라 정상이에요.",
+  "es": "<b>¿No ves Exit Node?</b> Significa que el administrador no te lo ha activado; es normal."
+ },
+ "和方式 A 一樣：用 Safari 打開 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>，數字和管理員說的一樣就成功了。": {
+  "en": "Same as Option A: open <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> in Safari; if the numbers match what the admin said, it worked.",
+  "zh-CN": "和方式 A 一样：用 Safari 打开 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>，数字和管理员说的一样就成功了。",
+  "ja": "方法 A と同じく、Safari で <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> を開き、管理者の言った数字と同じなら成功です。",
+  "ko": "방법 A와 같아요: Safari로 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>를 열어 관리자가 말한 숫자와 같으면 성공이에요.",
+  "es": "Igual que en la opción A: abre <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> en Safari; si los números coinciden con los del administrador, funciona."
+ },
+ "6. 使用「我的雲端」存照片和檔案": {
+  "en": "6. Keep photos and files in “My cloud”",
+  "zh-CN": "6. 使用“我的云盘”存照片和文件",
+  "ja": "6. 「マイクラウド」に写真やファイルを保存",
+  "ko": "6. '내 클라우드'에 사진과 파일 저장",
+  "es": "6. Guarda fotos y archivos en «Mi nube»"
+ },
+ "如果管理員幫你開了雲端硬碟，<a href=\"#portal\">我的專屬網頁</a>上會有 <b>「我的雲端」</b>。你可以把照片、影片、文件存在家裡的硬碟，換手機也不怕不見。": {
+  "en": "If the admin turned on the cloud drive for you, <a href=\"#portal\">My page</a> has <b>“My cloud”</b>. You can keep photos, videos and documents on the drive at home, so nothing is lost when you change phones.",
+  "zh-CN": "如果管理员帮你开了云盘，<a href=\"#portal\">我的专属网页</a>上会有 <b>“我的云盘”</b>。你可以把照片、视频、文档存在家里的硬盘，换手机也不怕丢。",
+  "ja": "管理者がクラウドドライブを用意してくれていれば、<a href=\"#portal\">マイページ</a>に<b>「マイクラウド」</b>があります。写真・動画・書類を家のディスクに保存でき、スマホを替えても安心です。",
+  "ko": "관리자가 클라우드 드라이브를 열어 줬다면 <a href=\"#portal\">내 페이지</a>에 <b>'내 클라우드'</b>가 있어요. 사진, 동영상, 문서를 집 드라이브에 저장할 수 있어 휴대폰을 바꿔도 잃어버리지 않아요.",
+  "es": "Si el administrador te activó la nube, en <a href=\"#portal\">Mi página</a> verás <b>«Mi nube»</b>. Puedes guardar fotos, vídeos y documentos en el disco de casa y no perderlos al cambiar de móvil."
+ },
+ "認識兩個資料夾": {
+  "en": "Two folders",
+  "zh-CN": "认识两个文件夹",
+  "ja": "2 つのフォルダ",
+  "ko": "두 가지 폴더",
+  "es": "Dos carpetas"
+ },
+ "<b>我的檔案</b>：你自己的空間，只有你和管理員看得到。下面會寫你已經用了多少、最多能放多少。": {
+  "en": "<b>My files</b>: your own space, visible only to you and the admin. It shows how much you've used and your limit.",
+  "zh-CN": "<b>我的文件</b>：你自己的空间，只有你和管理员看得到。下面会写你已经用了多少、最多能放多少。",
+  "ja": "<b>マイファイル</b>：あなた専用の場所で、あなたと管理者だけが見られます。使用量と上限が表示されます。",
+  "ko": "<b>내 파일</b>: 나만의 공간으로 나와 관리자만 볼 수 있어요. 사용량과 한도가 표시돼요.",
+  "es": "<b>Mis archivos</b>: tu espacio, que solo veis tú y el administrador. Muestra cuánto has usado y tu límite."
+ },
+ "<b>共用</b>：全家一起用的資料夾。你能不能放東西進去，由管理員決定。": {
+  "en": "<b>Shared</b>: a folder the whole family uses. Whether you can put things in it is up to the admin.",
+  "zh-CN": "<b>共享</b>：全家一起用的文件夹。你能不能放东西进去，由管理员决定。",
+  "ja": "<b>共有</b>：家族みんなのフォルダ。ここに保存できるかは管理者が決めます。",
+  "ko": "<b>공유</b>: 가족 모두가 쓰는 폴더예요. 여기에 넣을 수 있는지는 관리자가 정해요.",
+  "es": "<b>Compartida</b>: una carpeta para toda la familia. Si puedes guardar cosas en ella lo decide el administrador."
+ },
+ "上傳照片或影片": {
+  "en": "Upload photos or videos",
+  "zh-CN": "上传照片或视频",
+  "ja": "写真や動画をアップロード",
+  "ko": "사진이나 동영상 업로드",
+  "es": "Sube fotos o vídeos"
+ },
+ "點 <b>我的檔案</b> 進去": {
+  "en": "Tap <b>My files</b> to open it",
+  "zh-CN": "点 <b>我的文件</b> 进去",
+  "ja": "<b>マイファイル</b> を開く",
+  "ko": "<b>내 파일</b>을 눌러 들어가기",
+  "es": "Toca <b>Mis archivos</b> para entrar"
+ },
+ "按藍色的 <kbd>上傳</kbd>": {
+  "en": "Tap the blue <kbd>Upload</kbd>",
+  "zh-CN": "按蓝色的 <kbd>上传</kbd>",
+  "ja": "青い <kbd>アップロード</kbd> を押す",
+  "ko": "파란 <kbd>업로드</kbd>를 누르기",
+  "es": "Toca el botón azul <kbd>Subir</kbd>"
+ },
+ "選 <b>照片圖庫</b>，勾選要上傳的照片或影片，按 <kbd>加入</kbd>": {
+  "en": "Choose <b>Photo Library</b>, tick the photos or videos to upload, and tap <kbd>Add</kbd>",
+  "zh-CN": "选 <b>照片图库</b>，勾选要上传的照片或视频，按 <kbd>添加</kbd>",
+  "ja": "<b>フォトライブラリ</b> を選び、アップロードする写真や動画にチェックして <kbd>追加</kbd> を押す",
+  "ko": "<b>사진 보관함</b>을 고르고 올릴 사진이나 동영상을 체크한 뒤 <kbd>추가</kbd>를 누르기",
+  "es": "Elige <b>Fototeca</b>, marca las fotos o vídeos y toca <kbd>Añadir</kbd>"
+ },
+ "等進度條跑完，就會出現「已上傳」。進度條下面會寫<b>速度</b>和<b>還要多久</b>": {
+  "en": "When the progress bar finishes, “Uploaded” appears. Under the bar you see the <b>speed</b> and <b>how long is left</b>",
+  "zh-CN": "等进度条跑完，就会出现“已上传”。进度条下面会写<b>速度</b>和<b>还要多久</b>",
+  "ja": "進行状況バーが終わると「アップロード済み」と表示されます。バーの下に<b>速度</b>と<b>残り時間</b>が出ます",
+  "ko": "진행 막대가 끝나면 '업로드됨'이 나와요. 막대 아래에 <b>속도</b>와 <b>남은 시간</b>이 표시돼요",
+  "es": "Cuando termina la barra aparece «Subido». Debajo verás la <b>velocidad</b> y <b>cuánto falta</b>"
+ },
+ "每個檔案下面會寫<b>大小</b>和<b>什麼時候上傳的</b>，最下面有總共幾個檔案、佔多少空間": {
+  "en": "Each file shows its <b>size</b> and <b>when it was uploaded</b>; at the bottom you see how many files there are and how much space they take",
+  "zh-CN": "每个文件下面会写<b>大小</b>和<b>什么时候上传的</b>，最下面有总共几个文件、占多少空间",
+  "ja": "各ファイルの下に<b>サイズ</b>と<b>アップロード日時</b>、いちばん下にファイル数と使用容量が表示されます",
+  "ko": "파일마다 <b>크기</b>와 <b>업로드 시간</b>이 나오고, 맨 아래에 파일 수와 차지한 공간이 나와요",
+  "es": "Cada archivo muestra su <b>tamaño</b> y <b>cuándo se subió</b>; abajo verás cuántos archivos hay y cuánto ocupan"
+ },
+ "<b>上傳時不要關掉網頁</b>影片比較大，要等久一點。上傳到一半離開網頁，就要重新上傳。想要每天自動備份，請看<a href=\"#backup\">第 7 步</a>。": {
+  "en": "<b>Don't close the page while uploading</b>Videos are bigger and take longer. If you leave the page halfway, you have to upload again. For a daily automatic backup, see <a href=\"#backup\">step 7</a>.",
+  "zh-CN": "<b>上传时不要关掉网页</b>视频比较大，要等久一点。上传到一半离开网页，就要重新上传。想要每天自动备份，请看<a href=\"#backup\">第 7 步</a>。",
+  "ja": "<b>アップロード中はページを閉じないで</b>動画は大きいので時間がかかります。途中でページを離れると、最初からやり直しです。毎日の自動バックアップは<a href=\"#backup\">手順 7</a>を見てください。",
+  "ko": "<b>업로드 중에는 페이지를 닫지 마세요</b>동영상은 커서 오래 걸려요. 중간에 페이지를 나가면 다시 올려야 해요. 매일 자동 백업은 <a href=\"#backup\">7단계</a>를 보세요.",
+  "es": "<b>No cierres la página mientras sube</b>Los vídeos ocupan más y tardan. Si sales a medias, tendrás que volver a subirlos. Para una copia automática diaria, mira el <a href=\"#backup\">paso 7</a>."
+ },
+ "上面那排小按鈕是做什麼的": {
+  "en": "What the small buttons at the top do",
+  "zh-CN": "上面那排小按钮是做什么的",
+  "ja": "上の小さなボタンの役割",
+  "ko": "위쪽 작은 버튼들은 무엇을 하나요",
+  "es": "Para qué sirven los botoncitos de arriba"
+ },
+ "🔍 <b>搜尋</b>：輸入檔名的一部分，例如「生日」，就會找出所有資料夾裡有「生日」的檔案": {
+  "en": "🔍 <b>Search</b>: type part of a file name, e.g. “birthday”, to find every file with “birthday” in any folder",
+  "zh-CN": "🔍 <b>搜索</b>：输入文件名的一部分，例如“生日”，就会找出所有文件夹里有“生日”的文件",
+  "ja": "🔍 <b>検索</b>：ファイル名の一部（例：「誕生日」）を入れると、すべてのフォルダから見つけます",
+  "ko": "🔍 <b>검색</b>: 파일 이름 일부(예: '생일')를 입력하면 모든 폴더에서 찾아 줘요",
+  "es": "🔍 <b>Buscar</b>: escribe parte de un nombre, p. ej. «cumpleaños», para encontrar esos archivos en todas las carpetas"
+ },
+ "↕️ <b>排序</b>：可以照 <b>名稱、上傳時間、修改時間、大小、類型</b> 排。想看最新上傳的，就選「上傳時間」": {
+  "en": "↕️ <b>Sort</b>: by <b>name, upload time, modified time, size or type</b>. To see the newest uploads, pick “Uploaded”",
+  "zh-CN": "↕️ <b>排序</b>：可以按 <b>名称、上传时间、修改时间、大小、类型</b> 排。想看最新上传的，就选“上传时间”",
+  "ja": "↕️ <b>並べ替え</b>：<b>名前・アップロード日時・更新日時・サイズ・種類</b>で並べられます。最新のアップロードを見るなら「アップロード日時」",
+  "ko": "↕️ <b>정렬</b>: <b>이름, 업로드 시간, 수정 시간, 크기, 종류</b>로 정렬해요. 최근 업로드를 보려면 '업로드 시간'",
+  "es": "↕️ <b>Ordenar</b>: por <b>nombre, subida, modificación, tamaño o tipo</b>. Para ver lo último subido, elige «Subido»"
+ },
+ "▦ <b>切換顯示方式</b>：在「清單」和「相簿」之間切換。相簿模式會把照片排成格子，像手機的照片 App": {
+  "en": "▦ <b>Switch view</b>: between “list” and “album”. Album view shows photos in a grid, like the phone's Photos app",
+  "zh-CN": "▦ <b>切换显示方式</b>：在“列表”和“相册”之间切换。相册模式会把照片排成格子，像手机的照片 App",
+  "ja": "▦ <b>表示方法を切り替え</b>：「リスト」と「アルバム」を切り替えます。アルバムは写真アプリのように格子状に並びます",
+  "ko": "▦ <b>보기 방식 전환</b>: '목록'과 '앨범'을 바꿔요. 앨범은 휴대폰 사진 앱처럼 격자로 보여 줘요",
+  "es": "▦ <b>Cambiar vista</b>: entre «lista» y «álbum». El álbum muestra las fotos en cuadrícula, como la app Fotos"
+ },
+ "🗑 <b>垃圾桶</b>：刪掉的東西會先放在這裡（看第 6 個步驟）": {
+  "en": "🗑 <b>Trash</b>: deleted things go here first (see step 6)",
+  "zh-CN": "🗑 <b>回收站</b>：删掉的东西会先放在这里（看第 6 个步骤）",
+  "ja": "🗑 <b>ゴミ箱</b>：削除したものはまずここに入ります（手順 6 参照）",
+  "ko": "🗑 <b>휴지통</b>: 지운 것은 먼저 여기에 들어가요(6단계 참고)",
+  "es": "🗑 <b>Papelera</b>: lo que borras va aquí primero (mira el paso 6)"
+ },
+ "相簿模式：照片、影片、PDF 都看得到縮圖": {
+  "en": "Album view: thumbnails for photos, videos and PDFs",
+  "zh-CN": "相册模式：照片、视频、PDF 都看得到缩略图",
+  "ja": "アルバム表示：写真・動画・PDF のサムネイルが見られます",
+  "ko": "앨범 보기: 사진, 동영상, PDF의 미리보기가 보여요",
+  "es": "Vista de álbum: miniaturas de fotos, vídeos y PDF"
+ },
+ "點一下就能直接看": {
+  "en": "Tap to view it right away",
+  "zh-CN": "点一下就能直接看",
+  "ja": "タップしてすぐ見る",
+  "ko": "누르면 바로 보기",
+  "es": "Toca para verlo enseguida"
+ },
+ "不用下載，點一下就能在手機上打開：": {
+  "en": "No download needed; tap to open on the phone:",
+  "zh-CN": "不用下载，点一下就能在手机上打开：",
+  "ja": "ダウンロード不要、タップするとスマホで開けます：",
+  "ko": "다운로드 없이 누르면 휴대폰에서 열려요:",
+  "es": "Sin descargar; toca para abrirlo en el móvil:"
+ },
+ "<b>照片、影片、音樂</b>：直接看、直接播。<b>往左、往右滑</b>可以看上一張、下一張": {
+  "en": "<b>Photos, videos, music</b>: view and play directly. <b>Swipe left or right</b> for the previous or next one",
+  "zh-CN": "<b>照片、视频、音乐</b>：直接看、直接播。<b>往左、往右滑</b>可以看上一张、下一张",
+  "ja": "<b>写真・動画・音楽</b>：そのまま表示・再生。<b>左右にスワイプ</b>すると前後のファイルへ",
+  "ko": "<b>사진, 동영상, 음악</b>: 바로 보고 재생해요. <b>좌우로 밀면</b> 이전·다음으로 넘어가요",
+  "es": "<b>Fotos, vídeos, música</b>: se ven y se reproducen directamente. <b>Desliza a izquierda o derecha</b> para el anterior o el siguiente"
+ },
+ "<b>PDF、Word、Excel、PowerPoint、Pages、Keynote</b>：會顯示<b>第一頁</b>的樣子。PDF 按 <kbd>打開 PDF</kbd> 可以看全部；Word 檔可以按 <kbd>看文字</kbd> 看全文": {
+  "en": "<b>PDF, Word, Excel, PowerPoint, Pages, Keynote</b>: shows the <b>first page</b>. For PDFs tap <kbd>Open PDF</kbd> to see it all; for Word tap <kbd>View text</kbd> for the full text",
+  "zh-CN": "<b>PDF、Word、Excel、PowerPoint、Pages、Keynote</b>：会显示<b>第一页</b>的样子。PDF 按 <kbd>打开 PDF</kbd> 可以看全部；Word 文件可以按 <kbd>看文字</kbd> 看全文",
+  "ja": "<b>PDF・Word・Excel・PowerPoint・Pages・Keynote</b>：<b>1 ページ目</b>を表示します。PDF は <kbd>PDF を開く</kbd> で全体を、Word は <kbd>テキストを見る</kbd> で全文を見られます",
+  "ko": "<b>PDF, Word, Excel, PowerPoint, Pages, Keynote</b>: <b>첫 페이지</b>를 보여 줘요. PDF는 <kbd>PDF 열기</kbd>로 전체를, Word는 <kbd>텍스트 보기</kbd>로 전문을 볼 수 있어요",
+  "es": "<b>PDF, Word, Excel, PowerPoint, Pages, Keynote</b>: muestra la <b>primera página</b>. En los PDF toca <kbd>Abrir PDF</kbd> para verlo entero; en Word toca <kbd>Ver texto</kbd> para el texto completo"
+ },
+ "<b>文字檔（.txt）、表格（.csv）</b>：直接顯示內容，CSV 會排成表格": {
+  "en": "<b>Text files (.txt), spreadsheets (.csv)</b>: the content is shown directly; CSV appears as a table",
+  "zh-CN": "<b>文字文件（.txt）、表格（.csv）</b>：直接显示内容，CSV 会排成表格",
+  "ja": "<b>テキスト（.txt）・表（.csv）</b>：内容をそのまま表示し、CSV は表になります",
+  "ko": "<b>텍스트 파일(.txt), 표(.csv)</b>: 내용을 바로 보여 주고 CSV는 표로 정리돼요",
+  "es": "<b>Archivos de texto (.txt) y tablas (.csv)</b>: se muestra el contenido; los CSV aparecen como tabla"
+ },
+ "文字檔直接顯示內容": {
+  "en": "Text files show their content directly",
+  "zh-CN": "文字文件直接显示内容",
+  "ja": "テキストファイルは内容をそのまま表示",
+  "ko": "텍스트 파일은 내용을 바로 보여 줘요",
+  "es": "Los archivos de texto muestran su contenido"
+ },
+ "按 ⋯ 可以做更多事": {
+  "en": "Tap ⋯ for more",
+  "zh-CN": "按 ⋯ 可以做更多事",
+  "ja": "⋯ でもっといろいろ",
+  "ko": "⋯를 누르면 더 많은 기능",
+  "es": "Toca ⋯ para más opciones"
+ },
+ "每個檔案右邊都有 <kbd>⋯</kbd>，按下去會看到：": {
+  "en": "Every file has <kbd>⋯</kbd> on the right. Tap it to see:",
+  "zh-CN": "每个文件右边都有 <kbd>⋯</kbd>，按下去会看到：",
+  "ja": "各ファイルの右に <kbd>⋯</kbd> があり、押すと次の項目が出ます：",
+  "ko": "파일마다 오른쪽에 <kbd>⋯</kbd>가 있어요. 누르면:",
+  "es": "Cada archivo tiene <kbd>⋯</kbd> a la derecha. Tócalo para ver:"
+ },
+ "<b>下載</b>：存到手機裡。如果是<b>資料夾</b>，會變成 <b>下載 ZIP</b>，整個資料夾一次下載": {
+  "en": "<b>Download</b>: save it to the phone. For a <b>folder</b> this becomes <b>Download ZIP</b>, downloading the whole folder at once",
+  "zh-CN": "<b>下载</b>：存到手机里。如果是<b>文件夹</b>，会变成 <b>下载 ZIP</b>，整个文件夹一次下载",
+  "ja": "<b>ダウンロード</b>：スマホに保存。<b>フォルダ</b>なら <b>ZIP でダウンロード</b> になり、フォルダごとダウンロード",
+  "ko": "<b>다운로드</b>: 휴대폰에 저장. <b>폴더</b>라면 <b>ZIP 다운로드</b>로 바뀌어 폴더 전체를 한 번에 받아요",
+  "es": "<b>Descargar</b>: lo guarda en el móvil. En una <b>carpeta</b> pasa a ser <b>Descargar ZIP</b>, toda la carpeta de una vez"
+ },
+ "<b>詳細資訊</b>：看檔案多大、什麼時候上傳、照片幾萬畫素、影片多長": {
+  "en": "<b>Details</b>: see the file size, upload time, photo megapixels or video length",
+  "zh-CN": "<b>详细信息</b>：看文件多大、什么时候上传、照片多少万像素、视频多长",
+  "ja": "<b>詳細</b>：サイズ、アップロード日時、写真の画素数、動画の長さを確認",
+  "ko": "<b>자세히</b>: 파일 크기, 업로드 시간, 사진 화소, 동영상 길이 보기",
+  "es": "<b>Detalles</b>: tamaño, fecha de subida, megapíxeles de la foto o duración del vídeo"
+ },
+ "<b>分享</b>：產生一個連結傳給朋友（看下面「分享給別人」）": {
+  "en": "<b>Share</b>: make a link to send to friends (see “Share with others” below)",
+  "zh-CN": "<b>分享</b>：生成一个链接发给朋友（看下面“分享给别人”）",
+  "ja": "<b>共有</b>：友だちに送るリンクを作成（下の「他の人と共有」参照）",
+  "ko": "<b>공유</b>: 친구에게 보낼 링크 만들기(아래 '다른 사람과 공유' 참고)",
+  "es": "<b>Compartir</b>: crea un enlace para enviar a amigos (mira «Compartir con otros» abajo)"
+ },
+ "<b>改名</b>、<b>移動</b>（搬到別的資料夾）、<b>刪除</b>": {
+  "en": "<b>Rename</b>, <b>Move</b> (to another folder), <b>Delete</b>",
+  "zh-CN": "<b>改名</b>、<b>移动</b>（搬到别的文件夹）、<b>删除</b>",
+  "ja": "<b>名前を変更</b>、<b>移動</b>（別のフォルダへ）、<b>削除</b>",
+  "ko": "<b>이름 바꾸기</b>, <b>이동</b>(다른 폴더로), <b>삭제</b>",
+  "es": "<b>Renombrar</b>, <b>Mover</b> (a otra carpeta), <b>Eliminar</b>"
+ },
+ "詳細資訊": {
+  "en": "Details",
+  "zh-CN": "详细信息",
+  "ja": "詳細",
+  "ko": "자세히",
+  "es": "Detalles"
+ },
+ "一次整理很多個檔案": {
+  "en": "Tidy up many files at once",
+  "zh-CN": "一次整理很多个文件",
+  "ja": "まとめて整理する",
+  "ko": "여러 파일을 한 번에 정리",
+  "es": "Organiza muchos archivos a la vez"
+ },
+ "按 <kbd>選取</kbd>": {
+  "en": "Tap <kbd>Select</kbd>",
+  "zh-CN": "按 <kbd>选择</kbd>",
+  "ja": "<kbd>選択</kbd> を押す",
+  "ko": "<kbd>선택</kbd>을 누르기",
+  "es": "Toca <kbd>Seleccionar</kbd>"
+ },
+ "點要整理的檔案，前面會出現藍色的勾勾 ✓（按 <kbd>全選</kbd> 可以一次全部勾）": {
+  "en": "Tap the files to tidy up; a blue tick ✓ appears in front (tap <kbd>Select all</kbd> to tick them all)",
+  "zh-CN": "点要整理的文件，前面会出现蓝色的勾 ✓（按 <kbd>全选</kbd> 可以一次全部勾）",
+  "ja": "整理したいファイルをタップすると青いチェック ✓ が付きます（<kbd>すべて選択</kbd> で全部に付けられます）",
+  "ko": "정리할 파일을 누르면 앞에 파란 체크 ✓가 생겨요(<kbd>모두 선택</kbd>으로 한 번에 체크)",
+  "es": "Toca los archivos; aparece una marca azul ✓ delante (toca <kbd>Todos</kbd> para marcarlos todos)"
+ },
+ "按 <kbd>移動</kbd> 搬到別的資料夾，或按 <kbd>刪除</kbd>": {
+  "en": "Tap <kbd>Move</kbd> to put them in another folder, or <kbd>Delete</kbd>",
+  "zh-CN": "按 <kbd>移动</kbd> 搬到别的文件夹，或按 <kbd>删除</kbd>",
+  "ja": "<kbd>移動</kbd> で別のフォルダへ、または <kbd>削除</kbd>",
+  "ko": "<kbd>이동</kbd>으로 다른 폴더로 옮기거나 <kbd>삭제</kbd>",
+  "es": "Toca <kbd>Mover</kbd> para llevarlos a otra carpeta, o <kbd>Eliminar</kbd>"
+ },
+ "做完按 <kbd>完成</kbd>": {
+  "en": "When you're done, tap <kbd>Done</kbd>",
+  "zh-CN": "做完按 <kbd>完成</kbd>",
+  "ja": "終わったら <kbd>完了</kbd>",
+  "ko": "끝나면 <kbd>완료</kbd>",
+  "es": "Al terminar, toca <kbd>Listo</kbd>"
+ },
+ "<b>移動</b>時會跳出資料夾清單：點資料夾進去，到了想放的地方，按 <kbd>移到這裡</kbd>。": {
+  "en": "<b>Move</b> shows a list of folders: tap a folder to go in, and once you're where you want them, tap <kbd>Move here</kbd>.",
+  "zh-CN": "<b>移动</b>时会弹出文件夹列表：点文件夹进去，到了想放的地方，按 <kbd>移到这里</kbd>。",
+  "ja": "<b>移動</b>ではフォルダの一覧が出ます。フォルダをタップして進み、置きたい場所で <kbd>ここに移動</kbd> を押します。",
+  "ko": "<b>이동</b>하면 폴더 목록이 떠요. 폴더를 눌러 들어가 원하는 곳에서 <kbd>여기로 이동</kbd>을 누르세요.",
+  "es": "Al <b>Mover</b> aparece una lista de carpetas: toca una para entrar y, cuando estés donde quieres, toca <kbd>Mover aquí</kbd>."
+ },
+ "不小心刪掉了？到垃圾桶救回來": {
+  "en": "Deleted something by mistake? Get it back from the Trash",
+  "zh-CN": "不小心删掉了？到回收站救回来",
+  "ja": "うっかり削除した？ゴミ箱から戻せます",
+  "ko": "실수로 지웠나요? 휴지통에서 되살리기",
+  "es": "¿Borraste algo sin querer? Recupéralo de la papelera"
+ },
+ "刪掉的檔案<b>不會馬上消失</b>，會在垃圾桶放 <b>30 天</b>，之後才自動清掉。": {
+  "en": "Deleted files <b>don't disappear right away</b>: they stay in the Trash for <b>30 days</b> before being cleared automatically.",
+  "zh-CN": "删掉的文件<b>不会马上消失</b>，会在回收站放 <b>30 天</b>，之后才自动清掉。",
+  "ja": "削除したファイルは<b>すぐには消えません</b>。ゴミ箱に <b>30 日間</b>残ってから自動で消えます。",
+  "ko": "지운 파일은 <b>바로 사라지지 않고</b> 휴지통에 <b>30일</b> 동안 있다가 자동으로 지워져요.",
+  "es": "Los archivos borrados <b>no desaparecen enseguida</b>: quedan <b>30 días</b> en la papelera y luego se eliminan solos."
+ },
+ "按上面那排的 🗑 <b>垃圾桶</b>": {
+  "en": "Tap 🗑 <b>Trash</b> in the row at the top",
+  "zh-CN": "按上面那排的 🗑 <b>回收站</b>",
+  "ja": "上の列の 🗑 <b>ゴミ箱</b> を押す",
+  "ko": "위쪽 줄의 🗑 <b>휴지통</b>을 누르기",
+  "es": "Toca 🗑 <b>Papelera</b> en la fila de arriba"
+ },
+ "找到要救的檔案，按 <kbd>還原</kbd>，它就會回到原本的資料夾": {
+  "en": "Find the file and tap <kbd>Restore</kbd>; it goes back to its original folder",
+  "zh-CN": "找到要救的文件，按 <kbd>还原</kbd>，它就会回到原本的文件夹",
+  "ja": "戻したいファイルで <kbd>復元</kbd> を押すと、元のフォルダに戻ります",
+  "ko": "되살릴 파일에서 <kbd>복원</kbd>을 누르면 원래 폴더로 돌아가요",
+  "es": "Busca el archivo y toca <kbd>Restaurar</kbd>; vuelve a su carpeta original"
+ },
+ "<b>垃圾桶裡按 ✕ 或「清空垃圾桶」就真的救不回來了</b>按下去還要再按一次確認，請看清楚再按。": {
+  "en": "<b>✕ or “Empty trash” in the Trash can't be undone</b>You have to tap again to confirm, so read carefully before tapping.",
+  "zh-CN": "<b>回收站里按 ✕ 或“清空回收站”就真的救不回来了</b>按下去还要再按一次确认，请看清楚再按。",
+  "ja": "<b>ゴミ箱で ✕ や「ゴミ箱を空にする」を押すと元に戻せません</b>確認のためもう一度押す必要があります。よく見てから押してください。",
+  "ko": "<b>휴지통에서 ✕나 '휴지통 비우기'를 누르면 되살릴 수 없어요</b>한 번 더 눌러야 실행되니 잘 보고 누르세요.",
+  "es": "<b>✕ o «Vaciar papelera» no se pueden deshacer</b>Hay que tocar otra vez para confirmar, así que léelo bien antes."
+ },
+ "分享給別人（對方不用裝 App）": {
+  "en": "Share with others (they don't need any app)",
+  "zh-CN": "分享给别人（对方不用装 App）",
+  "ja": "他の人と共有（相手はアプリ不要）",
+  "ko": "다른 사람과 공유(상대는 앱 필요 없음)",
+  "es": "Compartir con otros (no necesitan ninguna app)"
+ },
+ "在檔案或資料夾按 <kbd>⋯</kbd> → <kbd>分享</kbd>": {
+  "en": "On a file or folder tap <kbd>⋯</kbd> → <kbd>Share</kbd>",
+  "zh-CN": "在文件或文件夹按 <kbd>⋯</kbd> → <kbd>分享</kbd>",
+  "ja": "ファイルかフォルダで <kbd>⋯</kbd> → <kbd>共有</kbd>",
+  "ko": "파일이나 폴더에서 <kbd>⋯</kbd> → <kbd>공유</kbd>",
+  "es": "En un archivo o carpeta toca <kbd>⋯</kbd> → <kbd>Compartir</kbd>"
+ },
+ "選 <b>有效期限</b>（1 天、7 天、30 天、永久）": {
+  "en": "Pick how long it's <b>valid</b> (1 day, 7 days, 30 days, forever)",
+  "zh-CN": "选 <b>有效期限</b>（1 天、7 天、30 天、永久）",
+  "ja": "<b>有効期限</b>を選ぶ（1 日・7 日・30 日・無期限）",
+  "ko": "<b>유효 기간</b> 선택(1일, 7일, 30일, 영구)",
+  "es": "Elige la <b>validez</b> (1 día, 7 días, 30 días, para siempre)"
+ },
+ "可以限制 <b>最多下載幾次</b>，也可以設 <b>密碼</b>": {
+  "en": "You can limit <b>how many downloads</b> and also set a <b>password</b>",
+  "zh-CN": "可以限制 <b>最多下载几次</b>，也可以设 <b>密码</b>",
+  "ja": "<b>ダウンロード回数</b>の上限や<b>パスワード</b>も設定できます",
+  "ko": "<b>최대 다운로드 횟수</b>를 정하거나 <b>비밀번호</b>를 걸 수 있어요",
+  "es": "Puedes limitar <b>cuántas descargas</b> y poner una <b>contraseña</b>"
+ },
+ "按 <kbd>建立連結</kbd>，連結會自動複製好，貼到 LINE 傳給對方就可以了": {
+  "en": "Tap <kbd>Create link</kbd>; the link is copied automatically, so just paste it into LINE and send it",
+  "zh-CN": "按 <kbd>创建链接</kbd>，链接会自动复制好，粘贴到 LINE 发给对方就可以了",
+  "ja": "<kbd>リンクを作成</kbd> を押すと自動でコピーされるので、LINE に貼り付けて送るだけ",
+  "ko": "<kbd>링크 만들기</kbd>를 누르면 자동으로 복사돼요. LINE에 붙여넣어 보내면 끝",
+  "es": "Toca <kbd>Crear enlace</kbd>; se copia solo, así que pégalo en LINE y envíalo"
+ },
+ "<b>對方打開會看到什麼？</b>一個只能看和下載的網頁，看不到你其他的檔案。分享資料夾的話，對方可以按「全部下載（ZIP）」。時間到、次數用完，或管理員取消，連結就會失效。": {
+  "en": "<b>What does the other person see?</b>A page where they can only view and download, without seeing any of your other files. For a shared folder they can tap “Download all (ZIP)”. The link stops working when time runs out, the downloads are used up, or the admin cancels it.",
+  "zh-CN": "<b>对方打开会看到什么？</b>一个只能看和下载的网页，看不到你其他的文件。分享文件夹的话，对方可以按“全部下载（ZIP）”。时间到、次数用完，或管理员取消，链接就会失效。",
+  "ja": "<b>相手には何が見える？</b>表示とダウンロードだけができるページで、あなたの他のファイルは見えません。フォルダを共有した場合は「すべてダウンロード（ZIP）」が使えます。期限切れ・回数切れ・管理者の取り消しでリンクは無効になります。",
+  "ko": "<b>상대에게는 무엇이 보이나요?</b>보기와 다운로드만 되는 페이지라 내 다른 파일은 보이지 않아요. 폴더를 공유하면 '모두 다운로드(ZIP)'를 쓸 수 있어요. 기간이 끝나거나 횟수를 다 쓰거나 관리자가 취소하면 링크가 무효가 돼요.",
+  "es": "<b>¿Qué ve la otra persona?</b>Una página donde solo puede ver y descargar, sin ver tus otros archivos. Si compartes una carpeta, puede tocar «Descargar todo (ZIP)». El enlace deja de funcionar al caducar, al agotar las descargas o si el administrador lo cancela."
+ },
+ "<b>有設密碼的話，密碼要另外告訴對方</b>不要把密碼和連結貼在同一則訊息裡。": {
+  "en": "<b>If you set a password, tell it to them separately</b>Don't put the password and the link in the same message.",
+  "zh-CN": "<b>有设密码的话，密码要另外告诉对方</b>不要把密码和链接贴在同一条消息里。",
+  "ja": "<b>パスワードは別に伝えて</b>パスワードとリンクを同じメッセージに書かないでください。",
+  "ko": "<b>비밀번호를 걸었다면 따로 알려 주세요</b>비밀번호와 링크를 같은 메시지에 보내지 마세요.",
+  "es": "<b>Si pusiste contraseña, díselas por separado</b>No pongas la contraseña y el enlace en el mismo mensaje."
+ },
+ "7. iPhone 照片每天自動備份": {
+  "en": "7. Back up iPhone photos every day",
+  "zh-CN": "7. iPhone 照片每天自动备份",
+  "ja": "7. iPhone の写真を毎日自動バックアップ",
+  "ko": "7. iPhone 사진 매일 자동 백업",
+  "es": "7. Copia diaria de las fotos del iPhone"
+ },
+ "用 iPhone <b>內建</b>的「捷徑」App，每天晚上自動把當天拍的照片存到你雲端的「相機備份」資料夾。<b>不用另外下載 App，也不用開 VPN</b>，只要有網路就會備份。": {
+  "en": "The iPhone's <b>built-in</b> Shortcuts app saves the day's photos to the “Camera backup” folder in your cloud every night. <b>No extra app and no VPN needed</b>; any Internet connection works.",
+  "zh-CN": "用 iPhone <b>内置</b>的“快捷指令”App，每天晚上自动把当天拍的照片存到你云盘的“相机备份”文件夹。<b>不用另外下载 App，也不用开 VPN</b>，只要有网络就会备份。",
+  "ja": "iPhone <b>標準</b>の「ショートカット」アプリで、毎晩その日の写真をクラウドの「カメラバックアップ」フォルダに自動保存します。<b>アプリの追加も VPN も不要</b>、ネットにつながっていればバックアップされます。",
+  "ko": "iPhone <b>기본</b> '단축어' 앱으로 매일 밤 그날 찍은 사진을 클라우드 '카메라 백업' 폴더에 자동 저장해요. <b>다른 앱도 VPN도 필요 없고</b> 인터넷만 되면 백업돼요.",
+  "es": "La app <b>integrada</b> Atajos del iPhone guarda cada noche las fotos del día en la carpeta «Copia de la cámara» de tu nube. <b>Sin otra app y sin VPN</b>; basta con tener Internet."
+ },
+ "先複製你的上傳網址": {
+  "en": "First copy your upload address",
+  "zh-CN": "先复制你的上传网址",
+  "ja": "まずアップロード用アドレスをコピー",
+  "ko": "먼저 업로드 주소 복사",
+  "es": "Primero copia tu dirección de subida"
+ },
+ "在<a href=\"#portal\">我的專屬網頁</a>找到 <b>「iPhone 照片自動備份」</b>，按 <kbd>複製上傳網址</kbd>。": {
+  "en": "On <a href=\"#portal\">My page</a> find <b>“iPhone photo auto-backup”</b> and tap <kbd>Copy upload address</kbd>.",
+  "zh-CN": "在<a href=\"#portal\">我的专属网页</a>找到 <b>“iPhone 照片自动备份”</b>，按 <kbd>复制上传网址</kbd>。",
+  "ja": "<a href=\"#portal\">マイページ</a>で <b>「iPhone 写真の自動バックアップ」</b> を探し、<kbd>アップロード用アドレスをコピー</kbd> を押します。",
+  "ko": "<a href=\"#portal\">내 페이지</a>에서 <b>'iPhone 사진 자동 백업'</b>을 찾아 <kbd>업로드 주소 복사</kbd>를 누르세요.",
+  "es": "En <a href=\"#portal\">Mi página</a> busca <b>«Copia automática de fotos del iPhone»</b> y toca <kbd>Copiar dirección de subida</kbd>."
+ },
+ "<b>網頁上找不到這一塊？</b>代表管理員沒有開放你使用自動備份（在網頁上手動上傳照片還是可以）。需要的話可以<a href=\"#msg\">留言</a>請管理員打開。": {
+  "en": "<b>Can't find it on the page?</b>That means the admin hasn't allowed auto-backup for you (uploading photos by hand on the page still works). If you need it, <a href=\"#msg\">send a message</a> asking the admin to turn it on.",
+  "zh-CN": "<b>网页上找不到这一块？</b>代表管理员没有开放你使用自动备份（在网页上手动上传照片还是可以）。需要的话可以<a href=\"#msg\">留言</a>请管理员打开。",
+  "ja": "<b>ページに見当たらない？</b>管理者が自動バックアップを許可していないということです（ページからの手動アップロードは使えます）。必要なら<a href=\"#msg\">メッセージ</a>で管理者に頼んでください。",
+  "ko": "<b>페이지에 안 보이나요?</b> 관리자가 자동 백업을 열어 주지 않은 거예요(페이지에서 직접 올리는 건 돼요). 필요하면 <a href=\"#msg\">메시지</a>로 관리자에게 부탁하세요.",
+  "es": "<b>¿No lo ves en la página?</b>El administrador no te ha permitido la copia automática (subir fotos a mano en la página sigue funcionando). Si la necesitas, <a href=\"#msg\">escríbele</a> para pedírsela."
+ },
+ "網頁上也有同樣的步驟可以照著做": {
+  "en": "The page also has the same steps to follow",
+  "zh-CN": "网页上也有同样的步骤可以照着做",
+  "ja": "ページにも同じ手順があります",
+  "ko": "페이지에도 같은 단계가 있어요",
+  "es": "La página también tiene los mismos pasos"
+ },
+ "在「捷徑」App 新增自動化": {
+  "en": "Add an automation in the Shortcuts app",
+  "zh-CN": "在“快捷指令”App 新增自动化",
+  "ja": "「ショートカット」アプリでオートメーションを追加",
+  "ko": "'단축어' 앱에서 자동화 추가",
+  "es": "Añade una automatización en Atajos"
+ },
+ "打開 <b>捷徑</b> App（找不到的話，在主畫面往下滑搜尋「捷徑」）": {
+  "en": "Open the <b>Shortcuts</b> app (if you can't find it, swipe down on the Home Screen and search “Shortcuts”)",
+  "zh-CN": "打开 <b>快捷指令</b> App（找不到的话，在主屏幕往下滑搜索“快捷指令”）",
+  "ja": "<b>ショートカット</b> アプリを開く（見つからなければホーム画面を下にスワイプして「ショートカット」を検索）",
+  "ko": "<b>단축어</b> 앱 열기(안 보이면 홈 화면을 아래로 쓸어 '단축어' 검색)",
+  "es": "Abre la app <b>Atajos</b> (si no la encuentras, desliza hacia abajo en la pantalla de inicio y busca «Atajos»)"
+ },
+ "按下面的 <kbd>自動化</kbd>，再按右上角 <kbd>＋</kbd>": {
+  "en": "Tap <kbd>Automation</kbd> at the bottom, then <kbd>＋</kbd> at the top right",
+  "zh-CN": "按下面的 <kbd>自动化</kbd>，再按右上角 <kbd>＋</kbd>",
+  "ja": "下の <kbd>オートメーション</kbd> を押し、右上の <kbd>＋</kbd> を押す",
+  "ko": "아래 <kbd>자동화</kbd>를 누르고 오른쪽 위 <kbd>＋</kbd>",
+  "es": "Toca <kbd>Automatización</kbd> abajo y luego <kbd>＋</kbd> arriba a la derecha"
+ },
+ "選 <b>特定時間</b>，設成每天晚上 <b>11:00</b>，選 <kbd>立即執行</kbd>，按 <kbd>下一步</kbd>": {
+  "en": "Pick <b>Time of Day</b>, set it to <b>11:00 PM</b> every day, choose <kbd>Run Immediately</kbd> and tap <kbd>Next</kbd>",
+  "zh-CN": "选 <b>特定时间</b>，设成每天晚上 <b>11:00</b>，选 <kbd>立即运行</kbd>，按 <kbd>下一步</kbd>",
+  "ja": "<b>時刻</b> を選び、毎日 <b>23:00</b> に設定、<kbd>すぐに実行</kbd> を選んで <kbd>次へ</kbd>",
+  "ko": "<b>특정 시간</b>을 골라 매일 <b>밤 11:00</b>로 정하고 <kbd>즉시 실행</kbd>을 고른 뒤 <kbd>다음</kbd>",
+  "es": "Elige <b>Hora del día</b>, ponla cada día a las <b>23:00</b>, elige <kbd>Ejecutar inmediatamente</kbd> y toca <kbd>Siguiente</kbd>"
+ },
+ "加入三個動作": {
+  "en": "Add three actions",
+  "zh-CN": "加入三个操作",
+  "ja": "3 つのアクションを追加",
+  "ko": "동작 세 개 추가",
+  "es": "Añade tres acciones"
+ },
+ "按 <kbd>新增動作</kbd>，搜尋 <b>尋找照片</b>，加入。按「加入過濾條件」，設成 <b>加入日期</b>・<b>是今天</b>": {
+  "en": "Tap <kbd>New Blank Automation</kbd>, search for <b>Find Photos</b> and add it. Tap “Add Filter” and set it to <b>Date Added</b> · <b>is today</b>",
+  "zh-CN": "按 <kbd>添加操作</kbd>，搜索 <b>查找照片</b>，加入。按“添加过滤条件”，设成 <b>添加日期</b>・<b>是今天</b>",
+  "ja": "<kbd>アクションを追加</kbd> を押し、<b>写真を検索</b> を探して追加。「フィルタを追加」で <b>追加日</b>・<b>今日</b> に設定",
+  "ko": "<kbd>동작 추가</kbd>를 누르고 <b>사진 찾기</b>를 검색해 추가. '필터 추가'를 눌러 <b>추가된 날짜</b>・<b>오늘</b>로 설정",
+  "es": "Toca <kbd>Añadir acción</kbd>, busca <b>Buscar fotos</b> y añádela. Toca «Añadir filtro» y pon <b>Fecha de adición</b> · <b>es hoy</b>"
+ },
+ "再搜尋 <b>重複每一項目</b>，加入": {
+  "en": "Then search for <b>Repeat with Each</b> and add it",
+  "zh-CN": "再搜索 <b>对每个项目重复</b>，加入",
+  "ja": "続けて <b>各項目を繰り返す</b> を検索して追加",
+  "ko": "이어서 <b>각 항목 반복</b>을 검색해 추가",
+  "es": "Luego busca <b>Repetir con cada uno</b> y añádela"
+ },
+ "在「重複」<b>裡面</b>，加入 <b>取得 URL 內容</b>：": {
+  "en": "<b>Inside</b> the “Repeat”, add <b>Get Contents of URL</b>:",
+  "zh-CN": "在“重复”<b>里面</b>，加入 <b>获取 URL 内容</b>：",
+  "ja": "「繰り返す」の<b>中に</b> <b>URL の内容を取得</b> を追加：",
+  "ko": "'반복' <b>안에</b> <b>URL의 콘텐츠 가져오기</b>를 추가:",
+  "es": "<b>Dentro</b> de «Repetir», añade <b>Obtener contenido de URL</b>:"
+ },
+ "網址：<b>貼上</b>剛剛複製的網址": {
+  "en": "URL: <b>paste</b> the address you just copied",
+  "zh-CN": "网址：<b>粘贴</b>刚刚复制的网址",
+  "ja": "URL：さっきコピーしたアドレスを<b>貼り付け</b>",
+  "ko": "URL: 방금 복사한 주소를 <b>붙여넣기</b>",
+  "es": "URL: <b>pega</b> la dirección que copiaste"
+ },
+ "按「顯示更多」，<b>方法</b>選 <kbd>POST</kbd>": {
+  "en": "Tap “Show More” and set <b>Method</b> to <kbd>POST</kbd>",
+  "zh-CN": "按“显示更多”，<b>方法</b>选 <kbd>POST</kbd>",
+  "ja": "「詳細を表示」を押し、<b>方法</b> を <kbd>POST</kbd> に",
+  "ko": "'더 보기'를 누르고 <b>방법</b>을 <kbd>POST</kbd>로",
+  "es": "Toca «Mostrar más» y en <b>Método</b> elige <kbd>POST</kbd>"
+ },
+ "<b>要求本文</b>選 <kbd>檔案</kbd>，檔案選 <b>重複項目</b>": {
+  "en": "Set <b>Request Body</b> to <kbd>File</kbd>, and the file to <b>Repeat Item</b>",
+  "zh-CN": "<b>请求体</b>选 <kbd>文件</kbd>，文件选 <b>重复项目</b>",
+  "ja": "<b>本文を要求</b> は <kbd>ファイル</kbd>、ファイルは <b>繰り返し項目</b>",
+  "ko": "<b>요청 본문</b>은 <kbd>파일</kbd>, 파일은 <b>반복 항목</b>",
+  "es": "En <b>Cuerpo de la solicitud</b> elige <kbd>Archivo</kbd> y como archivo <b>Elemento repetido</b>"
+ },
+ "<b>標頭</b>按「新增標頭」兩次：<br> 第一個：名稱 <code>X-Requested-With</code>，值 <code>portal</code><br> 第二個：名稱 <code>X-Filename</code>，值選 <b>重複項目</b> 的 <b>名稱</b>，後面打上 <code>.heic</code><br><span style=\"font-size:14px;color:#666\">（如果「設定 → 相機 → 格式」選的是「最相容」，就改打 <code>.jpg</code>）</span>": {
+  "en": "Under <b>Headers</b> tap “Add new header” twice:<br> First: name <code>X-Requested-With</code>, value <code>portal</code><br> Second: name <code>X-Filename</code>, value: the <b>Name</b> of <b>Repeat Item</b>, followed by <code>.heic</code><br><span style=\"font-size:14px;color:#666\">(if Settings → Camera → Formats is set to “Most Compatible”, type <code>.jpg</code> instead)</span>",
+  "zh-CN": "<b>头部</b>按“添加新头部”两次：<br> 第一个：名称 <code>X-Requested-With</code>，值 <code>portal</code><br> 第二个：名称 <code>X-Filename</code>，值选 <b>重复项目</b> 的 <b>名称</b>，后面打上 <code>.heic</code><br><span style=\"font-size:14px;color:#666\">（如果“设置 → 相机 → 格式”选的是“兼容性最佳”，就改打 <code>.jpg</code>）</span>",
+  "ja": "<b>ヘッダ</b> で「新規ヘッダを追加」を 2 回：<br> 1 つ目：名前 <code>X-Requested-With</code>、値 <code>portal</code><br> 2 つ目：名前 <code>X-Filename</code>、値は <b>繰り返し項目</b> の <b>名前</b>、続けて <code>.heic</code> と入力<br><span style=\"font-size:14px;color:#666\">（「設定 → カメラ → フォーマット」が「互換性優先」なら <code>.jpg</code> と入力）</span>",
+  "ko": "<b>헤더</b>에서 '새로운 헤더 추가'를 두 번:<br> 첫째: 이름 <code>X-Requested-With</code>, 값 <code>portal</code><br> 둘째: 이름 <code>X-Filename</code>, 값은 <b>반복 항목</b>의 <b>이름</b>, 뒤에 <code>.heic</code> 입력<br><span style=\"font-size:14px;color:#666\">('설정 → 카메라 → 포맷'이 '높은 호환성'이면 <code>.jpg</code>로 입력)</span>",
+  "es": "En <b>Encabezados</b> toca «Añadir encabezado» dos veces:<br> Primero: nombre <code>X-Requested-With</code>, valor <code>portal</code><br> Segundo: nombre <code>X-Filename</code>, valor: el <b>Nombre</b> del <b>Elemento repetido</b> seguido de <code>.heic</code><br><span style=\"font-size:14px;color:#666\">(si en Ajustes → Cámara → Formatos está «Más compatible», escribe <code>.jpg</code>)</span>"
+ },
+ "試跑一次": {
+  "en": "Try it once",
+  "zh-CN": "试运行一次",
+  "ja": "試しに実行",
+  "ko": "한 번 실행해 보기",
+  "es": "Pruébalo una vez"
+ },
+ "按右下角的 ▶︎ 試跑。第一次 iPhone 會問「允許取用照片嗎？」，按 <kbd>允許</kbd>。跑完到「我的雲端 → 我的檔案 → 相機備份」看看，今天的照片應該都在了。": {
+  "en": "Tap ▶︎ at the bottom right to try it. The first time, the iPhone asks to allow access to Photos; tap <kbd>Allow</kbd>. Then check “My cloud → My files → Camera backup”; today's photos should be there.",
+  "zh-CN": "按右下角的 ▶︎ 试运行。第一次 iPhone 会问“允许访问照片吗？”，按 <kbd>允许</kbd>。跑完到“我的云盘 → 我的文件 → 相机备份”看看，今天的照片应该都在了。",
+  "ja": "右下の ▶︎ で試しに実行。初回は写真へのアクセスを聞かれるので <kbd>許可</kbd> を押します。終わったら「マイクラウド → マイファイル → カメラバックアップ」を見ると、今日の写真が入っているはずです。",
+  "ko": "오른쪽 아래 ▶︎로 실행해 보세요. 처음엔 사진 접근을 허용할지 물으니 <kbd>허용</kbd>을 누르세요. 끝나면 '내 클라우드 → 내 파일 → 카메라 백업'에 오늘 사진이 있을 거예요.",
+  "es": "Toca ▶︎ abajo a la derecha para probar. La primera vez el iPhone pide acceso a Fotos; toca <kbd>Permitir</kbd>. Después mira en «Mi nube → Mis archivos → Copia de la cámara»: deberían estar las fotos de hoy."
+ },
+ "<b>重複跑也沒關係</b>已經備份過的同一張照片會自動跳過，不會佔兩份空間。": {
+  "en": "<b>Running it again is fine</b>A photo that's already backed up is skipped, so it doesn't take space twice.",
+  "zh-CN": "<b>重复运行也没关系</b>已经备份过的同一张照片会自动跳过，不会占两份空间。",
+  "ja": "<b>何度実行しても大丈夫</b>バックアップ済みの写真は自動でスキップされ、容量を二重に使いません。",
+  "ko": "<b>여러 번 실행해도 괜찮아요</b>이미 백업한 사진은 건너뛰어 공간을 두 번 쓰지 않아요.",
+  "es": "<b>Repetirlo no pasa nada</b>Las fotos ya copiadas se omiten, así que no ocupan doble."
+ },
+ "<b>容量滿了就會停</b>「我的檔案」滿了以後就存不進去。可以在雲端刪掉舊照片，或用<a href=\"#msg\">留言</a>請管理員加大容量。": {
+  "en": "<b>It stops when the space is full</b>Once “My files” is full, nothing more can be saved. Delete old photos in the cloud, or <a href=\"#msg\">send a message</a> asking the admin for more space.",
+  "zh-CN": "<b>容量满了就会停</b>“我的文件”满了以后就存不进去。可以在云盘删掉旧照片，或用<a href=\"#msg\">留言</a>请管理员加大容量。",
+  "ja": "<b>容量がいっぱいになると止まります</b>「マイファイル」がいっぱいになると保存できません。クラウドで古い写真を消すか、<a href=\"#msg\">メッセージ</a>で管理者に容量の追加を頼んでください。",
+  "ko": "<b>용량이 차면 멈춰요</b>'내 파일'이 가득 차면 더 저장되지 않아요. 클라우드에서 오래된 사진을 지우거나 <a href=\"#msg\">메시지</a>로 관리자에게 용량을 늘려 달라고 하세요.",
+  "es": "<b>Se detiene cuando se llena</b>Cuando «Mis archivos» está lleno no se guarda nada más. Borra fotos antiguas de la nube o <a href=\"#msg\">escribe</a> al administrador para pedir más espacio."
+ },
+ "8. 其他好用的功能": {
+  "en": "8. Other handy features",
+  "zh-CN": "8. 其他好用的功能",
+  "ja": "8. そのほかの便利な機能",
+  "ko": "8. 그 밖의 유용한 기능",
+  "es": "8. Otras funciones útiles"
+ },
+ "大字模式（給長輩用）": {
+  "en": "Large text (for older family members)",
+  "zh-CN": "大字模式（给长辈用）",
+  "ja": "大きな文字（年配の家族向け）",
+  "ko": "큰 글씨(어르신용)",
+  "es": "Texto grande (para los mayores)"
+ },
+ "按專屬網頁右上角的 <kbd>T</kbd>，整個網頁的字和按鈕都會變大。這支手機會記住，下次打開還是大字。再按一次 <kbd>T</kbd> 就變回原本的大小。": {
+  "en": "Tap <kbd>T</kbd> at the top right of your page and all the text and buttons get bigger. This phone remembers it, so it's still large next time. Tap <kbd>T</kbd> again to go back to normal size.",
+  "zh-CN": "按专属网页右上角的 <kbd>T</kbd>，整个网页的字和按钮都会变大。这部手机会记住，下次打开还是大字。再按一次 <kbd>T</kbd> 就变回原本的大小。",
+  "ja": "マイページ右上の <kbd>T</kbd> を押すと、文字もボタンも大きくなります。このスマホが覚えているので次回も大きいまま。もう一度 <kbd>T</kbd> を押すと元のサイズに戻ります。",
+  "ko": "내 페이지 오른쪽 위 <kbd>T</kbd>를 누르면 글씨와 버튼이 모두 커져요. 이 휴대폰이 기억해서 다음에도 큰 글씨예요. <kbd>T</kbd>를 다시 누르면 원래 크기로 돌아와요.",
+  "es": "Toca <kbd>T</kbd> arriba a la derecha de tu página y todo el texto y los botones se agrandan. El móvil lo recuerda para la próxima vez. Toca <kbd>T</kbd> otra vez para volver al tamaño normal."
+ },
+ "開啟後 T 會變成藍色": {
+  "en": "When on, the T turns blue",
+  "zh-CN": "开启后 T 会变成蓝色",
+  "ja": "オンにすると T が青くなります",
+  "ko": "켜면 T가 파란색이 돼요",
+  "es": "Al activarlo, la T se pone azul"
+ },
+ "今天還能用多久": {
+  "en": "How much time is left today",
+  "zh-CN": "今天还能用多久",
+  "ja": "今日の残り時間",
+  "ko": "오늘 남은 시간",
+  "es": "Cuánto tiempo queda hoy"
+ },
+ "如果管理員幫你設了<b>每天可以用多久</b>，網頁上會多一個藍色圓圈「今天還能用」，寫著還剩幾分鐘。": {
+  "en": "If the admin set <b>how long you can use it each day</b>, your page shows a blue ring “Left today” with the minutes remaining.",
+  "zh-CN": "如果管理员帮你设了<b>每天可以用多久</b>，网页上会多一个蓝色圆圈“今天还能用”，写着还剩几分钟。",
+  "ja": "管理者が<b>1 日の利用時間</b>を設定していると、ページに青い丸「今日の残り」が出て、残り時間がわかります。",
+  "ko": "관리자가 <b>하루 사용 시간</b>을 정했다면 페이지에 파란 원 '오늘 남은 시간'이 나와 남은 분이 보여요.",
+  "es": "Si el administrador fijó <b>cuánto puedes usarlo al día</b>, tu página muestra un círculo azul «Queda hoy» con los minutos restantes."
+ },
+ "只有<b>真的在用網路</b>的時候才算時間，開著不用不會扣": {
+  "en": "Time only counts while you're <b>actually using the Internet</b>; leaving it on without using it doesn't count",
+  "zh-CN": "只有<b>真的在用网络</b>的时候才算时间，开着不用不会扣",
+  "ja": "<b>実際にネットを使っている間</b>だけ数えます。つないだまま使っていなければ減りません",
+  "ko": "<b>실제로 인터넷을 쓸 때</b>만 시간이 줄어요. 켜 두기만 하면 줄지 않아요",
+  "es": "Solo cuenta mientras <b>usas Internet de verdad</b>; tenerlo activado sin usarlo no descuenta"
+ },
+ "時間用完，當天就連不上，<b>半夜 12 點</b>自動恢復": {
+  "en": "When the time is up you can't connect for the rest of the day; it resets automatically at <b>midnight</b>",
+  "zh-CN": "时间用完，当天就连不上，<b>半夜 12 点</b>自动恢复",
+  "ja": "時間を使い切るとその日はつながらず、<b>深夜 0 時</b>に自動で戻ります",
+  "ko": "시간을 다 쓰면 그날은 연결이 안 되고 <b>자정</b>에 자동으로 복구돼요",
+  "es": "Cuando se acaba no puedes conectarte ese día; se restablece solo a <b>medianoche</b>"
+ },
+ "不夠用的話，可以<a href=\"#msg\">留言</a>請管理員加": {
+  "en": "Not enough? <a href=\"#msg\">Send a message</a> asking the admin for more",
+  "zh-CN": "不够用的话，可以<a href=\"#msg\">留言</a>请管理员加",
+  "ja": "足りなければ<a href=\"#msg\">メッセージ</a>で管理者に頼めます",
+  "ko": "부족하면 <a href=\"#msg\">메시지</a>로 관리자에게 늘려 달라고 하세요",
+  "es": "¿No te llega? <a href=\"#msg\">Escribe</a> al administrador para pedir más"
+ },
+ "留言給管理員": {
+  "en": "Message the admin",
+  "zh-CN": "留言给管理员",
+  "ja": "管理者にメッセージ",
+  "ko": "관리자에게 메시지",
+  "es": "Escribir al administrador"
+ },
+ "想延長使用期限、加大雲端容量、增加每天的時數，或是遇到問題，都可以直接在網頁上留言：": {
+  "en": "To extend your access, get more cloud space or more daily time, or if something's wrong, send a message right from the page:",
+  "zh-CN": "想延长使用期限、加大云盘容量、增加每天的时数，或是遇到问题，都可以直接在网页上留言：",
+  "ja": "利用期限の延長、クラウド容量の追加、1 日の時間の追加、困ったことがあるときは、ページから直接メッセージを送れます：",
+  "ko": "사용 기한 연장, 클라우드 용량 추가, 하루 시간 추가가 필요하거나 문제가 있으면 페이지에서 바로 메시지를 보내세요:",
+  "es": "Para ampliar tu acceso, pedir más espacio o más tiempo diario, o si algo falla, escribe directamente desde la página:"
+ },
+ "在「留言給管理員」選一個項目，例如 <kbd>加大雲端容量</kbd>": {
+  "en": "Under “Message the admin”, pick a topic, e.g. <kbd>More cloud storage</kbd>",
+  "zh-CN": "在“留言给管理员”选一个项目，例如 <kbd>加大云盘容量</kbd>",
+  "ja": "「管理者にメッセージ」で項目を選ぶ（例：<kbd>クラウド容量を増やす</kbd>）",
+  "ko": "'관리자에게 메시지'에서 항목 선택(예: <kbd>클라우드 용량 늘리기</kbd>)",
+  "es": "En «Escribir al administrador» elige un tema, p. ej. <kbd>Más espacio en la nube</kbd>"
+ },
+ "想補充的話寫在下面的框框（可以不寫）": {
+  "en": "Add details in the box below if you like (optional)",
+  "zh-CN": "想补充的话写在下面的框框（可以不写）",
+  "ja": "補足があれば下の欄に書く（任意）",
+  "ko": "덧붙일 말은 아래 칸에 쓰기(선택)",
+  "es": "Si quieres, añade detalles en el cuadro de abajo (opcional)"
+ },
+ "按 <kbd>送出</kbd>": {
+  "en": "Tap <kbd>Send</kbd>",
+  "zh-CN": "按 <kbd>发送</kbd>",
+  "ja": "<kbd>送信</kbd> を押す",
+  "ko": "<kbd>보내기</kbd>를 누르기",
+  "es": "Toca <kbd>Enviar</kbd>"
+ },
+ "管理員的手機會馬上收到通知。他回覆以後，會顯示在「之前的留言」下面，<b>綠色勾勾</b>代表已經處理好了。": {
+  "en": "The admin's phone gets a notification right away. Their reply appears under “Earlier messages”; a <b>green tick</b> means it's been handled.",
+  "zh-CN": "管理员的手机会马上收到通知。他回复以后，会显示在“之前的留言”下面，<b>绿色勾</b>代表已经处理好了。",
+  "ja": "管理者のスマホにすぐ通知が届きます。返信は「以前のメッセージ」の下に表示され、<b>緑のチェック</b>は対応済みの印です。",
+  "ko": "관리자 휴대폰에 바로 알림이 가요. 답장은 '이전 메시지' 아래에 나오고, <b>초록 체크</b>는 처리됐다는 뜻이에요.",
+  "es": "El móvil del administrador recibe un aviso al momento. Su respuesta aparece en «Mensajes anteriores»; una <b>marca verde</b> significa que está resuelto."
+ },
+ "網速測試": {
+  "en": "Speed test",
+  "zh-CN": "网速测试",
+  "ja": "速度テスト",
+  "ko": "속도 측정",
+  "es": "Prueba de velocidad"
+ },
+ "覺得很慢的時候，到網頁最下面的「連線檢查」，按 <b>網速測試</b> 旁邊的 <kbd>開始</kbd>，大約 10 秒就會顯示下載和上傳的速度。": {
+  "en": "When things feel slow, go to “Connection check” at the bottom of the page and tap <kbd>Start</kbd> next to <b>Speed test</b>; after about 10 seconds you see the download and upload speed.",
+  "zh-CN": "觉得很慢的时候，到网页最下面的“连接检查”，按 <b>网速测试</b> 旁边的 <kbd>开始</kbd>，大约 10 秒就会显示下载和上传的速度。",
+  "ja": "遅いと感じたら、ページいちばん下の「接続チェック」で <b>速度テスト</b> の横の <kbd>開始</kbd> を押すと、約 10 秒でダウンロードとアップロードの速度が出ます。",
+  "ko": "느리다고 느껴지면 페이지 맨 아래 '연결 확인'에서 <b>속도 측정</b> 옆 <kbd>시작</kbd>을 누르세요. 약 10초 뒤 다운로드와 업로드 속도가 나와요.",
+  "es": "Si va lento, ve a «Comprobar conexión» al final de la página y toca <kbd>Inicio</kbd> junto a <b>Prueba de velocidad</b>; en unos 10 segundos verás la velocidad de bajada y subida."
+ },
+ "<b>20 Mbps 以上</b>：很快，看影片沒問題": {
+  "en": "<b>20 Mbps or more</b>: fast, fine for video",
+  "zh-CN": "<b>20 Mbps 以上</b>：很快，看视频没问题",
+  "ja": "<b>20 Mbps 以上</b>：高速、動画も問題なし",
+  "ko": "<b>20Mbps 이상</b>: 빠름, 동영상도 문제없음",
+  "es": "<b>20 Mbps o más</b>: rápido, vale para vídeo"
+ },
+ "<b>5～20 Mbps</b>：一般使用沒問題": {
+  "en": "<b>5–20 Mbps</b>: fine for everyday use",
+  "zh-CN": "<b>5～20 Mbps</b>：一般使用没问题",
+  "ja": "<b>5〜20 Mbps</b>：ふだん使いには問題なし",
+  "ko": "<b>5~20Mbps</b>: 일반 사용에 문제없음",
+  "es": "<b>5–20 Mbps</b>: bien para el uso diario"
+ },
+ "<b>5 Mbps 以下</b>：比較慢，可以換個地方或換 Wi-Fi 試試": {
+  "en": "<b>Under 5 Mbps</b>: slow; try another spot or another Wi-Fi",
+  "zh-CN": "<b>5 Mbps 以下</b>：比较慢，可以换个地方或换 Wi-Fi 试试",
+  "ja": "<b>5 Mbps 未満</b>：遅め。場所や Wi-Fi を変えてみてください",
+  "ko": "<b>5Mbps 미만</b>: 느린 편, 장소나 Wi-Fi를 바꿔 보세요",
+  "es": "<b>Menos de 5 Mbps</b>: lento; prueba en otro sitio u otra Wi-Fi"
+ },
+ "每測一次大約用掉 15 MB 的網路流量，用行動網路的話不要一直測。": {
+  "en": "Each test uses about 15 MB of data, so don't keep testing on mobile data.",
+  "zh-CN": "每测一次大约用掉 15 MB 的流量，用移动网络的话不要一直测。",
+  "ja": "1 回の測定で約 15 MB 使うので、モバイル通信では何度も測らないでください。",
+  "ko": "한 번 측정에 약 15MB를 쓰니 모바일 데이터로는 너무 자주 하지 마세요.",
+  "es": "Cada prueba usa unos 15 MB, así que no la repitas mucho con datos móviles."
+ },
+ "9. 看家裡 Mac 的狀況 <span class=\"tag pill free\">有控制台權限的人</span>": {
+  "en": "9. Check on the Mac at home <span class=\"tag pill free\">Control panel users</span>",
+  "zh-CN": "9. 看家里 Mac 的状况 <span class=\"tag pill free\">有控制台权限的人</span>",
+  "ja": "9. 家の Mac の様子を見る <span class=\"tag pill free\">パネル権限がある人</span>",
+  "ko": "9. 집 Mac 상태 보기 <span class=\"tag pill free\">제어판 권한이 있는 사람</span>",
+  "es": "9. Mira cómo está el Mac de casa <span class=\"tag pill free\">Con acceso al panel</span>"
+ },
+ "家裡的網路、雲端都是靠一台 Mac 在跑。如果管理員有開「控制台」給你，就可以看到這台 Mac 現在忙不忙、熱不熱、電池好不好。<b>這一頁只能看，不會改到任何設定</b>，放心點。": {
+  "en": "The home network and cloud run on one Mac. If the admin gave you the “control panel”, you can see how busy and how hot it is and how its battery is doing. <b>This page is view-only and changes no settings</b>, so don't worry.",
+  "zh-CN": "家里的网络、云盘都是靠一台 Mac 在运行。如果管理员有开“控制台”给你，就可以看到这台 Mac 现在忙不忙、热不热、电池好不好。<b>这一页只能看，不会改到任何设置</b>，放心看。",
+  "ja": "家のネットワークとクラウドは 1 台の Mac で動いています。管理者が「コントロールパネル」を許可していれば、この Mac がどれくらい忙しいか、熱くないか、バッテリーの具合はどうかを見られます。<b>このページは見るだけで、設定は何も変わりません</b>。安心してください。",
+  "ko": "집 네트워크와 클라우드는 Mac 한 대로 돌아가요. 관리자가 '제어판'을 열어 줬다면 이 Mac이 얼마나 바쁜지, 뜨겁지 않은지, 배터리는 어떤지 볼 수 있어요. <b>이 페이지는 보기만 하고 설정은 바뀌지 않으니</b> 안심하세요.",
+  "es": "La red y la nube de casa funcionan con un Mac. Si el administrador te dio el «panel de control», puedes ver lo ocupado y caliente que está y cómo va su batería. <b>Esta página es solo para mirar y no cambia ningún ajuste</b>, tranquilo."
+ },
+ "打開「Mac」頁面": {
+  "en": "Open the “Mac” page",
+  "zh-CN": "打开“Mac”页面",
+  "ja": "「Mac」ページを開く",
+  "ko": "'Mac' 페이지 열기",
+  "es": "Abre la página «Mac»"
+ },
+ "打開控制台（要先開 Tailscale）": {
+  "en": "Open the control panel (turn on Tailscale first)",
+  "zh-CN": "打开控制台（要先开 Tailscale）",
+  "ja": "コントロールパネルを開く（先に Tailscale をオン）",
+  "ko": "제어판 열기(먼저 Tailscale 켜기)",
+  "es": "Abre el panel de control (activa Tailscale antes)"
+ },
+ "按下面的 <kbd>設定</kbd>，再按上面的 <kbd>Mac</kbd>": {
+  "en": "Tap <kbd>Settings</kbd> at the bottom, then <kbd>Mac</kbd> at the top",
+  "zh-CN": "按下面的 <kbd>设置</kbd>，再按上面的 <kbd>Mac</kbd>",
+  "ja": "下の <kbd>設定</kbd> を押し、上の <kbd>Mac</kbd> を押す",
+  "ko": "아래 <kbd>설정</kbd>을 누르고 위의 <kbd>Mac</kbd>을 누르기",
+  "es": "Toca <kbd>Ajustes</kbd> abajo y luego <kbd>Mac</kbd> arriba"
+ },
+ "或是在控制台首頁，直接點 <b>CPU</b> 或 <b>記憶體</b> 那兩個圓圈，也會跳到這一頁。": {
+  "en": "Or on the control panel's home page, tap the <b>CPU</b> or <b>Memory</b> ring to jump straight here.",
+  "zh-CN": "或是在控制台首页，直接点 <b>CPU</b> 或 <b>内存</b> 那两个圆圈，也会跳到这一页。",
+  "ja": "またはパネルのホームで <b>CPU</b> か <b>メモリ</b> の丸をタップしても、このページに移動します。",
+  "ko": "또는 제어판 홈에서 <b>CPU</b>나 <b>메모리</b> 원을 눌러도 이 페이지로 와요.",
+  "es": "O en el inicio del panel, toca el círculo de <b>CPU</b> o <b>Memoria</b> para venir aquí directamente."
+ },
+ "首頁點這兩個圓圈就能看詳細": {
+  "en": "Tap these two rings on the home page for details",
+  "zh-CN": "首页点这两个圆圈就能看详细",
+  "ja": "ホームでこの 2 つの丸をタップすると詳細へ",
+  "ko": "홈에서 이 두 원을 누르면 자세히 볼 수 있어요",
+  "es": "Toca estos dos círculos del inicio para ver detalles"
+ },
+ "最上面：一眼看懂現在的狀況": {
+  "en": "At the top: the current state at a glance",
+  "zh-CN": "最上面：一眼看懂现在的状况",
+  "ja": "いちばん上：今の状態がひと目でわかる",
+  "ko": "맨 위: 지금 상태를 한눈에",
+  "es": "Arriba: el estado actual de un vistazo"
+ },
+ "<b>CPU</b>：電腦現在有多忙。平常 20% 以下，偶爾衝高沒關係": {
+  "en": "<b>CPU</b>: how busy the computer is. Usually under 20%; brief spikes are fine",
+  "zh-CN": "<b>CPU</b>：电脑现在有多忙。平常 20% 以下，偶尔冲高没关系",
+  "ja": "<b>CPU</b>：今どれくらい忙しいか。ふだんは 20% 以下、たまに上がっても大丈夫",
+  "ko": "<b>CPU</b>: 컴퓨터가 얼마나 바쁜지. 평소 20% 이하, 가끔 올라가도 괜찮아요",
+  "es": "<b>CPU</b>: lo ocupado que está. Normalmente menos del 20%; los picos breves no importan"
+ },
+ "<b>記憶體壓力</b>：綠色「正常」就好；橘色「偏高」代表程式開太多，電腦會變慢": {
+  "en": "<b>Memory pressure</b>: green “Normal” is good; orange “High” means too many apps are open and the computer slows down",
+  "zh-CN": "<b>内存压力</b>：绿色“正常”就好；橙色“偏高”代表程序开太多，电脑会变慢",
+  "ja": "<b>メモリプレッシャー</b>：緑の「正常」なら OK。オレンジの「高め」はアプリの開きすぎで遅くなります",
+  "ko": "<b>메모리 압박</b>: 초록 '정상'이면 좋아요. 주황 '높음'은 앱을 너무 많이 열어 느려진다는 뜻이에요",
+  "es": "<b>Presión de memoria</b>: «Normal» en verde está bien; «Alta» en naranja significa demasiadas apps abiertas y el ordenador va más lento"
+ },
+ "<b>下載／上傳速度</b>：家裡這台 Mac 現在正在傳多少資料": {
+  "en": "<b>Download / upload speed</b>: how much data the Mac at home is moving right now",
+  "zh-CN": "<b>下载／上传速度</b>：家里这台 Mac 现在正在传多少数据",
+  "ja": "<b>ダウンロード／アップロード速度</b>：家の Mac が今どれだけデータを送受信しているか",
+  "ko": "<b>다운로드/업로드 속도</b>: 집 Mac이 지금 주고받는 데이터 양",
+  "es": "<b>Velocidad de bajada / subida</b>: cuántos datos mueve ahora el Mac de casa"
+ },
+ "<b>散熱</b>：綠色「正常」；如果出現紅色「過熱降速」，代表太熱了，電腦會自己放慢": {
+  "en": "<b>Cooling</b>: green “Normal”; a red “Throttled from heat” means it's too hot and slows itself down",
+  "zh-CN": "<b>散热</b>：绿色“正常”；如果出现红色“过热降速”，代表太热了，电脑会自己放慢",
+  "ja": "<b>冷却</b>：緑の「正常」。赤の「高温で速度低下」は熱すぎて自動で遅くなっている状態です",
+  "ko": "<b>발열</b>: 초록 '정상'. 빨간 '과열로 속도 저하'는 너무 뜨거워서 스스로 느려진 상태예요",
+  "es": "<b>Temperatura</b>: «Normal» en verde; «Limitado por calor» en rojo significa que está demasiado caliente y se frena solo"
+ },
+ "這一頁每 5 秒會自己更新，不用一直按重新整理。": {
+  "en": "This page refreshes itself every 5 seconds; no need to keep reloading.",
+  "zh-CN": "这一页每 5 秒会自己更新，不用一直刷新。",
+  "ja": "このページは 5 秒ごとに自動更新されます。再読み込みは不要です。",
+  "ko": "이 페이지는 5초마다 스스로 새로 고쳐져요. 계속 새로 고칠 필요 없어요.",
+  "es": "Esta página se actualiza sola cada 5 segundos; no hace falta recargarla."
+ },
+ "趨勢圖：看過去 24 小時": {
+  "en": "Trends: the last 24 hours",
+  "zh-CN": "趋势图：看过去 24 小时",
+  "ja": "推移グラフ：直近 24 時間",
+  "ko": "추세 그래프: 지난 24시간",
+  "es": "Tendencias: las últimas 24 horas"
+ },
+ "可以選看最近 <b>1 小時</b>、<b>6 小時</b> 或 <b>24 小時</b>。<b>用手指點一下圖</b>，就會顯示那個時間的數字；點圖以外的地方就收起來。": {
+  "en": "Choose the last <b>1 hour</b>, <b>6 hours</b> or <b>24 hours</b>. <b>Tap the chart with a finger</b> to see the numbers at that time; tap outside the chart to hide them.",
+  "zh-CN": "可以选看最近 <b>1 小时</b>、<b>6 小时</b> 或 <b>24 小时</b>。<b>用手指点一下图</b>，就会显示那个时间的数字；点图以外的地方就收起来。",
+  "ja": "直近 <b>1 時間</b>・<b>6 時間</b>・<b>24 時間</b> から選べます。<b>グラフを指でタップ</b>するとその時刻の数値が出て、グラフの外をタップすると消えます。",
+  "ko": "최근 <b>1시간</b>, <b>6시간</b>, <b>24시간</b> 중에서 골라요. <b>그래프를 손가락으로 누르면</b> 그 시각의 숫자가 나오고, 바깥을 누르면 사라져요.",
+  "es": "Elige la última <b>1 hora</b>, <b>6 horas</b> o <b>24 horas</b>. <b>Toca la gráfica con el dedo</b> para ver los valores de ese momento; toca fuera para ocultarlos."
+ },
+ "點圖上任何一點，就會看到那個時間的數值": {
+  "en": "Tap any point on the chart to see the values at that time",
+  "zh-CN": "点图上任何一点，就会看到那个时间的数值",
+  "ja": "グラフのどこかをタップすると、その時刻の数値が見られます",
+  "ko": "그래프 아무 곳이나 누르면 그 시각의 값이 보여요",
+  "es": "Toca cualquier punto de la gráfica para ver los valores de ese momento"
+ },
+ "不習慣看圖的話，按最下面的 <kbd>表格檢視</kbd>，會用表格列出每個時間的數字。": {
+  "en": "Not a fan of charts? Tap <kbd>Table view</kbd> at the bottom to list the numbers for each time.",
+  "zh-CN": "不习惯看图的话，按最下面的 <kbd>表格视图</kbd>，会用表格列出每个时间的数字。",
+  "ja": "グラフが苦手なら、いちばん下の <kbd>表で表示</kbd> で時刻ごとの数値を表にできます。",
+  "ko": "그래프가 불편하면 맨 아래 <kbd>표로 보기</kbd>로 시각별 숫자를 표로 볼 수 있어요.",
+  "es": "¿No te gustan las gráficas? Toca <kbd>Vista de tabla</kbd> abajo para ver los números de cada momento."
+ },
+ "電池": {
+  "en": "Battery",
+  "zh-CN": "电池",
+  "ja": "バッテリー",
+  "ko": "배터리",
+  "es": "Batería"
+ },
+ "<b>電池健康度</b>：電池現在能充到新電池的幾 %。<b>80% 以上都很正常</b>，低於 80% 才需要考慮換電池": {
+  "en": "<b>Battery health</b>: how full the battery charges compared to a new one. <b>80% or more is normal</b>; only below 80% should you think about replacing it",
+  "zh-CN": "<b>电池健康度</b>：电池现在能充到新电池的百分之几。<b>80% 以上都很正常</b>，低于 80% 才需要考虑换电池",
+  "ja": "<b>バッテリーの状態</b>：新品と比べて何 % まで充電できるか。<b>80% 以上なら正常</b>、80% を下回ったら交換を検討",
+  "ko": "<b>배터리 성능</b>: 새 배터리 대비 몇 %까지 충전되는지. <b>80% 이상이면 정상</b>이고 80% 미만일 때만 교체를 고려하세요",
+  "es": "<b>Salud de la batería</b>: cuánto carga comparada con una nueva. <b>80% o más es normal</b>; solo por debajo del 80% conviene pensar en cambiarla"
+ },
+ "<b>充電循環</b>：電池用了幾輪。MacBook 設計可以用 1000 次": {
+  "en": "<b>Charge cycles</b>: how many rounds the battery has done. MacBooks are designed for 1000",
+  "zh-CN": "<b>充电循环</b>：电池用了几轮。MacBook 设计可以用 1000 次",
+  "ja": "<b>充放電回数</b>：バッテリーを何回分使ったか。MacBook は 1000 回を想定",
+  "ko": "<b>충전 횟수</b>: 배터리를 몇 바퀴 썼는지. MacBook은 1000회 기준이에요",
+  "es": "<b>Ciclos de carga</b>: cuántas vueltas ha dado la batería. Los MacBook están diseñados para 1000"
+ },
+ "<b>電池溫度</b>：30 幾度很正常；超過 40 度會變橘色提醒": {
+  "en": "<b>Battery temperature</b>: the 30s °C are normal; above 40 °C it turns orange as a warning",
+  "zh-CN": "<b>电池温度</b>：30 几度很正常；超过 40 度会变橙色提醒",
+  "ja": "<b>バッテリー温度</b>：30 度台は正常。40 度を超えるとオレンジで注意",
+  "ko": "<b>배터리 온도</b>: 30도대는 정상, 40도를 넘으면 주황색으로 알려 줘요",
+  "es": "<b>Temperatura de la batería</b>: entre 30 y 40 °C es normal; por encima de 40 °C se pone naranja como aviso"
+ },
+ "記憶體：為什麼電腦變慢": {
+  "en": "Memory: why the computer gets slow",
+  "zh-CN": "内存：为什么电脑变慢",
+  "ja": "メモリ：パソコンが遅くなる理由",
+  "ko": "메모리: 컴퓨터가 느려지는 이유",
+  "es": "Memoria: por qué va lento el ordenador"
+ },
+ "長條分成幾種顏色，每一種旁邊都有說明和用量": {
+  "en": "The bar has several colors, each with a note and its usage beside it",
+  "zh-CN": "长条分成几种颜色，每一种旁边都有说明和用量",
+  "ja": "バーは色分けされ、それぞれの横に説明と使用量があります",
+  "ko": "막대가 여러 색으로 나뉘고, 각각 옆에 설명과 사용량이 있어요",
+  "es": "La barra tiene varios colores, cada uno con su explicación y su uso al lado"
+ },
+ "<b>快取</b>不用擔心，需要時會自動讓出來": {
+  "en": "<b>Cache</b> is nothing to worry about; it's freed automatically when needed",
+  "zh-CN": "<b>缓存</b>不用担心，需要时会自动让出来",
+  "ja": "<b>キャッシュ</b>は心配いりません。必要なら自動で空きます",
+  "ko": "<b>캐시</b>는 걱정 안 해도 돼요. 필요하면 자동으로 비워져요",
+  "es": "La <b>caché</b> no es problema; se libera sola cuando hace falta"
+ },
+ "<b>壓縮</b>和<b>交換空間（swap）</b>很多，代表記憶體不夠，電腦會變慢、變熱": {
+  "en": "Lots of <b>compressed</b> memory and <b>swap</b> means memory is short; the computer gets slow and hot",
+  "zh-CN": "<b>压缩</b>和<b>交换空间（swap）</b>很多，代表内存不够，电脑会变慢、变热",
+  "ja": "<b>圧縮</b>や<b>スワップ</b>が多いとメモリ不足で、遅く熱くなります",
+  "ko": "<b>압축</b>과 <b>스왑</b>이 많으면 메모리가 부족해서 느려지고 뜨거워져요",
+  "es": "Mucha memoria <b>comprimida</b> y <b>swap</b> significa que falta memoria; el ordenador va lento y se calienta"
+ },
+ "最耗資源的程式": {
+  "en": "Heaviest apps",
+  "zh-CN": "最耗资源的程序",
+  "ja": "リソースを多く使うアプリ",
+  "ko": "자원을 가장 많이 쓰는 앱",
+  "es": "Apps que más consumen"
+ },
+ "可以切換 <kbd>依 CPU</kbd> 或 <kbd>依記憶體</kbd> 排序。同一個程式開了很多個（例如瀏覽器的每個分頁），會合併成一行，後面標 <b>×數量</b>。": {
+  "en": "Switch between sorting <kbd>By CPU</kbd> or <kbd>By memory</kbd>. Many copies of the same app (e.g. each browser tab) are combined into one row marked <b>×count</b>.",
+  "zh-CN": "可以切换 <kbd>按 CPU</kbd> 或 <kbd>按内存</kbd> 排序。同一个程序开了很多个（例如浏览器的每个标签页），会合并成一行，后面标 <b>×数量</b>。",
+  "ja": "<kbd>CPU 順</kbd> と <kbd>メモリ順</kbd> を切り替えられます。同じアプリが複数（ブラウザのタブなど）あると 1 行にまとめ、<b>×数</b> を表示します。",
+  "ko": "<kbd>CPU순</kbd>과 <kbd>메모리순</kbd>으로 바꿀 수 있어요. 같은 앱이 여러 개(브라우저 탭 등)면 한 줄로 합쳐 <b>×개수</b>를 붙여요.",
+  "es": "Cambia entre ordenar <kbd>Por CPU</kbd> o <kbd>Por memoria</kbd>. Varias copias de la misma app (p. ej. cada pestaña del navegador) se juntan en una fila con <b>×cantidad</b>."
+ },
+ "<b>覺得家裡網路或雲端變慢？</b>先看這一頁：如果「記憶體壓力」是橘色，或某個程式佔很多，告訴管理員，請他關掉一些程式或重開機一次。": {
+  "en": "<b>Home network or cloud feeling slow?</b>Check this page first: if “Memory pressure” is orange, or one app uses a lot, tell the admin so they can close some apps or restart the Mac.",
+  "zh-CN": "<b>觉得家里网络或云盘变慢？</b>先看这一页：如果“内存压力”是橙色，或某个程序占很多，告诉管理员，请他关掉一些程序或重启一次。",
+  "ja": "<b>家のネットやクラウドが遅い？</b>まずこのページを確認：「メモリプレッシャー」がオレンジ、または特定のアプリが多く使っていたら、管理者に伝えてアプリを閉じるか再起動してもらいましょう。",
+  "ko": "<b>집 네트워크나 클라우드가 느린가요?</b> 먼저 이 페이지를 보세요. '메모리 압박'이 주황이거나 어떤 앱이 많이 쓰고 있으면 관리자에게 알려 앱을 닫거나 다시 시작해 달라고 하세요.",
+  "es": "<b>¿La red o la nube van lentas?</b>Mira primero esta página: si «Presión de memoria» está en naranja o una app usa mucho, díselo al administrador para que cierre apps o reinicie el Mac."
+ },
+ "10. 用手機遙控 Windows 電腦 <span class=\"tag pill paid\">管理員</span>": {
+  "en": "10. Control a Windows PC from your phone <span class=\"tag pill paid\">Admin</span>",
+  "zh-CN": "10. 用手机遥控 Windows 电脑 <span class=\"tag pill paid\">管理员</span>",
+  "ja": "10. スマホで Windows PC を操作 <span class=\"tag pill paid\">管理者</span>",
+  "ko": "10. 휴대폰으로 Windows PC 조작 <span class=\"tag pill paid\">관리자</span>",
+  "es": "10. Controla un PC con Windows desde el móvil <span class=\"tag pill paid\">Administrador</span>"
+ },
+ "家裡有 Windows 電腦的話，可以像遙控 Mac 一樣，用手機控制它：看它在不在用、切歌、調音量、跳通知給正在用電腦的人、鎖定、關機。<b>只有管理員（控制台擁有者）看得到這個功能。</b>": {
+  "en": "If there's a Windows PC at home, you can control it from your phone just like the Mac: see whether it's in use, skip songs, change the volume, pop up a notice for whoever is using it, lock it, shut it down. <b>Only the admin (the control panel owner) sees this feature.</b>",
+  "zh-CN": "家里有 Windows 电脑的话，可以像遥控 Mac 一样，用手机控制它：看它在不在用、切歌、调音量、弹通知给正在用电脑的人、锁定、关机。<b>只有管理员（控制台拥有者）看得到这个功能。</b>",
+  "ja": "家に Windows PC があれば、Mac と同じようにスマホから操作できます：使用中か確認、曲送り、音量調整、使っている人への通知、ロック、シャットダウン。<b>この機能は管理者（パネルの所有者）だけが使えます。</b>",
+  "ko": "집에 Windows PC가 있으면 Mac처럼 휴대폰으로 조작할 수 있어요: 사용 중인지 보기, 다음 곡, 볼륨 조절, 쓰는 사람에게 알림 띄우기, 잠금, 종료. <b>이 기능은 관리자(제어판 소유자)만 볼 수 있어요.</b>",
+  "es": "Si hay un PC con Windows en casa, puedes controlarlo desde el móvil igual que el Mac: ver si se usa, cambiar de canción, subir el volumen, mostrar un aviso a quien lo usa, bloquearlo, apagarlo. <b>Solo el administrador (propietario del panel) ve esta función.</b>"
+ },
+ "Windows 先裝好 Tailscale": {
+  "en": "Install Tailscale on Windows first",
+  "zh-CN": "Windows 先装好 Tailscale",
+  "ja": "まず Windows に Tailscale を入れる",
+  "ko": "먼저 Windows에 Tailscale 설치",
+  "es": "Instala primero Tailscale en Windows"
+ },
+ "在 Windows 上到 <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a> 下載安裝": {
+  "en": "On Windows, download and install it from <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a>",
+  "zh-CN": "在 Windows 上到 <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a> 下载安装",
+  "ja": "Windows で <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a> からダウンロードしてインストール",
+  "ko": "Windows에서 <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a>에서 받아 설치",
+  "es": "En Windows, descárgalo e instálalo desde <a href=\"https://tailscale.com/download/windows\" target=\"_blank\" rel=\"noopener\">tailscale.com/download</a>"
+ },
+ "登入<b>跟你手機一樣的帳號</b>（很重要，不同帳號會連不上）": {
+  "en": "Sign in with <b>the same account as your phone</b> (important: a different account won't connect)",
+  "zh-CN": "登录<b>跟你手机一样的账号</b>（很重要，不同账号会连不上）",
+  "ja": "<b>スマホと同じアカウント</b>でログイン（重要：違うアカウントだとつながりません）",
+  "ko": "<b>휴대폰과 같은 계정</b>으로 로그인(중요: 다른 계정이면 연결되지 않아요)",
+  "es": "Inicia sesión con <b>la misma cuenta que en el móvil</b> (importante: con otra cuenta no conectará)"
+ },
+ "右下角的 Tailscale 圖示要是<b>已連線</b>": {
+  "en": "The Tailscale icon at the bottom right must show <b>Connected</b>",
+  "zh-CN": "右下角的 Tailscale 图标要是<b>已连接</b>",
+  "ja": "右下の Tailscale アイコンが<b>接続済み</b>になっていること",
+  "ko": "오른쪽 아래 Tailscale 아이콘이 <b>연결됨</b>이어야 해요",
+  "es": "El icono de Tailscale abajo a la derecha debe mostrar <b>Conectado</b>"
+ },
+ "在手機產生安裝指令": {
+  "en": "Make the install command on your phone",
+  "zh-CN": "在手机生成安装命令",
+  "ja": "スマホでインストールコマンドを作る",
+  "ko": "휴대폰에서 설치 명령 만들기",
+  "es": "Genera el comando de instalación en el móvil"
+ },
+ "打開控制台，按下面的 <kbd>遙控</kbd>": {
+  "en": "Open the control panel and tap <kbd>Remote</kbd> at the bottom",
+  "zh-CN": "打开控制台，按下面的 <kbd>遥控</kbd>",
+  "ja": "コントロールパネルを開き、下の <kbd>リモート</kbd> を押す",
+  "ko": "제어판을 열고 아래 <kbd>원격</kbd>을 누르기",
+  "es": "Abre el panel y toca <kbd>Remoto</kbd> abajo"
+ },
+ "按最上面的 <kbd>＋ Windows</kbd>，再按 <kbd>產生安裝指令</kbd>": {
+  "en": "Tap <kbd>＋ Windows</kbd> at the top, then <kbd>Make install command</kbd>",
+  "zh-CN": "按最上面的 <kbd>＋ Windows</kbd>，再按 <kbd>生成安装命令</kbd>",
+  "ja": "上の <kbd>＋ Windows</kbd> を押し、<kbd>インストールコマンドを作成</kbd> を押す",
+  "ko": "맨 위 <kbd>＋ Windows</kbd>를 누르고 <kbd>설치 명령 만들기</kbd>를 누르기",
+  "es": "Toca <kbd>＋ Windows</kbd> arriba y luego <kbd>Generar comando de instalación</kbd>"
+ },
+ "按 <kbd>複製指令</kbd>，用 LINE 或 email 傳到 Windows 電腦上": {
+  "en": "Tap <kbd>Copy command</kbd> and send it to the Windows PC over LINE or email",
+  "zh-CN": "按 <kbd>复制命令</kbd>，用 LINE 或 email 发到 Windows 电脑上",
+  "ja": "<kbd>コマンドをコピー</kbd> を押し、LINE やメールで Windows PC に送る",
+  "ko": "<kbd>명령 복사</kbd>를 누르고 LINE이나 이메일로 Windows PC에 보내기",
+  "es": "Toca <kbd>Copiar comando</kbd> y envíalo al PC por LINE o email"
+ },
+ "指令只能用一次，15 分鐘內有效；過期就按「重新產生」": {
+  "en": "The command works once and is valid for 15 minutes; if it expires, tap “Make a new one”",
+  "zh-CN": "命令只能用一次，15 分钟内有效；过期就按“重新生成”",
+  "ja": "コマンドは 1 回限り、15 分間有効。期限切れなら「作り直す」",
+  "ko": "명령은 한 번만, 15분 동안 유효해요. 만료되면 '다시 만들기'",
+  "es": "El comando sirve una vez y vale 15 minutos; si caduca, toca «Generar otro»"
+ },
+ "在 Windows 貼上指令": {
+  "en": "Paste the command on Windows",
+  "zh-CN": "在 Windows 粘贴命令",
+  "ja": "Windows でコマンドを貼り付け",
+  "ko": "Windows에서 명령 붙여넣기",
+  "es": "Pega el comando en Windows"
+ },
+ "按鍵盤的 <kbd>⊞ Windows</kbd> 鍵（或左下角的開始），輸入 <b>PowerShell</b>，按 Enter 打開": {
+  "en": "Press the <kbd>⊞ Windows</kbd> key (or Start at the bottom left), type <b>PowerShell</b> and press Enter to open it",
+  "zh-CN": "按键盘的 <kbd>⊞ Windows</kbd> 键（或左下角的开始），输入 <b>PowerShell</b>，按 Enter 打开",
+  "ja": "キーボードの <kbd>⊞ Windows</kbd> キー（または左下のスタート）を押し、<b>PowerShell</b> と入力して Enter で開く",
+  "ko": "키보드의 <kbd>⊞ Windows</kbd> 키(또는 왼쪽 아래 시작)를 누르고 <b>PowerShell</b>을 입력해 Enter로 열기",
+  "es": "Pulsa la tecla <kbd>⊞ Windows</kbd> (o Inicio abajo a la izquierda), escribe <b>PowerShell</b> y pulsa Intro para abrirlo"
+ },
+ "在藍色或黑色的視窗裡<b>按右鍵</b>（或 <kbd>Ctrl</kbd>+<kbd>V</kbd>）貼上指令，按 <kbd>Enter</kbd>": {
+  "en": "In the blue or black window, <b>right-click</b> (or <kbd>Ctrl</kbd>+<kbd>V</kbd>) to paste the command, then press <kbd>Enter</kbd>",
+  "zh-CN": "在蓝色或黑色的窗口里<b>按右键</b>（或 <kbd>Ctrl</kbd>+<kbd>V</kbd>）粘贴命令，按 <kbd>Enter</kbd>",
+  "ja": "青か黒のウィンドウで<b>右クリック</b>（または <kbd>Ctrl</kbd>+<kbd>V</kbd>）して貼り付け、<kbd>Enter</kbd>",
+  "ko": "파란색이나 검은색 창에서 <b>오른쪽 클릭</b>(또는 <kbd>Ctrl</kbd>+<kbd>V</kbd>)으로 붙여넣고 <kbd>Enter</kbd>",
+  "es": "En la ventana azul o negra, <b>haz clic derecho</b> (o <kbd>Ctrl</kbd>+<kbd>V</kbd>) para pegar el comando y pulsa <kbd>Enter</kbd>"
+ },
+ "看到綠色的 <b>「完成！」</b> 就好了，可以把視窗關掉": {
+  "en": "When you see a green <b>“Done!”</b>, you're finished and can close the window",
+  "zh-CN": "看到绿色的 <b>“完成！”</b> 就好了，可以把窗口关掉",
+  "ja": "緑の <b>「完了！」</b> が出たら終わり。ウィンドウを閉じて OK",
+  "ko": "초록색 <b>'완료!'</b>가 보이면 끝이에요. 창을 닫아도 돼요",
+  "es": "Cuando veas un <b>«¡Listo!»</b> en verde, ya está y puedes cerrar la ventana"
+ },
+ "<b>不用系統管理員權限</b>，也不用改防火牆。之後每次開機登入都會自動在背景執行，不會跳出任何視窗。": {
+  "en": "<b>No admin rights needed</b>, and no firewall changes. From then on it starts in the background every time you sign in, without any window.",
+  "zh-CN": "<b>不用系统管理员权限</b>，也不用改防火墙。之后每次开机登录都会自动在后台运行，不会弹出任何窗口。",
+  "ja": "<b>管理者権限は不要</b>、ファイアウォールの変更もいりません。以後はサインインのたびにウィンドウなしでバックグラウンド起動します。",
+  "ko": "<b>관리자 권한이 필요 없고</b> 방화벽도 바꿀 필요 없어요. 앞으로 로그인할 때마다 창 없이 백그라운드에서 실행돼요.",
+  "es": "<b>Sin permisos de administrador</b> y sin tocar el cortafuegos. A partir de ahí arranca en segundo plano cada vez que inicias sesión, sin ventanas."
+ },
+ "裝好之後，手機上的頁面會<b>自動切到這台電腦</b>。電腦名稱太長的話，可以在最下面的「管理」改成好認的名字，例如「客廳電腦」。": {
+  "en": "Once installed, the page on your phone <b>switches to that PC by itself</b>. If the PC name is long, change it to something easy under “Manage” at the bottom, e.g. “Living room PC”.",
+  "zh-CN": "装好之后，手机上的页面会<b>自动切到这台电脑</b>。电脑名称太长的话，可以在最下面的“管理”改成好认的名字，例如“客厅电脑”。",
+  "ja": "インストールが終わると、スマホのページは<b>自動でその PC に切り替わります</b>。名前が長ければ、いちばん下の「管理」でわかりやすい名前（例：「リビングの PC」）に変えられます。",
+  "ko": "설치가 끝나면 휴대폰 페이지가 <b>그 PC로 자동 전환</b>돼요. 이름이 길면 맨 아래 '관리'에서 알아보기 쉬운 이름(예: '거실 PC')으로 바꾸세요.",
+  "es": "Una vez instalado, la página del móvil <b>cambia sola a ese PC</b>. Si el nombre es largo, cámbialo en «Gestionar» abajo por algo fácil, p. ej. «PC del salón»."
+ },
+ "看狀態、控制音樂": {
+  "en": "See its status and control music",
+  "zh-CN": "看状态、控制音乐",
+  "ja": "状態を見て音楽を操作",
+  "ko": "상태 보기, 음악 조작",
+  "es": "Mira su estado y controla la música"
+ },
+ "上面的按鈕可以在 <b>Mac</b> 和每一台 Windows 之間切換。名字旁邊是<b>綠點</b>代表電腦開著、連得到。": {
+  "en": "The buttons at the top switch between the <b>Mac</b> and each Windows PC. A <b>green dot</b> next to the name means the PC is on and reachable.",
+  "zh-CN": "上面的按钮可以在 <b>Mac</b> 和每一台 Windows 之间切换。名字旁边是<b>绿点</b>代表电脑开着、连得到。",
+  "ja": "上のボタンで <b>Mac</b> と各 Windows PC を切り替えます。名前の横の<b>緑の点</b>は電源が入っていてつながる状態です。",
+  "ko": "위 버튼으로 <b>Mac</b>과 각 Windows PC를 바꿔요. 이름 옆 <b>초록 점</b>은 켜져 있고 연결된다는 뜻이에요.",
+  "es": "Los botones de arriba cambian entre el <b>Mac</b> y cada PC con Windows. Un <b>punto verde</b> junto al nombre significa que está encendido y accesible."
+ },
+ "<b>在線・使用中／閒置／已鎖定</b>：可以知道現在有沒有人在用這台電腦": {
+  "en": "<b>Online · in use / idle / locked</b>: tells you whether someone is using the PC right now",
+  "zh-CN": "<b>在线・使用中／闲置／已锁定</b>：可以知道现在有没有人在用这台电脑",
+  "ja": "<b>オンライン・使用中／操作なし／ロック中</b>：今だれかが使っているかわかります",
+  "ko": "<b>온라인・사용 중/유휴/잠김</b>: 지금 누가 쓰고 있는지 알 수 있어요",
+  "es": "<b>En línea · en uso / inactivo / bloqueado</b>: te dice si alguien lo está usando ahora"
+ },
+ "<b>音樂</b>：Spotify、瀏覽器裡的 YouTube 等都看得到正在播什麼，可以暫停、切歌、拉音量": {
+  "en": "<b>Music</b>: see what's playing in Spotify, YouTube in a browser and more; pause, skip songs, change the volume",
+  "zh-CN": "<b>音乐</b>：Spotify、浏览器里的 YouTube 等都看得到正在播什么，可以暂停、切歌、拉音量",
+  "ja": "<b>音楽</b>：Spotify やブラウザの YouTube などで再生中の曲がわかり、一時停止・曲送り・音量調整ができます",
+  "ko": "<b>음악</b>: Spotify, 브라우저의 YouTube 등에서 재생 중인 것을 보고 일시 정지, 곡 넘기기, 볼륨 조절을 할 수 있어요",
+  "es": "<b>Música</b>: ve qué suena en Spotify, YouTube en el navegador y más; pausa, cambia de canción y ajusta el volumen"
+ },
+ "螢幕和電源": {
+  "en": "Screen and power",
+  "zh-CN": "屏幕和电源",
+  "ja": "画面と電源",
+  "ko": "화면과 전원",
+  "es": "Pantalla y energía"
+ },
+ "<b>擷取畫面</b>：看電腦現在的畫面（電腦鎖定時看不到）": {
+  "en": "<b>Screenshot</b>: see what's on the PC's screen now (not while it's locked)",
+  "zh-CN": "<b>截取画面</b>：看电脑现在的画面（电脑锁定时看不到）",
+  "ja": "<b>画面キャプチャ</b>：PC の今の画面を見る（ロック中は見られません）",
+  "ko": "<b>화면 캡처</b>: PC의 지금 화면 보기(잠겨 있으면 안 보여요)",
+  "es": "<b>Captura</b>: mira lo que hay ahora en la pantalla (no si está bloqueado)"
+ },
+ "<b>睡眠、關機、重新開機</b>要<b>連按兩下</b>才會執行，避免不小心按到": {
+  "en": "<b>Sleep, shut down and restart</b> need <b>two taps</b>, so you don't trigger them by accident",
+  "zh-CN": "<b>睡眠、关机、重新启动</b>要<b>连按两下</b>才会执行，避免不小心按到",
+  "ja": "<b>スリープ・シャットダウン・再起動</b>は<b>2 回押す</b>と実行されます（誤操作防止）",
+  "ko": "<b>잠자기, 종료, 다시 시작</b>은 <b>두 번 눌러야</b> 실행돼요(실수 방지)",
+  "es": "<b>Reposo, apagar y reiniciar</b> necesitan <b>dos toques</b>, para no activarlos sin querer"
+ },
+ "關機和重開會<b>先等 1 分鐘</b>，電腦上會跳出提示；後悔了就按 <kbd>取消關機</kbd>": {
+  "en": "Shutdown and restart <b>wait 1 minute first</b> and show a notice on the PC; changed your mind? Tap <kbd>Cancel shutdown</kbd>",
+  "zh-CN": "关机和重启会<b>先等 1 分钟</b>，电脑上会弹出提示；后悔了就按 <kbd>取消关机</kbd>",
+  "ja": "シャットダウンと再起動は<b>1 分待ってから</b>実行し、PC に通知が出ます。やめたいときは <kbd>シャットダウンを取り消す</kbd>",
+  "ko": "종료와 다시 시작은 <b>1분 기다린 뒤</b> 실행되고 PC에 안내가 떠요. 마음이 바뀌면 <kbd>종료 취소</kbd>",
+  "es": "Apagar y reiniciar <b>esperan 1 minuto</b> y muestran un aviso en el PC; ¿cambiaste de idea? Toca <kbd>Cancelar apagado</kbd>"
+ },
+ "再往下還有：<b>跳出通知</b>和<b>念出來</b>（例如「吃飯了！」）、<b>剪貼簿同步</b>（手機和電腦互傳文字）、<b>在電腦上開網址</b>。": {
+  "en": "Further down: <b>pop up a notice</b> and <b>read aloud</b> (e.g. “Dinner's ready!”), <b>clipboard sync</b> (send text between phone and PC), and <b>open a web address on the PC</b>.",
+  "zh-CN": "再往下还有：<b>弹出通知</b>和<b>朗读</b>（例如“吃饭了！”）、<b>剪贴板同步</b>（手机和电脑互传文字）、<b>在电脑上打开网址</b>。",
+  "ja": "さらに下には：<b>通知を表示</b>と<b>読み上げ</b>（例：「ごはんだよ！」）、<b>クリップボード同期</b>（スマホと PC で文字をやり取り）、<b>PC でアドレスを開く</b>があります。",
+  "ko": "더 아래에는 <b>알림 띄우기</b>와 <b>소리 내어 읽기</b>(예: '밥 먹어!'), <b>클립보드 동기화</b>(휴대폰과 PC 간 글자 주고받기), <b>PC에서 주소 열기</b>가 있어요.",
+  "es": "Más abajo: <b>mostrar aviso</b> y <b>leer en voz alta</b> (p. ej. «¡A cenar!»), <b>sincronizar portapapeles</b> (pasar texto entre móvil y PC) y <b>abrir una dirección en el PC</b>."
+ },
+ "不想用了：移除": {
+  "en": "Done with it: remove",
+  "zh-CN": "不想用了：移除",
+  "ja": "使わなくなったら：削除",
+  "ko": "더 안 쓰면: 제거",
+  "es": "Si ya no lo quieres: quítalo"
+ },
+ "在那台電腦的頁面最下面按 <kbd>移除這台電腦</kbd>（要按兩下）。電腦開著的話，上面的程式會<b>自己刪掉</b>；電腦關著的話，下次開機連線時會自動刪掉。": {
+  "en": "At the bottom of that PC's page tap <kbd>Remove this PC</kbd> (two taps). If the PC is on, the app on it <b>deletes itself</b>; if it's off, it's removed next time it starts and connects.",
+  "zh-CN": "在那台电脑的页面最下面按 <kbd>移除这台电脑</kbd>（要按两下）。电脑开着的话，上面的程序会<b>自己删掉</b>；电脑关着的话，下次开机连接时会自动删掉。",
+  "ja": "その PC のページのいちばん下で <kbd>この PC を削除</kbd>（2 回押す）。PC の電源が入っていれば、アプリが<b>自分で削除</b>されます。切れていれば次に起動して接続したときに削除されます。",
+  "ko": "그 PC 페이지 맨 아래 <kbd>이 PC 제거</kbd>(두 번 누르기). PC가 켜져 있으면 프로그램이 <b>스스로 지워지고</b>, 꺼져 있으면 다음에 켜져 연결될 때 지워져요.",
+  "es": "Al final de la página de ese PC toca <kbd>Quitar este PC</kbd> (dos toques). Si el PC está encendido, la app <b>se borra sola</b>; si está apagado, se quita la próxima vez que arranque y se conecte."
+ },
+ "<b>安全說明</b>只有你的控制台能遙控，而且只透過 Tailscale；電腦上的程式只會做這一頁列出的事，不能執行其他程式。<b>每次有新電腦加入，你的手機都會收到通知</b>，不是你加的就馬上移除。": {
+  "en": "<b>About safety</b>Only your control panel can control it, and only through Tailscale; the app on the PC only does the things listed on this page and can't run other programs. <b>Your phone gets a notification whenever a new PC is added</b>; if you didn't add it, remove it right away.",
+  "zh-CN": "<b>安全说明</b>只有你的控制台能遥控，而且只通过 Tailscale；电脑上的程序只会做这一页列出的事，不能运行其他程序。<b>每次有新电脑加入，你的手机都会收到通知</b>，不是你加的就马上移除。",
+  "ja": "<b>安全について</b>操作できるのはあなたのコントロールパネルだけで、Tailscale 経由に限られます。PC のアプリはこのページに書いたことしかできず、他のプログラムは実行できません。<b>新しい PC が追加されるたびにスマホに通知が届きます</b>。覚えがなければすぐ削除してください。",
+  "ko": "<b>안전 안내</b>내 제어판만, 그리고 Tailscale을 통해서만 조작할 수 있어요. PC의 프로그램은 이 페이지에 적힌 일만 하고 다른 프로그램은 실행할 수 없어요. <b>새 PC가 추가될 때마다 휴대폰으로 알림이 와요</b>. 내가 추가한 게 아니면 바로 제거하세요.",
+  "es": "<b>Sobre la seguridad</b>Solo tu panel puede controlarlo, y solo por Tailscale; la app del PC solo hace lo que se lista en esta página y no puede ejecutar otros programas. <b>Tu móvil recibe un aviso cada vez que se añade un PC</b>; si no lo añadiste tú, quítalo enseguida."
+ },
+ "11. 回報問題給管理員": {
+  "en": "11. Report a problem to the admin",
+  "zh-CN": "11. 反馈问题给管理员",
+  "ja": "11. 管理者に問題を報告",
+  "ko": "11. 관리자에게 문제 보고",
+  "es": "11. Informa de un problema al administrador"
+ },
+ "網頁打不開、雲端上傳失敗、連不上網…遇到<b>怪怪的地方</b>，直接在你的專屬網頁告訴管理員。不用打字解釋很多，選一選、拍張截圖就可以。": {
+  "en": "Page won't open, cloud upload failed, can't get online… whenever <b>something seems off</b>, tell the admin right from your page. No need to type much: pick a few options and add a screenshot.",
+  "zh-CN": "网页打不开、云盘上传失败、连不上网…遇到<b>奇怪的地方</b>，直接在你的专属网页告诉管理员。不用打字解释很多，选一选、拍张截图就可以。",
+  "ja": "ページが開かない、クラウドへのアップロードに失敗、ネットにつながらない…<b>おかしいと思ったら</b>、マイページから管理者に伝えましょう。長い説明は不要、選んでスクリーンショットを付けるだけです。",
+  "ko": "페이지가 안 열리거나, 클라우드 업로드가 실패하거나, 인터넷이 안 되는 등 <b>이상한 점</b>이 있으면 내 페이지에서 바로 관리자에게 알려요. 길게 쓸 필요 없이 고르고 스크린샷만 찍으면 돼요.",
+  "es": "¿La página no abre, falla la subida a la nube, no hay Internet…? Cuando <b>algo vaya raro</b>, díselo al administrador desde tu página. No hace falta escribir mucho: elige unas opciones y añade una captura."
+ },
+ "找到「回報問題」": {
+  "en": "Find “Report a problem”",
+  "zh-CN": "找到“反馈问题”",
+  "ja": "「問題を報告」を探す",
+  "ko": "'문제 보고' 찾기",
+  "es": "Busca «Informar de un problema»"
+ },
+ "打開<a href=\"#portal\">你的專屬網頁</a>，往下滑，找到橘色的 <b>「回報問題」</b>，按 <kbd>我要回報問題</kbd>。": {
+  "en": "Open <a href=\"#portal\">your page</a>, scroll down to the orange <b>“Report a problem”</b> and tap <kbd>Report a problem</kbd>.",
+  "zh-CN": "打开<a href=\"#portal\">你的专属网页</a>，往下滑，找到橙色的 <b>“反馈问题”</b>，按 <kbd>我要反馈问题</kbd>。",
+  "ja": "<a href=\"#portal\">マイページ</a>を開いて下にスクロールし、オレンジの <b>「問題を報告」</b> で <kbd>問題を報告する</kbd> を押します。",
+  "ko": "<a href=\"#portal\">내 페이지</a>를 열고 아래로 내려 주황색 <b>'문제 보고'</b>에서 <kbd>문제 보고하기</kbd>를 누르세요.",
+  "es": "Abre <a href=\"#portal\">tu página</a>, baja hasta el apartado naranja <b>«Informar de un problema»</b> y toca <kbd>Informar de un problema</kbd>."
+ },
+ "下面的「我的回報」會顯示處理進度和管理員的回覆": {
+  "en": "“My reports” below shows the progress and the admin's replies",
+  "zh-CN": "下面的“我的反馈”会显示处理进度和管理员的回复",
+  "ja": "下の「自分の報告」に対応状況と管理者の返信が表示されます",
+  "ko": "아래 '내 보고'에 처리 상황과 관리자 답장이 보여요",
+  "es": "Debajo, «Mis informes» muestra el progreso y las respuestas del administrador"
+ },
+ "填一下就好": {
+  "en": "Just fill it in",
+  "zh-CN": "填一下就好",
+  "ja": "入力するだけ",
+  "ko": "간단히 채우기",
+  "es": "Solo rellénalo"
+ },
+ "<b>哪裡有問題？</b>：選雲端硬碟、上網／連線、專屬網頁…": {
+  "en": "<b>Where's the problem?</b>: pick cloud drive, Internet / connection, My page…",
+  "zh-CN": "<b>哪里有问题？</b>：选云盘、上网／连接、专属网页…",
+  "ja": "<b>どこに問題がありますか？</b>：クラウドドライブ、ネット／接続、マイページ…から選ぶ",
+  "ko": "<b>어디에 문제가 있나요?</b>: 클라우드 드라이브, 인터넷/연결, 내 페이지… 중에서 고르기",
+  "es": "<b>¿Dónde está el problema?</b>: elige nube, Internet / conexión, Mi página…"
+ },
+ "<b>有多嚴重？</b>：小問題、有點影響，還是完全不能用": {
+  "en": "<b>How serious is it?</b>: minor, some impact, or doesn't work at all",
+  "zh-CN": "<b>有多严重？</b>：小问题、有点影响，还是完全不能用",
+  "ja": "<b>どのくらい深刻？</b>：軽微・少し影響あり・まったく使えない",
+  "ko": "<b>얼마나 심각한가요?</b>: 사소함, 약간 영향 있음, 전혀 안 됨",
+  "es": "<b>¿Qué tan grave es?</b>: leve, algo de impacto o no funciona nada"
+ },
+ "<b>用一句話說發生什麼事</b>：例如「上傳影片到一半就失敗」": {
+  "en": "<b>Describe what happened in one sentence</b>: e.g. “Uploading a video fails halfway”",
+  "zh-CN": "<b>用一句话说发生什么事</b>：例如“上传视频到一半就失败”",
+  "ja": "<b>何が起きたか一言で</b>：例「動画のアップロードが途中で失敗する」",
+  "ko": "<b>무슨 일인지 한 문장으로</b>: 예 '동영상 업로드가 중간에 실패해요'",
+  "es": "<b>Describe lo que pasó en una frase</b>: p. ej. «Subir un vídeo falla a la mitad»"
+ },
+ "<b>詳細說明</b>：可以不寫；有寫會更快找到原因": {
+  "en": "<b>Details</b>: optional, but it helps find the cause faster",
+  "zh-CN": "<b>详细说明</b>：可以不写；有写会更快找到原因",
+  "ja": "<b>詳細</b>：任意。書くと原因が早く見つかります",
+  "ko": "<b>자세한 설명</b>: 선택이지만 쓰면 원인을 더 빨리 찾아요",
+  "es": "<b>Detalles</b>: opcional, pero ayuda a encontrar la causa antes"
+ },
+ "<b>截圖</b>：按 <kbd>選擇截圖</kbd>，從相簿選，最多 3 張": {
+  "en": "<b>Screenshots</b>: tap <kbd>Choose screenshots</kbd> and pick up to 3 from your photos",
+  "zh-CN": "<b>截图</b>：按 <kbd>选择截图</kbd>，从相册选，最多 3 张",
+  "ja": "<b>スクリーンショット</b>：<kbd>スクリーンショットを選ぶ</kbd> で写真から最大 3 枚",
+  "ko": "<b>스크린샷</b>: <kbd>스크린샷 선택</kbd>을 눌러 사진에서 최대 3장",
+  "es": "<b>Capturas</b>: toca <kbd>Elegir capturas</kbd> y elige hasta 3 de tus fotos"
+ },
+ "按 <kbd>送出回報</kbd>，管理員的手機會馬上收到通知": {
+  "en": "Tap <kbd>Send report</kbd>; the admin's phone gets a notification right away",
+  "zh-CN": "按 <kbd>提交反馈</kbd>，管理员的手机会马上收到通知",
+  "ja": "<kbd>報告を送信</kbd> を押すと、管理者のスマホにすぐ通知が届きます",
+  "ko": "<kbd>보고 보내기</kbd>를 누르면 관리자 휴대폰에 바로 알림이 가요",
+  "es": "Toca <kbd>Enviar informe</kbd>; el móvil del administrador recibe un aviso al momento"
+ },
+ "<b>怎麼截圖？</b>iPhone 同時按「側邊按鈕」和「調高音量」，畫面閃一下就截好了，會存在「照片」裡。": {
+  "en": "<b>How to take a screenshot?</b>On iPhone press the “side button” and “volume up” together; the screen flashes and it's saved in “Photos”.",
+  "zh-CN": "<b>怎么截图？</b>iPhone 同时按“侧边按钮”和“调高音量”，画面闪一下就截好了，会存在“照片”里。",
+  "ja": "<b>スクリーンショットの撮り方</b>iPhone の「サイドボタン」と「音量を上げる」を同時に押すと、画面が光って「写真」に保存されます。",
+  "ko": "<b>스크린샷은 어떻게 찍나요?</b>iPhone '측면 버튼'과 '음량 높이기'를 동시에 누르면 화면이 번쩍이고 '사진'에 저장돼요.",
+  "es": "<b>¿Cómo se hace una captura?</b>En el iPhone pulsa a la vez el «botón lateral» y «subir volumen»; la pantalla parpadea y se guarda en «Fotos»."
+ },
+ "<b>「附上手機型號和瀏覽器資訊」</b>建議保持勾選，管理員比較容易找到原因。不會傳你的照片、通訊錄或位置。": {
+  "en": "<b>“Attach phone model and browser info”</b> is best left ticked; it helps the admin find the cause. Your photos, contacts and location are never sent.",
+  "zh-CN": "<b>“附上手机型号和浏览器信息”</b>建议保持勾选，管理员比较容易找到原因。不会发送你的照片、通讯录或位置。",
+  "ja": "<b>「スマホの機種とブラウザ情報を添付」</b>はチェックしたままがおすすめ。原因を見つけやすくなります。写真・連絡先・位置情報は送られません。",
+  "ko": "<b>'휴대폰 모델과 브라우저 정보 첨부'</b>는 체크해 두는 게 좋아요. 관리자가 원인을 찾기 쉬워요. 사진, 연락처, 위치는 보내지 않아요.",
+  "es": "<b>«Adjuntar modelo del móvil y navegador»</b> mejor déjalo marcado; ayuda al administrador a encontrar la causa. Nunca se envían tus fotos, contactos ni ubicación."
+ },
+ "看管理員的回覆": {
+  "en": "See the admin's reply",
+  "zh-CN": "看管理员的回复",
+  "ja": "管理者の返信を見る",
+  "ko": "관리자 답장 보기",
+  "es": "Mira la respuesta del administrador"
+ },
+ "管理員回覆時，標題旁邊會出現<b>紅點</b> 🔴": {
+  "en": "When the admin replies, a <b>red dot</b> 🔴 appears next to the title",
+  "zh-CN": "管理员回复时，标题旁边会出现<b>红点</b> 🔴",
+  "ja": "管理者が返信すると、タイトルの横に<b>赤い点</b> 🔴 が付きます",
+  "ko": "관리자가 답장하면 제목 옆에 <b>빨간 점</b> 🔴이 생겨요",
+  "es": "Cuando el administrador responde, aparece un <b>punto rojo</b> 🔴 junto al título"
+ },
+ "右邊的標籤會顯示進度：<b>新回報</b> → <b>處理中</b> → <b>已修好</b>": {
+  "en": "The label on the right shows the progress: <b>New</b> → <b>In progress</b> → <b>Fixed</b>",
+  "zh-CN": "右边的标签会显示进度：<b>新反馈</b> → <b>处理中</b> → <b>已修复</b>",
+  "ja": "右のラベルで状況がわかります：<b>新規</b> → <b>対応中</b> → <b>修正済み</b>",
+  "ko": "오른쪽 라벨에 진행 상황이 보여요: <b>새 보고</b> → <b>처리 중</b> → <b>해결됨</b>",
+  "es": "La etiqueta de la derecha muestra el progreso: <b>Nuevo</b> → <b>En curso</b> → <b>Arreglado</b>"
+ },
+ "想補充說明，在下面的框框打字再按 <kbd>送出</kbd>": {
+  "en": "To add more, type in the box below and tap <kbd>Send</kbd>",
+  "zh-CN": "想补充说明，在下面的框框打字再按 <kbd>发送</kbd>",
+  "ja": "補足したいときは下の欄に書いて <kbd>送信</kbd>",
+  "ko": "덧붙이려면 아래 칸에 쓰고 <kbd>보내기</kbd>",
+  "es": "Para añadir algo, escribe en el cuadro de abajo y toca <kbd>Enviar</kbd>"
+ },
+ "標成「已修好」但<b>還是有問題</b>？點「還是有問題？」告訴管理員，回報會重新回到他的待處理清單": {
+  "en": "Marked “Fixed” but <b>still broken</b>? Tap “Still a problem?” to tell the admin; the report goes back on their to-do list",
+  "zh-CN": "标成“已修复”但<b>还是有问题</b>？点“还是有问题？”告诉管理员，反馈会重新回到他的待处理列表",
+  "ja": "「修正済み」なのに<b>まだおかしい</b>？「まだ問題がありますか？」で管理者に伝えると、報告が未対応リストに戻ります",
+  "ko": "'해결됨'인데 <b>아직 문제가 있나요</b>? '아직 문제가 있나요?'를 눌러 알리면 보고가 다시 처리 대기 목록으로 가요",
+  "es": "¿Marcado como «Arreglado» pero <b>sigue fallando</b>? Toca «¿Sigue fallando?» para avisar; el informe vuelve a su lista de pendientes"
+ },
+ "<b>很急嗎？</b>例如完全連不上網、雲端打不開，選「完全不能用」，管理員會收到緊急通知。真的很急也可以直接打電話給他。": {
+  "en": "<b>Urgent?</b>For example no Internet at all or the cloud won't open: choose “Doesn't work at all” and the admin gets an urgent notification. If it's really urgent, you can also just call them.",
+  "zh-CN": "<b>很急吗？</b>例如完全连不上网、云盘打不开，选“完全不能用”，管理员会收到紧急通知。真的很急也可以直接打电话给他。",
+  "ja": "<b>急ぎですか？</b>まったくネットにつながらない、クラウドが開かないなどは「まったく使えない」を選ぶと、管理者に緊急通知が届きます。本当に急ぐときは電話してもかまいません。",
+  "ko": "<b>급한가요?</b> 인터넷이 전혀 안 되거나 클라우드가 안 열리면 '전혀 안 됨'을 고르세요. 관리자가 긴급 알림을 받아요. 정말 급하면 전화해도 돼요.",
+  "es": "<b>¿Es urgente?</b>Por ejemplo, nada de Internet o la nube no abre: elige «No funciona nada» y el administrador recibe un aviso urgente. Si corre mucha prisa, también puedes llamarle."
+ },
+ "<b>你是自己架設這套系統的人？</b>程式的 bug 或建議請到 GitHub 回報：<a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">回報問題／建議新功能</a>（有中英雙語表單）。安全漏洞請改用<a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">私下回報</a>。": {
+  "en": "<b>Did you set this system up yourself?</b>Report bugs or ideas on GitHub: <a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">Report a problem / suggest a feature</a> (bilingual Chinese / English forms). For security vulnerabilities, use a <a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">private report</a> instead.",
+  "zh-CN": "<b>你是自己架设这套系统的人？</b>程序的 bug 或建议请到 GitHub 反馈：<a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">反馈问题／建议新功能</a>（中英双语表单）。安全漏洞请改用<a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">私下报告</a>。",
+  "ja": "<b>このシステムを自分で設置した人へ</b>バグや提案は GitHub へ：<a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">問題を報告／機能を提案</a>（中国語・英語のフォーム）。セキュリティの脆弱性は<a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">非公開で報告</a>してください。",
+  "ko": "<b>이 시스템을 직접 설치했나요?</b> 버그나 제안은 GitHub로: <a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">문제 보고/기능 제안</a>(중국어·영어 양식). 보안 취약점은 <a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">비공개 보고</a>를 이용하세요.",
+  "es": "<b>¿Montaste tú este sistema?</b>Informa de errores o ideas en GitHub: <a href=\"https://github.com/Hitachi513/mac-homeserver/issues/new/choose\" target=\"_blank\" rel=\"noopener\">Informar de un problema / sugerir una función</a> (formularios en chino e inglés). Para vulnerabilidades de seguridad, usa un <a href=\"https://github.com/Hitachi513/mac-homeserver/security/advisories/new\" target=\"_blank\" rel=\"noopener\">informe privado</a>."
+ },
+ "12. 遇到問題怎麼辦": {
+  "en": "12. Troubleshooting",
+  "zh-CN": "12. 遇到问题怎么办",
+  "ja": "12. 困ったときは",
+  "ko": "12. 문제가 생기면",
+  "es": "12. Si algo no funciona"
+ },
+ "遙控 Windows：貼上指令後出現紅字「安裝失敗」": {
+  "en": "Windows remote: a red “Install failed” after pasting the command",
+  "zh-CN": "遥控 Windows：粘贴命令后出现红字“安装失败”",
+  "ja": "Windows リモート：貼り付け後に赤字で「インストールに失敗」",
+  "ko": "Windows 원격: 명령을 붙여넣은 뒤 빨간 글씨로 '설치 실패'",
+  "es": "Windows remoto: aparece en rojo «Falló la instalación» tras pegar el comando"
+ },
+ "確認 Windows 右下角的 <b>Tailscale 是已連線</b>，而且登入的是<b>跟手機一樣的帳號</b>。": {
+  "en": "Check that <b>Tailscale is connected</b> at the bottom right of Windows, signed in with <b>the same account as your phone</b>.",
+  "zh-CN": "确认 Windows 右下角的 <b>Tailscale 是已连接</b>，而且登录的是<b>跟手机一样的账号</b>。",
+  "ja": "Windows 右下の <b>Tailscale が接続済み</b>で、<b>スマホと同じアカウント</b>でログインしているか確認。",
+  "ko": "Windows 오른쪽 아래 <b>Tailscale이 연결됨</b>이고 <b>휴대폰과 같은 계정</b>으로 로그인했는지 확인하세요.",
+  "es": "Comprueba que <b>Tailscale está conectado</b> abajo a la derecha en Windows, con <b>la misma cuenta que en el móvil</b>."
+ },
+ "指令只能用一次、15 分鐘內有效：回手機按 <kbd>重新產生</kbd>，用新的指令再貼一次。": {
+  "en": "The command works once and for 15 minutes: on your phone tap <kbd>Make a new one</kbd> and paste the new command.",
+  "zh-CN": "命令只能用一次、15 分钟内有效：回手机按 <kbd>重新生成</kbd>，用新的命令再粘贴一次。",
+  "ja": "コマンドは 1 回限り・15 分間有効：スマホで <kbd>作り直す</kbd> を押し、新しいコマンドを貼り付け直します。",
+  "ko": "명령은 한 번만, 15분 동안 유효해요: 휴대폰에서 <kbd>다시 만들기</kbd>를 누르고 새 명령을 다시 붙여넣으세요.",
+  "es": "El comando sirve una vez y durante 15 minutos: en el móvil toca <kbd>Generar otro</kbd> y pega el nuevo."
+ },
+ "要在 <b>PowerShell</b> 裡貼，不是「命令提示字元（cmd）」。": {
+  "en": "Paste it into <b>PowerShell</b>, not “Command Prompt (cmd)”.",
+  "zh-CN": "要在 <b>PowerShell</b> 里粘贴，不是“命令提示符（cmd）”。",
+  "ja": "<b>PowerShell</b> に貼り付けてください。「コマンドプロンプト（cmd）」ではありません。",
+  "ko": "<b>PowerShell</b>에 붙여넣어야 해요. '명령 프롬프트(cmd)'가 아니에요.",
+  "es": "Pégalo en <b>PowerShell</b>, no en el «Símbolo del sistema (cmd)»."
+ },
+ "遙控 Windows：電腦一直顯示「離線」，按鈕都是灰的": {
+  "en": "Windows remote: the PC always shows “Offline” and the buttons are grey",
+  "zh-CN": "遥控 Windows：电脑一直显示“离线”，按钮都是灰的",
+  "ja": "Windows リモート：PC がずっと「オフライン」でボタンがグレー",
+  "ko": "Windows 원격: PC가 계속 '오프라인'이고 버튼이 회색",
+  "es": "Windows remoto: el PC siempre sale «Sin conexión» y los botones están grises"
+ },
+ "電腦可能關機、睡眠，或沒開 Tailscale。把電腦叫醒、確認 Tailscale 已連線，大約 30 秒內就會變回綠點。還是不行，可以在電腦上<b>登出再登入一次</b>（遙控程式會在登入時自動啟動）。": {
+  "en": "The PC may be off, asleep, or without Tailscale. Wake it up and check Tailscale is connected; the green dot should come back within about 30 seconds. Still not working? <b>Sign out and back in</b> on the PC (the remote app starts at sign-in).",
+  "zh-CN": "电脑可能关机、睡眠，或没开 Tailscale。把电脑唤醒、确认 Tailscale 已连接，大约 30 秒内就会变回绿点。还是不行，可以在电脑上<b>注销再登录一次</b>（遥控程序会在登录时自动启动）。",
+  "ja": "PC の電源が切れている、スリープ中、または Tailscale がオフかもしれません。PC を起こして Tailscale の接続を確認すると、約 30 秒で緑の点に戻ります。だめなら PC で<b>サインアウトしてもう一度サインイン</b>してください（リモートアプリはサインイン時に起動します）。",
+  "ko": "PC가 꺼져 있거나 잠자기 중이거나 Tailscale이 꺼져 있을 수 있어요. PC를 깨우고 Tailscale 연결을 확인하면 약 30초 안에 초록 점으로 돌아와요. 그래도 안 되면 PC에서 <b>로그아웃 후 다시 로그인</b>하세요(원격 프로그램은 로그인할 때 시작돼요).",
+  "es": "El PC puede estar apagado, en reposo o sin Tailscale. Despiértalo y comprueba que Tailscale está conectado; el punto verde vuelve en unos 30 segundos. ¿Sigue igual? <b>Cierra sesión y vuelve a entrar</b> en el PC (la app remota arranca al iniciar sesión)."
+ },
+ "開了之後上不了網": {
+  "en": "No Internet after turning it on",
+  "zh-CN": "开了之后上不了网",
+  "ja": "オンにしたらネットにつながらない",
+  "ko": "켰더니 인터넷이 안 돼요",
+  "es": "Sin Internet al activarlo"
+ },
+ "先把 Shadowrocket（或 Tailscale）的開關<b>關掉再打開</b>。": {
+  "en": "First turn the Shadowrocket (or Tailscale) switch <b>off and on again</b>.",
+  "zh-CN": "先把 Shadowrocket（或 Tailscale）的开关<b>关掉再打开</b>。",
+  "ja": "まず Shadowrocket（または Tailscale）のスイッチを<b>一度切ってから入れ直す</b>。",
+  "ko": "먼저 Shadowrocket(또는 Tailscale) 스위치를 <b>껐다가 다시 켜세요</b>.",
+  "es": "Primero <b>apaga y vuelve a encender</b> el interruptor de Shadowrocket (o Tailscale)."
+ },
+ "還是不行，就先把開關關掉，手機就會恢復正常上網。": {
+  "en": "Still no luck? Turn the switch off for now and the phone goes back to its normal Internet.",
+  "zh-CN": "还是不行，就先把开关关掉，手机就会恢复正常上网。",
+  "ja": "それでもだめなら、いったんスイッチを切ればスマホは通常のネットに戻ります。",
+  "ko": "그래도 안 되면 일단 스위치를 끄면 휴대폰이 원래 인터넷으로 돌아와요.",
+  "es": "¿Sigue sin ir? Apaga el interruptor por ahora y el móvil vuelve a su Internet normal."
+ },
+ "用<a href=\"#report\">回報問題</a>告訴管理員（選「完全不能用」）：可能家裡的電腦關機了或網路斷了。": {
+  "en": "Tell the admin with <a href=\"#report\">Report a problem</a> (choose “Doesn't work at all”): the computer at home may be off or the Internet may be down.",
+  "zh-CN": "用<a href=\"#report\">反馈问题</a>告诉管理员（选“完全不能用”）：可能家里的电脑关机了或网络断了。",
+  "ja": "<a href=\"#report\">問題を報告</a>で管理者に伝えましょう（「まったく使えない」を選ぶ）：家のパソコンの電源が切れたか、ネットが止まっているかもしれません。",
+  "ko": "<a href=\"#report\">문제 보고</a>로 관리자에게 알리세요('전혀 안 됨' 선택): 집 컴퓨터가 꺼졌거나 인터넷이 끊겼을 수 있어요.",
+  "es": "Avísale al administrador con <a href=\"#report\">Informar de un problema</a> (elige «No funciona nada»): puede que el ordenador de casa esté apagado o que no haya Internet."
+ },
+ "專屬網頁上寫「權限目前無效」或紅色字": {
+  "en": "My page says “access isn't active” or shows red text",
+  "zh-CN": "专属网页上写“权限目前无效”或红色字",
+  "ja": "マイページに「権限は無効」や赤い文字が出る",
+  "ko": "내 페이지에 '권한이 없음'이나 빨간 글씨가 나와요",
+  "es": "Mi página dice «acceso no activo» o sale texto en rojo"
+ },
+ "<b>不在允許時段</b>：管理員設定了可以使用的時間，時間到了就能用。": {
+  "en": "<b>Outside allowed hours</b>: the admin set the times you can use it; it works again when that time comes.",
+  "zh-CN": "<b>不在允许时段</b>：管理员设置了可以使用的时间，时间到了就能用。",
+  "ja": "<b>利用時間外</b>：管理者が使える時間を決めています。その時間になれば使えます。",
+  "ko": "<b>허용 시간 아님</b>: 관리자가 쓸 수 있는 시간을 정했어요. 그 시간이 되면 쓸 수 있어요.",
+  "es": "<b>Fuera del horario permitido</b>: el administrador fijó en qué horas se puede usar; cuando llegue la hora funcionará."
+ },
+ "<b>已過期</b>：使用期限到了，請問管理員要不要延長。": {
+  "en": "<b>Expired</b>: your access period ended; ask the admin whether to extend it.",
+  "zh-CN": "<b>已过期</b>：使用期限到了，请问管理员要不要延长。",
+  "ja": "<b>期限切れ</b>：利用期限が終わりました。延長するか管理者に聞いてください。",
+  "ko": "<b>만료됨</b>: 사용 기한이 끝났어요. 연장할지 관리자에게 물어보세요.",
+  "es": "<b>Caducado</b>: terminó tu periodo de acceso; pregunta al administrador si lo amplía."
+ },
+ "<b>已停用</b>：管理員暫時關掉了，請問管理員。": {
+  "en": "<b>Disabled</b>: the admin turned it off for now; ask them.",
+  "zh-CN": "<b>已停用</b>：管理员暂时关掉了，请问管理员。",
+  "ja": "<b>無効</b>：管理者が一時的にオフにしています。管理者に聞いてください。",
+  "ko": "<b>사용 안 함</b>: 관리자가 잠시 꺼 두었어요. 관리자에게 물어보세요.",
+  "es": "<b>Desactivado</b>: el administrador lo apagó por ahora; pregúntale."
+ },
+ "寫「今日時數已用完」": {
+  "en": "It says “Today's time is used up”",
+  "zh-CN": "写“今日时数已用完”",
+  "ja": "「今日の時間を使い切りました」と出る",
+  "ko": "'오늘 시간을 다 썼습니다'라고 나와요",
+  "es": "Dice «Se acabó el tiempo de hoy»"
+ },
+ "你今天可以用的時間用完了，<b>半夜 12 點</b>會自動恢復。急著要用的話，可以<a href=\"#msg\">留言</a>請管理員幫你加時數。": {
+  "en": "You've used up today's time; it resets automatically at <b>midnight</b>. If you need it now, <a href=\"#msg\">send a message</a> asking the admin for more time.",
+  "zh-CN": "你今天可以用的时间用完了，<b>半夜 12 点</b>会自动恢复。急着要用的话，可以<a href=\"#msg\">留言</a>请管理员帮你加时数。",
+  "ja": "今日使える時間を使い切りました。<b>深夜 0 時</b>に自動で戻ります。急ぎなら<a href=\"#msg\">メッセージ</a>で管理者に時間の追加を頼めます。",
+  "ko": "오늘 쓸 수 있는 시간을 다 썼어요. <b>자정</b>에 자동으로 복구돼요. 급하면 <a href=\"#msg\">메시지</a>로 관리자에게 시간을 늘려 달라고 하세요.",
+  "es": "Has gastado el tiempo de hoy; se restablece solo a <b>medianoche</b>. Si lo necesitas ya, <a href=\"#msg\">escribe</a> al administrador para pedir más tiempo."
+ },
+ "專屬網頁打開寫「找不到頁面」或「網址已失效」": {
+  "en": "My page says “Page not found” or “address no longer works”",
+  "zh-CN": "专属网页打开写“找不到页面”或“网址已失效”",
+  "ja": "マイページに「ページが見つかりません」や「アドレスは無効です」と出る",
+  "ko": "내 페이지에 '페이지를 찾을 수 없음'이나 '주소를 쓸 수 없음'이 나와요",
+  "es": "Mi página dice «Página no encontrada» o «la dirección ya no funciona»"
+ },
+ "管理員可能幫你換了新的網址（例如為了安全）。請管理員<b>傳新的網址</b>給你，舊的就不要再用了。": {
+  "en": "The admin may have given you a new address (e.g. for safety). Ask the admin to <b>send the new address</b> and stop using the old one.",
+  "zh-CN": "管理员可能帮你换了新的网址（例如为了安全）。请管理员<b>发新的网址</b>给你，旧的就不要再用了。",
+  "ja": "管理者が新しいアドレスに替えたのかもしれません（安全のためなど）。<b>新しいアドレスを送ってもらい</b>、古いものは使わないでください。",
+  "ko": "관리자가 새 주소로 바꿨을 수 있어요(보안 때문 등). 관리자에게 <b>새 주소를 받아</b> 쓰고 이전 주소는 쓰지 마세요.",
+  "es": "Puede que el administrador te haya dado una dirección nueva (p. ej. por seguridad). Pídele que te <b>envíe la nueva</b> y deja de usar la antigua."
+ },
+ "Shadowrocket 裡「家裡的 Mac」旁邊有紅點": {
+  "en": "A red dot next to “Home Mac” in Shadowrocket",
+  "zh-CN": "Shadowrocket 里“家里的 Mac”旁边有红点",
+  "ja": "Shadowrocket で「家の Mac」の横に赤い点",
+  "ko": "Shadowrocket에서 '집의 Mac' 옆에 빨간 점",
+  "es": "Un punto rojo junto a «El Mac de casa» en Shadowrocket"
+ },
+ "那是 Shadowrocket 的「測速」失敗，<b>不影響使用</b>，可以忽略。只要 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> 顯示的數字正確就沒問題。": {
+  "en": "That's Shadowrocket's “speed test” failing; it <b>doesn't affect use</b> and can be ignored. As long as <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> shows the right number, all is well.",
+  "zh-CN": "那是 Shadowrocket 的“测速”失败，<b>不影响使用</b>，可以忽略。只要 <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> 显示的数字正确就没问题。",
+  "ja": "Shadowrocket の「速度テスト」が失敗しているだけで、<b>使うのに影響はありません</b>。<a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> の数字が正しければ大丈夫です。",
+  "ko": "Shadowrocket의 '속도 측정'이 실패한 것뿐이라 <b>사용에는 영향이 없어요</b>. <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a>에 나오는 숫자가 맞으면 괜찮아요.",
+  "es": "Es el «test de velocidad» de Shadowrocket que falla; <b>no afecta al uso</b> y puedes ignorarlo. Mientras <a href=\"https://api.ipify.org\" target=\"_blank\" rel=\"noopener noreferrer\">api.ipify.org</a> muestre el número correcto, todo va bien."
+ },
+ "有些 App 或網站打不開": {
+  "en": "Some apps or sites won't open",
+  "zh-CN": "有些 App 或网站打不开",
+  "ja": "一部のアプリやサイトが開かない",
+  "ko": "일부 앱이나 사이트가 안 열려요",
+  "es": "Algunas apps o webs no abren"
+ },
+ "管理員可能幫你設了「上網限制」（例如擋廣告、擋某些 App）。在專屬網頁的 <b>上網限制</b> 那一塊可以看到被擋的項目。有需要請問管理員。": {
+  "en": "The admin may have set “Internet limits” (e.g. blocking ads or certain apps). The <b>Internet limits</b> section of your page shows what's blocked. Ask the admin if you need something.",
+  "zh-CN": "管理员可能帮你设了“上网限制”（例如屏蔽广告、屏蔽某些 App）。在专属网页的 <b>上网限制</b> 那一块可以看到被挡的项目。有需要请问管理员。",
+  "ja": "管理者が「ネット制限」（広告ブロックや特定アプリのブロックなど）を設定しているかもしれません。マイページの <b>ネット制限</b> の欄でブロック中の項目を確認できます。必要なら管理者に聞いてください。",
+  "ko": "관리자가 '인터넷 제한'(광고 차단, 특정 앱 차단 등)을 걸었을 수 있어요. 내 페이지 <b>인터넷 제한</b> 부분에서 차단된 항목을 볼 수 있어요. 필요하면 관리자에게 물어보세요.",
+  "es": "Puede que el administrador haya puesto «Límites de Internet» (bloquear anuncios o ciertas apps). En el apartado <b>Límites de Internet</b> de tu página ves qué está bloqueado. Pregúntale si necesitas algo."
+ },
+ "上傳失敗，寫「超過你的容量上限」": {
+  "en": "Upload fails with “Over your storage limit”",
+  "zh-CN": "上传失败，写“超过你的容量上限”",
+  "ja": "アップロードに失敗し「容量の上限を超えています」と出る",
+  "ko": "업로드가 실패하고 '용량 한도를 넘었습니다'라고 나와요",
+  "es": "La subida falla con «Superas tu límite de espacio»"
+ },
+ "你的「我的檔案」已經滿了。可以刪掉一些不要的檔案，或請管理員幫你加大容量。": {
+  "en": "Your “My files” is full. Delete some files you don't need, or ask the admin for more space.",
+  "zh-CN": "你的“我的文件”已经满了。可以删掉一些不要的文件，或请管理员帮你加大容量。",
+  "ja": "「マイファイル」がいっぱいです。不要なファイルを消すか、管理者に容量の追加を頼んでください。",
+  "ko": "'내 파일'이 가득 찼어요. 필요 없는 파일을 지우거나 관리자에게 용량을 늘려 달라고 하세요.",
+  "es": "Tu «Mis archivos» está lleno. Borra archivos que no necesites o pide más espacio al administrador."
+ },
+ "照片自動備份沒有跑": {
+  "en": "The photo auto-backup didn't run",
+  "zh-CN": "照片自动备份没有运行",
+  "ja": "写真の自動バックアップが動かない",
+  "ko": "사진 자동 백업이 실행되지 않았어요",
+  "es": "La copia automática de fotos no se hizo"
+ },
+ "捷徑顯示「管理員沒有開放你使用照片自動備份」：請管理員在控制台幫你打開。": {
+  "en": "The shortcut says “The admin hasn't allowed photo auto-backup for you”: ask the admin to turn it on in the control panel.",
+  "zh-CN": "快捷指令显示“管理员没有开放你使用照片自动备份”：请管理员在控制台帮你打开。",
+  "ja": "ショートカットに「管理者が写真の自動バックアップを許可していません」と出る：管理者にパネルでオンにしてもらってください。",
+  "ko": "단축어에 '관리자가 사진 자동 백업을 허용하지 않았습니다'가 나오면 관리자에게 제어판에서 켜 달라고 하세요.",
+  "es": "El atajo dice «El administrador no te ha permitido la copia automática de fotos»: pide al administrador que la active en el panel."
+ },
+ "打開「捷徑」App →「自動化」，確認那個自動化有打開，而且選的是「立即執行」。": {
+  "en": "Open the Shortcuts app → “Automation” and check the automation is on and set to “Run Immediately”.",
+  "zh-CN": "打开“快捷指令”App →“自动化”，确认那个自动化有打开，而且选的是“立即运行”。",
+  "ja": "「ショートカット」アプリ →「オートメーション」で、そのオートメーションがオンで「すぐに実行」になっているか確認。",
+  "ko": "'단축어' 앱 → '자동화'에서 그 자동화가 켜져 있고 '즉시 실행'으로 되어 있는지 확인하세요.",
+  "es": "Abre Atajos → «Automatización» y comprueba que la automatización está activa y en «Ejecutar inmediatamente»."
+ },
+ "手動按一次 ▶︎ 試跑，看有沒有出現錯誤訊息。": {
+  "en": "Tap ▶︎ once by hand and see whether an error message appears.",
+  "zh-CN": "手动按一次 ▶︎ 试运行，看有没有出现错误信息。",
+  "ja": "手動で ▶︎ を押して試し、エラーメッセージが出ないか確認。",
+  "ko": "직접 ▶︎를 한 번 눌러 보고 오류 메시지가 나오는지 보세요.",
+  "es": "Toca ▶︎ a mano una vez y mira si sale algún mensaje de error."
+ },
+ "寫「forbidden」：檢查兩個「標頭」的名稱有沒有打錯（大小寫也要一樣）。": {
+  "en": "It says “forbidden”: check the names of the two “headers” for typos (upper and lower case must match too).",
+  "zh-CN": "写“forbidden”：检查两个“头部”的名称有没有打错（大小写也要一样）。",
+  "ja": "「forbidden」と出る：2 つの「ヘッダ」の名前に打ち間違いがないか確認（大文字・小文字も同じに）。",
+  "ko": "'forbidden'이 나오면: 두 '헤더'의 이름에 오타가 없는지 확인하세요(대소문자도 같아야 해요).",
+  "es": "Dice «forbidden»: revisa que los nombres de los dos «encabezados» estén bien escritos (mayúsculas y minúsculas incluidas)."
+ },
+ "寫「超過你的容量上限」：雲端滿了，請刪掉舊檔案或請管理員加大容量。": {
+  "en": "It says “Over your storage limit”: the cloud is full; delete old files or ask the admin for more space.",
+  "zh-CN": "写“超过你的容量上限”：云盘满了，请删掉旧文件或请管理员加大容量。",
+  "ja": "「容量の上限を超えています」と出る：クラウドがいっぱいです。古いファイルを消すか、管理者に容量の追加を頼んでください。",
+  "ko": "'용량 한도를 넘었습니다'가 나오면: 클라우드가 가득 찼어요. 오래된 파일을 지우거나 관리자에게 용량을 늘려 달라고 하세요.",
+  "es": "Dice «Superas tu límite de espacio»: la nube está llena; borra archivos antiguos o pide más espacio al administrador."
+ },
+ "朋友說分享連結打不開": {
+  "en": "A friend says the share link won't open",
+  "zh-CN": "朋友说分享链接打不开",
+  "ja": "友だちが共有リンクを開けない",
+  "ko": "친구가 공유 링크가 안 열린대요",
+  "es": "Un amigo dice que el enlace no abre"
+ },
+ "連結可能已經<b>過期</b>、<b>下載次數用完</b>，或是被取消了。重新分享一次，產生新的連結傳給他就好。": {
+  "en": "The link may have <b>expired</b>, <b>run out of downloads</b>, or been cancelled. Just share again and send them the new link.",
+  "zh-CN": "链接可能已经<b>过期</b>、<b>下载次数用完</b>，或是被取消了。重新分享一次，生成新的链接发给他就好。",
+  "ja": "リンクが<b>期限切れ</b>、<b>ダウンロード回数切れ</b>、または取り消されたのかもしれません。もう一度共有して新しいリンクを送れば OK です。",
+  "ko": "링크가 <b>만료</b>됐거나 <b>다운로드 횟수를 다 썼거나</b> 취소됐을 수 있어요. 다시 공유해서 새 링크를 보내면 돼요.",
+  "es": "Puede que el enlace haya <b>caducado</b>, <b>agotado las descargas</b> o se haya cancelado. Vuelve a compartir y envíale el enlace nuevo."
+ },
+ "照片在雲端裡看起來是灰色的、沒有縮圖": {
+  "en": "Photos in the cloud look grey, without thumbnails",
+  "zh-CN": "照片在云盘里看起来是灰色的、没有缩略图",
+  "ja": "クラウドの写真がグレーでサムネイルがない",
+  "ko": "클라우드 사진이 회색이고 미리보기가 없어요",
+  "es": "Las fotos de la nube se ven grises, sin miniatura"
+ },
+ "第一次打開時，家裡的電腦要花幾秒做縮圖，等一下再重新整理就會出現。點開照片一樣可以看。": {
+  "en": "The first time, the computer at home takes a few seconds to make thumbnails; wait a moment and refresh and they'll appear. You can still open the photo by tapping it.",
+  "zh-CN": "第一次打开时，家里的电脑要花几秒做缩略图，等一下再刷新就会出现。点开照片一样可以看。",
+  "ja": "初回は家のパソコンがサムネイルを作るのに数秒かかります。少し待って更新すれば表示されます。写真はタップすれば見られます。",
+  "ko": "처음 열 때 집 컴퓨터가 미리보기를 만드는 데 몇 초 걸려요. 잠시 후 새로 고치면 나와요. 사진을 누르면 볼 수 있어요.",
+  "es": "La primera vez, el ordenador de casa tarda unos segundos en hacer las miniaturas; espera un poco, actualiza y aparecerán. Tocando la foto la puedes ver igual."
+ },
+ "控制台裡找不到「Mac」那一頁": {
+  "en": "I can't find the “Mac” page in the control panel",
+  "zh-CN": "控制台里找不到“Mac”那一页",
+  "ja": "パネルに「Mac」ページが見当たらない",
+  "ko": "제어판에서 'Mac' 페이지를 못 찾겠어요",
+  "es": "No encuentro la página «Mac» en el panel"
+ },
+ "「Mac」頁面只有管理員有開「控制台」權限的人才看得到。需要的話請問管理員。": {
+  "en": "The “Mac” page is only shown to people the admin gave “control panel” access. Ask the admin if you need it.",
+  "zh-CN": "“Mac”页面只有管理员有开“控制台”权限的人才看得到。需要的话请问管理员。",
+  "ja": "「Mac」ページは、管理者が「コントロールパネル」の権限を与えた人だけが見られます。必要なら管理者に聞いてください。",
+  "ko": "'Mac' 페이지는 관리자가 '제어판' 권한을 준 사람만 볼 수 있어요. 필요하면 관리자에게 물어보세요.",
+  "es": "La página «Mac» solo la ven quienes tienen acceso al «panel de control». Pregunta al administrador si la necesitas."
+ },
+ "換了新手機怎麼辦？": {
+  "en": "What if I get a new phone?",
+  "zh-CN": "换了新手机怎么办？",
+  "ja": "スマホを買い替えたら？",
+  "ko": "새 휴대폰으로 바꾸면?",
+  "es": "¿Y si cambio de móvil?"
+ },
+ "在新手機上重新做一次：下載 App → 打開專屬網址 → 按「用 Shadowrocket 開啟」（或用 Tailscale 登入）。雲端裡的檔案都還在，不會不見。": {
+  "en": "Do it again on the new phone: download the app → open your personal address → tap “Open in Shadowrocket” (or sign in to Tailscale). Your files in the cloud are all still there.",
+  "zh-CN": "在新手机上重新做一次：下载 App → 打开专属网址 → 按“用 Shadowrocket 打开”（或用 Tailscale 登录）。云盘里的文件都还在，不会丢。",
+  "ja": "新しいスマホでもう一度：アプリをダウンロード → 専用アドレスを開く →「Shadowrocket で開く」（または Tailscale にログイン）。クラウドのファイルはそのまま残っています。",
+  "ko": "새 휴대폰에서 다시 하면 돼요: 앱 다운로드 → 전용 주소 열기 → 'Shadowrocket으로 열기'(또는 Tailscale 로그인). 클라우드 파일은 그대로 있어요.",
+  "es": "Hazlo otra vez en el móvil nuevo: descarga la app → abre tu dirección personal → toca «Abrir en Shadowrocket» (o inicia sesión en Tailscale). Tus archivos de la nube siguen ahí."
+ },
+ "可以同時開 Shadowrocket 和 Tailscale 嗎？": {
+  "en": "Can I have Shadowrocket and Tailscale on at the same time?",
+  "zh-CN": "可以同时开 Shadowrocket 和 Tailscale 吗？",
+  "ja": "Shadowrocket と Tailscale を同時に使える？",
+  "ko": "Shadowrocket과 Tailscale을 동시에 켤 수 있나요?",
+  "es": "¿Puedo tener Shadowrocket y Tailscale activos a la vez?"
+ },
+ "不行，iPhone 一次只能開一個。要用哪個就開哪個。": {
+  "en": "No, an iPhone runs one at a time. Turn on whichever you want to use.",
+  "zh-CN": "不行，iPhone 一次只能开一个。要用哪个就开哪个。",
+  "ja": "いいえ、iPhone で同時に使えるのは 1 つだけ。使いたい方をオンにしてください。",
+  "ko": "아니요, iPhone은 한 번에 하나만 켤 수 있어요. 쓸 것만 켜세요.",
+  "es": "No, el iPhone solo usa una a la vez. Activa la que quieras usar."
+ },
+ "13. 安全小提醒": {
+  "en": "13. Safety tips",
+  "zh-CN": "13. 安全小提醒",
+  "ja": "13. 安全のための注意",
+  "ko": "13. 안전 수칙",
+  "es": "13. Consejos de seguridad"
+ },
+ "<b>🔒 你的專屬網址和 QR code 就像鑰匙</b>拿到的人就能用你的身分連進家裡、看你的雲端。": {
+  "en": "<b>🔒 Your personal address and QR code are like a key</b>Anyone who has them can get into the home network as you and see your cloud.",
+  "zh-CN": "<b>🔒 你的专属网址和 QR 码就像钥匙</b>拿到的人就能用你的身份连进家里、看你的云盘。",
+  "ja": "<b>🔒 専用アドレスと QR コードは鍵と同じ</b>手に入れた人はあなたとして家につながり、クラウドを見られます。",
+  "ko": "<b>🔒 전용 주소와 QR 코드는 열쇠와 같아요</b>가진 사람은 나로서 집에 연결하고 내 클라우드를 볼 수 있어요.",
+  "es": "<b>🔒 Tu dirección personal y tu QR son como una llave</b>Quien los tenga puede entrar en la red de casa como tú y ver tu nube."
+ },
+ "<b>不要</b>把專屬網址傳給別人，也不要貼到群組": {
+  "en": "<b>Don't</b> send your personal address to others or post it in groups",
+  "zh-CN": "<b>不要</b>把专属网址发给别人，也不要贴到群组",
+  "ja": "専用アドレスを他人に送ったり、グループに貼ったり<b>しないで</b>",
+  "ko": "전용 주소를 다른 사람에게 보내거나 단톡방에 올리지 <b>마세요</b>",
+  "es": "<b>No</b> envíes tu dirección personal a nadie ni la pongas en grupos"
+ },
+ "<b>不要</b>把 Shadowrocket 的 QR code 截圖分享": {
+  "en": "<b>Don't</b> share screenshots of your Shadowrocket QR code",
+  "zh-CN": "<b>不要</b>把 Shadowrocket 的 QR 码截图分享",
+  "ja": "Shadowrocket の QR コードのスクリーンショットを共有<b>しないで</b>",
+  "ko": "Shadowrocket QR 코드 스크린샷을 공유하지 <b>마세요</b>",
+  "es": "<b>No</b> compartas capturas de tu QR de Shadowrocket"
+ },
+ "如果不小心傳出去了，<b>馬上告訴管理員</b>，他可以幫你換新的，舊的會立刻失效": {
+  "en": "If it gets out by accident, <b>tell the admin right away</b>; they can give you a new one and the old one stops working at once",
+  "zh-CN": "如果不小心发出去了，<b>马上告诉管理员</b>，他可以帮你换新的，旧的会立刻失效",
+  "ja": "うっかり送ってしまったら<b>すぐ管理者に伝えて</b>。新しいものに替えてもらえば、古いものはすぐ無効になります",
+  "ko": "실수로 보냈다면 <b>바로 관리자에게 알리세요</b>. 새것으로 바꿔 주면 이전 것은 바로 무효가 돼요",
+  "es": "Si se te escapa, <b>avisa al administrador enseguida</b>; puede darte uno nuevo y el anterior deja de funcionar al momento"
+ },
+ "<b>不要</b>把「照片自動備份」的上傳網址給別人，拿到的人可以把檔案傳到你的雲端": {
+  "en": "<b>Don't</b> give the photo auto-backup upload address to anyone; whoever has it can put files into your cloud",
+  "zh-CN": "<b>不要</b>把“照片自动备份”的上传网址给别人，拿到的人可以把文件传到你的云盘",
+  "ja": "「写真の自動バックアップ」のアップロード用アドレスを他人に渡さ<b>ないで</b>。手に入れた人はあなたのクラウドにファイルを送れます",
+  "ko": "'사진 자동 백업' 업로드 주소를 다른 사람에게 주지 <b>마세요</b>. 가진 사람은 내 클라우드에 파일을 올릴 수 있어요",
+  "es": "<b>No</b> des a nadie la dirección de subida de la copia de fotos; quien la tenga puede meter archivos en tu nube"
+ },
+ "分享連結傳出去以後，拿到連結的人都能下載。重要的檔案記得<b>設密碼</b>、<b>設期限</b>": {
+  "en": "Once a share link is out, anyone with it can download. For important files, remember to <b>set a password</b> and <b>an expiry</b>",
+  "zh-CN": "分享链接发出去以后，拿到链接的人都能下载。重要的文件记得<b>设密码</b>、<b>设期限</b>",
+  "ja": "共有リンクを送ると、持っている人は誰でもダウンロードできます。大事なファイルは<b>パスワード</b>と<b>期限</b>を設定しましょう",
+  "ko": "공유 링크를 보내면 링크를 가진 누구나 다운로드할 수 있어요. 중요한 파일은 <b>비밀번호</b>와 <b>기한</b>을 꼭 정하세요",
+  "es": "Una vez enviado un enlace, cualquiera que lo tenga puede descargar. Para archivos importantes, <b>pon contraseña</b> y <b>caducidad</b>"
+ },
+ "有人自稱是管理員跟你要密碼或驗證碼，<b>先打電話跟本人確認</b>": {
+  "en": "If someone claiming to be the admin asks for your password or a code, <b>call the real person to check first</b>",
+  "zh-CN": "有人自称是管理员跟你要密码或验证码，<b>先打电话跟本人确认</b>",
+  "ja": "管理者を名乗る人にパスワードや確認コードを聞かれたら、<b>まず本人に電話して確認</b>",
+  "ko": "관리자라며 비밀번호나 인증 코드를 달라고 하면 <b>먼저 본인에게 전화해서 확인하세요</b>",
+  "es": "Si alguien que dice ser el administrador te pide la contraseña o un código, <b>llama primero a la persona real para comprobarlo</b>"
+ },
+ "有任何問題，在專屬網頁<a href=\"#report\">回報問題</a>，或直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。": {
+  "en": "Any questions? Use <a href=\"#report\">Report a problem</a> on your page, or just ask the admin 🙂<br>The names, numbers and QR codes in this guide are examples.",
+  "zh-CN": "有任何问题，在专属网页<a href=\"#report\">反馈问题</a>，或直接问管理员就好 🙂<br>这份教程里的名字、数字和 QR 码都是示例。",
+  "ja": "困ったことがあれば、マイページの<a href=\"#report\">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。",
+  "ko": "궁금한 게 있으면 내 페이지의 <a href=\"#report\">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.",
+  "es": "¿Dudas? Usa <a href=\"#report\">Informar de un problema</a> en tu página o pregunta al administrador 🙂<br>Los nombres, números y códigos QR de esta guía son ejemplos."
+ },
+ "↑ 目錄": {
+  "en": "↑ Contents",
+  "zh-CN": "↑ 目录",
+  "ja": "↑ 目次",
+  "ko": "↑ 목차",
+  "es": "↑ Índice"
+ },
+ "我的專屬網頁的最上面，顯示名字、可以使用、使用期限": {
+  "en": "The top of My page, showing the name, “Available” and the valid-until date",
+  "zh-CN": "我的专属网页的最上面，显示名字、可以使用、使用期限",
+  "ja": "マイページの上部：名前・利用可・利用期限",
+  "ko": "내 페이지 맨 위: 이름, 사용 가능, 사용 기한",
+  "es": "La parte de arriba de Mi página: nombre, «Disponible» y fecha de validez"
+ },
+ "Safari 分享選單，加入主畫面被紅框標出": {
+  "en": "Safari's share menu with Add to Home Screen highlighted in red",
+  "zh-CN": "Safari 共享菜单，添加到主屏幕被红框标出",
+  "ja": "Safari の共有メニュー、「ホーム画面に追加」を赤枠で表示",
+  "ko": "Safari 공유 메뉴, '홈 화면에 추가'가 빨간 테두리로 표시됨",
+  "es": "Menú Compartir de Safari con «Añadir a pantalla de inicio» marcado en rojo"
+ },
+ "App Store 搜尋 Shadowrocket，購買按鈕被紅框標出": {
+  "en": "App Store search for Shadowrocket with the buy button highlighted",
+  "zh-CN": "App Store 搜索 Shadowrocket，购买按钮被红框标出",
+  "ja": "App Store で Shadowrocket を検索、購入ボタンを赤枠で表示",
+  "ko": "App Store에서 Shadowrocket 검색, 구입 버튼이 빨간 테두리로 표시됨",
+  "es": "Búsqueda de Shadowrocket en la App Store con el botón de compra marcado"
+ },
+ "我的專屬網頁的 Shadowrocket 區塊，有 QR code 和「用 Shadowrocket 開啟」按鈕": {
+  "en": "The Shadowrocket section of My page, with a QR code and the “Open in Shadowrocket” button",
+  "zh-CN": "我的专属网页的 Shadowrocket 区块，有 QR 码和“用 Shadowrocket 打开”按钮",
+  "ja": "マイページの Shadowrocket 欄：QR コードと「Shadowrocket で開く」ボタン",
+  "ko": "내 페이지의 Shadowrocket 부분: QR 코드와 'Shadowrocket으로 열기' 버튼",
+  "es": "El apartado Shadowrocket de Mi página, con un QR y el botón «Abrir en Shadowrocket»"
+ },
+ "Safari 詢問是否在 Shadowrocket 中打開，打開按鈕被紅框標出": {
+  "en": "Safari asking whether to open in Shadowrocket, with Open highlighted",
+  "zh-CN": "Safari 询问是否在 Shadowrocket 中打开，打开按钮被红框标出",
+  "ja": "Safari が Shadowrocket で開くか確認、「開く」を赤枠で表示",
+  "ko": "Safari가 Shadowrocket에서 열지 묻는 화면, '열기'가 빨간 테두리로 표시됨",
+  "es": "Safari pregunta si abrir en Shadowrocket, con «Abrir» marcado"
+ },
+ "iPhone 詢問是否允許加入 VPN 設定，允許被紅框標出": {
+  "en": "The iPhone asking whether to allow adding a VPN configuration, with Allow highlighted",
+  "zh-CN": "iPhone 询问是否允许添加 VPN 配置，允许被红框标出",
+  "ja": "iPhone が VPN 構成の追加を許可するか確認、「許可」を赤枠で表示",
+  "ko": "iPhone이 VPN 구성 추가를 허용할지 묻는 화면, '허용'이 빨간 테두리로 표시됨",
+  "es": "El iPhone pregunta si permitir añadir una configuración VPN, con «Permitir» marcado"
+ },
+ "Shadowrocket 首頁，開關、全域路由、家裡的 Mac 分別被標出": {
+  "en": "Shadowrocket's home screen with the switch, Global Routing and Home Mac marked",
+  "zh-CN": "Shadowrocket 首页，开关、全局路由、家里的 Mac 分别被标出",
+  "ja": "Shadowrocket のホーム：スイッチ・グローバルルーティング・家の Mac に印",
+  "ko": "Shadowrocket 홈: 스위치, 전역 라우팅, 집의 Mac 표시",
+  "es": "Pantalla principal de Shadowrocket con el interruptor, Enrutamiento global y El Mac de casa marcados"
+ },
+ "Safari 顯示一串 IP 數字": {
+  "en": "Safari showing a string of IP numbers",
+  "zh-CN": "Safari 显示一串 IP 数字",
+  "ja": "Safari に IP の数字が表示されている",
+  "ko": "Safari에 IP 숫자가 표시됨",
+  "es": "Safari mostrando una serie de números IP"
+ },
+ "App Store 搜尋 Tailscale，取得按鈕被紅框標出": {
+  "en": "App Store search for Tailscale with the Get button highlighted",
+  "zh-CN": "App Store 搜索 Tailscale，获取按钮被红框标出",
+  "ja": "App Store で Tailscale を検索、「入手」ボタンを赤枠で表示",
+  "ko": "App Store에서 Tailscale 검색, '받기' 버튼이 빨간 테두리로 표시됨",
+  "es": "Búsqueda de Tailscale en la App Store con el botón Obtener marcado"
+ },
+ "Tailscale 登入畫面，有 Google、Apple、Microsoft 登入選項": {
+  "en": "Tailscale's sign-in screen with Google, Apple and Microsoft options",
+  "zh-CN": "Tailscale 登录画面，有 Google、Apple、Microsoft 登录选项",
+  "ja": "Tailscale のログイン画面：Google・Apple・Microsoft の選択肢",
+  "ko": "Tailscale 로그인 화면: Google, Apple, Microsoft 선택지",
+  "es": "Pantalla de inicio de sesión de Tailscale con Google, Apple y Microsoft"
+ },
+ "Tailscale 主畫面，開關和 Exit Node 被標出": {
+  "en": "Tailscale's main screen with the switch and Exit Node marked",
+  "zh-CN": "Tailscale 主画面，开关和 Exit Node 被标出",
+  "ja": "Tailscale のメイン画面：スイッチと Exit Node に印",
+  "ko": "Tailscale 메인 화면: 스위치와 Exit Node 표시",
+  "es": "Pantalla principal de Tailscale con el interruptor y Exit Node marcados"
+ },
+ "Exit Node 清單，家裡的電腦被紅框標出": {
+  "en": "The Exit Node list with Home computer highlighted",
+  "zh-CN": "Exit Node 列表，家里的电脑被红框标出",
+  "ja": "Exit Node の一覧、「家のパソコン」を赤枠で表示",
+  "ko": "Exit Node 목록, '집 컴퓨터'가 빨간 테두리로 표시됨",
+  "es": "Lista de Exit Node con «Ordenador de casa» marcado"
+ },
+ "我的雲端有兩個資料夾：我的檔案、共用": {
+  "en": "My cloud has two folders: My files and Shared",
+  "zh-CN": "我的云盘有两个文件夹：我的文件、共享",
+  "ja": "マイクラウドには 2 つのフォルダ：マイファイルと共有",
+  "ko": "내 클라우드의 두 폴더: 내 파일, 공유",
+  "es": "Mi nube tiene dos carpetas: Mis archivos y Compartida"
+ },
+ "我的檔案清單，每個檔案下面寫著大小和上傳時間": {
+  "en": "The My files list; each file shows its size and upload time",
+  "zh-CN": "我的文件列表，每个文件下面写着大小和上传时间",
+  "ja": "マイファイルの一覧：各ファイルの下にサイズとアップロード日時",
+  "ko": "내 파일 목록: 파일마다 크기와 업로드 시간 표시",
+  "es": "Lista de Mis archivos; cada archivo muestra su tamaño y fecha de subida"
+ },
+ "相簿模式，照片排成三欄的格子，影片中間有播放鍵": {
+  "en": "Album view: photos in a three-column grid, videos with a play button",
+  "zh-CN": "相册模式，照片排成三栏的格子，视频中间有播放键",
+  "ja": "アルバム表示：写真が 3 列の格子に並び、動画には再生ボタン",
+  "ko": "앨범 보기: 사진이 3열 격자로, 동영상에는 재생 버튼",
+  "es": "Vista de álbum: fotos en cuadrícula de tres columnas, vídeos con botón de reproducir"
+ },
+ "打開買菜清單.txt，直接顯示文字內容": {
+  "en": "A shopping list .txt opened, showing the text directly",
+  "zh-CN": "打开购物清单.txt，直接显示文字内容",
+  "ja": "買い物リスト.txt を開くと、テキストがそのまま表示",
+  "ko": "장보기 목록.txt를 열면 글자가 바로 보임",
+  "es": "Una lista de la compra .txt abierta, mostrando el texto"
+ },
+ "檔案選單：預覽、下載、詳細資訊、分享、改名、移動、刪除、關閉": {
+  "en": "The file menu: Preview, Download, Details, Share, Rename, Move, Delete, Close",
+  "zh-CN": "文件菜单：预览、下载、详细信息、分享、改名、移动、删除、关闭",
+  "ja": "ファイルメニュー：プレビュー・ダウンロード・詳細・共有・名前を変更・移動・削除・閉じる",
+  "ko": "파일 메뉴: 미리보기, 다운로드, 자세히, 공유, 이름 바꾸기, 이동, 삭제, 닫기",
+  "es": "Menú del archivo: Vista previa, Descargar, Detalles, Compartir, Renombrar, Mover, Eliminar, Cerrar"
+ },
+ "詳細資訊：類型、大小、照片尺寸、上傳時間、修改時間、位置": {
+  "en": "Details: type, size, photo dimensions, upload time, modified time, location",
+  "zh-CN": "详细信息：类型、大小、照片尺寸、上传时间、修改时间、位置",
+  "ja": "詳細：種類・サイズ・写真のサイズ・アップロード日時・更新日時・場所",
+  "ko": "자세히: 종류, 크기, 사진 크기, 업로드 시간, 수정 시간, 위치",
+  "es": "Detalles: tipo, tamaño, dimensiones de la foto, fecha de subida, de modificación y ubicación"
+ },
+ "選取模式，兩張照片被勾選，上面有全選、移動、刪除、完成": {
+  "en": "Select mode with two photos ticked; Select all, Move, Delete and Done at the top",
+  "zh-CN": "选择模式，两张照片被勾选，上面有全选、移动、删除、完成",
+  "ja": "選択モード：写真 2 枚にチェック、上に「すべて選択・移動・削除・完了」",
+  "ko": "선택 모드: 사진 두 장 체크, 위에 모두 선택, 이동, 삭제, 완료",
+  "es": "Modo selección con dos fotos marcadas; arriba Todos, Mover, Eliminar y Listo"
+ },
+ "垃圾桶裡有一張照片，旁邊有還原和永久刪除按鈕": {
+  "en": "A photo in the Trash with Restore and Delete for good buttons",
+  "zh-CN": "回收站里有一张照片，旁边有还原和永久删除按钮",
+  "ja": "ゴミ箱の写真：「復元」と「完全に削除」ボタン",
+  "ko": "휴지통의 사진: 복원과 영구 삭제 버튼",
+  "es": "Una foto en la papelera con los botones Restaurar y Eliminar definitivamente"
+ },
+ "分享表單：有效期限、下載次數上限、密碼": {
+  "en": "The share form: valid until, download limit, password",
+  "zh-CN": "分享表单：有效期限、下载次数上限、密码",
+  "ja": "共有フォーム：有効期限・ダウンロード回数の上限・パスワード",
+  "ko": "공유 양식: 유효 기간, 다운로드 횟수 제한, 비밀번호",
+  "es": "El formulario para compartir: validez, límite de descargas, contraseña"
+ },
+ "iPhone 照片自動備份卡片，有上傳網址和一步一步的說明": {
+  "en": "The iPhone photo auto-backup card, with the upload address and step-by-step instructions",
+  "zh-CN": "iPhone 照片自动备份卡片，有上传网址和一步一步的说明",
+  "ja": "iPhone 写真の自動バックアップのカード：アップロード用アドレスと手順",
+  "ko": "iPhone 사진 자동 백업 카드: 업로드 주소와 단계별 설명",
+  "es": "La tarjeta de copia automática de fotos del iPhone, con la dirección de subida y los pasos"
+ },
+ "大字模式的專屬網頁，T 按鈕變成藍色": {
+  "en": "My page in large text mode; the T button is blue",
+  "zh-CN": "大字模式的专属网页，T 按钮变成蓝色",
+  "ja": "大きな文字のマイページ：T ボタンが青色",
+  "ko": "큰 글씨 모드의 내 페이지: T 버튼이 파란색",
+  "es": "Mi página con texto grande; el botón T está en azul"
+ },
+ "三個圓圈：我的雲端、使用期限、今天還能用": {
+  "en": "Three rings: My cloud, valid until, left today",
+  "zh-CN": "三个圆圈：我的云盘、使用期限、今天还能用",
+  "ja": "3 つの丸：マイクラウド・利用期限・今日の残り",
+  "ko": "세 원: 내 클라우드, 사용 기한, 오늘 남은 시간",
+  "es": "Tres círculos: Mi nube, válido hasta, queda hoy"
+ },
+ "留言給管理員：選項、輸入框、送出按鈕，下面有之前的留言和管理員的回覆": {
+  "en": "Message the admin: options, a text box and a Send button, with earlier messages and the admin's replies below",
+  "zh-CN": "留言给管理员：选项、输入框、发送按钮，下面有之前的留言和管理员的回复",
+  "ja": "管理者にメッセージ：項目・入力欄・送信ボタン、下に以前のメッセージと管理者の返信",
+  "ko": "관리자에게 메시지: 항목, 입력 칸, 보내기 버튼, 아래에 이전 메시지와 관리자 답장",
+  "es": "Escribir al administrador: opciones, un cuadro de texto y el botón Enviar; debajo, mensajes anteriores y respuestas"
+ },
+ "連線檢查：IP、連線方式、網速測試結果下載 48 Mbps 上傳 21 Mbps": {
+  "en": "Connection check: IP, connection type, speed test results 48 Mbps down, 21 Mbps up",
+  "zh-CN": "连接检查：IP、连接方式、网速测试结果下载 48 Mbps 上传 21 Mbps",
+  "ja": "接続チェック：IP・接続方式・速度テスト結果（下り 48 Mbps、上り 21 Mbps）",
+  "ko": "연결 확인: IP, 연결 방식, 속도 측정 결과 다운로드 48Mbps 업로드 21Mbps",
+  "es": "Comprobar conexión: IP, tipo de conexión y resultado de la prueba: 48 Mbps de bajada y 21 Mbps de subida"
+ },
+ "控制台首頁的 CPU 和記憶體圓圈": {
+  "en": "The CPU and memory rings on the control panel's home page",
+  "zh-CN": "控制台首页的 CPU 和内存圆圈",
+  "ja": "コントロールパネルのホームにある CPU とメモリの丸",
+  "ko": "제어판 홈의 CPU와 메모리 원",
+  "es": "Los círculos de CPU y memoria en el inicio del panel"
+ },
+ "Mac 頁面最上面：型號、CPU、記憶體壓力、電池、下載上傳速度、散熱": {
+  "en": "Top of the Mac page: model, CPU, memory pressure, battery, download/upload speed, cooling",
+  "zh-CN": "Mac 页面最上面：型号、CPU、内存压力、电池、下载上传速度、散热",
+  "ja": "Mac ページの上部：モデル・CPU・メモリプレッシャー・バッテリー・速度・冷却",
+  "ko": "Mac 페이지 맨 위: 모델, CPU, 메모리 압박, 배터리, 다운로드·업로드 속도, 발열",
+  "es": "Parte de arriba de la página Mac: modelo, CPU, presión de memoria, batería, velocidad y temperatura"
+ },
+ "趨勢圖：CPU、記憶體、網路、電量，手指點在 CPU 圖上顯示 13:57 CPU 13%": {
+  "en": "Trend charts: CPU, memory, network, battery, with a finger on the CPU chart showing 13:57 CPU 13%",
+  "zh-CN": "趋势图：CPU、内存、网络、电量，手指点在 CPU 图上显示 13:57 CPU 13%",
+  "ja": "推移グラフ：CPU・メモリ・ネットワーク・残量。CPU グラフを指でタップすると 13:57 CPU 13% と表示",
+  "ko": "추세 그래프: CPU, 메모리, 네트워크, 배터리. CPU 그래프를 누르면 13:57 CPU 13% 표시",
+  "es": "Gráficas: CPU, memoria, red y batería; un dedo sobre la de CPU muestra 13:57 CPU 13%"
+ },
+ "電池：電量、健康度、充電循環、溫度、電力": {
+  "en": "Battery: charge, health, charge cycles, temperature, power",
+  "zh-CN": "电池：电量、健康度、充电循环、温度、电力",
+  "ja": "バッテリー：残量・状態・充放電回数・温度・電力",
+  "ko": "배터리: 잔량, 성능, 충전 횟수, 온도, 전력",
+  "es": "Batería: carga, salud, ciclos, temperatura y energía"
+ },
+ "記憶體分配長條：App 正在用、系統保留、壓縮、快取、空閒，還有記憶體壓力和交換空間": {
+  "en": "The memory bar: in use by apps, wired, compressed, cache, free, plus memory pressure and swap",
+  "zh-CN": "内存分配长条：App 正在用、系统保留、压缩、缓存、空闲，还有内存压力和交换空间",
+  "ja": "メモリのバー：アプリ使用中・システム予約・圧縮・キャッシュ・空き、メモリプレッシャーとスワップ",
+  "ko": "메모리 막대: 앱 사용 중, 시스템 예약, 압축, 캐시, 여유, 메모리 압박과 스왑",
+  "es": "La barra de memoria: en uso por apps, reservada, comprimida, caché y libre, más presión y swap"
+ },
+ "最耗資源的程式清單，依記憶體排序，Safari ×3 排第一": {
+  "en": "Heaviest apps, sorted by memory, with Safari ×3 first",
+  "zh-CN": "最耗资源的程序列表，按内存排序，Safari ×3 排第一",
+  "ja": "リソースを多く使うアプリ（メモリ順）、Safari ×3 が 1 位",
+  "ko": "자원을 가장 많이 쓰는 앱(메모리순), Safari ×3이 1위",
+  "es": "Apps que más consumen, por memoria, con Safari ×3 en primer lugar"
+ },
+ "控制台的遙控頁，上方有 Mac、電腦名稱和＋，下面是安裝步驟和一行安裝指令": {
+  "en": "The control panel's Remote page: Mac, the PC name and ＋ at the top, install steps and a one-line install command below",
+  "zh-CN": "控制台的遥控页，上方有 Mac、电脑名称和＋，下面是安装步骤和一行安装命令",
+  "ja": "パネルのリモートページ：上に Mac・PC 名・＋、下に手順と 1 行のインストールコマンド",
+  "ko": "제어판 원격 페이지: 위에 Mac, PC 이름, ＋, 아래에 설치 단계와 한 줄 설치 명령",
+  "es": "La página Remoto del panel: arriba Mac, el nombre del PC y ＋; debajo los pasos y un comando de una línea"
+ },
+ "Windows 電腦的狀態：CPU、記憶體、系統碟、電源、開機時間、使用者，下面是正在播放的歌和音樂控制": {
+  "en": "A Windows PC's status: CPU, memory, system drive, power, uptime, user, with the song playing and music controls below",
+  "zh-CN": "Windows 电脑的状态：CPU、内存、系统盘、电源、开机时间、用户，下面是正在播放的歌和音乐控制",
+  "ja": "Windows PC の状態：CPU・メモリ・システムドライブ・電源・起動時間・ユーザー、下に再生中の曲と音楽操作",
+  "ko": "Windows PC 상태: CPU, 메모리, 시스템 드라이브, 전원, 켜진 시간, 사용자, 아래에 재생 중인 노래와 음악 조작",
+  "es": "Estado de un PC con Windows: CPU, memoria, disco, energía, tiempo encendido y usuario; debajo la canción y los controles de música"
+ },
+ "螢幕：擷取畫面、鎖定、關螢幕、睡眠；電源：關機、重新開機、取消關機": {
+  "en": "Screen: screenshot, lock, screen off, sleep; Power: shut down, restart, cancel shutdown",
+  "zh-CN": "屏幕：截取画面、锁定、关屏幕、睡眠；电源：关机、重新启动、取消关机",
+  "ja": "画面：キャプチャ・ロック・画面オフ・スリープ／電源：シャットダウン・再起動・取り消し",
+  "ko": "화면: 캡처, 잠금, 화면 끄기, 잠자기 / 전원: 종료, 다시 시작, 종료 취소",
+  "es": "Pantalla: captura, bloquear, apagar pantalla, reposo; Energía: apagar, reiniciar, cancelar apagado"
+ },
+ "專屬網頁上的「回報問題」卡片，有「我要回報問題」按鈕，下面是我的回報和管理員的回覆": {
+  "en": "The “Report a problem” card on My page, with a “Report a problem” button and My reports with the admin's replies below",
+  "zh-CN": "专属网页上的“反馈问题”卡片，有“我要反馈问题”按钮，下面是我的反馈和管理员的回复",
+  "ja": "マイページの「問題を報告」カード：「問題を報告する」ボタン、下に自分の報告と管理者の返信",
+  "ko": "내 페이지의 '문제 보고' 카드: '문제 보고하기' 버튼, 아래에 내 보고와 관리자 답장",
+  "es": "La tarjeta «Informar de un problema» de Mi página, con su botón y debajo Mis informes con las respuestas"
+ },
+ "回報問題的表單：哪裡有問題、有多嚴重、一句話描述、詳細說明、截圖、附上手機資訊": {
+  "en": "The report form: where's the problem, how serious, one-line summary, details, screenshots, attach phone info",
+  "zh-CN": "反馈问题的表单：哪里有问题、有多严重、一句话描述、详细说明、截图、附上手机信息",
+  "ja": "報告フォーム：どこに問題があるか・深刻さ・一言の説明・詳細・スクリーンショット・スマホ情報の添付",
+  "ko": "보고 양식: 문제 위치, 심각도, 한 줄 설명, 자세한 설명, 스크린샷, 휴대폰 정보 첨부",
+  "es": "El formulario de informe: dónde está el problema, gravedad, resumen, detalles, capturas y datos del móvil"
+ },
+ "一步一步教你用 Shadowrocket 或 Tailscale 連回家裡的網路、使用家裡的雲端硬碟。": {
+  "en": "Step-by-step: connect to the home network with Shadowrocket or Tailscale and use the home cloud drive.",
+  "zh-CN": "一步一步教你用 Shadowrocket 或 Tailscale 连回家里的网络、使用家里的云盘。",
+  "ja": "Shadowrocket か Tailscale で家のネットワークにつなぎ、家のクラウドドライブを使う方法を一歩ずつ説明します。",
+  "ko": "Shadowrocket이나 Tailscale로 집 네트워크에 연결하고 집 클라우드 드라이브를 쓰는 방법을 단계별로 알려 드려요.",
+  "es": "Paso a paso: conéctate a la red de casa con Shadowrocket o Tailscale y usa la nube de casa."
+ }
+}

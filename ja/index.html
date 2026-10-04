@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>おうちネットワークの使い方</title>
+<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+
+<meta name="description" content="Shadowrocket か Tailscale で家のネットワークにつなぎ、家のクラウドドライブを使う方法を一歩ずつ説明します。">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb; --card: #ffffff; --text: #16181d; --text-2: #454a55; --muted: #6b7280; --line: #e3e6ee;
+  --blue: #0a6cff; --blue-soft: #e8f0ff; --green: #1a8f3c; --green-soft: #e6f6ea; --orange: #b45309; --orange-soft: #fff4e0;
+  --red: #d42a20; --red-soft: #ffebe9; --shadow: 0 6px 24px rgba(20, 30, 60, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --bg: #0e1116; --card: #181c23; --text: #f2f4f8; --text-2: #c9ced8; --muted: #9aa1ad; --line: #2a303b;
+    --blue: #4b93ff; --blue-soft: #16243d; --green: #4ccf73; --green-soft: #13291b; --orange: #f5b44a; --orange-soft: #2f2412;
+    --red: #ff6b61; --red-soft: #3a1716; --shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.75 -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 80px; }
+header.top { padding: calc(28px + env(safe-area-inset-top)) 0 10px; text-align: center; }
+header.top h1 { font-size: 32px; line-height: 1.3; margin: 8px 0 6px; }
+header.top p { color: var(--text-2); margin: 0; }
+.logo { font-size: 50px; }
+h2 { font-size: 27px; line-height: 1.35; margin: 46px 0 12px; scroll-margin-top: 20px; }
+h2 .tag { font-size: 15px; vertical-align: middle; padding: 3px 10px; border-radius: 99px; margin-left: 6px; font-weight: 700; }
+h3 { font-size: 22px; margin: 0 0 6px; }
+p { margin: 8px 0; }
+b, strong { font-weight: 800; }
+a { color: var(--blue); }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); margin: 14px 0; }
+.toc a { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-weight: 700; }
+.toc a:first-of-type { border-top: 0; }
+.toc .n { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; flex: none; font-size: 17px; }
+.choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.choose .card { margin: 0; border: 3px solid transparent; }
+.choose .card.a { border-color: #6c63ff33; } .choose .card.b { border-color: #0a6cff33; }
+.choose ul { padding-left: 22px; margin: 8px 0 12px; }
+.pill { display: inline-block; font-size: 15px; font-weight: 800; padding: 3px 12px; border-radius: 99px; }
+.pill.free { background: var(--green-soft); color: var(--green); } .pill.paid { background: var(--orange-soft); color: var(--orange); }
+.go { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; padding: 10px 20px; border-radius: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; background: var(--card); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); margin: 16px 0; }
+.step .num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 24px; font-weight: 800; display: grid; place-items: center; }
+.step .body { min-width: 0; }
+figure { margin: 14px 0 4px; text-align: center; }
+figure img { width: 100%; max-width: 340px; height: auto; border-radius: 22px; box-shadow: var(--shadow); background: #fff; }
+figure.wide img { max-width: 420px; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.qrwrap { position: relative; display: inline-block; max-width: 380px; width: 100%; }
+.qrwrap img { max-width: 100%; }
+.qrwrap .stamp { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); background: var(--red); color: #fff; font-weight: 900; font-size: 26px; padding: 10px 22px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212,42,32,.4); white-space: nowrap; }
+.note { border-radius: 16px; padding: 14px 16px; margin: 12px 0; font-size: 17px; }
+.note.tip { background: var(--blue-soft); } .note.warn { background: var(--orange-soft); } .note.danger { background: var(--red-soft); }
+.note.ok { background: var(--green-soft); }
+.note b:first-child { display: block; margin-bottom: 2px; }
+ol.simple, ul.simple { padding-left: 24px; } ol.simple li, ul.simple li { margin: 6px 0; }
+.check li { list-style: none; margin-left: -24px; padding-left: 34px; position: relative; }
+.check li::before { content: "☐"; position: absolute; left: 0; font-size: 22px; line-height: 1.45; }
+details.faq { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin: 10px 0; padding: 4px 18px; }
+details.faq summary { cursor: pointer; font-weight: 800; padding: 12px 0; list-style: none; }
+details.faq summary::before { content: "＋ "; color: var(--blue); }
+details.faq[open] summary::before { content: "－ "; }
+details.faq > div { padding: 0 0 14px; color: var(--text-2); }
+kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
+.back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+.langs { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 15px; margin: 4px 0 14px; color: var(--muted); }
+.langs a { color: var(--blue); text-decoration: none; font-weight: 700; padding: 4px 8px; border-radius: 99px; }
+.langs a[aria-current] { background: var(--blue-soft); color: var(--text); }
+footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
+@media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="langs" translate="no">🌐 <a href="../?lang=zh" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a> <a href="../en/" hreflang="en" lang="en">English</a> <a href="../zh-CN/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a> <a href="../ja/" hreflang="ja" lang="ja" aria-current="page">日本語</a> <a href="../ko/" hreflang="ko" lang="ko">한국어</a> <a href="../es/" hreflang="es" lang="es">Español</a></nav>
+<header class="top" id="top">
+  <div class="logo">🏠</div>
+  <h1>おうちネットワークの使い方</h1>
+  <p>スマホから家のネットワークにつないで、家のクラウドドライブを使う<br>手順どおりに進めるだけ。パソコンの知識はいりません</p>
+</header>
+
+<div class="card toc"><a href="#before"><span class="n">1</span>はじめに用意するもの</a> <a href="#choose"><span class="n">2</span>方法を選ぶ：Shadowrocket か Tailscale</a> <a href="#portal"><span class="n">3</span>「マイページ」を開く</a> <a href="#sr"><span class="n">4</span>方法 A：Shadowrocket</a> <a href="#ts"><span class="n">5</span>方法 B：Tailscale</a> <a href="#cloud"><span class="n">6</span>「マイクラウド」に写真やファイルを保存</a> <a href="#backup"><span class="n">7</span>iPhone の写真を毎日自動バックアップ</a> <a href="#more"><span class="n">8</span>そのほかの便利な機能（大きな文字・メッセージ・利用時間・速度）</a> <a href="#mac"><span class="n">9</span>家の Mac の様子を見る（パネル権限がある人）</a> <a href="#win"><span class="n">10</span>スマホで Windows PC を操作（管理者）</a> <a href="#report"><span class="n">11</span>管理者に問題を報告</a> <a href="#faq"><span class="n">12</span>困ったときは</a> <a href="#safe"><span class="n">13</span>安全のための注意（大切）</a></div>
+
+<!-- 1 -->
+<h2 id="before">1. はじめに用意するもの</h2>
+<div class="card">
+  <ul class="simple check">
+    <li><b>iPhone</b>（このガイドは iPhone で説明します）</li>
+    <li><b>Apple ID のパスワード</b>（アプリのダウンロードで使うことがあります）</li>
+    <li>スマホがインターネットにつながること（Wi-Fi でもモバイル通信でも OK）</li>
+    <li><b>管理者から届いた「専用アドレス」</b>。こんな形です：<br><code style="font-size:15px;word-break:break-all">https://………/p/英数字の長い文字列/</code></li>
+  </ul>
+  <div class="note tip"><b>「管理者」とは？</b>家のネットワークを用意してくれた人のことです。わからないことがあれば、その人に聞けば大丈夫。</div>
+</div>
+
+<!-- 2 -->
+<h2 id="choose">2. 方法を選ぶ</h2>
+<p>家につなぐアプリは 2 種類あります。<b>どちらか一つで OK</b>、両方入れる必要はありません。迷ったら<b>管理者に聞いて</b>ください。</p>
+<div class="choose">
+  <div class="card a">
+    <h3>🚀 方法 A：Shadowrocket</h3>
+    <span class="pill paid">有料アプリ</span>
+    <ul>
+      <li>いちばん簡単。ボタン一つで設定完了</li>
+      <li>アカウント登録は不要</li>
+      <li>向いている人：家のネットワーク経由でネットを使いたい人</li>
+    </ul>
+    <a class="go" href="#sr">方法 A の説明へ →</a>
+  </div>
+  <div class="card b">
+    <h3>🔵 方法 B：Tailscale</h3>
+    <span class="pill free">無料</span>
+    <ul>
+      <li>Google か Apple のアカウントでログイン</li>
+      <li>先に管理者から招待が必要</li>
+      <li>向いている人：家のパソコンを使う必要がある人</li>
+    </ul>
+    <a class="go" href="#ts">方法 B の説明へ →</a>
+  </div>
+</div>
+<div class="note warn"><b>⚠️ 2 つ同時には使えません</b>iPhone で同時に使える VPN は 1 つだけ。Shadowrocket をオンにすると Tailscale は自動でオフになり、その逆も同じです。</div>
+
+<!-- 3 -->
+<h2 id="portal">3. 「マイページ」を開く</h2>
+<p>どちらの方法でもこのページを使います。<b>何が使えて、いつまで使えるか</b>がわかり、クラウドドライブもここから使えます。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>管理者からのアドレスを開く</h3>
+  <p>LINE やメッセージでそのアドレスをタップすると、iPhone の <b>Safari</b> で開きます。</p>
+  <figure><img src="../img/ja/portal-top.png" alt="マイページの上部：名前・利用可・利用期限" loading="lazy"><figcaption>開くとあなたの名前が表示されます（図の名前は例です）</figcaption></figure>
+  <div class="note ok"><b>緑の「利用可」なら問題ありません。</b>赤い場合は、いちばん下の<a href="#faq">困ったときは</a>を見てください。</div>
+  <div class="note tip"><b>文字が小さくて読みにくい？</b>右上の <kbd>T</kbd> を押すと大きな文字に、もう一度押すと元に戻ります。詳しくは<a href="#big">大きな文字</a>へ。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>ホーム画面に追加（次からワンタップで開ける）</h3>
+  <ol class="simple">
+    <li>Safari の下中央にある <kbd>共有</kbd> ボタン（四角に上向き矢印 ⬆︎）を押す</li>
+    <li>下にスクロールして <kbd>ホーム画面に追加</kbd> を押す</li>
+    <li>右上の <kbd>追加</kbd> を押す</li>
+  </ol>
+  <figure><img src="../img/ja/home-screen.png" alt="Safari の共有メニュー、「ホーム画面に追加」を赤枠で表示" loading="lazy"><figcaption>ホーム画面に「マイ接続」のアイコンが増えます</figcaption></figure>
+</div></div>
+
+<!-- 4 -->
+<h2 id="sr">4. 方法 A：Shadowrocket <span class="tag pill paid">有料</span></h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Shadowrocket をダウンロード</h3>
+  <ol class="simple">
+    <li>iPhone の <b>App Store</b>（青い A のアイコン）を開く</li>
+    <li>右下の <kbd>検索</kbd> を押して <b>Shadowrocket</b> と入力</li>
+    <li><b>青いロケット</b>のアイコンのアプリを探し、価格のボタンを押して購入</li>
+    <li>Face ID か Apple ID のパスワードで支払いを確認</li>
+  </ol>
+  <figure><img src="../img/ja/appstore-sr.png" alt="App Store で Shadowrocket を検索、購入ボタンを赤枠で表示" loading="lazy"><figcaption>イメージ図：実際の価格とアイコンは App Store で確認してください</figcaption></figure>
+  <div class="note warn"><b>見つからない？</b>中国本土の App Store にはこのアプリがありません。見つからなければ管理者に相談してください。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>「マイページ」からワンタップで取り込む</h3>
+  <ol class="simple">
+    <li><a href="#portal">マイページ</a>を開き、<b>Shadowrocket</b> の欄までスクロール</li>
+    <li>青い <kbd>Shadowrocket で開く</kbd> を押す</li>
+    <li>「Shadowrocket で開きますか？」と出たら <kbd>開く</kbd> を押す</li>
+  </ol>
+  <figure><span class="qrwrap"><img src="../img/ja/portal-sr.png" alt="マイページの Shadowrocket 欄：QR コードと「Shadowrocket で開く」ボタン" loading="lazy"><span class="stamp">例・読み取れません</span></span>
+    <figcaption>あなたのページには、あなた専用の QR コードとボタンがあります</figcaption></figure>
+  <figure><img src="../img/ja/safari-open.png" alt="Safari が Shadowrocket で開くか確認、「開く」を赤枠で表示" loading="lazy"></figure>
+  <div class="note tip"><b>別の画面から読み取ってもOK</b>パソコンでページを開いているなら、Shadowrocket のホームで左上の「スキャン」アイコンを押し、ページの QR コードを読み取ります。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>初回：VPN を許可</h3>
+  <p>初めてスイッチを入れると、VPN 構成を追加するか聞かれます。<kbd>許可</kbd> を押し、<b>iPhone のパスコード</b>を入力するか Face ID を使います。</p>
+  <figure><img src="../img/ja/vpn-allow.png" alt="iPhone が VPN 構成の追加を許可するか確認、「許可」を赤枠で表示" loading="lazy"><figcaption>この画面は一度だけ出ます</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>スイッチを入れる</h3>
+  <ol class="simple">
+    <li>下の一覧で<b>「家の Mac」</b>にチェック ✓ が付いているか確認</li>
+    <li>「グローバルルーティング」は <b>プロキシ</b> を選ぶ</li>
+    <li>いちばん上のスイッチを入れる（緑になる）</li>
+  </ol>
+  <figure><img src="../img/ja/sr-home.png" alt="Shadowrocket のホーム：スイッチ・グローバルルーティング・家の Mac に印" loading="lazy"></figure>
+  <div class="note ok"><b>成功すると：</b>iPhone のいちばん上に小さく <b>VPN</b> と表示されます。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>うまくいったか確認</h3>
+  <p>Safari で <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> を開くと、数字が表示されます。<b>管理者に聞いた数字と同じなら成功です！</b></p>
+  <figure><img src="../img/ja/ipify.png" alt="Safari に IP の数字が表示されている" loading="lazy"><figcaption>図の数字は例です</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>ふだんの使い方</h3>
+  <ul class="simple">
+    <li><b>使うとき</b>：Shadowrocket を開いてスイッチを入れる</li>
+    <li><b>使わないとき</b>：スイッチを切るだけ（電池の節約に）</li>
+    <li>iPhone の <b>設定 → VPN</b> でも切り替えられます</li>
+  </ul>
+</div></div>
+
+<!-- 5 -->
+<h2 id="ts">5. 方法 B：Tailscale <span class="tag pill free">無料</span></h2>
+<div class="note warn"><b>まず確認：管理者から招待されていますか？</b>管理者がメールや LINE で「招待リンク」を送ってくれます。招待がないと、ログインしてもどこにもつながりません。</div>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Tailscale をダウンロード</h3>
+  <ol class="simple">
+    <li><b>App Store</b> を開いて <b>Tailscale</b> を検索</li>
+    <li><kbd>入手</kbd>（無料）を押し、Face ID かパスワードで確認</li>
+  </ol>
+  <figure><img src="../img/ja/appstore-ts.png" alt="App Store で Tailscale を検索、「入手」ボタンを赤枠で表示" loading="lazy"><figcaption>イメージ図：実際のアイコンは App Store で確認してください</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>招待を受けてログイン</h3>
+  <ol class="simple">
+    <li>管理者からの<b>招待リンク</b>を開き、「Accept」を押す</li>
+    <li>Tailscale アプリを開いて <kbd>ログイン</kbd> を押す</li>
+    <li>ふだん使っているアカウント（Google か Apple）でログイン</li>
+  </ol>
+  <figure><img src="../img/ja/ts-login.png" alt="Tailscale のログイン画面：Google・Apple・Microsoft の選択肢" loading="lazy"><figcaption>イメージ図：実際の画面は英語の場合があります</figcaption></figure>
+  <div class="note danger"><b>必ず同じアカウントで</b>管理者が<b>招待したメールアドレス</b>でログインしないとつながりません。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>VPN を許可</h3>
+  <p>Shadowrocket と同じく、初回は VPN 構成（名前は <b>Tailscale</b>）を追加するか聞かれます。<kbd>許可</kbd> を押し、iPhone のパスコードか Face ID で確認します。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>接続して「家のパソコン」を選ぶ</h3>
+  <ol class="simple">
+    <li>いちばん上のスイッチを入れる（緑になる）</li>
+    <li><kbd>Exit Node</kbd> を押す</li>
+    <li><b>家のパソコン</b>を選ぶ（実際の名前は管理者に聞いてください）</li>
+  </ol>
+  <figure><img src="../img/ja/ts-main.png" alt="Tailscale のメイン画面：スイッチと Exit Node に印" loading="lazy"></figure>
+  <figure><img src="../img/ja/ts-exit.png" alt="Exit Node の一覧、「家のパソコン」を赤枠で表示" loading="lazy"><figcaption>選ぶと、家にいるのと同じようにネットが使え、広告も自動でブロックされます</figcaption></figure>
+  <div class="note tip"><b>Exit Node がない？</b>管理者がこの機能を許可していないということで、問題ありません。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>うまくいったか確認</h3>
+  <p>方法 A と同じく、Safari で <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> を開き、管理者の言った数字と同じなら成功です。</p>
+</div></div>
+
+<!-- 6 -->
+<h2 id="cloud">6. 「マイクラウド」に写真やファイルを保存</h2>
+<p>管理者がクラウドドライブを用意してくれていれば、<a href="#portal">マイページ</a>に<b>「マイクラウド」</b>があります。写真・動画・書類を家のディスクに保存でき、スマホを替えても安心です。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>2 つのフォルダ</h3>
+  <figure class="wide"><img src="../img/ja/portal-drive-roots.png" alt="マイクラウドには 2 つのフォルダ：マイファイルと共有" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>マイファイル</b>：あなた専用の場所で、あなたと管理者だけが見られます。使用量と上限が表示されます。</li>
+    <li><b>共有</b>：家族みんなのフォルダ。ここに保存できるかは管理者が決めます。</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>写真や動画をアップロード</h3>
+  <ol class="simple">
+    <li><b>マイファイル</b> を開く</li>
+    <li>青い <kbd>アップロード</kbd> を押す</li>
+    <li><b>フォトライブラリ</b> を選び、アップロードする写真や動画にチェックして <kbd>追加</kbd> を押す</li>
+    <li>進行状況バーが終わると「アップロード済み」と表示されます。バーの下に<b>速度</b>と<b>残り時間</b>が出ます</li>
+  </ol>
+  <figure class="wide"><img src="../img/ja/portal-drive-files.png" alt="マイファイルの一覧：各ファイルの下にサイズとアップロード日時" loading="lazy"><figcaption>各ファイルの下に<b>サイズ</b>と<b>アップロード日時</b>、いちばん下にファイル数と使用容量が表示されます</figcaption></figure>
+  <div class="note warn"><b>アップロード中はページを閉じないで</b>動画は大きいので時間がかかります。途中でページを離れると、最初からやり直しです。毎日の自動バックアップは<a href="#backup">手順 7</a>を見てください。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>上の小さなボタンの役割</h3>
+  <ul class="simple">
+    <li>🔍 <b>検索</b>：ファイル名の一部（例：「誕生日」）を入れると、すべてのフォルダから見つけます</li>
+    <li>↕️ <b>並べ替え</b>：<b>名前・アップロード日時・更新日時・サイズ・種類</b>で並べられます。最新のアップロードを見るなら「アップロード日時」</li>
+    <li>▦ <b>表示方法を切り替え</b>：「リスト」と「アルバム」を切り替えます。アルバムは写真アプリのように格子状に並びます</li>
+    <li>🗑 <b>ゴミ箱</b>：削除したものはまずここに入ります（手順 6 参照）</li>
+  </ul>
+  <figure class="wide"><img src="../img/ja/portal-drive-grid.png" alt="アルバム表示：写真が 3 列の格子に並び、動画には再生ボタン" loading="lazy"><figcaption>アルバム表示：写真・動画・PDF のサムネイルが見られます</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>タップしてすぐ見る</h3>
+  <p>ダウンロード不要、タップするとスマホで開けます：</p>
+  <ul class="simple">
+    <li><b>写真・動画・音楽</b>：そのまま表示・再生。<b>左右にスワイプ</b>すると前後のファイルへ</li>
+    <li><b>PDF・Word・Excel・PowerPoint・Pages・Keynote</b>：<b>1 ページ目</b>を表示します。PDF は <kbd>PDF を開く</kbd> で全体を、Word は <kbd>テキストを見る</kbd> で全文を見られます</li>
+    <li><b>テキスト（.txt）・表（.csv）</b>：内容をそのまま表示し、CSV は表になります</li>
+  </ul>
+  <figure><img src="../img/ja/portal-drive-text.png" alt="買い物リスト.txt を開くと、テキストがそのまま表示" loading="lazy"><figcaption>テキストファイルは内容をそのまま表示</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>⋯ でもっといろいろ</h3>
+  <p>各ファイルの右に <kbd>⋯</kbd> があり、押すと次の項目が出ます：</p>
+  <figure><img src="../img/ja/portal-drive-menu.png" alt="ファイルメニュー：プレビュー・ダウンロード・詳細・共有・名前を変更・移動・削除・閉じる" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>ダウンロード</b>：スマホに保存。<b>フォルダ</b>なら <b>ZIP でダウンロード</b> になり、フォルダごとダウンロード</li>
+    <li><b>詳細</b>：サイズ、アップロード日時、写真の画素数、動画の長さを確認</li>
+    <li><b>共有</b>：友だちに送るリンクを作成（下の「他の人と共有」参照）</li>
+    <li><b>名前を変更</b>、<b>移動</b>（別のフォルダへ）、<b>削除</b></li>
+  </ul>
+  <figure><img src="../img/ja/portal-drive-info.png" alt="詳細：種類・サイズ・写真のサイズ・アップロード日時・更新日時・場所" loading="lazy"><figcaption>詳細</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>まとめて整理する</h3>
+  <ol class="simple">
+    <li><kbd>選択</kbd> を押す</li>
+    <li>整理したいファイルをタップすると青いチェック ✓ が付きます（<kbd>すべて選択</kbd> で全部に付けられます）</li>
+    <li><kbd>移動</kbd> で別のフォルダへ、または <kbd>削除</kbd></li>
+    <li>終わったら <kbd>完了</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/ja/portal-drive-select.png" alt="選択モード：写真 2 枚にチェック、上に「すべて選択・移動・削除・完了」" loading="lazy"></figure>
+  <p><b>移動</b>ではフォルダの一覧が出ます。フォルダをタップして進み、置きたい場所で <kbd>ここに移動</kbd> を押します。</p>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <h3>うっかり削除した？ゴミ箱から戻せます</h3>
+  <p>削除したファイルは<b>すぐには消えません</b>。ゴミ箱に <b>30 日間</b>残ってから自動で消えます。</p>
+  <ol class="simple">
+    <li>上の列の 🗑 <b>ゴミ箱</b> を押す</li>
+    <li>戻したいファイルで <kbd>復元</kbd> を押すと、元のフォルダに戻ります</li>
+  </ol>
+  <figure class="wide"><img src="../img/ja/portal-drive-trash.png" alt="ゴミ箱の写真：「復元」と「完全に削除」ボタン" loading="lazy"></figure>
+  <div class="note danger"><b>ゴミ箱で ✕ や「ゴミ箱を空にする」を押すと元に戻せません</b>確認のためもう一度押す必要があります。よく見てから押してください。</div>
+</div></div>
+
+<div class="step"><div class="num">8</div><div class="body">
+  <h3>他の人と共有（相手はアプリ不要）</h3>
+  <ol class="simple">
+    <li>ファイルかフォルダで <kbd>⋯</kbd> → <kbd>共有</kbd></li>
+    <li><b>有効期限</b>を選ぶ（1 日・7 日・30 日・無期限）</li>
+    <li><b>ダウンロード回数</b>の上限や<b>パスワード</b>も設定できます</li>
+    <li><kbd>リンクを作成</kbd> を押すと自動でコピーされるので、LINE に貼り付けて送るだけ</li>
+  </ol>
+  <figure><img src="../img/ja/portal-drive-share.png" alt="共有フォーム：有効期限・ダウンロード回数の上限・パスワード" loading="lazy"></figure>
+  <div class="note tip"><b>相手には何が見える？</b>表示とダウンロードだけができるページで、あなたの他のファイルは見えません。フォルダを共有した場合は「すべてダウンロード（ZIP）」が使えます。期限切れ・回数切れ・管理者の取り消しでリンクは無効になります。</div>
+  <div class="note warn"><b>パスワードは別に伝えて</b>パスワードとリンクを同じメッセージに書かないでください。</div>
+</div></div>
+
+<!-- 7 -->
+<h2 id="backup">7. iPhone の写真を毎日自動バックアップ</h2>
+<p>iPhone <b>標準</b>の「ショートカット」アプリで、毎晩その日の写真をクラウドの「カメラバックアップ」フォルダに自動保存します。<b>アプリの追加も VPN も不要</b>、ネットにつながっていればバックアップされます。</p>
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>まずアップロード用アドレスをコピー</h3>
+  <p><a href="#portal">マイページ</a>で <b>「iPhone 写真の自動バックアップ」</b> を探し、<kbd>アップロード用アドレスをコピー</kbd> を押します。</p>
+  <div class="note tip"><b>ページに見当たらない？</b>管理者が自動バックアップを許可していないということです（ページからの手動アップロードは使えます）。必要なら<a href="#msg">メッセージ</a>で管理者に頼んでください。</div>
+  <figure class="wide"><img src="../img/ja/portal-backup.png" alt="iPhone 写真の自動バックアップのカード：アップロード用アドレスと手順" loading="lazy"><figcaption>ページにも同じ手順があります</figcaption></figure>
+</div></div>
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>「ショートカット」アプリでオートメーションを追加</h3>
+  <ol class="simple">
+    <li><b>ショートカット</b> アプリを開く（見つからなければホーム画面を下にスワイプして「ショートカット」を検索）</li>
+    <li>下の <kbd>オートメーション</kbd> を押し、右上の <kbd>＋</kbd> を押す</li>
+    <li><b>時刻</b> を選び、毎日 <b>23:00</b> に設定、<kbd>すぐに実行</kbd> を選んで <kbd>次へ</kbd></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>3 つのアクションを追加</h3>
+  <ol class="simple">
+    <li><kbd>アクションを追加</kbd> を押し、<b>写真を検索</b> を探して追加。「フィルタを追加」で <b>追加日</b>・<b>今日</b> に設定</li>
+    <li>続けて <b>各項目を繰り返す</b> を検索して追加</li>
+    <li><span>「繰り返す」の<b>中に</b> <b>URL の内容を取得</b> を追加：</span>
+      <ul class="simple">
+        <li>URL：さっきコピーしたアドレスを<b>貼り付け</b></li>
+        <li>「詳細を表示」を押し、<b>方法</b> を <kbd>POST</kbd> に</li>
+        <li><b>本文を要求</b> は <kbd>ファイル</kbd>、ファイルは <b>繰り返し項目</b></li>
+        <li><b>ヘッダ</b> で「新規ヘッダを追加」を 2 回：<br> 1 つ目：名前 <code>X-Requested-With</code>、値 <code>portal</code><br> 2 つ目：名前 <code>X-Filename</code>、値は <b>繰り返し項目</b> の <b>名前</b>、続けて <code>.heic</code> と入力<br><span style="font-size:14px;color:#666">（「設定 → カメラ → フォーマット」が「互換性優先」なら <code>.jpg</code> と入力）</span></li>
+      </ul></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>試しに実行</h3>
+  <p>右下の ▶︎ で試しに実行。初回は写真へのアクセスを聞かれるので <kbd>許可</kbd> を押します。終わったら「マイクラウド → マイファイル → カメラバックアップ」を見ると、今日の写真が入っているはずです。</p>
+  <div class="note ok"><b>何度実行しても大丈夫</b>バックアップ済みの写真は自動でスキップされ、容量を二重に使いません。</div>
+  <div class="note warn"><b>容量がいっぱいになると止まります</b>「マイファイル」がいっぱいになると保存できません。クラウドで古い写真を消すか、<a href="#msg">メッセージ</a>で管理者に容量の追加を頼んでください。</div>
+</div></div>
+
+<!-- 8 -->
+<h2 id="more">8. そのほかの便利な機能</h2>
+
+<div class="step" id="big"><div class="num">1</div><div class="body">
+  <h3>大きな文字（年配の家族向け）</h3>
+  <p>マイページ右上の <kbd>T</kbd> を押すと、文字もボタンも大きくなります。このスマホが覚えているので次回も大きいまま。もう一度 <kbd>T</kbd> を押すと元のサイズに戻ります。</p>
+  <figure><img src="../img/ja/portal-big.png" alt="大きな文字のマイページ：T ボタンが青色" loading="lazy"><figcaption>オンにすると T が青くなります</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>今日の残り時間</h3>
+  <p>管理者が<b>1 日の利用時間</b>を設定していると、ページに青い丸「今日の残り」が出て、残り時間がわかります。</p>
+  <figure class="wide"><img src="../img/ja/portal-time.png" alt="3 つの丸：マイクラウド・利用期限・今日の残り" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>実際にネットを使っている間</b>だけ数えます。つないだまま使っていなければ減りません</li>
+    <li>時間を使い切るとその日はつながらず、<b>深夜 0 時</b>に自動で戻ります</li>
+    <li>足りなければ<a href="#msg">メッセージ</a>で管理者に頼めます</li>
+  </ul>
+</div></div>
+
+<div class="step" id="msg"><div class="num">3</div><div class="body">
+  <h3>管理者にメッセージ</h3>
+  <p>利用期限の延長、クラウド容量の追加、1 日の時間の追加、困ったことがあるときは、ページから直接メッセージを送れます：</p>
+  <ol class="simple">
+    <li>「管理者にメッセージ」で項目を選ぶ（例：<kbd>クラウド容量を増やす</kbd>）</li>
+    <li>補足があれば下の欄に書く（任意）</li>
+    <li><kbd>送信</kbd> を押す</li>
+  </ol>
+  <figure class="wide"><img src="../img/ja/portal-msg.png" alt="管理者にメッセージ：項目・入力欄・送信ボタン、下に以前のメッセージと管理者の返信" loading="lazy"></figure>
+  <p>管理者のスマホにすぐ通知が届きます。返信は「以前のメッセージ」の下に表示され、<b>緑のチェック</b>は対応済みの印です。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>速度テスト</h3>
+  <p>遅いと感じたら、ページいちばん下の「接続チェック」で <b>速度テスト</b> の横の <kbd>開始</kbd> を押すと、約 10 秒でダウンロードとアップロードの速度が出ます。</p>
+  <figure class="wide"><img src="../img/ja/portal-check.png" alt="接続チェック：IP・接続方式・速度テスト結果（下り 48 Mbps、上り 21 Mbps）" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>20 Mbps 以上</b>：高速、動画も問題なし</li>
+    <li><b>5〜20 Mbps</b>：ふだん使いには問題なし</li>
+    <li><b>5 Mbps 未満</b>：遅め。場所や Wi-Fi を変えてみてください</li>
+  </ul>
+  <div class="note tip">1 回の測定で約 15 MB 使うので、モバイル通信では何度も測らないでください。</div>
+</div></div>
+
+<!-- 9 -->
+<h2 id="mac">9. 家の Mac の様子を見る <span class="tag pill free">パネル権限がある人</span></h2>
+<p>家のネットワークとクラウドは 1 台の Mac で動いています。管理者が「コントロールパネル」を許可していれば、この Mac がどれくらい忙しいか、熱くないか、バッテリーの具合はどうかを見られます。<b>このページは見るだけで、設定は何も変わりません</b>。安心してください。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>「Mac」ページを開く</h3>
+  <ol class="simple">
+    <li>コントロールパネルを開く（先に Tailscale をオン）</li>
+    <li>下の <kbd>設定</kbd> を押し、上の <kbd>Mac</kbd> を押す</li>
+  </ol>
+  <p>またはパネルのホームで <b>CPU</b> か <b>メモリ</b> の丸をタップしても、このページに移動します。</p>
+  <figure class="wide"><img src="../img/ja/mac-home-tiles.png" alt="コントロールパネルのホームにある CPU とメモリの丸" loading="lazy"><figcaption>ホームでこの 2 つの丸をタップすると詳細へ</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>いちばん上：今の状態がひと目でわかる</h3>
+  <figure class="wide"><img src="../img/ja/mac-top.png" alt="Mac ページの上部：モデル・CPU・メモリプレッシャー・バッテリー・速度・冷却" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>CPU</b>：今どれくらい忙しいか。ふだんは 20% 以下、たまに上がっても大丈夫</li>
+    <li><b>メモリプレッシャー</b>：緑の「正常」なら OK。オレンジの「高め」はアプリの開きすぎで遅くなります</li>
+    <li><b>ダウンロード／アップロード速度</b>：家の Mac が今どれだけデータを送受信しているか</li>
+    <li><b>冷却</b>：緑の「正常」。赤の「高温で速度低下」は熱すぎて自動で遅くなっている状態です</li>
+  </ul>
+  <div class="note tip">このページは 5 秒ごとに自動更新されます。再読み込みは不要です。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>推移グラフ：直近 24 時間</h3>
+  <p>直近 <b>1 時間</b>・<b>6 時間</b>・<b>24 時間</b> から選べます。<b>グラフを指でタップ</b>するとその時刻の数値が出て、グラフの外をタップすると消えます。</p>
+  <figure class="wide"><img src="../img/ja/mac-trend.png" alt="推移グラフ：CPU・メモリ・ネットワーク・残量。CPU グラフを指でタップすると 13:57 CPU 13% と表示" loading="lazy"><figcaption>グラフのどこかをタップすると、その時刻の数値が見られます</figcaption></figure>
+  <p>グラフが苦手なら、いちばん下の <kbd>表で表示</kbd> で時刻ごとの数値を表にできます。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>バッテリー</h3>
+  <figure class="wide"><img src="../img/ja/mac-battery.png" alt="バッテリー：残量・状態・充放電回数・温度・電力" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>バッテリーの状態</b>：新品と比べて何 % まで充電できるか。<b>80% 以上なら正常</b>、80% を下回ったら交換を検討</li>
+    <li><b>充放電回数</b>：バッテリーを何回分使ったか。MacBook は 1000 回を想定</li>
+    <li><b>バッテリー温度</b>：30 度台は正常。40 度を超えるとオレンジで注意</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>メモリ：パソコンが遅くなる理由</h3>
+  <figure class="wide"><img src="../img/ja/mac-memory.png" alt="メモリのバー：アプリ使用中・システム予約・圧縮・キャッシュ・空き、メモリプレッシャーとスワップ" loading="lazy"></figure>
+  <ul class="simple">
+    <li>バーは色分けされ、それぞれの横に説明と使用量があります</li>
+    <li><b>キャッシュ</b>は心配いりません。必要なら自動で空きます</li>
+    <li><b>圧縮</b>や<b>スワップ</b>が多いとメモリ不足で、遅く熱くなります</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>リソースを多く使うアプリ</h3>
+  <p><kbd>CPU 順</kbd> と <kbd>メモリ順</kbd> を切り替えられます。同じアプリが複数（ブラウザのタブなど）あると 1 行にまとめ、<b>×数</b> を表示します。</p>
+  <figure class="wide"><img src="../img/ja/mac-procs.png" alt="リソースを多く使うアプリ（メモリ順）、Safari ×3 が 1 位" loading="lazy"></figure>
+  <div class="note warn"><b>家のネットやクラウドが遅い？</b>まずこのページを確認：「メモリプレッシャー」がオレンジ、または特定のアプリが多く使っていたら、管理者に伝えてアプリを閉じるか再起動してもらいましょう。</div>
+</div></div>
+
+<!-- 10 -->
+<h2 id="win">10. スマホで Windows PC を操作 <span class="tag pill paid">管理者</span></h2>
+<p>家に Windows PC があれば、Mac と同じようにスマホから操作できます：使用中か確認、曲送り、音量調整、使っている人への通知、ロック、シャットダウン。<b>この機能は管理者（パネルの所有者）だけが使えます。</b></p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>まず Windows に Tailscale を入れる</h3>
+  <ol class="simple">
+    <li>Windows で <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a> からダウンロードしてインストール</li>
+    <li><b>スマホと同じアカウント</b>でログイン（重要：違うアカウントだとつながりません）</li>
+    <li>右下の Tailscale アイコンが<b>接続済み</b>になっていること</li>
+  </ol>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>スマホでインストールコマンドを作る</h3>
+  <ol class="simple">
+    <li>コントロールパネルを開き、下の <kbd>リモート</kbd> を押す</li>
+    <li>上の <kbd>＋ Windows</kbd> を押し、<kbd>インストールコマンドを作成</kbd> を押す</li>
+    <li><kbd>コマンドをコピー</kbd> を押し、LINE やメールで Windows PC に送る</li>
+  </ol>
+  <figure class="wide"><img src="../img/ja/win-add.png" alt="パネルのリモートページ：上に Mac・PC 名・＋、下に手順と 1 行のインストールコマンド" loading="lazy"><figcaption>コマンドは 1 回限り、15 分間有効。期限切れなら「作り直す」</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Windows でコマンドを貼り付け</h3>
+  <ol class="simple">
+    <li>キーボードの <kbd>⊞ Windows</kbd> キー（または左下のスタート）を押し、<b>PowerShell</b> と入力して Enter で開く</li>
+    <li>青か黒のウィンドウで<b>右クリック</b>（または <kbd>Ctrl</kbd>+<kbd>V</kbd>）して貼り付け、<kbd>Enter</kbd></li>
+    <li>緑の <b>「完了！」</b> が出たら終わり。ウィンドウを閉じて OK</li>
+  </ol>
+  <div class="note ok"><b>管理者権限は不要</b>、ファイアウォールの変更もいりません。以後はサインインのたびにウィンドウなしでバックグラウンド起動します。</div>
+  <div class="note tip">インストールが終わると、スマホのページは<b>自動でその PC に切り替わります</b>。名前が長ければ、いちばん下の「管理」でわかりやすい名前（例：「リビングの PC」）に変えられます。</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>状態を見て音楽を操作</h3>
+  <p>上のボタンで <b>Mac</b> と各 Windows PC を切り替えます。名前の横の<b>緑の点</b>は電源が入っていてつながる状態です。</p>
+  <figure class="wide"><img src="../img/ja/win-status.png" alt="Windows PC の状態：CPU・メモリ・システムドライブ・電源・起動時間・ユーザー、下に再生中の曲と音楽操作" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>オンライン・使用中／操作なし／ロック中</b>：今だれかが使っているかわかります</li>
+    <li><b>音楽</b>：Spotify やブラウザの YouTube などで再生中の曲がわかり、一時停止・曲送り・音量調整ができます</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>画面と電源</h3>
+  <figure class="wide"><img src="../img/ja/win-controls.png" alt="画面：キャプチャ・ロック・画面オフ・スリープ／電源：シャットダウン・再起動・取り消し" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>画面キャプチャ</b>：PC の今の画面を見る（ロック中は見られません）</li>
+    <li><b>スリープ・シャットダウン・再起動</b>は<b>2 回押す</b>と実行されます（誤操作防止）</li>
+    <li>シャットダウンと再起動は<b>1 分待ってから</b>実行し、PC に通知が出ます。やめたいときは <kbd>シャットダウンを取り消す</kbd></li>
+  </ul>
+  <p>さらに下には：<b>通知を表示</b>と<b>読み上げ</b>（例：「ごはんだよ！」）、<b>クリップボード同期</b>（スマホと PC で文字をやり取り）、<b>PC でアドレスを開く</b>があります。</p>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>使わなくなったら：削除</h3>
+  <p>その PC のページのいちばん下で <kbd>この PC を削除</kbd>（2 回押す）。PC の電源が入っていれば、アプリが<b>自分で削除</b>されます。切れていれば次に起動して接続したときに削除されます。</p>
+  <div class="note warn"><b>安全について</b>操作できるのはあなたのコントロールパネルだけで、Tailscale 経由に限られます。PC のアプリはこのページに書いたことしかできず、他のプログラムは実行できません。<b>新しい PC が追加されるたびにスマホに通知が届きます</b>。覚えがなければすぐ削除してください。</div>
+</div></div>
+
+<!-- 11 -->
+<h2 id="report">11. 管理者に問題を報告</h2>
+<p>ページが開かない、クラウドへのアップロードに失敗、ネットにつながらない…<b>おかしいと思ったら</b>、マイページから管理者に伝えましょう。長い説明は不要、選んでスクリーンショットを付けるだけです。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>「問題を報告」を探す</h3>
+  <p><a href="#portal">マイページ</a>を開いて下にスクロールし、オレンジの <b>「問題を報告」</b> で <kbd>問題を報告する</kbd> を押します。</p>
+  <figure class="wide"><img src="../img/ja/portal-bug-card.png" alt="マイページの「問題を報告」カード：「問題を報告する」ボタン、下に自分の報告と管理者の返信" loading="lazy"><figcaption>下の「自分の報告」に対応状況と管理者の返信が表示されます</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>入力するだけ</h3>
+  <ol class="simple">
+    <li><b>どこに問題がありますか？</b>：クラウドドライブ、ネット／接続、マイページ…から選ぶ</li>
+    <li><b>どのくらい深刻？</b>：軽微・少し影響あり・まったく使えない</li>
+    <li><b>何が起きたか一言で</b>：例「動画のアップロードが途中で失敗する」</li>
+    <li><b>詳細</b>：任意。書くと原因が早く見つかります</li>
+    <li><b>スクリーンショット</b>：<kbd>スクリーンショットを選ぶ</kbd> で写真から最大 3 枚</li>
+    <li><kbd>報告を送信</kbd> を押すと、管理者のスマホにすぐ通知が届きます</li>
+  </ol>
+  <figure><img src="../img/ja/portal-bug-form.png" alt="報告フォーム：どこに問題があるか・深刻さ・一言の説明・詳細・スクリーンショット・スマホ情報の添付" loading="lazy"></figure>
+  <div class="note tip"><b>スクリーンショットの撮り方</b>iPhone の「サイドボタン」と「音量を上げる」を同時に押すと、画面が光って「写真」に保存されます。</div>
+  <div class="note ok"><b>「スマホの機種とブラウザ情報を添付」</b>はチェックしたままがおすすめ。原因を見つけやすくなります。写真・連絡先・位置情報は送られません。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>管理者の返信を見る</h3>
+  <ul class="simple">
+    <li>管理者が返信すると、タイトルの横に<b>赤い点</b> 🔴 が付きます</li>
+    <li>右のラベルで状況がわかります：<b>新規</b> → <b>対応中</b> → <b>修正済み</b></li>
+    <li>補足したいときは下の欄に書いて <kbd>送信</kbd></li>
+    <li>「修正済み」なのに<b>まだおかしい</b>？「まだ問題がありますか？」で管理者に伝えると、報告が未対応リストに戻ります</li>
+  </ul>
+  <div class="note warn"><b>急ぎですか？</b>まったくネットにつながらない、クラウドが開かないなどは「まったく使えない」を選ぶと、管理者に緊急通知が届きます。本当に急ぐときは電話してもかまいません。</div>
+</div></div>
+
+<div class="note tip" style="margin-top:14px"><b>このシステムを自分で設置した人へ</b>バグや提案は GitHub へ：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">問題を報告／機能を提案</a>（中国語・英語のフォーム）。セキュリティの脆弱性は<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">非公開で報告</a>してください。</div>
+
+<!-- 12 -->
+<h2 id="faq">12. 困ったときは</h2>
+<details class="faq"><summary>Windows リモート：貼り付け後に赤字で「インストールに失敗」</summary><div>
+  <ol class="simple"><li>Windows 右下の <b>Tailscale が接続済み</b>で、<b>スマホと同じアカウント</b>でログインしているか確認。</li><li>コマンドは 1 回限り・15 分間有効：スマホで <kbd>作り直す</kbd> を押し、新しいコマンドを貼り付け直します。</li><li><b>PowerShell</b> に貼り付けてください。「コマンドプロンプト（cmd）」ではありません。</li></ol></div></details>
+<details class="faq"><summary>Windows リモート：PC がずっと「オフライン」でボタンがグレー</summary><div>PC の電源が切れている、スリープ中、または Tailscale がオフかもしれません。PC を起こして Tailscale の接続を確認すると、約 30 秒で緑の点に戻ります。だめなら PC で<b>サインアウトしてもう一度サインイン</b>してください（リモートアプリはサインイン時に起動します）。</div></details>
+<details class="faq"><summary>オンにしたらネットにつながらない</summary><div>
+  <ol class="simple"><li>まず Shadowrocket（または Tailscale）のスイッチを<b>一度切ってから入れ直す</b>。</li><li>それでもだめなら、いったんスイッチを切ればスマホは通常のネットに戻ります。</li><li><a href="#report">問題を報告</a>で管理者に伝えましょう（「まったく使えない」を選ぶ）：家のパソコンの電源が切れたか、ネットが止まっているかもしれません。</li></ol></div></details>
+<details class="faq"><summary>マイページに「権限は無効」や赤い文字が出る</summary><div>
+  <ul class="simple"><li><b>利用時間外</b>：管理者が使える時間を決めています。その時間になれば使えます。</li><li><b>期限切れ</b>：利用期限が終わりました。延長するか管理者に聞いてください。</li><li><b>無効</b>：管理者が一時的にオフにしています。管理者に聞いてください。</li></ul></div></details>
+<details class="faq"><summary>「今日の時間を使い切りました」と出る</summary><div>今日使える時間を使い切りました。<b>深夜 0 時</b>に自動で戻ります。急ぎなら<a href="#msg">メッセージ</a>で管理者に時間の追加を頼めます。</div></details>
+<details class="faq"><summary>マイページに「ページが見つかりません」や「アドレスは無効です」と出る</summary><div>管理者が新しいアドレスに替えたのかもしれません（安全のためなど）。<b>新しいアドレスを送ってもらい</b>、古いものは使わないでください。</div></details>
+<details class="faq"><summary>Shadowrocket で「家の Mac」の横に赤い点</summary><div>Shadowrocket の「速度テスト」が失敗しているだけで、<b>使うのに影響はありません</b>。<a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> の数字が正しければ大丈夫です。</div></details>
+<details class="faq"><summary>一部のアプリやサイトが開かない</summary><div>管理者が「ネット制限」（広告ブロックや特定アプリのブロックなど）を設定しているかもしれません。マイページの <b>ネット制限</b> の欄でブロック中の項目を確認できます。必要なら管理者に聞いてください。</div></details>
+<details class="faq"><summary>アップロードに失敗し「容量の上限を超えています」と出る</summary><div>「マイファイル」がいっぱいです。不要なファイルを消すか、管理者に容量の追加を頼んでください。</div></details>
+<details class="faq"><summary>写真の自動バックアップが動かない</summary><div>
+  <ol class="simple"><li>ショートカットに「管理者が写真の自動バックアップを許可していません」と出る：管理者にパネルでオンにしてもらってください。</li><li>「ショートカット」アプリ →「オートメーション」で、そのオートメーションがオンで「すぐに実行」になっているか確認。</li>
+  <li>手動で ▶︎ を押して試し、エラーメッセージが出ないか確認。</li>
+  <li>「forbidden」と出る：2 つの「ヘッダ」の名前に打ち間違いがないか確認（大文字・小文字も同じに）。</li>
+  <li>「容量の上限を超えています」と出る：クラウドがいっぱいです。古いファイルを消すか、管理者に容量の追加を頼んでください。</li></ol></div></details>
+<details class="faq"><summary>友だちが共有リンクを開けない</summary><div>リンクが<b>期限切れ</b>、<b>ダウンロード回数切れ</b>、または取り消されたのかもしれません。もう一度共有して新しいリンクを送れば OK です。</div></details>
+<details class="faq"><summary>クラウドの写真がグレーでサムネイルがない</summary><div>初回は家のパソコンがサムネイルを作るのに数秒かかります。少し待って更新すれば表示されます。写真はタップすれば見られます。</div></details>
+<details class="faq"><summary>パネルに「Mac」ページが見当たらない</summary><div>「Mac」ページは、管理者が「コントロールパネル」の権限を与えた人だけが見られます。必要なら管理者に聞いてください。</div></details>
+<details class="faq"><summary>スマホを買い替えたら？</summary><div>新しいスマホでもう一度：アプリをダウンロード → 専用アドレスを開く →「Shadowrocket で開く」（または Tailscale にログイン）。クラウドのファイルはそのまま残っています。</div></details>
+<details class="faq"><summary>Shadowrocket と Tailscale を同時に使える？</summary><div>いいえ、iPhone で同時に使えるのは 1 つだけ。使いたい方をオンにしてください。</div></details>
+
+<!-- 13 -->
+<h2 id="safe">13. 安全のための注意</h2>
+<div class="card">
+  <div class="note danger"><b>🔒 専用アドレスと QR コードは鍵と同じ</b>手に入れた人はあなたとして家につながり、クラウドを見られます。</div>
+  <ul class="simple">
+    <li>専用アドレスを他人に送ったり、グループに貼ったり<b>しないで</b></li>
+    <li>Shadowrocket の QR コードのスクリーンショットを共有<b>しないで</b></li>
+    <li>うっかり送ってしまったら<b>すぐ管理者に伝えて</b>。新しいものに替えてもらえば、古いものはすぐ無効になります</li>
+    <li>「写真の自動バックアップ」のアップロード用アドレスを他人に渡さ<b>ないで</b>。手に入れた人はあなたのクラウドにファイルを送れます</li>
+    <li>共有リンクを送ると、持っている人は誰でもダウンロードできます。大事なファイルは<b>パスワード</b>と<b>期限</b>を設定しましょう</li>
+    <li>管理者を名乗る人にパスワードや確認コードを聞かれたら、<b>まず本人に電話して確認</b></li>
+  </ul>
+</div>
+
+<footer>困ったことがあれば、マイページの<a href="#report">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。</footer>
+</div>
+<a class="back" href="#top">↑ 目次</a>
+<script>try{localStorage.setItem("guide-lang","ja")}catch(e){}</script>
+</body>
+</html>

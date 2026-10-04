@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Home network guide</title>
+<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+
+<meta name="description" content="Step-by-step: connect to the home network with Shadowrocket or Tailscale and use the home cloud drive.">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb; --card: #ffffff; --text: #16181d; --text-2: #454a55; --muted: #6b7280; --line: #e3e6ee;
+  --blue: #0a6cff; --blue-soft: #e8f0ff; --green: #1a8f3c; --green-soft: #e6f6ea; --orange: #b45309; --orange-soft: #fff4e0;
+  --red: #d42a20; --red-soft: #ffebe9; --shadow: 0 6px 24px rgba(20, 30, 60, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --bg: #0e1116; --card: #181c23; --text: #f2f4f8; --text-2: #c9ced8; --muted: #9aa1ad; --line: #2a303b;
+    --blue: #4b93ff; --blue-soft: #16243d; --green: #4ccf73; --green-soft: #13291b; --orange: #f5b44a; --orange-soft: #2f2412;
+    --red: #ff6b61; --red-soft: #3a1716; --shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.75 -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 80px; }
+header.top { padding: calc(28px + env(safe-area-inset-top)) 0 10px; text-align: center; }
+header.top h1 { font-size: 32px; line-height: 1.3; margin: 8px 0 6px; }
+header.top p { color: var(--text-2); margin: 0; }
+.logo { font-size: 50px; }
+h2 { font-size: 27px; line-height: 1.35; margin: 46px 0 12px; scroll-margin-top: 20px; }
+h2 .tag { font-size: 15px; vertical-align: middle; padding: 3px 10px; border-radius: 99px; margin-left: 6px; font-weight: 700; }
+h3 { font-size: 22px; margin: 0 0 6px; }
+p { margin: 8px 0; }
+b, strong { font-weight: 800; }
+a { color: var(--blue); }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); margin: 14px 0; }
+.toc a { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-weight: 700; }
+.toc a:first-of-type { border-top: 0; }
+.toc .n { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; flex: none; font-size: 17px; }
+.choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.choose .card { margin: 0; border: 3px solid transparent; }
+.choose .card.a { border-color: #6c63ff33; } .choose .card.b { border-color: #0a6cff33; }
+.choose ul { padding-left: 22px; margin: 8px 0 12px; }
+.pill { display: inline-block; font-size: 15px; font-weight: 800; padding: 3px 12px; border-radius: 99px; }
+.pill.free { background: var(--green-soft); color: var(--green); } .pill.paid { background: var(--orange-soft); color: var(--orange); }
+.go { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; padding: 10px 20px; border-radius: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; background: var(--card); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); margin: 16px 0; }
+.step .num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 24px; font-weight: 800; display: grid; place-items: center; }
+.step .body { min-width: 0; }
+figure { margin: 14px 0 4px; text-align: center; }
+figure img { width: 100%; max-width: 340px; height: auto; border-radius: 22px; box-shadow: var(--shadow); background: #fff; }
+figure.wide img { max-width: 420px; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.qrwrap { position: relative; display: inline-block; max-width: 380px; width: 100%; }
+.qrwrap img { max-width: 100%; }
+.qrwrap .stamp { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); background: var(--red); color: #fff; font-weight: 900; font-size: 26px; padding: 10px 22px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212,42,32,.4); white-space: nowrap; }
+.note { border-radius: 16px; padding: 14px 16px; margin: 12px 0; font-size: 17px; }
+.note.tip { background: var(--blue-soft); } .note.warn { background: var(--orange-soft); } .note.danger { background: var(--red-soft); }
+.note.ok { background: var(--green-soft); }
+.note b:first-child { display: block; margin-bottom: 2px; }
+ol.simple, ul.simple { padding-left: 24px; } ol.simple li, ul.simple li { margin: 6px 0; }
+.check li { list-style: none; margin-left: -24px; padding-left: 34px; position: relative; }
+.check li::before { content: "☐"; position: absolute; left: 0; font-size: 22px; line-height: 1.45; }
+details.faq { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin: 10px 0; padding: 4px 18px; }
+details.faq summary { cursor: pointer; font-weight: 800; padding: 12px 0; list-style: none; }
+details.faq summary::before { content: "＋ "; color: var(--blue); }
+details.faq[open] summary::before { content: "－ "; }
+details.faq > div { padding: 0 0 14px; color: var(--text-2); }
+kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
+.back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+.langs { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 15px; margin: 4px 0 14px; color: var(--muted); }
+.langs a { color: var(--blue); text-decoration: none; font-weight: 700; padding: 4px 8px; border-radius: 99px; }
+.langs a[aria-current] { background: var(--blue-soft); color: var(--text); }
+footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
+@media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="langs" translate="no">🌐 <a href="../?lang=zh" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a> <a href="../en/" hreflang="en" lang="en" aria-current="page">English</a> <a href="../zh-CN/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a> <a href="../ja/" hreflang="ja" lang="ja">日本語</a> <a href="../ko/" hreflang="ko" lang="ko">한국어</a> <a href="../es/" hreflang="es" lang="es">Español</a></nav>
+<header class="top" id="top">
+  <div class="logo">🏠</div>
+  <h1>Home network guide</h1>
+  <p>Connect to the home network and use the home cloud drive from your phone<br>Just follow the steps; no computer skills needed</p>
+</header>
+
+<div class="card toc"><a href="#before"><span class="n">1</span>What you need first</a> <a href="#choose"><span class="n">2</span>Pick one: Shadowrocket or Tailscale</a> <a href="#portal"><span class="n">3</span>Open “My page”</a> <a href="#sr"><span class="n">4</span>Option A: Shadowrocket</a> <a href="#ts"><span class="n">5</span>Option B: Tailscale</a> <a href="#cloud"><span class="n">6</span>Keep photos and files in “My cloud”</a> <a href="#backup"><span class="n">7</span>Back up iPhone photos every day</a> <a href="#more"><span class="n">8</span>Other handy features (large text, messages, time, speed)</a> <a href="#mac"><span class="n">9</span>Check on the Mac at home (control panel users)</a> <a href="#win"><span class="n">10</span>Control a Windows PC from your phone (admin)</a> <a href="#report"><span class="n">11</span>Report a problem to the admin</a> <a href="#faq"><span class="n">12</span>Troubleshooting</a> <a href="#safe"><span class="n">13</span>Safety tips (important)</a></div>
+
+<!-- 1 -->
+<h2 id="before">1. What you need first</h2>
+<div class="card">
+  <ul class="simple check">
+    <li>An <b>iPhone</b> (this guide uses an iPhone)</li>
+    <li>Your <b>Apple ID password</b> (you may need it to download apps)</li>
+    <li>A phone that can get online (Wi-Fi or mobile data is fine)</li>
+    <li><b>The “personal address” the admin sent you</b>, which looks like this:<br><code style="font-size:15px;word-break:break-all">https://………/p/a-long-string-of-letters-and-numbers/</code></li>
+  </ul>
+  <div class="note tip"><b>Who is the “admin”?</b>The person who set up the home network for everyone. If you get stuck, just ask them.</div>
+</div>
+
+<!-- 2 -->
+<h2 id="choose">2. Pick one</h2>
+<p>Two apps can connect you home. <b>Pick just one</b>; you don't need both. Not sure which? <b>Ask the admin</b>.</p>
+<div class="choose">
+  <div class="card a">
+    <h3>🚀 Option A: Shadowrocket</h3>
+    <span class="pill paid">Paid app</span>
+    <ul>
+      <li>The easiest: one tap sets it up</li>
+      <li>No account needed</li>
+      <li>Best for: browsing through the home network</li>
+    </ul>
+    <a class="go" href="#sr">See Option A →</a>
+  </div>
+  <div class="card b">
+    <h3>🔵 Option B: Tailscale</h3>
+    <span class="pill free">Free</span>
+    <ul>
+      <li>Sign in with Google or Apple</li>
+      <li>The admin has to invite you first</li>
+      <li>Best for: people who need the computers at home</li>
+    </ul>
+    <a class="go" href="#ts">See Option B →</a>
+  </div>
+</div>
+<div class="note warn"><b>⚠️ You can't have both on at once</b>An iPhone runs one VPN at a time. Turning on Shadowrocket turns Tailscale off, and the other way round.</div>
+
+<!-- 3 -->
+<h2 id="portal">3. Open “My page”</h2>
+<p>Whichever option you pick, you'll use this page. It tells you <b>what you can use and until when</b>, and it's also where you use the cloud drive.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Open the address the admin gave you</h3>
+  <p>Tap the address in LINE or Messages; the iPhone opens it in <b>Safari</b>.</p>
+  <figure><img src="../img/en/portal-top.png" alt="The top of My page, showing the name, “Available” and the valid-until date" loading="lazy"><figcaption>You'll see your name (“Ming” in the picture is an example)</figcaption></figure>
+  <div class="note ok"><b>A green “Available” means everything is fine.</b> If it's red, see <a href="#faq">Troubleshooting</a> at the bottom.</div>
+  <div class="note tip"><b>Text too small?</b> Tap <kbd>T</kbd> at the top right for large text; tap it again to go back. See <a href="#big">Large text</a>.</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Put it on the Home Screen (one tap from then on)</h3>
+  <ol class="simple">
+    <li>Tap the <kbd>Share</kbd> button at the bottom middle of Safari (a square with an up arrow ⬆︎)</li>
+    <li>Scroll down and tap <kbd>Add to Home Screen</kbd></li>
+    <li>Tap <kbd>Add</kbd> at the top right</li>
+  </ol>
+  <figure><img src="../img/en/home-screen.png" alt="Safari&#x27;s share menu with Add to Home Screen highlighted in red" loading="lazy"><figcaption>A “My connection” icon appears on the Home Screen</figcaption></figure>
+</div></div>
+
+<!-- 4 -->
+<h2 id="sr">4. Option A: Shadowrocket <span class="tag pill paid">Paid</span></h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Download Shadowrocket</h3>
+  <ol class="simple">
+    <li>Open the <b>App Store</b> on the iPhone (the blue “A” icon)</li>
+    <li>Tap <kbd>Search</kbd> at the bottom right and type <b>Shadowrocket</b></li>
+    <li>Find the app with the <b>blue rocket</b> icon and tap the price button to buy it</li>
+    <li>Confirm the payment with Face ID or your Apple ID password</li>
+  </ol>
+  <figure><img src="../img/en/appstore-sr.png" alt="App Store search for Shadowrocket with the buy button highlighted" loading="lazy"><figcaption>Illustration: the real price and icon are on the App Store</figcaption></figure>
+  <div class="note warn"><b>Can't find it?</b> It isn't on the App Store in mainland China. If you can't find it, ask the admin for help.</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Import it from “My page” in one tap</h3>
+  <ol class="simple">
+    <li>Open <a href="#portal">My page</a> and scroll down to the <b>Shadowrocket</b> section</li>
+    <li>Tap the blue <kbd>Open in Shadowrocket</kbd></li>
+    <li>When asked “Open in Shadowrocket?”, tap <kbd>Open</kbd></li>
+  </ol>
+  <figure><span class="qrwrap"><img src="../img/en/portal-sr.png" alt="The Shadowrocket section of My page, with a QR code and the “Open in Shadowrocket” button" loading="lazy"><span class="stamp">Example · can't be scanned</span></span>
+    <figcaption>Your page shows your own QR code and button</figcaption></figure>
+  <figure><img src="../img/en/safari-open.png" alt="Safari asking whether to open in Shadowrocket, with Open highlighted" loading="lazy"></figure>
+  <div class="note tip"><b>Scanning with another phone works too</b>If the page is open on a computer, tap the “scan” icon at the top left of Shadowrocket's home screen and scan the QR code on the page.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>First time: allow the VPN</h3>
+  <p>The first time you flip the switch, the iPhone asks whether to add a VPN configuration. Tap <kbd>Allow</kbd>, then enter your <b>iPhone passcode</b> or use Face ID.</p>
+  <figure><img src="../img/en/vpn-allow.png" alt="The iPhone asking whether to allow adding a VPN configuration, with Allow highlighted" loading="lazy"><figcaption>This only appears once</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Turn on the switch</h3>
+  <ol class="simple">
+    <li>Check that <b>“Home Mac”</b> in the list below has a tick ✓</li>
+    <li>Set “Global Routing” to <b>Proxy</b></li>
+    <li>Turn on the switch at the top (it turns green)</li>
+  </ol>
+  <figure><img src="../img/en/sr-home.png" alt="Shadowrocket&#x27;s home screen with the switch, Global Routing and Home Mac marked" loading="lazy"></figure>
+  <div class="note ok"><b>When it works:</b> a small <b>VPN</b> label appears at the top of the iPhone screen.</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Check that it worked</h3>
+  <p>Open <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> in Safari; a string of numbers appears. <b>If it matches what the admin told you, it worked!</b></p>
+  <figure><img src="../img/en/ipify.png" alt="Safari showing a string of IP numbers" loading="lazy"><figcaption>The number in the picture is an example</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Everyday use</h3>
+  <ul class="simple">
+    <li><b>When you need it</b>: open Shadowrocket and turn on the switch</li>
+    <li><b>When you don't</b>: just turn the switch off (saves battery)</li>
+    <li>You can also use the switch in iPhone <b>Settings → VPN</b></li>
+  </ul>
+</div></div>
+
+<!-- 5 -->
+<h2 id="ts">5. Option B: Tailscale <span class="tag pill free">Free</span></h2>
+<div class="note warn"><b>First check: has the admin invited you?</b>The admin sends you an “invite link” by email or LINE. Without an invite, nothing connects after you sign in.</div>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Download Tailscale</h3>
+  <ol class="simple">
+    <li>Open the <b>App Store</b> and search for <b>Tailscale</b></li>
+    <li>Tap <kbd>Get</kbd> (free), then confirm with Face ID or your password</li>
+  </ol>
+  <figure><img src="../img/en/appstore-ts.png" alt="App Store search for Tailscale with the Get button highlighted" loading="lazy"><figcaption>Illustration: the real icon is on the App Store</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Accept the invite and sign in</h3>
+  <ol class="simple">
+    <li>Tap the <b>invite link</b> the admin sent you and tap “Accept”</li>
+    <li>Open the Tailscale app and tap <kbd>Log in</kbd></li>
+    <li>Sign in with the account you usually use (Google or Apple)</li>
+  </ol>
+  <figure><img src="../img/en/ts-login.png" alt="Tailscale&#x27;s sign-in screen with Google, Apple and Microsoft options" loading="lazy"><figcaption>Illustration: the real screen may be in English</figcaption></figure>
+  <div class="note danger"><b>Use the same account</b>Sign in with <b>the email the admin invited</b>, or you won't be able to connect.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Allow the VPN</h3>
+  <p>As with Shadowrocket, the first time it asks whether to add a VPN configuration (named <b>Tailscale</b>). Tap <kbd>Allow</kbd>, then enter your iPhone passcode or use Face ID.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Connect and pick “Home computer”</h3>
+  <ol class="simple">
+    <li>Turn on the switch at the top (it turns green)</li>
+    <li>Tap <kbd>Exit Node</kbd></li>
+    <li>Pick <b>Home computer</b> (ask the admin for the real name)</li>
+  </ol>
+  <figure><img src="../img/en/ts-main.png" alt="Tailscale&#x27;s main screen with the switch and Exit Node marked" loading="lazy"></figure>
+  <figure><img src="../img/en/ts-exit.png" alt="The Exit Node list with Home computer highlighted" loading="lazy"><figcaption>Once picked, you browse as if you were at home, with ads blocked automatically</figcaption></figure>
+  <div class="note tip"><b>No Exit Node?</b> That means the admin hasn't turned this on for you; that's normal.</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Check that it worked</h3>
+  <p>Same as Option A: open <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> in Safari; if the numbers match what the admin said, it worked.</p>
+</div></div>
+
+<!-- 6 -->
+<h2 id="cloud">6. Keep photos and files in “My cloud”</h2>
+<p>If the admin turned on the cloud drive for you, <a href="#portal">My page</a> has <b>“My cloud”</b>. You can keep photos, videos and documents on the drive at home, so nothing is lost when you change phones.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Two folders</h3>
+  <figure class="wide"><img src="../img/en/portal-drive-roots.png" alt="My cloud has two folders: My files and Shared" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>My files</b>: your own space, visible only to you and the admin. It shows how much you've used and your limit.</li>
+    <li><b>Shared</b>: a folder the whole family uses. Whether you can put things in it is up to the admin.</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Upload photos or videos</h3>
+  <ol class="simple">
+    <li>Tap <b>My files</b> to open it</li>
+    <li>Tap the blue <kbd>Upload</kbd></li>
+    <li>Choose <b>Photo Library</b>, tick the photos or videos to upload, and tap <kbd>Add</kbd></li>
+    <li>When the progress bar finishes, “Uploaded” appears. Under the bar you see the <b>speed</b> and <b>how long is left</b></li>
+  </ol>
+  <figure class="wide"><img src="../img/en/portal-drive-files.png" alt="The My files list; each file shows its size and upload time" loading="lazy"><figcaption>Each file shows its <b>size</b> and <b>when it was uploaded</b>; at the bottom you see how many files there are and how much space they take</figcaption></figure>
+  <div class="note warn"><b>Don't close the page while uploading</b>Videos are bigger and take longer. If you leave the page halfway, you have to upload again. For a daily automatic backup, see <a href="#backup">step 7</a>.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>What the small buttons at the top do</h3>
+  <ul class="simple">
+    <li>🔍 <b>Search</b>: type part of a file name, e.g. “birthday”, to find every file with “birthday” in any folder</li>
+    <li>↕️ <b>Sort</b>: by <b>name, upload time, modified time, size or type</b>. To see the newest uploads, pick “Uploaded”</li>
+    <li>▦ <b>Switch view</b>: between “list” and “album”. Album view shows photos in a grid, like the phone's Photos app</li>
+    <li>🗑 <b>Trash</b>: deleted things go here first (see step 6)</li>
+  </ul>
+  <figure class="wide"><img src="../img/en/portal-drive-grid.png" alt="Album view: photos in a three-column grid, videos with a play button" loading="lazy"><figcaption>Album view: thumbnails for photos, videos and PDFs</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Tap to view it right away</h3>
+  <p>No download needed; tap to open on the phone:</p>
+  <ul class="simple">
+    <li><b>Photos, videos, music</b>: view and play directly. <b>Swipe left or right</b> for the previous or next one</li>
+    <li><b>PDF, Word, Excel, PowerPoint, Pages, Keynote</b>: shows the <b>first page</b>. For PDFs tap <kbd>Open PDF</kbd> to see it all; for Word tap <kbd>View text</kbd> for the full text</li>
+    <li><b>Text files (.txt), spreadsheets (.csv)</b>: the content is shown directly; CSV appears as a table</li>
+  </ul>
+  <figure><img src="../img/en/portal-drive-text.png" alt="A shopping list .txt opened, showing the text directly" loading="lazy"><figcaption>Text files show their content directly</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Tap ⋯ for more</h3>
+  <p>Every file has <kbd>⋯</kbd> on the right. Tap it to see:</p>
+  <figure><img src="../img/en/portal-drive-menu.png" alt="The file menu: Preview, Download, Details, Share, Rename, Move, Delete, Close" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Download</b>: save it to the phone. For a <b>folder</b> this becomes <b>Download ZIP</b>, downloading the whole folder at once</li>
+    <li><b>Details</b>: see the file size, upload time, photo megapixels or video length</li>
+    <li><b>Share</b>: make a link to send to friends (see “Share with others” below)</li>
+    <li><b>Rename</b>, <b>Move</b> (to another folder), <b>Delete</b></li>
+  </ul>
+  <figure><img src="../img/en/portal-drive-info.png" alt="Details: type, size, photo dimensions, upload time, modified time, location" loading="lazy"><figcaption>Details</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Tidy up many files at once</h3>
+  <ol class="simple">
+    <li>Tap <kbd>Select</kbd></li>
+    <li>Tap the files to tidy up; a blue tick ✓ appears in front (tap <kbd>Select all</kbd> to tick them all)</li>
+    <li>Tap <kbd>Move</kbd> to put them in another folder, or <kbd>Delete</kbd></li>
+    <li>When you're done, tap <kbd>Done</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/en/portal-drive-select.png" alt="Select mode with two photos ticked; Select all, Move, Delete and Done at the top" loading="lazy"></figure>
+  <p><b>Move</b> shows a list of folders: tap a folder to go in, and once you're where you want them, tap <kbd>Move here</kbd>.</p>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <h3>Deleted something by mistake? Get it back from the Trash</h3>
+  <p>Deleted files <b>don't disappear right away</b>: they stay in the Trash for <b>30 days</b> before being cleared automatically.</p>
+  <ol class="simple">
+    <li>Tap 🗑 <b>Trash</b> in the row at the top</li>
+    <li>Find the file and tap <kbd>Restore</kbd>; it goes back to its original folder</li>
+  </ol>
+  <figure class="wide"><img src="../img/en/portal-drive-trash.png" alt="A photo in the Trash with Restore and Delete for good buttons" loading="lazy"></figure>
+  <div class="note danger"><b>✕ or “Empty trash” in the Trash can't be undone</b>You have to tap again to confirm, so read carefully before tapping.</div>
+</div></div>
+
+<div class="step"><div class="num">8</div><div class="body">
+  <h3>Share with others (they don't need any app)</h3>
+  <ol class="simple">
+    <li>On a file or folder tap <kbd>⋯</kbd> → <kbd>Share</kbd></li>
+    <li>Pick how long it's <b>valid</b> (1 day, 7 days, 30 days, forever)</li>
+    <li>You can limit <b>how many downloads</b> and also set a <b>password</b></li>
+    <li>Tap <kbd>Create link</kbd>; the link is copied automatically, so just paste it into LINE and send it</li>
+  </ol>
+  <figure><img src="../img/en/portal-drive-share.png" alt="The share form: valid until, download limit, password" loading="lazy"></figure>
+  <div class="note tip"><b>What does the other person see?</b>A page where they can only view and download, without seeing any of your other files. For a shared folder they can tap “Download all (ZIP)”. The link stops working when time runs out, the downloads are used up, or the admin cancels it.</div>
+  <div class="note warn"><b>If you set a password, tell it to them separately</b>Don't put the password and the link in the same message.</div>
+</div></div>
+
+<!-- 7 -->
+<h2 id="backup">7. Back up iPhone photos every day</h2>
+<p>The iPhone's <b>built-in</b> Shortcuts app saves the day's photos to the “Camera backup” folder in your cloud every night. <b>No extra app and no VPN needed</b>; any Internet connection works.</p>
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>First copy your upload address</h3>
+  <p>On <a href="#portal">My page</a> find <b>“iPhone photo auto-backup”</b> and tap <kbd>Copy upload address</kbd>.</p>
+  <div class="note tip"><b>Can't find it on the page?</b>That means the admin hasn't allowed auto-backup for you (uploading photos by hand on the page still works). If you need it, <a href="#msg">send a message</a> asking the admin to turn it on.</div>
+  <figure class="wide"><img src="../img/en/portal-backup.png" alt="The iPhone photo auto-backup card, with the upload address and step-by-step instructions" loading="lazy"><figcaption>The page also has the same steps to follow</figcaption></figure>
+</div></div>
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Add an automation in the Shortcuts app</h3>
+  <ol class="simple">
+    <li>Open the <b>Shortcuts</b> app (if you can't find it, swipe down on the Home Screen and search “Shortcuts”)</li>
+    <li>Tap <kbd>Automation</kbd> at the bottom, then <kbd>＋</kbd> at the top right</li>
+    <li>Pick <b>Time of Day</b>, set it to <b>11:00 PM</b> every day, choose <kbd>Run Immediately</kbd> and tap <kbd>Next</kbd></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Add three actions</h3>
+  <ol class="simple">
+    <li>Tap <kbd>New Blank Automation</kbd>, search for <b>Find Photos</b> and add it. Tap “Add Filter” and set it to <b>Date Added</b> · <b>is today</b></li>
+    <li>Then search for <b>Repeat with Each</b> and add it</li>
+    <li><span><b>Inside</b> the “Repeat”, add <b>Get Contents of URL</b>:</span>
+      <ul class="simple">
+        <li>URL: <b>paste</b> the address you just copied</li>
+        <li>Tap “Show More” and set <b>Method</b> to <kbd>POST</kbd></li>
+        <li>Set <b>Request Body</b> to <kbd>File</kbd>, and the file to <b>Repeat Item</b></li>
+        <li>Under <b>Headers</b> tap “Add new header” twice:<br> First: name <code>X-Requested-With</code>, value <code>portal</code><br> Second: name <code>X-Filename</code>, value: the <b>Name</b> of <b>Repeat Item</b>, followed by <code>.heic</code><br><span style="font-size:14px;color:#666">(if Settings → Camera → Formats is set to “Most Compatible”, type <code>.jpg</code> instead)</span></li>
+      </ul></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Try it once</h3>
+  <p>Tap ▶︎ at the bottom right to try it. The first time, the iPhone asks to allow access to Photos; tap <kbd>Allow</kbd>. Then check “My cloud → My files → Camera backup”; today's photos should be there.</p>
+  <div class="note ok"><b>Running it again is fine</b>A photo that's already backed up is skipped, so it doesn't take space twice.</div>
+  <div class="note warn"><b>It stops when the space is full</b>Once “My files” is full, nothing more can be saved. Delete old photos in the cloud, or <a href="#msg">send a message</a> asking the admin for more space.</div>
+</div></div>
+
+<!-- 8 -->
+<h2 id="more">8. Other handy features</h2>
+
+<div class="step" id="big"><div class="num">1</div><div class="body">
+  <h3>Large text (for older family members)</h3>
+  <p>Tap <kbd>T</kbd> at the top right of your page and all the text and buttons get bigger. This phone remembers it, so it's still large next time. Tap <kbd>T</kbd> again to go back to normal size.</p>
+  <figure><img src="../img/en/portal-big.png" alt="My page in large text mode; the T button is blue" loading="lazy"><figcaption>When on, the T turns blue</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>How much time is left today</h3>
+  <p>If the admin set <b>how long you can use it each day</b>, your page shows a blue ring “Left today” with the minutes remaining.</p>
+  <figure class="wide"><img src="../img/en/portal-time.png" alt="Three rings: My cloud, valid until, left today" loading="lazy"></figure>
+  <ul class="simple">
+    <li>Time only counts while you're <b>actually using the Internet</b>; leaving it on without using it doesn't count</li>
+    <li>When the time is up you can't connect for the rest of the day; it resets automatically at <b>midnight</b></li>
+    <li>Not enough? <a href="#msg">Send a message</a> asking the admin for more</li>
+  </ul>
+</div></div>
+
+<div class="step" id="msg"><div class="num">3</div><div class="body">
+  <h3>Message the admin</h3>
+  <p>To extend your access, get more cloud space or more daily time, or if something's wrong, send a message right from the page:</p>
+  <ol class="simple">
+    <li>Under “Message the admin”, pick a topic, e.g. <kbd>More cloud storage</kbd></li>
+    <li>Add details in the box below if you like (optional)</li>
+    <li>Tap <kbd>Send</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/en/portal-msg.png" alt="Message the admin: options, a text box and a Send button, with earlier messages and the admin&#x27;s replies below" loading="lazy"></figure>
+  <p>The admin's phone gets a notification right away. Their reply appears under “Earlier messages”; a <b>green tick</b> means it's been handled.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Speed test</h3>
+  <p>When things feel slow, go to “Connection check” at the bottom of the page and tap <kbd>Start</kbd> next to <b>Speed test</b>; after about 10 seconds you see the download and upload speed.</p>
+  <figure class="wide"><img src="../img/en/portal-check.png" alt="Connection check: IP, connection type, speed test results 48 Mbps down, 21 Mbps up" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>20 Mbps or more</b>: fast, fine for video</li>
+    <li><b>5–20 Mbps</b>: fine for everyday use</li>
+    <li><b>Under 5 Mbps</b>: slow; try another spot or another Wi-Fi</li>
+  </ul>
+  <div class="note tip">Each test uses about 15 MB of data, so don't keep testing on mobile data.</div>
+</div></div>
+
+<!-- 9 -->
+<h2 id="mac">9. Check on the Mac at home <span class="tag pill free">Control panel users</span></h2>
+<p>The home network and cloud run on one Mac. If the admin gave you the “control panel”, you can see how busy and how hot it is and how its battery is doing. <b>This page is view-only and changes no settings</b>, so don't worry.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Open the “Mac” page</h3>
+  <ol class="simple">
+    <li>Open the control panel (turn on Tailscale first)</li>
+    <li>Tap <kbd>Settings</kbd> at the bottom, then <kbd>Mac</kbd> at the top</li>
+  </ol>
+  <p>Or on the control panel's home page, tap the <b>CPU</b> or <b>Memory</b> ring to jump straight here.</p>
+  <figure class="wide"><img src="../img/en/mac-home-tiles.png" alt="The CPU and memory rings on the control panel&#x27;s home page" loading="lazy"><figcaption>Tap these two rings on the home page for details</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>At the top: the current state at a glance</h3>
+  <figure class="wide"><img src="../img/en/mac-top.png" alt="Top of the Mac page: model, CPU, memory pressure, battery, download/upload speed, cooling" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>CPU</b>: how busy the computer is. Usually under 20%; brief spikes are fine</li>
+    <li><b>Memory pressure</b>: green “Normal” is good; orange “High” means too many apps are open and the computer slows down</li>
+    <li><b>Download / upload speed</b>: how much data the Mac at home is moving right now</li>
+    <li><b>Cooling</b>: green “Normal”; a red “Throttled from heat” means it's too hot and slows itself down</li>
+  </ul>
+  <div class="note tip">This page refreshes itself every 5 seconds; no need to keep reloading.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Trends: the last 24 hours</h3>
+  <p>Choose the last <b>1 hour</b>, <b>6 hours</b> or <b>24 hours</b>. <b>Tap the chart with a finger</b> to see the numbers at that time; tap outside the chart to hide them.</p>
+  <figure class="wide"><img src="../img/en/mac-trend.png" alt="Trend charts: CPU, memory, network, battery, with a finger on the CPU chart showing 13:57 CPU 13%" loading="lazy"><figcaption>Tap any point on the chart to see the values at that time</figcaption></figure>
+  <p>Not a fan of charts? Tap <kbd>Table view</kbd> at the bottom to list the numbers for each time.</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>Battery</h3>
+  <figure class="wide"><img src="../img/en/mac-battery.png" alt="Battery: charge, health, charge cycles, temperature, power" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Battery health</b>: how full the battery charges compared to a new one. <b>80% or more is normal</b>; only below 80% should you think about replacing it</li>
+    <li><b>Charge cycles</b>: how many rounds the battery has done. MacBooks are designed for 1000</li>
+    <li><b>Battery temperature</b>: the 30s °C are normal; above 40 °C it turns orange as a warning</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Memory: why the computer gets slow</h3>
+  <figure class="wide"><img src="../img/en/mac-memory.png" alt="The memory bar: in use by apps, wired, compressed, cache, free, plus memory pressure and swap" loading="lazy"></figure>
+  <ul class="simple">
+    <li>The bar has several colors, each with a note and its usage beside it</li>
+    <li><b>Cache</b> is nothing to worry about; it's freed automatically when needed</li>
+    <li>Lots of <b>compressed</b> memory and <b>swap</b> means memory is short; the computer gets slow and hot</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Heaviest apps</h3>
+  <p>Switch between sorting <kbd>By CPU</kbd> or <kbd>By memory</kbd>. Many copies of the same app (e.g. each browser tab) are combined into one row marked <b>×count</b>.</p>
+  <figure class="wide"><img src="../img/en/mac-procs.png" alt="Heaviest apps, sorted by memory, with Safari ×3 first" loading="lazy"></figure>
+  <div class="note warn"><b>Home network or cloud feeling slow?</b>Check this page first: if “Memory pressure” is orange, or one app uses a lot, tell the admin so they can close some apps or restart the Mac.</div>
+</div></div>
+
+<!-- 10 -->
+<h2 id="win">10. Control a Windows PC from your phone <span class="tag pill paid">Admin</span></h2>
+<p>If there's a Windows PC at home, you can control it from your phone just like the Mac: see whether it's in use, skip songs, change the volume, pop up a notice for whoever is using it, lock it, shut it down. <b>Only the admin (the control panel owner) sees this feature.</b></p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Install Tailscale on Windows first</h3>
+  <ol class="simple">
+    <li>On Windows, download and install it from <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a></li>
+    <li>Sign in with <b>the same account as your phone</b> (important: a different account won't connect)</li>
+    <li>The Tailscale icon at the bottom right must show <b>Connected</b></li>
+  </ol>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Make the install command on your phone</h3>
+  <ol class="simple">
+    <li>Open the control panel and tap <kbd>Remote</kbd> at the bottom</li>
+    <li>Tap <kbd>＋ Windows</kbd> at the top, then <kbd>Make install command</kbd></li>
+    <li>Tap <kbd>Copy command</kbd> and send it to the Windows PC over LINE or email</li>
+  </ol>
+  <figure class="wide"><img src="../img/en/win-add.png" alt="The control panel&#x27;s Remote page: Mac, the PC name and ＋ at the top, install steps and a one-line install command below" loading="lazy"><figcaption>The command works once and is valid for 15 minutes; if it expires, tap “Make a new one”</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>Paste the command on Windows</h3>
+  <ol class="simple">
+    <li>Press the <kbd>⊞ Windows</kbd> key (or Start at the bottom left), type <b>PowerShell</b> and press Enter to open it</li>
+    <li>In the blue or black window, <b>right-click</b> (or <kbd>Ctrl</kbd>+<kbd>V</kbd>) to paste the command, then press <kbd>Enter</kbd></li>
+    <li>When you see a green <b>“Done!”</b>, you're finished and can close the window</li>
+  </ol>
+  <div class="note ok"><b>No admin rights needed</b>, and no firewall changes. From then on it starts in the background every time you sign in, without any window.</div>
+  <div class="note tip">Once installed, the page on your phone <b>switches to that PC by itself</b>. If the PC name is long, change it to something easy under “Manage” at the bottom, e.g. “Living room PC”.</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>See its status and control music</h3>
+  <p>The buttons at the top switch between the <b>Mac</b> and each Windows PC. A <b>green dot</b> next to the name means the PC is on and reachable.</p>
+  <figure class="wide"><img src="../img/en/win-status.png" alt="A Windows PC&#x27;s status: CPU, memory, system drive, power, uptime, user, with the song playing and music controls below" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Online · in use / idle / locked</b>: tells you whether someone is using the PC right now</li>
+    <li><b>Music</b>: see what's playing in Spotify, YouTube in a browser and more; pause, skip songs, change the volume</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>Screen and power</h3>
+  <figure class="wide"><img src="../img/en/win-controls.png" alt="Screen: screenshot, lock, screen off, sleep; Power: shut down, restart, cancel shutdown" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>Screenshot</b>: see what's on the PC's screen now (not while it's locked)</li>
+    <li><b>Sleep, shut down and restart</b> need <b>two taps</b>, so you don't trigger them by accident</li>
+    <li>Shutdown and restart <b>wait 1 minute first</b> and show a notice on the PC; changed your mind? Tap <kbd>Cancel shutdown</kbd></li>
+  </ul>
+  <p>Further down: <b>pop up a notice</b> and <b>read aloud</b> (e.g. “Dinner's ready!”), <b>clipboard sync</b> (send text between phone and PC), and <b>open a web address on the PC</b>.</p>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>Done with it: remove</h3>
+  <p>At the bottom of that PC's page tap <kbd>Remove this PC</kbd> (two taps). If the PC is on, the app on it <b>deletes itself</b>; if it's off, it's removed next time it starts and connects.</p>
+  <div class="note warn"><b>About safety</b>Only your control panel can control it, and only through Tailscale; the app on the PC only does the things listed on this page and can't run other programs. <b>Your phone gets a notification whenever a new PC is added</b>; if you didn't add it, remove it right away.</div>
+</div></div>
+
+<!-- 11 -->
+<h2 id="report">11. Report a problem to the admin</h2>
+<p>Page won't open, cloud upload failed, can't get online… whenever <b>something seems off</b>, tell the admin right from your page. No need to type much: pick a few options and add a screenshot.</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Find “Report a problem”</h3>
+  <p>Open <a href="#portal">your page</a>, scroll down to the orange <b>“Report a problem”</b> and tap <kbd>Report a problem</kbd>.</p>
+  <figure class="wide"><img src="../img/en/portal-bug-card.png" alt="The “Report a problem” card on My page, with a “Report a problem” button and My reports with the admin&#x27;s replies below" loading="lazy"><figcaption>“My reports” below shows the progress and the admin's replies</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>Just fill it in</h3>
+  <ol class="simple">
+    <li><b>Where's the problem?</b>: pick cloud drive, Internet / connection, My page…</li>
+    <li><b>How serious is it?</b>: minor, some impact, or doesn't work at all</li>
+    <li><b>Describe what happened in one sentence</b>: e.g. “Uploading a video fails halfway”</li>
+    <li><b>Details</b>: optional, but it helps find the cause faster</li>
+    <li><b>Screenshots</b>: tap <kbd>Choose screenshots</kbd> and pick up to 3 from your photos</li>
+    <li>Tap <kbd>Send report</kbd>; the admin's phone gets a notification right away</li>
+  </ol>
+  <figure><img src="../img/en/portal-bug-form.png" alt="The report form: where&#x27;s the problem, how serious, one-line summary, details, screenshots, attach phone info" loading="lazy"></figure>
+  <div class="note tip"><b>How to take a screenshot?</b>On iPhone press the “side button” and “volume up” together; the screen flashes and it's saved in “Photos”.</div>
+  <div class="note ok"><b>“Attach phone model and browser info”</b> is best left ticked; it helps the admin find the cause. Your photos, contacts and location are never sent.</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>See the admin's reply</h3>
+  <ul class="simple">
+    <li>When the admin replies, a <b>red dot</b> 🔴 appears next to the title</li>
+    <li>The label on the right shows the progress: <b>New</b> → <b>In progress</b> → <b>Fixed</b></li>
+    <li>To add more, type in the box below and tap <kbd>Send</kbd></li>
+    <li>Marked “Fixed” but <b>still broken</b>? Tap “Still a problem?” to tell the admin; the report goes back on their to-do list</li>
+  </ul>
+  <div class="note warn"><b>Urgent?</b>For example no Internet at all or the cloud won't open: choose “Doesn't work at all” and the admin gets an urgent notification. If it's really urgent, you can also just call them.</div>
+</div></div>
+
+<div class="note tip" style="margin-top:14px"><b>Did you set this system up yourself?</b>Report bugs or ideas on GitHub: <a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">Report a problem / suggest a feature</a> (bilingual Chinese / English forms). For security vulnerabilities, use a <a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">private report</a> instead.</div>
+
+<!-- 12 -->
+<h2 id="faq">12. Troubleshooting</h2>
+<details class="faq"><summary>Windows remote: a red “Install failed” after pasting the command</summary><div>
+  <ol class="simple"><li>Check that <b>Tailscale is connected</b> at the bottom right of Windows, signed in with <b>the same account as your phone</b>.</li><li>The command works once and for 15 minutes: on your phone tap <kbd>Make a new one</kbd> and paste the new command.</li><li>Paste it into <b>PowerShell</b>, not “Command Prompt (cmd)”.</li></ol></div></details>
+<details class="faq"><summary>Windows remote: the PC always shows “Offline” and the buttons are grey</summary><div>The PC may be off, asleep, or without Tailscale. Wake it up and check Tailscale is connected; the green dot should come back within about 30 seconds. Still not working? <b>Sign out and back in</b> on the PC (the remote app starts at sign-in).</div></details>
+<details class="faq"><summary>No Internet after turning it on</summary><div>
+  <ol class="simple"><li>First turn the Shadowrocket (or Tailscale) switch <b>off and on again</b>.</li><li>Still no luck? Turn the switch off for now and the phone goes back to its normal Internet.</li><li>Tell the admin with <a href="#report">Report a problem</a> (choose “Doesn't work at all”): the computer at home may be off or the Internet may be down.</li></ol></div></details>
+<details class="faq"><summary>My page says “access isn't active” or shows red text</summary><div>
+  <ul class="simple"><li><b>Outside allowed hours</b>: the admin set the times you can use it; it works again when that time comes.</li><li><b>Expired</b>: your access period ended; ask the admin whether to extend it.</li><li><b>Disabled</b>: the admin turned it off for now; ask them.</li></ul></div></details>
+<details class="faq"><summary>It says “Today's time is used up”</summary><div>You've used up today's time; it resets automatically at <b>midnight</b>. If you need it now, <a href="#msg">send a message</a> asking the admin for more time.</div></details>
+<details class="faq"><summary>My page says “Page not found” or “address no longer works”</summary><div>The admin may have given you a new address (e.g. for safety). Ask the admin to <b>send the new address</b> and stop using the old one.</div></details>
+<details class="faq"><summary>A red dot next to “Home Mac” in Shadowrocket</summary><div>That's Shadowrocket's “speed test” failing; it <b>doesn't affect use</b> and can be ignored. As long as <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> shows the right number, all is well.</div></details>
+<details class="faq"><summary>Some apps or sites won't open</summary><div>The admin may have set “Internet limits” (e.g. blocking ads or certain apps). The <b>Internet limits</b> section of your page shows what's blocked. Ask the admin if you need something.</div></details>
+<details class="faq"><summary>Upload fails with “Over your storage limit”</summary><div>Your “My files” is full. Delete some files you don't need, or ask the admin for more space.</div></details>
+<details class="faq"><summary>The photo auto-backup didn't run</summary><div>
+  <ol class="simple"><li>The shortcut says “The admin hasn't allowed photo auto-backup for you”: ask the admin to turn it on in the control panel.</li><li>Open the Shortcuts app → “Automation” and check the automation is on and set to “Run Immediately”.</li>
+  <li>Tap ▶︎ once by hand and see whether an error message appears.</li>
+  <li>It says “forbidden”: check the names of the two “headers” for typos (upper and lower case must match too).</li>
+  <li>It says “Over your storage limit”: the cloud is full; delete old files or ask the admin for more space.</li></ol></div></details>
+<details class="faq"><summary>A friend says the share link won't open</summary><div>The link may have <b>expired</b>, <b>run out of downloads</b>, or been cancelled. Just share again and send them the new link.</div></details>
+<details class="faq"><summary>Photos in the cloud look grey, without thumbnails</summary><div>The first time, the computer at home takes a few seconds to make thumbnails; wait a moment and refresh and they'll appear. You can still open the photo by tapping it.</div></details>
+<details class="faq"><summary>I can't find the “Mac” page in the control panel</summary><div>The “Mac” page is only shown to people the admin gave “control panel” access. Ask the admin if you need it.</div></details>
+<details class="faq"><summary>What if I get a new phone?</summary><div>Do it again on the new phone: download the app → open your personal address → tap “Open in Shadowrocket” (or sign in to Tailscale). Your files in the cloud are all still there.</div></details>
+<details class="faq"><summary>Can I have Shadowrocket and Tailscale on at the same time?</summary><div>No, an iPhone runs one at a time. Turn on whichever you want to use.</div></details>
+
+<!-- 13 -->
+<h2 id="safe">13. Safety tips</h2>
+<div class="card">
+  <div class="note danger"><b>🔒 Your personal address and QR code are like a key</b>Anyone who has them can get into the home network as you and see your cloud.</div>
+  <ul class="simple">
+    <li><b>Don't</b> send your personal address to others or post it in groups</li>
+    <li><b>Don't</b> share screenshots of your Shadowrocket QR code</li>
+    <li>If it gets out by accident, <b>tell the admin right away</b>; they can give you a new one and the old one stops working at once</li>
+    <li><b>Don't</b> give the photo auto-backup upload address to anyone; whoever has it can put files into your cloud</li>
+    <li>Once a share link is out, anyone with it can download. For important files, remember to <b>set a password</b> and <b>an expiry</b></li>
+    <li>If someone claiming to be the admin asks for your password or a code, <b>call the real person to check first</b></li>
+  </ul>
+</div>
+
+<footer>Any questions? Use <a href="#report">Report a problem</a> on your page, or just ask the admin 🙂<br>The names, numbers and QR codes in this guide are examples.</footer>
+</div>
+<a class="back" href="#top">↑ Contents</a>
+<script>try{localStorage.setItem("guide-lang","en")}catch(e){}</script>
+</body>
+</html>

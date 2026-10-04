@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>家裡網路使用教學</title>
+<link rel="alternate" hreflang="zh-Hant" href=""><link rel="alternate" hreflang="en" href="en/"><link rel="alternate" hreflang="zh-Hans" href="zh-CN/"><link rel="alternate" hreflang="ja" href="ja/"><link rel="alternate" hreflang="ko" href="ko/"><link rel="alternate" hreflang="es" href="es/"><link rel="alternate" hreflang="x-default" href="en/">
+<script id="langpick">/* first visit: go to the visitor's language; a choice made with the language bar is remembered */
+(function(){try{var k="guide-lang",s=localStorage.getItem(k),L=(navigator.languages||[navigator.language||""]).map(function(x){return x.toLowerCase()});
+if(!s){var m=null;for(var i=0;i<L.length&&!m;i++){var x=L[i];if(/^zh-(tw|hk|mo|hant)/.test(x)||x==="zh")m="zh-TW";else if(/^zh/.test(x))m="zh-CN";else ["en","ja","ko","es"].forEach(function(c){if(!m&&x.indexOf(c)===0)m=c})}
+s=m||"en";localStorage.setItem(k,s)}if(/[?&]lang=zh/.test(location.search)){localStorage.setItem(k,"zh-TW");s="zh-TW"}if(s!=="zh-TW")location.replace(s+"/"+location.hash)}catch(e){}})();
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".langs a");if(a)try{var h=a.getAttribute("hreflang");localStorage.setItem("guide-lang",h==="zh-Hant"?"zh-TW":h==="zh-Hans"?"zh-CN":h)}catch(x){}});
+</script>
 <meta name="description" content="一步一步教你用 Shadowrocket 或 Tailscale 連回家裡的網路、使用家裡的雲端硬碟。">
 <style>
 :root {
@@ -66,6 +73,9 @@ details.faq[open] summary::before { content: "－ "; }
 details.faq > div { padding: 0 0 14px; color: var(--text-2); }
 kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
 .back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+.langs { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 15px; margin: 4px 0 14px; color: var(--muted); }
+.langs a { color: var(--blue); text-decoration: none; font-weight: 700; padding: 4px 8px; border-radius: 99px; }
+.langs a[aria-current] { background: var(--blue-soft); color: var(--text); }
 footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
 @media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
 </style>
@@ -73,6 +83,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
 <body>
 <div class="wrap">
 
+<nav class="langs" translate="no">🌐 <a href="?lang=zh" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">繁體中文</a> <a href="en/" hreflang="en" lang="en">English</a> <a href="zh-CN/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a> <a href="ja/" hreflang="ja" lang="ja">日本語</a> <a href="ko/" hreflang="ko" lang="ko">한국어</a> <a href="es/" hreflang="es" lang="es">Español</a></nav>
 <header class="top" id="top">
   <div class="logo">🏠</div>
   <h1>家裡網路使用教學</h1>
@@ -380,7 +391,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <ol class="simple">
     <li>按 <kbd>新增動作</kbd>，搜尋 <b>尋找照片</b>，加入。按「加入過濾條件」，設成 <b>加入日期</b>・<b>是今天</b></li>
     <li>再搜尋 <b>重複每一項目</b>，加入</li>
-    <li>在「重複」<b>裡面</b>，加入 <b>取得 URL 內容</b>：
+    <li><span>在「重複」<b>裡面</b>，加入 <b>取得 URL 內容</b>：</span>
       <ul class="simple">
         <li>網址：<b>貼上</b>剛剛複製的網址</li>
         <li>按「顯示更多」，<b>方法</b>選 <kbd>POST</kbd></li>
@@ -599,7 +610,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   <div class="note warn"><b>很急嗎？</b>例如完全連不上網、雲端打不開，選「完全不能用」，管理員會收到緊急通知。真的很急也可以直接打電話給他。</div>
 </div></div>
 
-<div class="note tip" style="margin-top:14px"><b>你是自己架設這套系統的人？</b>程式的 bug 或建議請到 GitHub 回報：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">回報問題／建議新功能</a>（有中文表單）。安全漏洞請改用<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">私下回報</a>。</div>
+<div class="note tip" style="margin-top:14px"><b>你是自己架設這套系統的人？</b>程式的 bug 或建議請到 GitHub 回報：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">回報問題／建議新功能</a>（有中英雙語表單）。安全漏洞請改用<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">私下回報</a>。</div>
 
 <!-- 12 -->
 <h2 id="faq">12. 遇到問題怎麼辦</h2>

@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>家里网络使用教程</title>
+<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+
+<meta name="description" content="一步一步教你用 Shadowrocket 或 Tailscale 连回家里的网络、使用家里的云盘。">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f6fb; --card: #ffffff; --text: #16181d; --text-2: #454a55; --muted: #6b7280; --line: #e3e6ee;
+  --blue: #0a6cff; --blue-soft: #e8f0ff; --green: #1a8f3c; --green-soft: #e6f6ea; --orange: #b45309; --orange-soft: #fff4e0;
+  --red: #d42a20; --red-soft: #ffebe9; --shadow: 0 6px 24px rgba(20, 30, 60, .08);
+}
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: dark; --bg: #0e1116; --card: #181c23; --text: #f2f4f8; --text-2: #c9ced8; --muted: #9aa1ad; --line: #2a303b;
+    --blue: #4b93ff; --blue-soft: #16243d; --green: #4ccf73; --green-soft: #13291b; --orange: #f5b44a; --orange-soft: #2f2412;
+    --red: #ff6b61; --red-soft: #3a1716; --shadow: 0 6px 24px rgba(0, 0, 0, .35); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 19px/1.75 -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px 80px; }
+header.top { padding: calc(28px + env(safe-area-inset-top)) 0 10px; text-align: center; }
+header.top h1 { font-size: 32px; line-height: 1.3; margin: 8px 0 6px; }
+header.top p { color: var(--text-2); margin: 0; }
+.logo { font-size: 50px; }
+h2 { font-size: 27px; line-height: 1.35; margin: 46px 0 12px; scroll-margin-top: 20px; }
+h2 .tag { font-size: 15px; vertical-align: middle; padding: 3px 10px; border-radius: 99px; margin-left: 6px; font-weight: 700; }
+h3 { font-size: 22px; margin: 0 0 6px; }
+p { margin: 8px 0; }
+b, strong { font-weight: 800; }
+a { color: var(--blue); }
+.card { background: var(--card); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); margin: 14px 0; }
+.toc a { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--line); text-decoration: none; color: var(--text); font-weight: 700; }
+.toc a:first-of-type { border-top: 0; }
+.toc .n { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-soft); color: var(--blue); display: grid; place-items: center; flex: none; font-size: 17px; }
+.choose { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.choose .card { margin: 0; border: 3px solid transparent; }
+.choose .card.a { border-color: #6c63ff33; } .choose .card.b { border-color: #0a6cff33; }
+.choose ul { padding-left: 22px; margin: 8px 0 12px; }
+.pill { display: inline-block; font-size: 15px; font-weight: 800; padding: 3px 12px; border-radius: 99px; }
+.pill.free { background: var(--green-soft); color: var(--green); } .pill.paid { background: var(--orange-soft); color: var(--orange); }
+.go { display: inline-block; background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; padding: 10px 20px; border-radius: 14px; }
+.step { display: grid; grid-template-columns: 48px 1fr; gap: 14px; background: var(--card); border-radius: 22px; padding: 20px; box-shadow: var(--shadow); margin: 16px 0; }
+.step .num { width: 48px; height: 48px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 24px; font-weight: 800; display: grid; place-items: center; }
+.step .body { min-width: 0; }
+figure { margin: 14px 0 4px; text-align: center; }
+figure img { width: 100%; max-width: 340px; height: auto; border-radius: 22px; box-shadow: var(--shadow); background: #fff; }
+figure.wide img { max-width: 420px; }
+figcaption { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.qrwrap { position: relative; display: inline-block; max-width: 380px; width: 100%; }
+.qrwrap img { max-width: 100%; }
+.qrwrap .stamp { position: absolute; left: 50%; top: 32%; transform: translate(-50%, -50%) rotate(-12deg); background: var(--red); color: #fff; font-weight: 900; font-size: 26px; padding: 10px 22px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212,42,32,.4); white-space: nowrap; }
+.note { border-radius: 16px; padding: 14px 16px; margin: 12px 0; font-size: 17px; }
+.note.tip { background: var(--blue-soft); } .note.warn { background: var(--orange-soft); } .note.danger { background: var(--red-soft); }
+.note.ok { background: var(--green-soft); }
+.note b:first-child { display: block; margin-bottom: 2px; }
+ol.simple, ul.simple { padding-left: 24px; } ol.simple li, ul.simple li { margin: 6px 0; }
+.check li { list-style: none; margin-left: -24px; padding-left: 34px; position: relative; }
+.check li::before { content: "☐"; position: absolute; left: 0; font-size: 22px; line-height: 1.45; }
+details.faq { background: var(--card); border-radius: 18px; box-shadow: var(--shadow); margin: 10px 0; padding: 4px 18px; }
+details.faq summary { cursor: pointer; font-weight: 800; padding: 12px 0; list-style: none; }
+details.faq summary::before { content: "＋ "; color: var(--blue); }
+details.faq[open] summary::before { content: "－ "; }
+details.faq > div { padding: 0 0 14px; color: var(--text-2); }
+kbd { font: inherit; font-weight: 800; background: var(--blue-soft); color: var(--blue); padding: 1px 8px; border-radius: 8px; }
+.back { position: fixed; right: 16px; bottom: calc(18px + env(safe-area-inset-bottom)); background: var(--blue); color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; padding: 12px 16px; border-radius: 99px; box-shadow: 0 8px 24px rgba(10,108,255,.35); }
+.langs { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; font-size: 15px; margin: 4px 0 14px; color: var(--muted); }
+.langs a { color: var(--blue); text-decoration: none; font-weight: 700; padding: 4px 8px; border-radius: 99px; }
+.langs a[aria-current] { background: var(--blue-soft); color: var(--text); }
+footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 50px; }
+@media (max-width: 420px) { body { font-size: 18px; } header.top h1 { font-size: 28px; } h2 { font-size: 24px; } .step { grid-template-columns: 1fr; } .step .num { width: 42px; height: 42px; font-size: 21px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="langs" translate="no">🌐 <a href="../?lang=zh" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a> <a href="../en/" hreflang="en" lang="en">English</a> <a href="../zh-CN/" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">简体中文</a> <a href="../ja/" hreflang="ja" lang="ja">日本語</a> <a href="../ko/" hreflang="ko" lang="ko">한국어</a> <a href="../es/" hreflang="es" lang="es">Español</a></nav>
+<header class="top" id="top">
+  <div class="logo">🏠</div>
+  <h1>家里网络使用教程</h1>
+  <p>用手机连回家里的网络、使用家里的云盘<br>一步一步照着做就好，不用懂电脑</p>
+</header>
+
+<div class="card toc"><a href="#before"><span class="n">1</span>开始之前要准备的东西</a> <a href="#choose"><span class="n">2</span>选一种方式：Shadowrocket 或 Tailscale</a> <a href="#portal"><span class="n">3</span>打开“我的专属网页”</a> <a href="#sr"><span class="n">4</span>方式 A：Shadowrocket</a> <a href="#ts"><span class="n">5</span>方式 B：Tailscale</a> <a href="#cloud"><span class="n">6</span>使用“我的云盘”存照片和文件</a> <a href="#backup"><span class="n">7</span>iPhone 照片每天自动备份</a> <a href="#more"><span class="n">8</span>其他好用的功能（大字、留言、时数、网速）</a> <a href="#mac"><span class="n">9</span>看家里 Mac 的状况（有控制台权限的人）</a> <a href="#win"><span class="n">10</span>用手机遥控 Windows 电脑（管理员）</a> <a href="#report"><span class="n">11</span>反馈问题给管理员</a> <a href="#faq"><span class="n">12</span>遇到问题怎么办</a> <a href="#safe"><span class="n">13</span>安全小提醒（很重要）</a></div>
+
+<!-- 1 -->
+<h2 id="before">1. 开始之前要准备的东西</h2>
+<div class="card">
+  <ul class="simple check">
+    <li>一部 <b>iPhone</b>（这份教程用 iPhone 示范）</li>
+    <li>你的 <b>Apple ID 密码</b>（下载 App 时可能会用到）</li>
+    <li>手机可以正常上网（Wi-Fi 或移动网络都可以）</li>
+    <li><b>管理员发给你的“专属网址”</b>，看起来像这样：<br><code style="font-size:15px;word-break:break-all">https://………/p/一长串英文和数字/</code></li>
+  </ul>
+  <div class="note tip"><b>什么是“管理员”？</b>就是帮大家架好家里网络的那个人。遇到不会的地方，直接问他就好。</div>
+</div>
+
+<!-- 2 -->
+<h2 id="choose">2. 选一种方式</h2>
+<p>有两种 App 可以连回家里，<b>选一种就好</b>，不用两个都装。如果不知道选哪个，<b>问管理员</b>，他会告诉你。</p>
+<div class="choose">
+  <div class="card a">
+    <h3>🚀 方式 A：Shadowrocket</h3>
+    <span class="pill paid">需要付费购买</span>
+    <ul>
+      <li>最简单，按一个按钮就设置好</li>
+      <li>不用注册账号</li>
+      <li>适合：想用家里网络上网的人</li>
+    </ul>
+    <a class="go" href="#sr">看方式 A 的教程 →</a>
+  </div>
+  <div class="card b">
+    <h3>🔵 方式 B：Tailscale</h3>
+    <span class="pill free">免费</span>
+    <ul>
+      <li>要用 Google 或 Apple 账号登录</li>
+      <li>管理员要先发邀请给你</li>
+      <li>适合：需要用到家里电脑的人</li>
+    </ul>
+    <a class="go" href="#ts">看方式 B 的教程 →</a>
+  </div>
+</div>
+<div class="note warn"><b>⚠️ 两个不能同时开</b>iPhone 一次只能开一个 VPN。开了 Shadowrocket，Tailscale 就会自动关掉，反过来也一样。</div>
+
+<!-- 3 -->
+<h2 id="portal">3. 打开“我的专属网页”</h2>
+<p>不管选哪一种方式，都会用到这个网页。它会告诉你：<b>你可以用什么、能用到什么时候</b>，也可以在这里使用云盘。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>点开管理员给你的网址</h3>
+  <p>在 LINE 或信息里直接点那个网址，iPhone 会用 <b>Safari</b> 打开。</p>
+  <figure><img src="../img/zh-CN/portal-top.png" alt="我的专属网页的最上面，显示名字、可以使用、使用期限" loading="lazy"><figcaption>打开后会看到你的名字（图中“王小明”是示例）</figcaption></figure>
+  <div class="note ok"><b>看到绿色的“可以使用”就代表一切正常。</b>如果是红色，请看最下面的<a href="#faq">常见问题</a>。</div>
+  <div class="note tip"><b>字太小看不清楚？</b>按右上角的 <kbd>T</kbd> 就会变成大字，再按一次变回来。详细请看<a href="#big">大字模式</a>。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>把它放到主屏幕（以后一点就开）</h3>
+  <ol class="simple">
+    <li>按 Safari 最下面中间的 <kbd>共享</kbd> 按钮（一个方框加向上的箭头 ⬆︎）</li>
+    <li>往下滑，按 <kbd>添加到主屏幕</kbd></li>
+    <li>右上角按 <kbd>添加</kbd></li>
+  </ol>
+  <figure><img src="../img/zh-CN/home-screen.png" alt="Safari 共享菜单，添加到主屏幕被红框标出" loading="lazy"><figcaption>主屏幕会多一个“我的连接”图标</figcaption></figure>
+</div></div>
+
+<!-- 4 -->
+<h2 id="sr">4. 方式 A：Shadowrocket <span class="tag pill paid">付费</span></h2>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>下载 Shadowrocket</h3>
+  <ol class="simple">
+    <li>打开 iPhone 上的 <b>App Store</b>（蓝色的 A 字图标）</li>
+    <li>按右下角 <kbd>搜索</kbd>，输入 <b>Shadowrocket</b></li>
+    <li>找到一个<b>蓝色火箭</b>图标的 App，按价格按钮购买</li>
+    <li>用 Face ID 或 Apple ID 密码确认付款</li>
+  </ol>
+  <figure><img src="../img/zh-CN/appstore-sr.png" alt="App Store 搜索 Shadowrocket，购买按钮被红框标出" loading="lazy"><figcaption>示意图：实际价格和图标以 App Store 为准</figcaption></figure>
+  <div class="note warn"><b>搜索不到？</b>中国大陆的 App Store 没有这个 App。如果找不到，请找管理员帮忙。</div>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>从“我的专属网页”一键导入</h3>
+  <ol class="simple">
+    <li>打开<a href="#portal">我的专属网页</a>，往下滑到 <b>Shadowrocket</b> 那一块</li>
+    <li>按蓝色的 <kbd>用 Shadowrocket 打开</kbd></li>
+    <li>弹出“要在 Shadowrocket 中打开吗？”，按 <kbd>打开</kbd></li>
+  </ol>
+  <figure><span class="qrwrap"><img src="../img/zh-CN/portal-sr.png" alt="我的专属网页的 Shadowrocket 区块，有 QR 码和“用 Shadowrocket 打开”按钮" loading="lazy"><span class="stamp">示例・不能扫</span></span>
+    <figcaption>你的网页上会有你自己的 QR 码和按钮</figcaption></figure>
+  <figure><img src="../img/zh-CN/safari-open.png" alt="Safari 询问是否在 Shadowrocket 中打开，打开按钮被红框标出" loading="lazy"></figure>
+  <div class="note tip"><b>用别的手机扫也可以</b>如果网页是在电脑上打开的，可以在 Shadowrocket 首页按左上角的“扫描”图标，扫网页上的 QR 码。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>第一次使用：允许 VPN</h3>
+  <p>第一次打开开关时，iPhone 会问你要不要添加 VPN 配置，按 <kbd>允许</kbd>，再输入 <b>iPhone 的锁屏密码</b>或用 Face ID。</p>
+  <figure><img src="../img/zh-CN/vpn-allow.png" alt="iPhone 询问是否允许添加 VPN 配置，允许被红框标出" loading="lazy"><figcaption>这一步只会出现一次</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>打开开关</h3>
+  <ol class="simple">
+    <li>确认下面的列表里，<b>“家里的 Mac”</b>前面有打勾 ✓</li>
+    <li>“全局路由”选 <b>代理</b></li>
+    <li>打开最上面的开关（变成绿色）</li>
+  </ol>
+  <figure><img src="../img/zh-CN/sr-home.png" alt="Shadowrocket 首页，开关、全局路由、家里的 Mac 分别被标出" loading="lazy"></figure>
+  <div class="note ok"><b>成功的样子：</b>iPhone 最上面会出现一个小小的 <b>VPN</b> 字样。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>检查有没有成功</h3>
+  <p>用 Safari 打开 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a>，画面上会出现一串数字。<b>这串数字和管理员告诉你的一样，就代表成功了！</b></p>
+  <figure><img src="../img/zh-CN/ipify.png" alt="Safari 显示一串 IP 数字" loading="lazy"><figcaption>图中的数字是示例</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>平常怎么用？</h3>
+  <ul class="simple">
+    <li><b>要用的时候</b>：打开 Shadowrocket，把开关打开</li>
+    <li><b>不用的时候</b>：把开关关掉就好（比较省电）</li>
+    <li>也可以到 iPhone 的 <b>设置 → VPN</b> 开关</li>
+  </ul>
+</div></div>
+
+<!-- 5 -->
+<h2 id="ts">5. 方式 B：Tailscale <span class="tag pill free">免费</span></h2>
+<div class="note warn"><b>先确认：管理员已经邀请你了吗？</b>管理员会用 Email 或 LINE 发一个“邀请链接”给你。没有邀请的话，登录后什么都连不到。</div>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>下载 Tailscale</h3>
+  <ol class="simple">
+    <li>打开 <b>App Store</b>，搜索 <b>Tailscale</b></li>
+    <li>按 <kbd>获取</kbd>（免费），再用 Face ID 或密码确认</li>
+  </ol>
+  <figure><img src="../img/zh-CN/appstore-ts.png" alt="App Store 搜索 Tailscale，获取按钮被红框标出" loading="lazy"><figcaption>示意图：实际图标以 App Store 为准</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>接受邀请并登录</h3>
+  <ol class="simple">
+    <li>点管理员发给你的<b>邀请链接</b>，按“接受”</li>
+    <li>打开 Tailscale App，按 <kbd>登录</kbd></li>
+    <li>选你平常用的账号（Google 或 Apple）登录</li>
+  </ol>
+  <figure><img src="../img/zh-CN/ts-login.png" alt="Tailscale 登录画面，有 Google、Apple、Microsoft 登录选项" loading="lazy"><figcaption>示意图：实际画面可能是英文</figcaption></figure>
+  <div class="note danger"><b>一定要用同一个账号</b>要用管理员<b>邀请的那个 Email</b> 登录，不然会连不到。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>允许 VPN</h3>
+  <p>和 Shadowrocket 一样，第一次会问你要不要添加 VPN 配置（名称会是 <b>Tailscale</b>），按 <kbd>允许</kbd>，再输入 iPhone 密码或 Face ID。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>打开连接，选“家里的电脑”</h3>
+  <ol class="simple">
+    <li>把最上面的开关打开（变成绿色）</li>
+    <li>点 <kbd>Exit Node</kbd></li>
+    <li>选 <b>家里的电脑</b>（实际名字请问管理员）</li>
+  </ol>
+  <figure><img src="../img/zh-CN/ts-main.png" alt="Tailscale 主画面，开关和 Exit Node 被标出" loading="lazy"></figure>
+  <figure><img src="../img/zh-CN/ts-exit.png" alt="Exit Node 列表，家里的电脑被红框标出" loading="lazy"><figcaption>选了之后，你上网就像在家里一样，还会自动屏蔽广告</figcaption></figure>
+  <div class="note tip"><b>没有看到 Exit Node？</b>代表管理员没有开放这个功能给你，这是正常的。</div>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>检查有没有成功</h3>
+  <p>和方式 A 一样：用 Safari 打开 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a>，数字和管理员说的一样就成功了。</p>
+</div></div>
+
+<!-- 6 -->
+<h2 id="cloud">6. 使用“我的云盘”存照片和文件</h2>
+<p>如果管理员帮你开了云盘，<a href="#portal">我的专属网页</a>上会有 <b>“我的云盘”</b>。你可以把照片、视频、文档存在家里的硬盘，换手机也不怕丢。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>认识两个文件夹</h3>
+  <figure class="wide"><img src="../img/zh-CN/portal-drive-roots.png" alt="我的云盘有两个文件夹：我的文件、共享" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>我的文件</b>：你自己的空间，只有你和管理员看得到。下面会写你已经用了多少、最多能放多少。</li>
+    <li><b>共享</b>：全家一起用的文件夹。你能不能放东西进去，由管理员决定。</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>上传照片或视频</h3>
+  <ol class="simple">
+    <li>点 <b>我的文件</b> 进去</li>
+    <li>按蓝色的 <kbd>上传</kbd></li>
+    <li>选 <b>照片图库</b>，勾选要上传的照片或视频，按 <kbd>添加</kbd></li>
+    <li>等进度条跑完，就会出现“已上传”。进度条下面会写<b>速度</b>和<b>还要多久</b></li>
+  </ol>
+  <figure class="wide"><img src="../img/zh-CN/portal-drive-files.png" alt="我的文件列表，每个文件下面写着大小和上传时间" loading="lazy"><figcaption>每个文件下面会写<b>大小</b>和<b>什么时候上传的</b>，最下面有总共几个文件、占多少空间</figcaption></figure>
+  <div class="note warn"><b>上传时不要关掉网页</b>视频比较大，要等久一点。上传到一半离开网页，就要重新上传。想要每天自动备份，请看<a href="#backup">第 7 步</a>。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>上面那排小按钮是做什么的</h3>
+  <ul class="simple">
+    <li>🔍 <b>搜索</b>：输入文件名的一部分，例如“生日”，就会找出所有文件夹里有“生日”的文件</li>
+    <li>↕️ <b>排序</b>：可以按 <b>名称、上传时间、修改时间、大小、类型</b> 排。想看最新上传的，就选“上传时间”</li>
+    <li>▦ <b>切换显示方式</b>：在“列表”和“相册”之间切换。相册模式会把照片排成格子，像手机的照片 App</li>
+    <li>🗑 <b>回收站</b>：删掉的东西会先放在这里（看第 6 个步骤）</li>
+  </ul>
+  <figure class="wide"><img src="../img/zh-CN/portal-drive-grid.png" alt="相册模式，照片排成三栏的格子，视频中间有播放键" loading="lazy"><figcaption>相册模式：照片、视频、PDF 都看得到缩略图</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>点一下就能直接看</h3>
+  <p>不用下载，点一下就能在手机上打开：</p>
+  <ul class="simple">
+    <li><b>照片、视频、音乐</b>：直接看、直接播。<b>往左、往右滑</b>可以看上一张、下一张</li>
+    <li><b>PDF、Word、Excel、PowerPoint、Pages、Keynote</b>：会显示<b>第一页</b>的样子。PDF 按 <kbd>打开 PDF</kbd> 可以看全部；Word 文件可以按 <kbd>看文字</kbd> 看全文</li>
+    <li><b>文字文件（.txt）、表格（.csv）</b>：直接显示内容，CSV 会排成表格</li>
+  </ul>
+  <figure><img src="../img/zh-CN/portal-drive-text.png" alt="打开购物清单.txt，直接显示文字内容" loading="lazy"><figcaption>文字文件直接显示内容</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>按 ⋯ 可以做更多事</h3>
+  <p>每个文件右边都有 <kbd>⋯</kbd>，按下去会看到：</p>
+  <figure><img src="../img/zh-CN/portal-drive-menu.png" alt="文件菜单：预览、下载、详细信息、分享、改名、移动、删除、关闭" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>下载</b>：存到手机里。如果是<b>文件夹</b>，会变成 <b>下载 ZIP</b>，整个文件夹一次下载</li>
+    <li><b>详细信息</b>：看文件多大、什么时候上传、照片多少万像素、视频多长</li>
+    <li><b>分享</b>：生成一个链接发给朋友（看下面“分享给别人”）</li>
+    <li><b>改名</b>、<b>移动</b>（搬到别的文件夹）、<b>删除</b></li>
+  </ul>
+  <figure><img src="../img/zh-CN/portal-drive-info.png" alt="详细信息：类型、大小、照片尺寸、上传时间、修改时间、位置" loading="lazy"><figcaption>详细信息</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>一次整理很多个文件</h3>
+  <ol class="simple">
+    <li>按 <kbd>选择</kbd></li>
+    <li>点要整理的文件，前面会出现蓝色的勾 ✓（按 <kbd>全选</kbd> 可以一次全部勾）</li>
+    <li>按 <kbd>移动</kbd> 搬到别的文件夹，或按 <kbd>删除</kbd></li>
+    <li>做完按 <kbd>完成</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/zh-CN/portal-drive-select.png" alt="选择模式，两张照片被勾选，上面有全选、移动、删除、完成" loading="lazy"></figure>
+  <p><b>移动</b>时会弹出文件夹列表：点文件夹进去，到了想放的地方，按 <kbd>移到这里</kbd>。</p>
+</div></div>
+
+<div class="step"><div class="num">7</div><div class="body">
+  <h3>不小心删掉了？到回收站救回来</h3>
+  <p>删掉的文件<b>不会马上消失</b>，会在回收站放 <b>30 天</b>，之后才自动清掉。</p>
+  <ol class="simple">
+    <li>按上面那排的 🗑 <b>回收站</b></li>
+    <li>找到要救的文件，按 <kbd>还原</kbd>，它就会回到原本的文件夹</li>
+  </ol>
+  <figure class="wide"><img src="../img/zh-CN/portal-drive-trash.png" alt="回收站里有一张照片，旁边有还原和永久删除按钮" loading="lazy"></figure>
+  <div class="note danger"><b>回收站里按 ✕ 或“清空回收站”就真的救不回来了</b>按下去还要再按一次确认，请看清楚再按。</div>
+</div></div>
+
+<div class="step"><div class="num">8</div><div class="body">
+  <h3>分享给别人（对方不用装 App）</h3>
+  <ol class="simple">
+    <li>在文件或文件夹按 <kbd>⋯</kbd> → <kbd>分享</kbd></li>
+    <li>选 <b>有效期限</b>（1 天、7 天、30 天、永久）</li>
+    <li>可以限制 <b>最多下载几次</b>，也可以设 <b>密码</b></li>
+    <li>按 <kbd>创建链接</kbd>，链接会自动复制好，粘贴到 LINE 发给对方就可以了</li>
+  </ol>
+  <figure><img src="../img/zh-CN/portal-drive-share.png" alt="分享表单：有效期限、下载次数上限、密码" loading="lazy"></figure>
+  <div class="note tip"><b>对方打开会看到什么？</b>一个只能看和下载的网页，看不到你其他的文件。分享文件夹的话，对方可以按“全部下载（ZIP）”。时间到、次数用完，或管理员取消，链接就会失效。</div>
+  <div class="note warn"><b>有设密码的话，密码要另外告诉对方</b>不要把密码和链接贴在同一条消息里。</div>
+</div></div>
+
+<!-- 7 -->
+<h2 id="backup">7. iPhone 照片每天自动备份</h2>
+<p>用 iPhone <b>内置</b>的“快捷指令”App，每天晚上自动把当天拍的照片存到你云盘的“相机备份”文件夹。<b>不用另外下载 App，也不用开 VPN</b>，只要有网络就会备份。</p>
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>先复制你的上传网址</h3>
+  <p>在<a href="#portal">我的专属网页</a>找到 <b>“iPhone 照片自动备份”</b>，按 <kbd>复制上传网址</kbd>。</p>
+  <div class="note tip"><b>网页上找不到这一块？</b>代表管理员没有开放你使用自动备份（在网页上手动上传照片还是可以）。需要的话可以<a href="#msg">留言</a>请管理员打开。</div>
+  <figure class="wide"><img src="../img/zh-CN/portal-backup.png" alt="iPhone 照片自动备份卡片，有上传网址和一步一步的说明" loading="lazy"><figcaption>网页上也有同样的步骤可以照着做</figcaption></figure>
+</div></div>
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>在“快捷指令”App 新增自动化</h3>
+  <ol class="simple">
+    <li>打开 <b>快捷指令</b> App（找不到的话，在主屏幕往下滑搜索“快捷指令”）</li>
+    <li>按下面的 <kbd>自动化</kbd>，再按右上角 <kbd>＋</kbd></li>
+    <li>选 <b>特定时间</b>，设成每天晚上 <b>11:00</b>，选 <kbd>立即运行</kbd>，按 <kbd>下一步</kbd></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>加入三个操作</h3>
+  <ol class="simple">
+    <li>按 <kbd>添加操作</kbd>，搜索 <b>查找照片</b>，加入。按“添加过滤条件”，设成 <b>添加日期</b>・<b>是今天</b></li>
+    <li>再搜索 <b>对每个项目重复</b>，加入</li>
+    <li><span>在“重复”<b>里面</b>，加入 <b>获取 URL 内容</b>：</span>
+      <ul class="simple">
+        <li>网址：<b>粘贴</b>刚刚复制的网址</li>
+        <li>按“显示更多”，<b>方法</b>选 <kbd>POST</kbd></li>
+        <li><b>请求体</b>选 <kbd>文件</kbd>，文件选 <b>重复项目</b></li>
+        <li><b>头部</b>按“添加新头部”两次：<br> 第一个：名称 <code>X-Requested-With</code>，值 <code>portal</code><br> 第二个：名称 <code>X-Filename</code>，值选 <b>重复项目</b> 的 <b>名称</b>，后面打上 <code>.heic</code><br><span style="font-size:14px;color:#666">（如果“设置 → 相机 → 格式”选的是“兼容性最佳”，就改打 <code>.jpg</code>）</span></li>
+      </ul></li>
+  </ol>
+</div></div>
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>试运行一次</h3>
+  <p>按右下角的 ▶︎ 试运行。第一次 iPhone 会问“允许访问照片吗？”，按 <kbd>允许</kbd>。跑完到“我的云盘 → 我的文件 → 相机备份”看看，今天的照片应该都在了。</p>
+  <div class="note ok"><b>重复运行也没关系</b>已经备份过的同一张照片会自动跳过，不会占两份空间。</div>
+  <div class="note warn"><b>容量满了就会停</b>“我的文件”满了以后就存不进去。可以在云盘删掉旧照片，或用<a href="#msg">留言</a>请管理员加大容量。</div>
+</div></div>
+
+<!-- 8 -->
+<h2 id="more">8. 其他好用的功能</h2>
+
+<div class="step" id="big"><div class="num">1</div><div class="body">
+  <h3>大字模式（给长辈用）</h3>
+  <p>按专属网页右上角的 <kbd>T</kbd>，整个网页的字和按钮都会变大。这部手机会记住，下次打开还是大字。再按一次 <kbd>T</kbd> 就变回原本的大小。</p>
+  <figure><img src="../img/zh-CN/portal-big.png" alt="大字模式的专属网页，T 按钮变成蓝色" loading="lazy"><figcaption>开启后 T 会变成蓝色</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>今天还能用多久</h3>
+  <p>如果管理员帮你设了<b>每天可以用多久</b>，网页上会多一个蓝色圆圈“今天还能用”，写着还剩几分钟。</p>
+  <figure class="wide"><img src="../img/zh-CN/portal-time.png" alt="三个圆圈：我的云盘、使用期限、今天还能用" loading="lazy"></figure>
+  <ul class="simple">
+    <li>只有<b>真的在用网络</b>的时候才算时间，开着不用不会扣</li>
+    <li>时间用完，当天就连不上，<b>半夜 12 点</b>自动恢复</li>
+    <li>不够用的话，可以<a href="#msg">留言</a>请管理员加</li>
+  </ul>
+</div></div>
+
+<div class="step" id="msg"><div class="num">3</div><div class="body">
+  <h3>留言给管理员</h3>
+  <p>想延长使用期限、加大云盘容量、增加每天的时数，或是遇到问题，都可以直接在网页上留言：</p>
+  <ol class="simple">
+    <li>在“留言给管理员”选一个项目，例如 <kbd>加大云盘容量</kbd></li>
+    <li>想补充的话写在下面的框框（可以不写）</li>
+    <li>按 <kbd>发送</kbd></li>
+  </ol>
+  <figure class="wide"><img src="../img/zh-CN/portal-msg.png" alt="留言给管理员：选项、输入框、发送按钮，下面有之前的留言和管理员的回复" loading="lazy"></figure>
+  <p>管理员的手机会马上收到通知。他回复以后，会显示在“之前的留言”下面，<b>绿色勾</b>代表已经处理好了。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>网速测试</h3>
+  <p>觉得很慢的时候，到网页最下面的“连接检查”，按 <b>网速测试</b> 旁边的 <kbd>开始</kbd>，大约 10 秒就会显示下载和上传的速度。</p>
+  <figure class="wide"><img src="../img/zh-CN/portal-check.png" alt="连接检查：IP、连接方式、网速测试结果下载 48 Mbps 上传 21 Mbps" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>20 Mbps 以上</b>：很快，看视频没问题</li>
+    <li><b>5～20 Mbps</b>：一般使用没问题</li>
+    <li><b>5 Mbps 以下</b>：比较慢，可以换个地方或换 Wi-Fi 试试</li>
+  </ul>
+  <div class="note tip">每测一次大约用掉 15 MB 的流量，用移动网络的话不要一直测。</div>
+</div></div>
+
+<!-- 9 -->
+<h2 id="mac">9. 看家里 Mac 的状况 <span class="tag pill free">有控制台权限的人</span></h2>
+<p>家里的网络、云盘都是靠一台 Mac 在运行。如果管理员有开“控制台”给你，就可以看到这台 Mac 现在忙不忙、热不热、电池好不好。<b>这一页只能看，不会改到任何设置</b>，放心看。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>打开“Mac”页面</h3>
+  <ol class="simple">
+    <li>打开控制台（要先开 Tailscale）</li>
+    <li>按下面的 <kbd>设置</kbd>，再按上面的 <kbd>Mac</kbd></li>
+  </ol>
+  <p>或是在控制台首页，直接点 <b>CPU</b> 或 <b>内存</b> 那两个圆圈，也会跳到这一页。</p>
+  <figure class="wide"><img src="../img/zh-CN/mac-home-tiles.png" alt="控制台首页的 CPU 和内存圆圈" loading="lazy"><figcaption>首页点这两个圆圈就能看详细</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>最上面：一眼看懂现在的状况</h3>
+  <figure class="wide"><img src="../img/zh-CN/mac-top.png" alt="Mac 页面最上面：型号、CPU、内存压力、电池、下载上传速度、散热" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>CPU</b>：电脑现在有多忙。平常 20% 以下，偶尔冲高没关系</li>
+    <li><b>内存压力</b>：绿色“正常”就好；橙色“偏高”代表程序开太多，电脑会变慢</li>
+    <li><b>下载／上传速度</b>：家里这台 Mac 现在正在传多少数据</li>
+    <li><b>散热</b>：绿色“正常”；如果出现红色“过热降速”，代表太热了，电脑会自己放慢</li>
+  </ul>
+  <div class="note tip">这一页每 5 秒会自己更新，不用一直刷新。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>趋势图：看过去 24 小时</h3>
+  <p>可以选看最近 <b>1 小时</b>、<b>6 小时</b> 或 <b>24 小时</b>。<b>用手指点一下图</b>，就会显示那个时间的数字；点图以外的地方就收起来。</p>
+  <figure class="wide"><img src="../img/zh-CN/mac-trend.png" alt="趋势图：CPU、内存、网络、电量，手指点在 CPU 图上显示 13:57 CPU 13%" loading="lazy"><figcaption>点图上任何一点，就会看到那个时间的数值</figcaption></figure>
+  <p>不习惯看图的话，按最下面的 <kbd>表格视图</kbd>，会用表格列出每个时间的数字。</p>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>电池</h3>
+  <figure class="wide"><img src="../img/zh-CN/mac-battery.png" alt="电池：电量、健康度、充电循环、温度、电力" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>电池健康度</b>：电池现在能充到新电池的百分之几。<b>80% 以上都很正常</b>，低于 80% 才需要考虑换电池</li>
+    <li><b>充电循环</b>：电池用了几轮。MacBook 设计可以用 1000 次</li>
+    <li><b>电池温度</b>：30 几度很正常；超过 40 度会变橙色提醒</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>内存：为什么电脑变慢</h3>
+  <figure class="wide"><img src="../img/zh-CN/mac-memory.png" alt="内存分配长条：App 正在用、系统保留、压缩、缓存、空闲，还有内存压力和交换空间" loading="lazy"></figure>
+  <ul class="simple">
+    <li>长条分成几种颜色，每一种旁边都有说明和用量</li>
+    <li><b>缓存</b>不用担心，需要时会自动让出来</li>
+    <li><b>压缩</b>和<b>交换空间（swap）</b>很多，代表内存不够，电脑会变慢、变热</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>最耗资源的程序</h3>
+  <p>可以切换 <kbd>按 CPU</kbd> 或 <kbd>按内存</kbd> 排序。同一个程序开了很多个（例如浏览器的每个标签页），会合并成一行，后面标 <b>×数量</b>。</p>
+  <figure class="wide"><img src="../img/zh-CN/mac-procs.png" alt="最耗资源的程序列表，按内存排序，Safari ×3 排第一" loading="lazy"></figure>
+  <div class="note warn"><b>觉得家里网络或云盘变慢？</b>先看这一页：如果“内存压力”是橙色，或某个程序占很多，告诉管理员，请他关掉一些程序或重启一次。</div>
+</div></div>
+
+<!-- 10 -->
+<h2 id="win">10. 用手机遥控 Windows 电脑 <span class="tag pill paid">管理员</span></h2>
+<p>家里有 Windows 电脑的话，可以像遥控 Mac 一样，用手机控制它：看它在不在用、切歌、调音量、弹通知给正在用电脑的人、锁定、关机。<b>只有管理员（控制台拥有者）看得到这个功能。</b></p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>Windows 先装好 Tailscale</h3>
+  <ol class="simple">
+    <li>在 Windows 上到 <a href="https://tailscale.com/download/windows" target="_blank" rel="noopener">tailscale.com/download</a> 下载安装</li>
+    <li>登录<b>跟你手机一样的账号</b>（很重要，不同账号会连不上）</li>
+    <li>右下角的 Tailscale 图标要是<b>已连接</b></li>
+  </ol>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>在手机生成安装命令</h3>
+  <ol class="simple">
+    <li>打开控制台，按下面的 <kbd>遥控</kbd></li>
+    <li>按最上面的 <kbd>＋ Windows</kbd>，再按 <kbd>生成安装命令</kbd></li>
+    <li>按 <kbd>复制命令</kbd>，用 LINE 或 email 发到 Windows 电脑上</li>
+  </ol>
+  <figure class="wide"><img src="../img/zh-CN/win-add.png" alt="控制台的遥控页，上方有 Mac、电脑名称和＋，下面是安装步骤和一行安装命令" loading="lazy"><figcaption>命令只能用一次，15 分钟内有效；过期就按“重新生成”</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>在 Windows 粘贴命令</h3>
+  <ol class="simple">
+    <li>按键盘的 <kbd>⊞ Windows</kbd> 键（或左下角的开始），输入 <b>PowerShell</b>，按 Enter 打开</li>
+    <li>在蓝色或黑色的窗口里<b>按右键</b>（或 <kbd>Ctrl</kbd>+<kbd>V</kbd>）粘贴命令，按 <kbd>Enter</kbd></li>
+    <li>看到绿色的 <b>“完成！”</b> 就好了，可以把窗口关掉</li>
+  </ol>
+  <div class="note ok"><b>不用系统管理员权限</b>，也不用改防火墙。之后每次开机登录都会自动在后台运行，不会弹出任何窗口。</div>
+  <div class="note tip">装好之后，手机上的页面会<b>自动切到这台电脑</b>。电脑名称太长的话，可以在最下面的“管理”改成好认的名字，例如“客厅电脑”。</div>
+</div></div>
+
+<div class="step"><div class="num">4</div><div class="body">
+  <h3>看状态、控制音乐</h3>
+  <p>上面的按钮可以在 <b>Mac</b> 和每一台 Windows 之间切换。名字旁边是<b>绿点</b>代表电脑开着、连得到。</p>
+  <figure class="wide"><img src="../img/zh-CN/win-status.png" alt="Windows 电脑的状态：CPU、内存、系统盘、电源、开机时间、用户，下面是正在播放的歌和音乐控制" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>在线・使用中／闲置／已锁定</b>：可以知道现在有没有人在用这台电脑</li>
+    <li><b>音乐</b>：Spotify、浏览器里的 YouTube 等都看得到正在播什么，可以暂停、切歌、拉音量</li>
+  </ul>
+</div></div>
+
+<div class="step"><div class="num">5</div><div class="body">
+  <h3>屏幕和电源</h3>
+  <figure class="wide"><img src="../img/zh-CN/win-controls.png" alt="屏幕：截取画面、锁定、关屏幕、睡眠；电源：关机、重新启动、取消关机" loading="lazy"></figure>
+  <ul class="simple">
+    <li><b>截取画面</b>：看电脑现在的画面（电脑锁定时看不到）</li>
+    <li><b>睡眠、关机、重新启动</b>要<b>连按两下</b>才会执行，避免不小心按到</li>
+    <li>关机和重启会<b>先等 1 分钟</b>，电脑上会弹出提示；后悔了就按 <kbd>取消关机</kbd></li>
+  </ul>
+  <p>再往下还有：<b>弹出通知</b>和<b>朗读</b>（例如“吃饭了！”）、<b>剪贴板同步</b>（手机和电脑互传文字）、<b>在电脑上打开网址</b>。</p>
+</div></div>
+
+<div class="step"><div class="num">6</div><div class="body">
+  <h3>不想用了：移除</h3>
+  <p>在那台电脑的页面最下面按 <kbd>移除这台电脑</kbd>（要按两下）。电脑开着的话，上面的程序会<b>自己删掉</b>；电脑关着的话，下次开机连接时会自动删掉。</p>
+  <div class="note warn"><b>安全说明</b>只有你的控制台能遥控，而且只通过 Tailscale；电脑上的程序只会做这一页列出的事，不能运行其他程序。<b>每次有新电脑加入，你的手机都会收到通知</b>，不是你加的就马上移除。</div>
+</div></div>
+
+<!-- 11 -->
+<h2 id="report">11. 反馈问题给管理员</h2>
+<p>网页打不开、云盘上传失败、连不上网…遇到<b>奇怪的地方</b>，直接在你的专属网页告诉管理员。不用打字解释很多，选一选、拍张截图就可以。</p>
+
+<div class="step"><div class="num">1</div><div class="body">
+  <h3>找到“反馈问题”</h3>
+  <p>打开<a href="#portal">你的专属网页</a>，往下滑，找到橙色的 <b>“反馈问题”</b>，按 <kbd>我要反馈问题</kbd>。</p>
+  <figure class="wide"><img src="../img/zh-CN/portal-bug-card.png" alt="专属网页上的“反馈问题”卡片，有“我要反馈问题”按钮，下面是我的反馈和管理员的回复" loading="lazy"><figcaption>下面的“我的反馈”会显示处理进度和管理员的回复</figcaption></figure>
+</div></div>
+
+<div class="step"><div class="num">2</div><div class="body">
+  <h3>填一下就好</h3>
+  <ol class="simple">
+    <li><b>哪里有问题？</b>：选云盘、上网／连接、专属网页…</li>
+    <li><b>有多严重？</b>：小问题、有点影响，还是完全不能用</li>
+    <li><b>用一句话说发生什么事</b>：例如“上传视频到一半就失败”</li>
+    <li><b>详细说明</b>：可以不写；有写会更快找到原因</li>
+    <li><b>截图</b>：按 <kbd>选择截图</kbd>，从相册选，最多 3 张</li>
+    <li>按 <kbd>提交反馈</kbd>，管理员的手机会马上收到通知</li>
+  </ol>
+  <figure><img src="../img/zh-CN/portal-bug-form.png" alt="反馈问题的表单：哪里有问题、有多严重、一句话描述、详细说明、截图、附上手机信息" loading="lazy"></figure>
+  <div class="note tip"><b>怎么截图？</b>iPhone 同时按“侧边按钮”和“调高音量”，画面闪一下就截好了，会存在“照片”里。</div>
+  <div class="note ok"><b>“附上手机型号和浏览器信息”</b>建议保持勾选，管理员比较容易找到原因。不会发送你的照片、通讯录或位置。</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div class="body">
+  <h3>看管理员的回复</h3>
+  <ul class="simple">
+    <li>管理员回复时，标题旁边会出现<b>红点</b> 🔴</li>
+    <li>右边的标签会显示进度：<b>新反馈</b> → <b>处理中</b> → <b>已修复</b></li>
+    <li>想补充说明，在下面的框框打字再按 <kbd>发送</kbd></li>
+    <li>标成“已修复”但<b>还是有问题</b>？点“还是有问题？”告诉管理员，反馈会重新回到他的待处理列表</li>
+  </ul>
+  <div class="note warn"><b>很急吗？</b>例如完全连不上网、云盘打不开，选“完全不能用”，管理员会收到紧急通知。真的很急也可以直接打电话给他。</div>
+</div></div>
+
+<div class="note tip" style="margin-top:14px"><b>你是自己架设这套系统的人？</b>程序的 bug 或建议请到 GitHub 反馈：<a href="https://github.com/Hitachi513/mac-homeserver/issues/new/choose" target="_blank" rel="noopener">反馈问题／建议新功能</a>（中英双语表单）。安全漏洞请改用<a href="https://github.com/Hitachi513/mac-homeserver/security/advisories/new" target="_blank" rel="noopener">私下报告</a>。</div>
+
+<!-- 12 -->
+<h2 id="faq">12. 遇到问题怎么办</h2>
+<details class="faq"><summary>遥控 Windows：粘贴命令后出现红字“安装失败”</summary><div>
+  <ol class="simple"><li>确认 Windows 右下角的 <b>Tailscale 是已连接</b>，而且登录的是<b>跟手机一样的账号</b>。</li><li>命令只能用一次、15 分钟内有效：回手机按 <kbd>重新生成</kbd>，用新的命令再粘贴一次。</li><li>要在 <b>PowerShell</b> 里粘贴，不是“命令提示符（cmd）”。</li></ol></div></details>
+<details class="faq"><summary>遥控 Windows：电脑一直显示“离线”，按钮都是灰的</summary><div>电脑可能关机、睡眠，或没开 Tailscale。把电脑唤醒、确认 Tailscale 已连接，大约 30 秒内就会变回绿点。还是不行，可以在电脑上<b>注销再登录一次</b>（遥控程序会在登录时自动启动）。</div></details>
+<details class="faq"><summary>开了之后上不了网</summary><div>
+  <ol class="simple"><li>先把 Shadowrocket（或 Tailscale）的开关<b>关掉再打开</b>。</li><li>还是不行，就先把开关关掉，手机就会恢复正常上网。</li><li>用<a href="#report">反馈问题</a>告诉管理员（选“完全不能用”）：可能家里的电脑关机了或网络断了。</li></ol></div></details>
+<details class="faq"><summary>专属网页上写“权限目前无效”或红色字</summary><div>
+  <ul class="simple"><li><b>不在允许时段</b>：管理员设置了可以使用的时间，时间到了就能用。</li><li><b>已过期</b>：使用期限到了，请问管理员要不要延长。</li><li><b>已停用</b>：管理员暂时关掉了，请问管理员。</li></ul></div></details>
+<details class="faq"><summary>写“今日时数已用完”</summary><div>你今天可以用的时间用完了，<b>半夜 12 点</b>会自动恢复。急着要用的话，可以<a href="#msg">留言</a>请管理员帮你加时数。</div></details>
+<details class="faq"><summary>专属网页打开写“找不到页面”或“网址已失效”</summary><div>管理员可能帮你换了新的网址（例如为了安全）。请管理员<b>发新的网址</b>给你，旧的就不要再用了。</div></details>
+<details class="faq"><summary>Shadowrocket 里“家里的 Mac”旁边有红点</summary><div>那是 Shadowrocket 的“测速”失败，<b>不影响使用</b>，可以忽略。只要 <a href="https://api.ipify.org" target="_blank" rel="noopener noreferrer">api.ipify.org</a> 显示的数字正确就没问题。</div></details>
+<details class="faq"><summary>有些 App 或网站打不开</summary><div>管理员可能帮你设了“上网限制”（例如屏蔽广告、屏蔽某些 App）。在专属网页的 <b>上网限制</b> 那一块可以看到被挡的项目。有需要请问管理员。</div></details>
+<details class="faq"><summary>上传失败，写“超过你的容量上限”</summary><div>你的“我的文件”已经满了。可以删掉一些不要的文件，或请管理员帮你加大容量。</div></details>
+<details class="faq"><summary>照片自动备份没有运行</summary><div>
+  <ol class="simple"><li>快捷指令显示“管理员没有开放你使用照片自动备份”：请管理员在控制台帮你打开。</li><li>打开“快捷指令”App →“自动化”，确认那个自动化有打开，而且选的是“立即运行”。</li>
+  <li>手动按一次 ▶︎ 试运行，看有没有出现错误信息。</li>
+  <li>写“forbidden”：检查两个“头部”的名称有没有打错（大小写也要一样）。</li>
+  <li>写“超过你的容量上限”：云盘满了，请删掉旧文件或请管理员加大容量。</li></ol></div></details>
+<details class="faq"><summary>朋友说分享链接打不开</summary><div>链接可能已经<b>过期</b>、<b>下载次数用完</b>，或是被取消了。重新分享一次，生成新的链接发给他就好。</div></details>
+<details class="faq"><summary>照片在云盘里看起来是灰色的、没有缩略图</summary><div>第一次打开时，家里的电脑要花几秒做缩略图，等一下再刷新就会出现。点开照片一样可以看。</div></details>
+<details class="faq"><summary>控制台里找不到“Mac”那一页</summary><div>“Mac”页面只有管理员有开“控制台”权限的人才看得到。需要的话请问管理员。</div></details>
+<details class="faq"><summary>换了新手机怎么办？</summary><div>在新手机上重新做一次：下载 App → 打开专属网址 → 按“用 Shadowrocket 打开”（或用 Tailscale 登录）。云盘里的文件都还在，不会丢。</div></details>
+<details class="faq"><summary>可以同时开 Shadowrocket 和 Tailscale 吗？</summary><div>不行，iPhone 一次只能开一个。要用哪个就开哪个。</div></details>
+
+<!-- 13 -->
+<h2 id="safe">13. 安全小提醒</h2>
+<div class="card">
+  <div class="note danger"><b>🔒 你的专属网址和 QR 码就像钥匙</b>拿到的人就能用你的身份连进家里、看你的云盘。</div>
+  <ul class="simple">
+    <li><b>不要</b>把专属网址发给别人，也不要贴到群组</li>
+    <li><b>不要</b>把 Shadowrocket 的 QR 码截图分享</li>
+    <li>如果不小心发出去了，<b>马上告诉管理员</b>，他可以帮你换新的，旧的会立刻失效</li>
+    <li><b>不要</b>把“照片自动备份”的上传网址给别人，拿到的人可以把文件传到你的云盘</li>
+    <li>分享链接发出去以后，拿到链接的人都能下载。重要的文件记得<b>设密码</b>、<b>设期限</b></li>
+    <li>有人自称是管理员跟你要密码或验证码，<b>先打电话跟本人确认</b></li>
+  </ul>
+</div>
+
+<footer>有任何问题，在专属网页<a href="#report">反馈问题</a>，或直接问管理员就好 🙂<br>这份教程里的名字、数字和 QR 码都是示例。</footer>
+</div>
+<a class="back" href="#top">↑ 目录</a>
+<script>try{localStorage.setItem("guide-lang","zh-CN")}catch(e){}</script>
+</body>
+</html>
