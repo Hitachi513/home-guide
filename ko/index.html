@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>집 네트워크 사용 안내</title>
-<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+<title>집 네트워크 사용 안내 | Shadowrocket·Tailscale로 집에 연결 · 홈 클라우드</title>
+<!--SEO--><link rel="canonical" href="https://hitachi513.github.io/home-guide/ko/"><link rel="alternate" hreflang="zh-Hant" href="https://hitachi513.github.io/home-guide/"><link rel="alternate" hreflang="en" href="https://hitachi513.github.io/home-guide/en/"><link rel="alternate" hreflang="zh-Hans" href="https://hitachi513.github.io/home-guide/zh-CN/"><link rel="alternate" hreflang="ja" href="https://hitachi513.github.io/home-guide/ja/"><link rel="alternate" hreflang="ko" href="https://hitachi513.github.io/home-guide/ko/"><link rel="alternate" hreflang="es" href="https://hitachi513.github.io/home-guide/es/"><link rel="alternate" hreflang="x-default" href="https://hitachi513.github.io/home-guide/"><meta property="og:type" content="article"><meta property="og:site_name" content="Mac Home Server"><meta property="og:title" content="집 네트워크 사용 안내 | Shadowrocket·Tailscale로 집에 연결 · 홈 클라우드"><meta property="og:description" content="가족을 위한 단계별 안내: iPhone에서 Shadowrocket 또는 Tailscale로 집 네트워크에 연결하고, 광고를 차단하고, 집 클라우드 드라이브에 사진을 백업하세요. 오픈 소스 &#x27;Mac 홈 서버&#x27; 사용 설명서."><meta property="og:url" content="https://hitachi513.github.io/home-guide/ko/"><meta property="og:image" content="https://hitachi513.github.io/home-guide/img/og-ko.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="ko_KR"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="집 네트워크 사용 안내 | Shadowrocket·Tailscale로 집에 연결 · 홈 클라우드"><meta name="twitter:description" content="가족을 위한 단계별 안내: iPhone에서 Shadowrocket 또는 Tailscale로 집 네트워크에 연결하고, 광고를 차단하고, 집 클라우드 드라이브에 사진을 백업하세요. 오픈 소스 &#x27;Mac 홈 서버&#x27; 사용 설명서."><meta name="twitter:image" content="https://hitachi513.github.io/home-guide/img/og-ko.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "집 네트워크 사용 안내 | Shadowrocket·Tailscale로 집에 연결 · 홈 클라우드", "description": "가족을 위한 단계별 안내: iPhone에서 Shadowrocket 또는 Tailscale로 집 네트워크에 연결하고, 광고를 차단하고, 집 클라우드 드라이브에 사진을 백업하세요. 오픈 소스 'Mac 홈 서버' 사용 설명서.", "inLanguage": "ko", "url": "https://hitachi513.github.io/home-guide/ko/", "image": "https://hitachi513.github.io/home-guide/img/og-ko.png", "dateModified": "2026-10-05", "author": {"@type": "Person", "name": "Hitachi513", "url": "https://github.com/Hitachi513"}, "about": {"@type": "SoftwareSourceCode", "name": "Mac Home Server", "codeRepository": "https://github.com/Hitachi513/mac-homeserver", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT"}}</script><!--/SEO-->
 
-<meta name="description" content="Shadowrocket이나 Tailscale로 집 네트워크에 연결하고 집 클라우드 드라이브를 쓰는 방법을 단계별로 알려 드려요.">
+<meta name="description" content="가족을 위한 단계별 안내: iPhone에서 Shadowrocket 또는 Tailscale로 집 네트워크에 연결하고, 광고를 차단하고, 집 클라우드 드라이브에 사진을 백업하세요. 오픈 소스 &#x27;Mac 홈 서버&#x27; 사용 설명서.">
 <style>
 :root {
   color-scheme: light;
@@ -632,7 +632,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   </ul>
 </div>
 
-<footer>궁금한 게 있으면 내 페이지의 <a href="#report">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.</footer>
+<footer>궁금한 게 있으면 내 페이지의 <a href="#report">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.<br>우리 집에도 두고 싶나요? 오픈 소스예요: <a href="https://github.com/Hitachi513/mac-homeserver">Mac 홈 서버(GitHub)</a></footer>
 </div>
 <a class="back" href="#top" title="목차로 돌아가기" aria-label="목차로 돌아가기">↑</a>
 <script>/* the ↑ button only after scrolling past the table of contents */

@@ -1,4 +1,11 @@
 {
+ "家裡網路使用教學｜Shadowrocket、Tailscale 連回家・家用雲端": {
+  "en": "Home Network Guide | Connect home with Shadowrocket or Tailscale · Home cloud",
+  "zh-CN": "家里网络使用教程｜Shadowrocket、Tailscale 连回家・家用云盘",
+  "ja": "おうちネットワークガイド｜Shadowrocket・Tailscale で自宅に接続・ホームクラウド",
+  "ko": "집 네트워크 사용 안내 | Shadowrocket·Tailscale로 집에 연결 · 홈 클라우드",
+  "es": "Guía de la red de casa | Conéctate a casa con Shadowrocket o Tailscale · Nube doméstica"
+ },
  "家裡網路使用教學": {
   "en": "Home network guide",
   "zh-CN": "家里网络使用教程",
@@ -2141,12 +2148,12 @@
   "ko": "관리자라며 비밀번호나 인증 코드를 달라고 하면 <b>먼저 본인에게 전화해서 확인하세요</b>",
   "es": "Si alguien que dice ser el administrador te pide la contraseña o un código, <b>llama primero a la persona real para comprobarlo</b>"
  },
- "有任何問題，在專屬網頁<a href=\"#report\">回報問題</a>，或直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。": {
-  "en": "Any questions? Use <a href=\"#report\">Report a problem</a> on your page, or just ask the admin 🙂<br>The names, numbers and QR codes in this guide are examples.",
-  "zh-CN": "有任何问题，在专属网页<a href=\"#report\">反馈问题</a>，或直接问管理员就好 🙂<br>这份教程里的名字、数字和 QR 码都是示例。",
-  "ja": "困ったことがあれば、マイページの<a href=\"#report\">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。",
-  "ko": "궁금한 게 있으면 내 페이지의 <a href=\"#report\">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.",
-  "es": "¿Dudas? Usa <a href=\"#report\">Informar de un problema</a> en tu página o pregunta al administrador 🙂<br>Los nombres, números y códigos QR de esta guía son ejemplos."
+ "有任何問題，在專屬網頁<a href=\"#report\">回報問題</a>，或直接問管理員就好 🙂<br>這份教學裡的名字、數字和 QR code 都是範例。<br>想在自己家裡架一台？這是開源專案：<a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac 家用伺服器（GitHub）</a>": {
+  "en": "Any questions? Use <a href=\"#report\">Report a problem</a> on your page, or just ask the admin 🙂<br>The names, numbers and QR codes in this guide are examples.<br>Want one in your own home? It's open source: <a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac Home Server (GitHub)</a>",
+  "zh-CN": "有任何问题，在专属网页<a href=\"#report\">反馈问题</a>，或直接问管理员就好 🙂<br>这份教程里的名字、数字和 QR 码都是示例。<br>想在自己家里架一台？这是开源项目：<a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac 家用服务器（GitHub）</a>",
+  "ja": "困ったことがあれば、マイページの<a href=\"#report\">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。<br>自分の家にも置きたい？オープンソースです：<a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac ホームサーバー（GitHub）</a>",
+  "ko": "궁금한 게 있으면 내 페이지의 <a href=\"#report\">문제 보고</a>나 관리자에게 바로 물어보세요 🙂<br>이 안내의 이름, 숫자, QR 코드는 예시예요.<br>우리 집에도 두고 싶나요? 오픈 소스예요: <a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac 홈 서버(GitHub)</a>",
+  "es": "¿Dudas? Usa <a href=\"#report\">Informar de un problema</a> en tu página o pregunta al administrador 🙂<br>Los nombres, números y códigos QR de esta guía son ejemplos.<br>¿Quieres uno en tu casa? Es código abierto: <a href=\"https://github.com/Hitachi513/mac-homeserver\">Mac Home Server (GitHub)</a>"
  },
  "我的專屬網頁的最上面，顯示名字、可以使用、使用期限": {
   "en": "The top of My page, showing the name, “Available” and the valid-until date",
@@ -2414,11 +2421,11 @@
   "ko": "목차로 돌아가기",
   "es": "Volver al índice"
  },
- "一步一步教你用 Shadowrocket 或 Tailscale 連回家裡的網路、使用家裡的雲端硬碟。": {
-  "en": "Step-by-step: connect to the home network with Shadowrocket or Tailscale and use the home cloud drive.",
-  "zh-CN": "一步一步教你用 Shadowrocket 或 Tailscale 连回家里的网络、使用家里的云盘。",
-  "ja": "Shadowrocket か Tailscale で家のネットワークにつなぎ、家のクラウドドライブを使う方法を一歩ずつ説明します。",
-  "ko": "Shadowrocket이나 Tailscale로 집 네트워크에 연결하고 집 클라우드 드라이브를 쓰는 방법을 단계별로 알려 드려요.",
-  "es": "Paso a paso: conéctate a la red de casa con Shadowrocket o Tailscale y usa la nube de casa."
+ "給家人的一步一步教學：用 iPhone 透過 Shadowrocket 或 Tailscale 連回家裡的網路、擋廣告、用家裡的雲端硬碟備份照片。開源專案「Mac 家用伺服器」的使用說明。": {
+  "en": "A step-by-step guide for family: connect your iPhone to your home network with Shadowrocket or Tailscale, block ads, and back up photos to the home cloud drive. User guide for the open-source Mac Home Server project.",
+  "zh-CN": "给家人的一步一步教程：用 iPhone 通过 Shadowrocket 或 Tailscale 连回家里的网络、屏蔽广告、用家里的云盘备份照片。开源项目「Mac 家用服务器」的使用说明。",
+  "ja": "家族向けのステップごとのガイド：iPhone から Shadowrocket または Tailscale で自宅のネットワークにつなぎ、広告をブロックし、家のクラウドドライブに写真をバックアップ。オープンソース「Mac ホームサーバー」の使い方。",
+  "ko": "가족을 위한 단계별 안내: iPhone에서 Shadowrocket 또는 Tailscale로 집 네트워크에 연결하고, 광고를 차단하고, 집 클라우드 드라이브에 사진을 백업하세요. 오픈 소스 'Mac 홈 서버' 사용 설명서.",
+  "es": "Guía paso a paso para la familia: conecta tu iPhone a la red de casa con Shadowrocket o Tailscale, bloquea anuncios y haz copia de las fotos en la nube de casa. Manual del proyecto de código abierto Mac Home Server."
  }
 }

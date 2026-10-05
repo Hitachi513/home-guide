@@ -9,6 +9,7 @@ i18n/strings.json, keyed by its HTML with whitespace collapsed; translations kee
 <a href>…). Image, link and alt text are handled the same way. Screenshots for a language live in img/<lang>/ and
 fall back to img/ when a language has none.
 """
+import datetime
 import html
 import json
 import os
@@ -16,6 +17,9 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE = "https://hitachi513.github.io/home-guide/"  # search engines need absolute addresses
+PROJECT = "https://github.com/Hitachi513/mac-homeserver"
+OG_LOCALE = {"zh-TW": "zh_TW", "en": "en_US", "zh-CN": "zh_CN", "ja": "ja_JP", "ko": "ko_KR", "es": "es_ES"}
 SRC = os.path.join(ROOT, "index.html")
 STRINGS = os.path.join(ROOT, "i18n", "strings.json")
 LANGS = ["en", "zh-CN", "ja", "ko", "es"]
@@ -127,10 +131,47 @@ def switcher(lang, depth):
     return '<nav class="langs" translate="no">🌐 ' + " ".join(links) + "</nav>"
 
 
-def alternates(depth):
-    up = "../" * depth
-    return "".join(f'<link rel="alternate" hreflang="{HTML_LANG.get(l, l)}" href="{up}{"" if l == "zh-TW" else l + "/"}">' for l in NAMES) + \
-        f'<link rel="alternate" hreflang="x-default" href="{up}en/">'
+def url_of(lang):
+    return SITE + ("" if lang == "zh-TW" else lang + "/")
+
+
+def seo(lang, title, desc):
+    """Everything search engines and link previews read: canonical + language versions, Open Graph / Twitter card,
+    and structured data. Absolute URLs only (Google ignores relative hreflang)."""
+    img = SITE + f"img/og-{lang}.png"
+    tags = [f'<link rel="canonical" href="{url_of(lang)}">']
+    tags += [f'<link rel="alternate" hreflang="{HTML_LANG.get(l, l)}" href="{url_of(l)}">' for l in NAMES]
+    tags.append(f'<link rel="alternate" hreflang="x-default" href="{SITE}">')
+    e = lambda v: html.escape(v, quote=True)
+    tags += [f'<meta property="og:type" content="article">', f'<meta property="og:site_name" content="Mac Home Server">',
+             f'<meta property="og:title" content="{e(title)}">', f'<meta property="og:description" content="{e(desc)}">',
+             f'<meta property="og:url" content="{url_of(lang)}">', f'<meta property="og:image" content="{img}">',
+             '<meta property="og:image:width" content="1200">', '<meta property="og:image:height" content="630">',
+             f'<meta property="og:locale" content="{OG_LOCALE[lang]}">']
+    tags += [f'<meta property="og:locale:alternate" content="{OG_LOCALE[l]}">' for l in NAMES if l != lang]
+    tags += ['<meta name="twitter:card" content="summary_large_image">', f'<meta name="twitter:title" content="{e(title)}">',
+             f'<meta name="twitter:description" content="{e(desc)}">', f'<meta name="twitter:image" content="{img}">']
+    ld = {"@context": "https://schema.org", "@type": "TechArticle", "headline": title, "description": desc,
+          "inLanguage": HTML_LANG.get(lang, lang), "url": url_of(lang), "image": img,
+          "dateModified": datetime.date.today().isoformat(),
+          "author": {"@type": "Person", "name": "Hitachi513", "url": "https://github.com/Hitachi513"},
+          "about": {"@type": "SoftwareSourceCode", "name": "Mac Home Server", "codeRepository": PROJECT,
+                    "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT"}}
+    tags.append('<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + "</script>")
+    return "<!--SEO-->" + "".join(tags) + "<!--/SEO-->"
+
+
+def sitemap():
+    today = datetime.date.today().isoformat()
+    alt = "".join(f'<xhtml:link rel="alternate" hreflang="{HTML_LANG.get(l, l)}" href="{url_of(l)}"/>' for l in NAMES)
+    urls = "".join(f"<url><loc>{url_of(l)}</loc><lastmod>{today}</lastmod>{alt}</url>" for l in NAMES)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+            'xmlns:xhtml="http://www.w3.org/1999/xhtml">' + urls + "</urlset>\n")
+
+
+def head_text(page, tag):
+    m = re.search(r"<title>(.*?)</title>" if tag == "title" else r'<meta name="description" content="([^"]*)"', page, re.S)
+    return html.unescape(m.group(1)) if m else ""
 
 
 def build_lang(src, lang, tab):
@@ -161,7 +202,7 @@ def build_lang(src, lang, tab):
         own = os.path.join(ROOT, "img", lang, name)
         return f'src="../img/{lang}/{name}"' if os.path.exists(own) else f'src="../img/{name}"'
     page = re.sub(r'src="img/([^"]+)"', img, page)
-    page = page.replace("<!--LANGS-->", switcher(lang, 1)).replace("<!--ALT-->", alternates(1))
+    page = page.replace("<!--LANGS-->", switcher(lang, 1)).replace("<!--ALT-->", seo(lang, head_text(page, "title"), head_text(page, "description")))
     page = re.sub(r"<script id=\"langpick\">.*?</script>", "", page, flags=re.S)
     # a visitor who picks a language here keeps it (the root page won't send them away again)
     page = page.replace("</body>", f'<script>try{{localStorage.setItem("guide-lang","{lang}")}}catch(e){{}}</script>\n</body>', 1)
@@ -173,6 +214,7 @@ def main():
         src = f.read()
     # the original carries the rendered language bar from the last build: put the markers back first
     src = re.sub(r'<nav class="langs".*?</nav>', "<!--LANGS-->", src, flags=re.S)
+    src = re.sub(r"<!--SEO-->.*?<!--/SEO-->", "<!--ALT-->", src, flags=re.S)
     src = re.sub(r'(<link rel="alternate"[^>]*>)+', "<!--ALT-->", src)
     tab = refresh(src)
     if "--check" in sys.argv:
@@ -188,9 +230,11 @@ def main():
             f.write(page)
         print(f"{lang}: written, {len(set(missing))} untranslated")
     # the Chinese original gets the same switcher and alternates (in place, idempotent)
-    root = src.replace("<!--LANGS-->", switcher("zh-TW", 0)).replace("<!--ALT-->", alternates(0))
+    root = src.replace("<!--LANGS-->", switcher("zh-TW", 0)).replace("<!--ALT-->", seo("zh-TW", head_text(src, "title"), head_text(src, "description")))
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8") as f:
         f.write(root)
+    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(sitemap())
 
 
 if __name__ == "__main__":

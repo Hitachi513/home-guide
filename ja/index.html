@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>おうちネットワークの使い方</title>
-<link rel="alternate" hreflang="zh-Hant" href="../"><link rel="alternate" hreflang="en" href="../en/"><link rel="alternate" hreflang="zh-Hans" href="../zh-CN/"><link rel="alternate" hreflang="ja" href="../ja/"><link rel="alternate" hreflang="ko" href="../ko/"><link rel="alternate" hreflang="es" href="../es/"><link rel="alternate" hreflang="x-default" href="../en/">
+<title>おうちネットワークガイド｜Shadowrocket・Tailscale で自宅に接続・ホームクラウド</title>
+<!--SEO--><link rel="canonical" href="https://hitachi513.github.io/home-guide/ja/"><link rel="alternate" hreflang="zh-Hant" href="https://hitachi513.github.io/home-guide/"><link rel="alternate" hreflang="en" href="https://hitachi513.github.io/home-guide/en/"><link rel="alternate" hreflang="zh-Hans" href="https://hitachi513.github.io/home-guide/zh-CN/"><link rel="alternate" hreflang="ja" href="https://hitachi513.github.io/home-guide/ja/"><link rel="alternate" hreflang="ko" href="https://hitachi513.github.io/home-guide/ko/"><link rel="alternate" hreflang="es" href="https://hitachi513.github.io/home-guide/es/"><link rel="alternate" hreflang="x-default" href="https://hitachi513.github.io/home-guide/"><meta property="og:type" content="article"><meta property="og:site_name" content="Mac Home Server"><meta property="og:title" content="おうちネットワークガイド｜Shadowrocket・Tailscale で自宅に接続・ホームクラウド"><meta property="og:description" content="家族向けのステップごとのガイド：iPhone から Shadowrocket または Tailscale で自宅のネットワークにつなぎ、広告をブロックし、家のクラウドドライブに写真をバックアップ。オープンソース「Mac ホームサーバー」の使い方。"><meta property="og:url" content="https://hitachi513.github.io/home-guide/ja/"><meta property="og:image" content="https://hitachi513.github.io/home-guide/img/og-ja.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:locale" content="ja_JP"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="おうちネットワークガイド｜Shadowrocket・Tailscale で自宅に接続・ホームクラウド"><meta name="twitter:description" content="家族向けのステップごとのガイド：iPhone から Shadowrocket または Tailscale で自宅のネットワークにつなぎ、広告をブロックし、家のクラウドドライブに写真をバックアップ。オープンソース「Mac ホームサーバー」の使い方。"><meta name="twitter:image" content="https://hitachi513.github.io/home-guide/img/og-ja.png"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "おうちネットワークガイド｜Shadowrocket・Tailscale で自宅に接続・ホームクラウド", "description": "家族向けのステップごとのガイド：iPhone から Shadowrocket または Tailscale で自宅のネットワークにつなぎ、広告をブロックし、家のクラウドドライブに写真をバックアップ。オープンソース「Mac ホームサーバー」の使い方。", "inLanguage": "ja", "url": "https://hitachi513.github.io/home-guide/ja/", "image": "https://hitachi513.github.io/home-guide/img/og-ja.png", "dateModified": "2026-10-05", "author": {"@type": "Person", "name": "Hitachi513", "url": "https://github.com/Hitachi513"}, "about": {"@type": "SoftwareSourceCode", "name": "Mac Home Server", "codeRepository": "https://github.com/Hitachi513/mac-homeserver", "programmingLanguage": "Python", "license": "https://opensource.org/licenses/MIT"}}</script><!--/SEO-->
 
-<meta name="description" content="Shadowrocket か Tailscale で家のネットワークにつなぎ、家のクラウドドライブを使う方法を一歩ずつ説明します。">
+<meta name="description" content="家族向けのステップごとのガイド：iPhone から Shadowrocket または Tailscale で自宅のネットワークにつなぎ、広告をブロックし、家のクラウドドライブに写真をバックアップ。オープンソース「Mac ホームサーバー」の使い方。">
 <style>
 :root {
   color-scheme: light;
@@ -632,7 +632,7 @@ footer { text-align: center; color: var(--muted); font-size: 15px; margin-top: 5
   </ul>
 </div>
 
-<footer>困ったことがあれば、マイページの<a href="#report">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。</footer>
+<footer>困ったことがあれば、マイページの<a href="#report">問題を報告</a>か、管理者に直接聞いてください 🙂<br>このガイドの名前・数字・QR コードは例です。<br>自分の家にも置きたい？オープンソースです：<a href="https://github.com/Hitachi513/mac-homeserver">Mac ホームサーバー（GitHub）</a></footer>
 </div>
 <a class="back" href="#top" title="目次に戻る" aria-label="目次に戻る">↑</a>
 <script>/* the ↑ button only after scrolling past the table of contents */
